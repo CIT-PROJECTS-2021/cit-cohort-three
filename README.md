@@ -12,7 +12,7 @@ It is divided into weeks, each of which contains a Markdown files with the week'
 
 2. Data Types
     - [Strings](/week1/strings.md)
-    - [Numbers](/week1/numbers.md)
+    - [Numbers](/week1/numbers/numbers.md)
     - [Booleans](/week1/booleans.md)
     - [Lists](/week2/lists.md)
     - [Dictionaries](/week2/dictionaries.md)
