@@ -39,5 +39,5 @@ Example:
 
 
 ### References
-https://docs.python.org/3/tutorial/introduction.html
-https://www.w3schools.com/python/python_numbers.asp
+[Python Documentation](https://docs.python.org/3/tutorial/introduction.html)
+[W3Schools](https://www.w3schools.com/python/python_numbers.asp)
