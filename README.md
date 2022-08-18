@@ -1,8 +1,13 @@
 # CIT Python Cloud Software Engineering
 
+The goal of this course is to teach software engineering concepts through the Python Cloud Engineering language. In this course, you will learn fundamentals and advanced Python and AWS Cloud methodologies. The course will conclude with a dissertation project which will be a final project of your choosing for potential employers to look at and certification exams in AWS and Python.
+
+Don’t be afraid! You don’t have to be a math wiz in any capacity to learn code!
+
 This repository contains the code for the Python for CIT Students Cohort 3 2022 course.
 
 It is divided into weeks, each of which contains a Markdown files with the week's content as well as a Python file with the week's code.
+
 
 ### Table of Contents
 
