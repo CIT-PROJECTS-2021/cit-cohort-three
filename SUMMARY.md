@@ -8,4 +8,4 @@
   * [numbers](week1/numbers/README.md)
 * [week2](week2/README.md)
   * [Control Flow Statements](week2/control\_flow/README.md)
-    * [IF Statement](week2/control\_flow/if\_statements.md)
+    * [Control Flow Statements](week2/control\_flow/control-flow-statements.md)
