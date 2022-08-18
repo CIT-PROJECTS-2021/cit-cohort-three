@@ -47,3 +47,5 @@ print("Hello, World!")
 ## References
 
 - [w3schools.com](https://www.w3schools.com/python/python_syntax.asp)
+
+[Next](/week1/variables.md) | [Previous](/week1/what_is_python.md)
