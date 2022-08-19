@@ -1,8 +1,5 @@
-# Special operators
-
 Python language offers some special types of operators like the identity operator or the membership operator. They are described below with examples.
 
-# Membership operators
 
 `in` and `not in` are the membership operators in Python. They are used to test whether a value or variable is found in a sequence (string, list, tuple, set and dictionary).
 
