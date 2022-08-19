@@ -6,6 +6,7 @@ description: >-
 # Python Operators
 
 **What are operators in python?**
+
 Operators are special symbols in Python that carry out arithmetic or logical computation. The value that the operator operates on is called the operand.
 
 For example:
