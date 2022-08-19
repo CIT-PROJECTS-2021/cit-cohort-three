@@ -24,7 +24,7 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Tuples](week2/tuples/tuples.md)
    * [Sets](week2/sets/sets.md)
 3. Operators
-   * [Arithmetic Operators](week2/operators/arithmetic\_operators.md)(`+`, `-`, `*`, `/`, `//`, `%`)
+   * [Arithmetic Operators](week2/operators/arithmetic\README.md)(`+`, `-`, `*`, `/`, `//`, `%`)
    * [Comparison Operators](week2/operators/comparison\_operators.md)(`==`, `!=`, `>`, `<`, `>=`, `<=`)
    * [Logical Operators](week2/operators/logical\_operators.md)(`and`, `or`, `not`)
    * [Bitwise Operators](week2/operators/bitwise\_operators.md)(`&`, `|`, `^`, `~`, `<<`, `>>`)
