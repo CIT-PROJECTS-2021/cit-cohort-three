@@ -18,4 +18,3 @@
     * [Bitwise Operators](week2/operators/bitwise/README.md)
     * [Identity Operators](week2/operators/identity/README.md)
     * [Membership Operators](week2/operators/membership/README.md)
-    * [Other Operators](week2/operators/other/README.md)

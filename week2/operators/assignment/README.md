@@ -17,7 +17,7 @@ There are various compound operators in Python like `a += 5` that adds to the va
 | //=      | a //= 5 | a = a // 5   |
 | **=      | a **= 5 | a = a ** 5   |
 | &=       | a &= 5  | a = a & 5    |
-| |=       | a |= 5  | a = a | 5    |
+| \|=       | a \|= 5  | a = a \| 5    |
 
 
 
