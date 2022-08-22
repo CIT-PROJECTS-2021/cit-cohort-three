@@ -34,5 +34,5 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [If Statements](week2/control\_flow/if\_statements.md)
    * [For Loops](week2/control\_flow/for\_loop/README.md)
    * [While Loops](week2/control\_flow/while\_loops.md)
-   * [Break and Continue](week2/control\_flow/break\_and\_continue.md)
+   * [Break and Continue](week2/control\_flow/break\_and\_continue/README.md)
    * [Try and Except](week2/control\_flow/try\_and\_except.md)

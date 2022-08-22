@@ -11,6 +11,7 @@
     * [If Statements](week2/control\_flow/if\_statements.md)
     * [For Loops](week2/control\_flow/for\_loop/README.md)
     * [While Loops](week2/control\_flow/while\_loops/README.md)
+    * [Break and Continue Statements](week2/control\_flow/break\_and\_continue/README.md)
   * [Operators](week2/operators/README.md)
     * [Assignment Operators](week2/operators/assignment/README.md)
     * [Arithmetic Operators](week2/operators/arithmetic/README.md)
