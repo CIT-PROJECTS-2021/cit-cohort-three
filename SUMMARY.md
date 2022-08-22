@@ -9,6 +9,7 @@
 * [week Two](week2/README.md)
   * [Control Flow Statements](week2/control\_flow/README.md)
     * [If Statements](week2/control\_flow/if\_statements.md)
+    * [For Loops](week2/control\_flow/for\_loop/README.md)
   * [Operators](week2/operators/README.md)
     * [Assignment Operators](week2/operators/assignment/README.md)
     * [Arithmetic Operators](week2/operators/arithmetic/README.md)
