@@ -8,7 +8,7 @@
   * [Numbers / Integers](week1/numbers/README.md)
 * [week Two](week2/README.md)
   * [Control Flow Statements](week2/control\_flow/README.md)
-    * [If Statements](week2/control\_flow/if\_statements.md)
+    * [If Statements](week2/control\_flow/if\_statements/README.md)
     * [For Loops](week2/control\_flow/for\_loop/README.md)
     * [While Loops](week2/control\_flow/while\_loops/README.md)
     * [Break and Continue Statements](week2/control\_flow/break\_and\_continue/README.md)

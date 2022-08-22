@@ -1,4 +1,3 @@
-# IF Statement
 Often, you need to execute some statements only if some condition holds, or choose statements to execute depending on several mutually exclusive conditions. 
 
 The Python compound statement if, which uses if, elif, and else clauses, lets you conditionally execute blocks of statements. Here’s the syntax for the if statement:
