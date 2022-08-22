@@ -32,7 +32,7 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Identity Operators](week2/operators/identity/README.md)(`is`, `is not`)
 4. [Control Flow Statements](week2/control\_flow/control\_flow.md)
    * [If Statements](week2/control\_flow/if\_statements.md)
-   * [For Loops](week2/control\_flow/for\_loops.md)
+   * [For Loops](week2/control\_flow/for\_loop/README.md)
    * [While Loops](week2/control\_flow/while\_loops.md)
    * [Break and Continue](week2/control\_flow/break\_and\_continue.md)
    * [Try and Except](week2/control\_flow/try\_and\_except.md)
