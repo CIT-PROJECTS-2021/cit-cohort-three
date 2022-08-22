@@ -22,12 +22,12 @@ break
 
 **Flow chart of break statement**
 
-<img src="https://cdn.programiz.com/sites/tutorial2program/files/flowchart-break-statement.jpg" alt="Flow chart of break statement" style="width: 100%">
+<img src="https://cdn.programiz.com/sites/tutorial2program/files/flowchart-break-statement.jpg" alt="Flow chart of break statement" style="width: 50%">
 
 
 **The working of break statement in for loop and while loop is shown below.**
 
-<img src="https://cdn.programiz.com/sites/tutorial2program/files/how-break-statement-works.jpg " alt="How break statement works" style="width: 100%">
+<img src="https://cdn.programiz.com/sites/tutorial2program/files/how-break-statement-works.jpg " alt="How break statement works" style="width: 50%">
 
 
 **Example of break statement in for loop**
@@ -65,11 +65,11 @@ continue
 
 **Flowchart of continue**
 
-<img src="https://cdn.programiz.com/sites/tutorial2program/files/continue-statement-flowchart.jpg" alt="Flowchart of continue statement" style="width: 100%">
+<img src="https://cdn.programiz.com/sites/tutorial2program/files/continue-statement-flowchart.jpg" alt="Flowchart of continue statement" style="width: 50%">
 
 The working of the continue statement in for and while loop is shown below.
 
-<img src="https://cdn.programiz.com/sites/tutorial2program/files/how-continue-statment-works.jpg" alt="How continue statement works" style="width: 100%">
+<img src="https://cdn.programiz.com/sites/tutorial2program/files/how-continue-statment-works.jpg" alt="How continue statement works" style="width: 50%">
 
 
 **Example: Python continue statement in for loop**

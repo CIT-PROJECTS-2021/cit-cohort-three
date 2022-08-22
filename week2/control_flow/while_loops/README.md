@@ -24,7 +24,7 @@ Python interprets any non-zero value as True. None and 0 are interpreted as Fals
 
 **Flow chart for while loop**
 
-<img src="https://cdn.programiz.com/sites/tutorial2program/files/whileLoopFlowchart.jpg" alt="while loop flowchart" style="width: 100%;">
+<img src="https://cdn.programiz.com/sites/tutorial2program/files/whileLoopFlowchart.jpg" alt="while loop flowchart" style="width: 50%;">
 
 
 **Example: Python while Loop**
