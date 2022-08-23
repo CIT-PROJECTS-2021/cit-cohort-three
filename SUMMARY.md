@@ -30,3 +30,4 @@
     * [Tuples](week2/data\_types/tuples/README.md)
     * [Sets](week2/data\_types/sets/README.md)
 * [Assignments and Solutions](assignments/README.md)
+  * [Loops](assignments/loops/README.md)
