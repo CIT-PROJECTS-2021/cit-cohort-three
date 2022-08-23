@@ -16,7 +16,7 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Python Syntax](week1/python\_syntax.md)
    * [Variables](week1/variables.md)
 2. Data Types
-   * [Strings](week1/strings.md)
+   * [Strings](week2/data\_types/strings/README.md)
    * [Numbers](week1/numbers/numbers.md)
    * [Booleans](week1/booleans/booleans.md)
    * [Lists](week2/lists/lists.md)
@@ -35,4 +35,3 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [For Loops](week2/control\_flow/for\_loop/README.md)
    * [While Loops](week2/control\_flow/while\_loops/README.md)
    * [Break and Continue](week2/control\_flow/break\_and\_continue/README.md)
-   * [Try and Except](week2/control\_flow/try\_and\_except.md)
