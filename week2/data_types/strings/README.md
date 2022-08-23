@@ -115,12 +115,12 @@ my_string = 'Python'
 
 | Index | Element | Negative Index |
 |-------|---------|---------------|
-| 0     | P       | -1            |
-| 1     | y       | -2            |
-| 2     | t       | -3            |
-| 3     | h       | -4            |
-| 4     | o       | -5            |
-| 5     | n       | -6            |
+| 0     | P       | -6            |
+| 1     | y       | -5            |
+| 2     | t       | -4            |
+| 3     | h       | -3            |
+| 4     | o       | -2            |
+| 5     | n       | -1            |
 
 
 ### **How to change or delete a string?**
