@@ -29,3 +29,4 @@
     * [Dictionaries](week2/data\_types/dict/README.md)
     * [Tuples](week2/data\_types/tuples/README.md)
     * [Sets](week2/data\_types/sets/README.md)
+* [Assignments and Solutions](assignments/README.md)

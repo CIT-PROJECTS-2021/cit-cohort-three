@@ -35,3 +35,5 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [For Loops](week2/control\_flow/for\_loop/README.md)
    * [While Loops](week2/control\_flow/while\_loops/README.md)
    * [Break and Continue](week2/control\_flow/break\_and\_continue/README.md)
+
+[Assignments and Solutions](assignments/README.md)
