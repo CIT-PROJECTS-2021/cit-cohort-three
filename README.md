@@ -19,7 +19,7 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Strings](week2/data\_types/strings/README.md)
    * [Numbers](week1/numbers/numbers.md)
    * [Booleans](week1/booleans/booleans.md)
-   * [Lists](week2/lists/lists.md)
+   * [Lists](week2/data\_types/python\_lists/README.md)
    * [Dictionaries](week2/dict/dictionaries.md)
    * [Tuples](week2/tuples/tuples.md)
    * [Sets](week2/sets/sets.md)
