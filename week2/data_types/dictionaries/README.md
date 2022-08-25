@@ -1,6 +1,6 @@
 ---
 description: >-
-In this lecture, you'll learn everything about Python dictionaries; how they are created, accessing, adding, removing elements from them and various built-in methods.
+  In this lecture, you'll learn everything about Python dictionaries; how they are created, accessing, adding, removing elements from them and various built-in methods.
 ---
 
 Python dictionary is an unordered collection of items. Each item of a dictionary has a `key/value pair`.

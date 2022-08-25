@@ -1,6 +1,6 @@
 ---
 description: >-
-In this lecture, you'll learn everything about Python tuples. More specifically, what are tuples, how to create them, when to use them and various methods you should be familiar with.
+    In this lecture, you'll learn everything about Python tuples. More specifically, what are tuples, how to create them, when to use them and various methods you should be familiar with.
 ---
 
 A tuple in Python is similar to a [list](../python_lists/README.md). The difference between the two is that we cannot change the elements of a tuple once it is assigned whereas we can change the elements of a list.
