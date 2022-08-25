@@ -26,7 +26,7 @@
     * [Numbers](week2/data\_types/numbers/README.md)
     * [Booleans](week2/data\_types/booleans/README.md)
     * [Lists](week2/data\_types/python\_lists/README.md)
-    * [Dictionaries](week2/data\_types/dictionary/README.md)
+    * [Dictionaries](week2/data\_types/dictionaries/README.md)
     * [Tuples](week2/data\_types/python\_tuples/README.md)
     * [Sets](week2/data\_types/sets/README.md)
 * [Assignments and Solutions](assignments/README.md)
