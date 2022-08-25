@@ -20,8 +20,8 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Numbers](week1/numbers/numbers.md)
    * [Booleans](week1/booleans/booleans.md)
    * [Lists](week2/data\_types/python\_lists/README.md)
-   * [Dictionaries](week2/dict/dictionaries.md)
-   * [Tuples](week2/tuples/tuples.md)
+   * [Dictionaries](week2/data\_types/dictionary/README.md)
+   * [Tuples](week2/data\_types/python\_tuples/README.md)
    * [Sets](week2/sets/sets.md)
 3. Operators
    * [Arithmetic Operators](week2/operators/arithmetic/README.md)(`+`, `-`, `*`, `/`, `//`, `%`)
