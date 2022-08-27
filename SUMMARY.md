@@ -30,6 +30,7 @@
     * [Tuples](week2/data\_types/python\_tuples/README.md)
     * [Sets](week2/data\_types/sets/README.md)
 * [Week 3](week3/README.md)
-  * [Functions](week2/functions/README.md)
+  * [Functions](week3/functions/README.md)
+      * [Function Arguments](week3/functions/function\_arguments/README.md)
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)
