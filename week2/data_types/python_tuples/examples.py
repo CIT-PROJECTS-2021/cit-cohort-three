@@ -74,4 +74,13 @@ def print_middle_tuple_if_odd(tup: tuple) -> None:
 
 
 
+# 12. A program to print the middle element of a tuple if the tuple is odd length
+def print_middle_tuple_if_odd_even(tup: tuple) -> None:
+    if len(tup) % 2 == 0:
+        print(tup[len(tup) // 2])
+    else:
+        print(tup[len(tup) // 2 - 1])
 
+
+
+        

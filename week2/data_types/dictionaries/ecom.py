@@ -37,7 +37,7 @@ while True:
             print(f"Product ID: {product_id},\
              Product name: {product_details['name']},\
             Price: {product_details['price']},\
-            Quantity: {product_details['quantity']}")
+            Quantity: {product_details['quantity']}".strip())
     
     elif option == "4":
         print(f"Closing program")
@@ -45,3 +45,42 @@ while True:
 
     else:
         print("Invalid option")
+
+
+# 7. A program that prints the keys and values of a dictionary
+def print_keys_and_values(dic: dict) -> None:
+    if not isinstance(dic, dict):
+        raise ValueError(f"{dic} is not a dictionary")
+
+    for key, value in dic.items():
+        print(f"Key: {key}, Value: {value}")
+
+
+# 8. A program that prints the keys and values of a dictionary in reverse order
+def print_keys_and_values_reverse(dic: dict) -> None:
+    if not isinstance(dic, dict):
+        raise ValueError(f"{dic} is not a dictionary")
+
+    for key, value in reversed(list(dic.items())):
+        print(f"Key: {key}, Value: {value}")
+
+
+# 9. A program that prints the keys and values of a dictionary in sorted order
+def print_keys_and_values_sorted(dic: dict) -> None:
+    if not isinstance(dic, dict):
+        raise ValueError(f"{dic} is not a dictionary")
+
+    for key, value in sorted(list(dic.items())):
+        print(f"Key: {key}, Value: {value}")
+
+
+# 10. A program that prints the keys and values of a dictionary in sorted order in reverse order
+def print_keys_and_values_sorted_reverse(dic: dict) -> None:
+    if not isinstance(dic, dict):
+        raise ValueError(f"{dic} is not a dictionary")
+
+    for key, value in sorted(list(dic.items()), reverse=True):
+        print(f"Key: {key}, Value: {value}")
+
+
+

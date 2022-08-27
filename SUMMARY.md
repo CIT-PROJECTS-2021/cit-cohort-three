@@ -29,5 +29,7 @@
     * [Dictionaries](week2/data\_types/dictionaries/README.md)
     * [Tuples](week2/data\_types/python\_tuples/README.md)
     * [Sets](week2/data\_types/sets/README.md)
+* [Week 3](week3/README.md)
+  * [Functions](week2/functions/README.md)
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)
