@@ -22,7 +22,7 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Lists](week2/data\_types/python\_lists/README.md)
    * [Dictionaries](week2/data\_types/dictionaries/README.md)
    * [Tuples](week2/data\_types/python\_tuples/README.md)
-   * [Sets](week2/sets/sets.md)
+   * [Sets](week2/data\_types/sets/README.md)
 3. Operators
    * [Arithmetic Operators](week2/operators/arithmetic/README.md)(`+`, `-`, `*`, `/`, `//`, `%`)
    * [Comparison Operators](week2/operators/comparison/README.md)(`==`, `!=`, `>`, `<`, `>=`, `<=`)
