@@ -1,6 +1,6 @@
 # 1. Write a function that takes an integer minutes and converts it to seconds.
 
-def convert_min_to_sec(minutes):
+def convert_min_to_sec(minutes: int) -> int:
     return minutes * 60
 
 print(convert_min_to_sec(5))
@@ -16,7 +16,7 @@ print(tri_area(5, 6))
 # The first element should be the sum of all even numbers in the list.
 # The second element should be the sum of all odd numbers in the list.
 
-def sum_even_odd(numbers):
+def sum_even_odd(numbers: list) -> list:
     if not isinstance(numbers, list):
         raise ValueError("Please provide a valid list")
 
@@ -35,7 +35,7 @@ print(sum_even_odd([1, 2, 3, 4, 5, 6, 7, 8, 9]))
 
 # 4. In cricket, an over consists of six deliveries a bowler bowls from one end. Create a function that takes the number of balls bowled by a bowler and calculates the number of overs and balls bowled by him/her. Return the value as a float, in the format overs.balls.
 
-def overs_balls(balls):
+def overs_balls(balls: int) -> float:
     if not isinstance(balls, int):
         raise ValueError("Please provide a valid number")
 
@@ -46,7 +46,7 @@ print(overs_balls(2400))
 
 # 5. Create a function that takes two numbers as arguments (num, length) and returns a list of multiples of num until the list length reaches length.
 
-def multiples(num, length):
+def multiples(num: int, length: int) -> list:
     if not isinstance(num, int) or not isinstance(length, int):
         raise ValueError("Please provide a valid number")
 
@@ -67,7 +67,7 @@ print(pluralize(["cat", "dog", "cat", "mouse", "dog"]))
 
 # 7. Create a function that takes a string's characters as ASCII and returns each character's hexadecimal value as a string.
 
-def hex_values(string):
+def hex_values(string: str) -> list:
     if not isinstance(string, str):
         raise ValueError("Please provide a valid string")
 
@@ -88,12 +88,39 @@ def top_note(dictionary: dict) -> dict:
             dictionary[key] = max(value)
 
     # change note key
-    
-
-
-
-
+    dictionary["top_note"] = dictionary.pop("notes")
     return dictionary
 
 
 print(top_note({ "name": "John", "notes": [3, 5, 4] }))
+
+
+"""
+9. Make a function that encrypts a given input with these steps:
+
+Input: "apple"
+
+Step 1: Reverse the input: "elppa"
+
+Step 2: Replace all vowels using the following chart:
+
+a => 0
+e => 1
+i => 2
+o => 2
+u => 3
+
+# "1lpp0"
+Step 3: Add "aca" to the end of the word: "1lpp0aca"
+
+Output: "1lpp0aca"
+"""
+
+def encrypt(string: str) -> str:
+    if not isinstance(string, str):
+        raise ValueError("Please provide a valid string")
+
+    return string[::-1].translate(str.maketrans("aeiou", "01223")) + "aca"
+
+print(encrypt("banana"))
+print(encrypt("burak"))
