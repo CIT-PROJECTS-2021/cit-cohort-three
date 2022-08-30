@@ -45,11 +45,13 @@ def delete_product(products, product_name):
     return products
 
 def show_products(products):
-    pass
+    print(products.items(),sep=":")
+    print("products printed")
 
 
 def show_product(products, product_name):
-    pass
+    product_name = ("enter product name to be shown :")
+    print(products.get(product_name))
 
 
 def main():
@@ -74,11 +76,12 @@ def main():
             product_price = input("Enter product price: ")
             products = update_product(products, product_name, product_price)
         elif choice == "3":
-            pass
+            product_name = input("Enter product name to delete:")
+            delete_product(products, product_name) 
         elif choice == "4":
-            pass
+            show_products(products)
         elif choice == "5":
-            pass
+            show_products(products, product_name)
         elif choice == "6":
             break
         else:
