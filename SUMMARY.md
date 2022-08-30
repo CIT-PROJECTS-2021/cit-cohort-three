@@ -32,5 +32,7 @@
 * [Week 3](week3/README.md)
   * [Functions](week3/functions/README.md)
       * [Function Arguments](week3/functions/function\_arguments/README.md)
+      * [Python Recursion](week3/functions/python\_recursion/README.md)
+      * [Python Anonymous/Lambda Function](week3/functions/lambda\_function/README.md)
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)

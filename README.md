@@ -37,5 +37,6 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Break and Continue](week2/control\_flow/break\_and\_continue/README.md)
 5. [Functions](week3/functions/README.md)
    * [Function Arguments](week3/functions/function\_arguments/README.md)
+   * [Python Recursion](week3/functions/python\_recursion/README.md)
 
 [Assignments and Solutions](assignments/README.md)
