@@ -38,5 +38,9 @@ It is divided into weeks, each of which contains a Markdown files with the week'
 5. [Functions](week3/functions/README.md)
    * [Function Arguments](week3/functions/function\_arguments/README.md)
    * [Python Recursion](week3/functions/python\_recursion/README.md)
+6. [Object Oriented Programming](week3/oop/README.md)
+   * [Classes](week3/oop/classes/README.md)
+   * [Inheritance](week3/oop/inheritance/README.md)
+   * [Polymorphism](week3/oop/polymorphism/README.md)
 
 [Assignments and Solutions](assignments/README.md)
