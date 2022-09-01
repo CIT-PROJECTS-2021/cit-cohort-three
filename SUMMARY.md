@@ -42,7 +42,6 @@
     * [Encapsulation](week3/oop/encapsulation/README.md)
   * [Python Modules](week3/modules/README.md)
     * [Python Packages](week3/modules/python\_packages/README.md)
-    * [Python Modules](week3/modules/python\_modules/README.md)
     * [Python Built-in Modules](week3/modules/python\_built-in\_modules/README.md)
     * [Python Standard Library](week3/modules/python\_standard\_library/README.md)
 * [Assignments and Solutions](assignments/README.md)

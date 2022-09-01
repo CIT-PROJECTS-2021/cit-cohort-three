@@ -46,7 +46,6 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Abstraction](week3/oop/abstraction/README.md)
 7. [Python Modules](week3/modules/README.md)
       * [Python Packages](week3/modules/python\_packages/README.md)
-      * [Python Modules](week3/modules/python\_modules/README.md)
       * [Python Built-in Modules](week3/modules/python\_built-in\_modules/README.md)
       * [Python Standard Library](week3/modules/python\_standard\_library/README.md)
 
