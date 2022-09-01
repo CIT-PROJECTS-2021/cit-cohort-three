@@ -1,30 +1,44 @@
 # rock paper scissors game
-
+# import required modules
 import random
 
+# create the playing function
 def play():
-    user = input("What's your choice? 'r' for rock, 'p' for paper, 's' for scissors: ")
+    # get user input
+    user = input("What is your choice? 'r' for rock, 'p' paper, 's' for scissors: ")
+    
+    # get computer choice
     computer = random.choice(['r', 'p', 's'])
 
+    # check if user input is the same as computer choice
     if user == computer:
-        return 'It\'s a tie'
+        return 'It is a tie!'
 
-    # r > s, s > p, p > r
+    #r>s, s>p, p>r
+    # check if user selects r and computer selects s
+    # or if user selects s and computer selects p
+    # or if user selects p and computer selects r
+    # if true, user wins otherwise computer wins
     if is_win(user, computer):
-        return 'You won!'
+        return "You won!"
 
-    return 'You lost!'
+    return 'You Lost!'
 
 def is_win(player, opponent):
+    print(f"user: {player}")
+    print(f"computer: {opponent}")
     # return true if player wins
-    # r > s, s > p, p > r
-    if (player == 'r' and opponent == 's') or (player == 's' and opponent == 'p') or (player == 'p' and opponent == 'r'):
+    if(player == 'r' and opponent == 's') or (player == 's' and opponent == 'p') or (player == 'p' and opponent == 'r'):
         return True
 
+
+# create main function
 def main():
     print(play())
 
-if __name__ == '__main__':
+
+# invoke main function
+if __name__ == "__main__":
     main()
 
 # The importance of the __name__ == '__main__' statement
