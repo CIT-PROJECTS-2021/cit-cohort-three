@@ -43,7 +43,7 @@ def remove_task(todo_list):
 def complete_task(todo_list):
     list_tasks(todo_list)
     task_number = int(input('Enter task number to complete: '))
-    todo_list[task_number - 1] = 'x ' + todo_list[task_number - 1]
+    todo_list[task_number - 1] = '✔ ' + todo_list[task_number - 1]
     print('Task completed')
 
 
