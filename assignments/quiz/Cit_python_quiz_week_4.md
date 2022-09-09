@@ -4,9 +4,9 @@
 2. Write a python program to sort array element in the ascending/descending order
 3. Write a python program to find the maximum and minimum value in a given 2-D array
 4.  Write a python program to input 5 subject marks and calculate total marks, percentage and grade based on following criteria
-    - percentage less than 50 (Grade C)
-    - percentage equal to 50 and less than 80 (Grade B)
-    - percentage equal to 80 and more than 80 (Grade A)
+    - percentage less than `50` (Grade C)
+    - percentage equal to `50` and less than `80` (Grade B)
+    - percentage equal to `80` and more than `80` (Grade A)
 5. Write a python program to fetch only Email ID from text file  which include following fields -:
     - Name
     - Mobile Number
@@ -15,8 +15,8 @@
 6. Write a function for checking the speed of drivers. This function should have one parameter: speed.
     - If speed is less than 70, it should print “Ok”.
     - Otherwise, for every 5km above the speed limit (70), it should give the driver one demerit point and print the total number of demerit points. For example, if the speed is 80, it should print: “Points: 2”.
-    - If the driver gets more than 12 points, the function should print: “License suspended”
-7. Write a function called show_stars(rows). If rows is 5, it should print the following:
+    - If the driver gets more than 12 points, the function should print: “`License suspended`”
+7. Write a function called `show_stars(rows)`. If rows is 5, it should print the following:
 ```bash
 *
 **
