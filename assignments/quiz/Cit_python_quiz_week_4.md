@@ -17,11 +17,13 @@
     - Otherwise, for every 5km above the speed limit (70), it should give the driver one demerit point and print the total number of demerit points. For example, if the speed is 80, it should print: “Points: 2”.
     - If the driver gets more than 12 points, the function should print: “License suspended”
 7. Write a function called show_stars(rows). If rows is 5, it should print the following:
+```bash
 *
 **
 ***
 ****
 *****
+```
 8. Write a program which will find all such numbers which are divisible by 7 but are not a multiple of 5 between 2000 and 3200 (both included).
 The numbers obtained should be printed in a comma-separated sequence on a single line.
 
