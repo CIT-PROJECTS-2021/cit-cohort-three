@@ -1,7 +1,6 @@
 # A command line application that consumes https://api-v3.safe-courier.ml api
 
 import argparse
-from ast import arg
 import sys
 import requests
 import json
@@ -146,7 +145,8 @@ def get_users():
         base_url + endpoints["users"], "GET", headers=headers)
     if response.status_code == 200:
         data = response.json()
-        tabulate_output(data)
+        # tabulate_output(data)
+        print(json.dumps(data, indent=4))
     else:
         print("Failed to get users, {}".format(response.json()["message"]))
     return
