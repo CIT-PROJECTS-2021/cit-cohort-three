@@ -59,8 +59,10 @@ Author: IDEN
 # 13. Bonus Question: Algorithm challenge: Create your own sorting algorithm.
 
 # 1. Create a 2-D array and slice out the second number in the second column
+
 import math
 import numpy as np
+import sys
 
 def slice_array(list: list) -> list:
     """Slices the second number in the second column of a 2D array
@@ -75,6 +77,7 @@ def slice_array(list: list) -> list:
 
 
 print(slice_array(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])))
+
 
 # 2. Write a python program to sort array element in the ascending/descending order
 def sort_array(list: list, order: str) -> list:
@@ -156,16 +159,7 @@ def fetch_email(file: str) -> list:
     emails = []
     with open(file, "r") as f:
         for line in f:
-            # check if the line contains an email
-            # if re.search(r"[\w\.-]+@[\w\.-]+", line):
-            #     # append the email to the list
-            #     emails.append(re.search(r"[\w\.-]+@[\w\.-]+", line).group())
-            if "@" in line:
-                # split the line into a list
-                line = line.split()
-                # add the email to the list
-                emails.append(line[3])
-    return emails
+            emails.append(re.search(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", line).group())
 
 print(fetch_email("data.txt"))
 
@@ -264,13 +258,13 @@ def capitalize_lines(lines: str) -> str:
     Returns:
         str: The capitalized lines
     """
-    lines = lines.split("")
+    lines = lines.split(" ")
     capitalized_lines = []
     for line in lines:
         capitalized_lines.append(line.upper())
-    return "".join(capitalized_lines)
+    return " ".join(capitalized_lines)
 
-print(capitalize_lines("Hello world"))
+print(capitalize_lines("Hello world Practice makes perfect"))
 
 # 11. Write a program that accepts a sequence of whitespace separated words as input and prints the words after removing all duplicate words and sorting them alphanumerically.
 # Suppose the following input is supplied to the program:
@@ -441,6 +435,8 @@ def unique_list(numbers: list) -> list:
     """
     return list(set(numbers))
 
+print(unique_list([1, 2, 3, 3, 3, 3, 4, 5]))
+
 # 13. Bonus Question: Algorithm challenge: Create your own sorting algorithm.
 
 def split_list(numbers: list) -> tuple:
@@ -492,6 +488,8 @@ def merge_sort(numbers: list) -> list:
     list2 = merge_sort(list2)
     return merge_lists(list1, list2)
 
+print(merge_sort([1, 3, 2, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20][::-1]))
+
 # END OF SOLUTIONS
 
 #BONUS 2. Binary Search
@@ -518,6 +516,8 @@ def binary_search(numbers: list, number: int) -> int:
             right = mid - 1
     return -1
 
+print(binary_search([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5))
+
 #BONUS 3. Bubble Sort
 
 def bubble_sort(numbers: list) -> list:
@@ -534,6 +534,8 @@ def bubble_sort(numbers: list) -> list:
             if numbers[j] > numbers[j + 1]:
                 numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
     return numbers
+
+print(bubble_sort([1, 3, 2, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20][::-1]))
 
 #BONUS 4. Insertion Sort
 
@@ -555,6 +557,8 @@ def insertion_sort(numbers: list) -> list:
         numbers[j + 1] = key
     return numbers
 
+print(insertion_sort([1, 3, 2, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20][::-1]))
+
 #BONUS 5. Selection Sort
 
 def selection_sort(numbers: list) -> list:
@@ -574,6 +578,8 @@ def selection_sort(numbers: list) -> list:
         numbers[i], numbers[min_index] = numbers[min_index], numbers[i]
     return numbers
 
+print(selection_sort([1, 3, 2, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20][::-1]))
+
 #BONUS 6. Quick Sort
 
 def quick_sort(numbers: list) -> list:
@@ -591,6 +597,8 @@ def quick_sort(numbers: list) -> list:
     left = [number for number in numbers[1:] if number < pivot]
     right = [number for number in numbers[1:] if number >= pivot]
     return quick_sort(left) + [pivot] + quick_sort(right)
+
+print(quick_sort([1, 3, 2, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20][::-1]))
 
 #BONUS 7. Heap Sort
 
@@ -629,6 +637,8 @@ def heap_sort(numbers: list) -> list:
         numbers[i], numbers[0] = numbers[0], numbers[i]
         heapify(numbers, i, 0)
     return numbers
+
+print(heap_sort([1, 3, 2, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20][::-1]))
 
 #BONUS 8. Counting Sort
 
