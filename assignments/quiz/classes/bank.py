@@ -100,7 +100,7 @@ class Bank:
         conn, c = self.connect_db()
         c.execute('''
         SELECT balance FROM bank WHERE account_number = %s
-        ''', (self.account_number_login))
+        ''', (self.account_number_login,))
 
         data = c.fetchone()
         conn.close()
@@ -158,7 +158,7 @@ class Bank:
         conn, c = self.connect_db()
         c.execute('''
         SELECT account_number, balance FROM bank WHERE account_number = %s
-        ''', (self.account_number))
+        ''', (account_number,))
         data = c.fetchone()
         if data is None:
             print('Account number does not exist')
@@ -178,7 +178,7 @@ class Bank:
     
     def login(self, account_number, pin):
         conn, c = self.connect_db()
-        c.execute('''SELECT * bank WHERE account_number = %s''', (account_number))
+        c.execute('''SELECT * FROM bank WHERE account_number = %s''', (account_number,))
         data = c.fetchone()
         conn.close()
 
@@ -196,6 +196,29 @@ class Bank:
                 print("Incorrect PIN")
                 return False
 
+    def check_history(self):
+        conn, c = self.connect_db()
+        c.execute('''
+        SELECT  * FROM transactions WHERE account_number = %s
+        ''', (self.account_number_login,))
+        data = c.fetchall()
+        c.close()
+        conn.close()
+        print('Your transaction history: ')
+        for row in data:
+            # Transfer of UGX: 5000 on Jan 19
+            print(row[2] + ' of UGX: ' + str(row[3]) + ' on ' + str(row[4]))
+
+
+    def exit(self):
+        print('Thank you for using CIT Bank')
+        sys.exit()
+
+
+# clear screen function
+def clear_screen():
+    sleep(5)
+    os.system('cls' if os.name == 'nt' else 'clear')
         
 
 def check_phone(phone_number):
@@ -219,13 +242,50 @@ def main(Bank):
 
         if not name or not phone or not pin:
             print('cannot create account, All fields are required')
+            clear_screen()
             sys.exit(-1)
         else:
             bank = Bank(name, phone, pin)
             bank.create_account()
     elif user_input == "2":
-        pass
+        account_number = input('Enter your account number: ')
+        pin = input('Enter your PIN: ')
+        bank = Bank('', '', '')
+        if bank.login(account_number, pin):
+            while True:
+                print('Welcome Back')
+                print('1. Deposit\n2. Withdraw\n3. Transfer\n4. Check Balance\n5.Check History\n6. Exit')
+                user_input = input('Enter your choice: ')
+                
+                if user_input == '1':
+                    amount = int(input('Enter the amount you want to deposit: '))
+                    bank.deposit(amount)
+                    clear_screen()
+                elif user_input == '2':
+                    amount = int(input('Enter the amount you want to withdraw: '))
+                    bank.withdraw(amount)
+                    clear_screen()
+                elif user_input == '3':
+                    amount = int(input('Enter the amount you want to transfer: '))
+                    account_number = input('Enter the account number you want to transfer to: ')
+                    bank.transfer(amount, account_number)
+                    clear_screen()
+                elif user_input == '4':
+                    bank.check_balance()
+                    clear_screen()
+                elif user_input == '5':
+                    bank.check_history()
+                    clear_screen()
+                elif user_input == '6':
+                    bank.exit()
+                else:
+                    print('Invalid option!')
+        else:
+            print('Login failed :(')
+            clear_screen()
 
+    elif user_input == '3':
+        sys.exit()
     else:
         print("Invalid input")
         sys.exit(-1)
@@ -233,18 +293,3 @@ def main(Bank):
 
 if __name__ == '__main__':
     main(Bank)
-
-
-
-
-
-
-
-
-            
-
-    
-
-
-
-    
