@@ -55,7 +55,6 @@ def index():
             return render_template('index.html', error='URL already exists', short_url=result[2])
 
         short_url = 'http://localhost:5000/' + generate_short_url()
-        cur = mysql.connection.cursor()
         cur.execute("INSERT INTO urls(long_url, short_url) VALUES(%s, %s)", (long_url, short_url))
         mysql.connection.commit()
         cur.close()
