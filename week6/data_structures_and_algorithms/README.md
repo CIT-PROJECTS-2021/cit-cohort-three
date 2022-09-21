@@ -12,11 +12,11 @@ this DSA lecture will guide you to learn different types of data structures and 
 
 ### Table of Contents
 
-[DSA Introduction](#table-of-contents)
-    [What is an Algorithm?](./algorithms/README.md)
-    [Data Structures and Types](./data\_structures/README.md)
-    [Why learn Algorithms and Data Structures?](./why_learn/README.md)
-    [Asymptotic Notation](./asymptotic_notation/README.md)
-    [Master Theorem](./master_theorem/README.md)
-    [Divide and Conquer](./divide_and_conquer/README.md)
+* [DSA Introduction](#table-of-contents)
+    * [What is an Algorithm?](./algorithms/README.md)
+    * [Data Structures and Types](./data\_structures/README.md)
+    * [Why learn Algorithms and Data Structures?](./why_learn/README.md)
+    * [Asymptotic Notation](./asymptotic_notation/README.md)
+    * [Master Theorem](./master_theorem/README.md)
+    * [Divide and Conquer](./divide_and_conquer/README.md)
 
