@@ -56,9 +56,9 @@
   * [Data Structures and Algorithms](week6/data\_structures\_and\_algorithms/README.md)
     * [DSA Introduction](#table-of-contents)
     * [What is an Algorithm?](/week6/data\_structures\_and\_algorithms/algorithms/README.md)
-    * [Data Structures and Types](/week6/data\_structures\_and\_algorithms/data_structures/README.md)
-    * [Stacks](/week6/data\_structures\_and\_algorithms/data_structures/stack/README.md)
-    * [Queues](/week6/data\_structures\_and\_algorithms/data_structures/queue/README.md)
+    * [Data Structures and Types](/week6/data\_structures\_and\_algorithms/data\_structures/README.md)
+    * [Stack](/week6/data\_structures\_and\_algorithms/data\_structures/stack/README.md)
+    * [Queue](/week6/data\_structures\_and\_algorithms/data\_structures/queue/README.md)
 
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)
