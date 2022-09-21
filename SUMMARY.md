@@ -57,10 +57,6 @@
     * [DSA Introduction](#table-of-contents)
     * [What is an Algorithm?](/week6/data\_structures\_and\_algorithms/algorithms/README.md)
     * [Data Structures and Types](/week6/data\_structures\_and\_algorithms/data_structures/README.md)
-    * [Why learn Algorithms and Data Structures?](./why_learn/README.md)
-    * [Asymptotic Notation](./asymptotic_notation/README.md)
-    * [Master Theorem](./master_theorem/README.md)
-    * [Divide and Conquer](./divide_and_conquer/README.md)
 
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)
