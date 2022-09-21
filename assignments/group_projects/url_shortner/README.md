@@ -23,6 +23,10 @@ python app.py
 2. The shortened URL will be displayed
 3. Click on the shortened URL to redirect to the original URL
 
+
+## Screenshots
+![Screenshot](./ui.png)
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 

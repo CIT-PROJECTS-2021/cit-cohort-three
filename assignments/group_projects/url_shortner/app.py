@@ -74,7 +74,6 @@ def redirect_to_url(short_url):
             cur.execute("UPDATE visits SET visits = visits + 1 WHERE short_url = %s", [url[0]])
             mysql.connection.commit()
         else:
-            print(url)
             cur.execute("INSERT INTO visits(visits, short_url) VALUES(%s, %s)", (1, url[0]))
             mysql.connection.commit()
         visits = cur.fetchone()
