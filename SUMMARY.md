@@ -52,5 +52,8 @@
     * [Python User-defined Exceptions](week3/python\_exceptions/python\_user-defined\_exceptions/README.md)
 * [Week 4](week4/README.md)
   * [Python File Handling](week4/python\_file\_handling/README.md)
+* [Week6](week6/README.md)
+  * [Data Structures and Algorithms](week6/data\_structures\_and\_algorithms/README.md)
+
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)

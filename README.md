@@ -60,4 +60,6 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Python Delete Files](week4/python\_file\_handling/python\_delete\_files/README.md)
    * [Python File Methods](week4/python\_file\_handling/python\_file\_methods/README.md)
 
+10. [Data Structures and Algorithms](week6/data\_structures\_and\_algorithms/README.md)
+
 [Assignments and Solutions](assignments/README.md)
