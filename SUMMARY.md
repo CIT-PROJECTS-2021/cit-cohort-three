@@ -59,6 +59,7 @@
     * [Data Structures and Types](/week6/data\_structures\_and\_algorithms/data\_structures/README.md)
     * [Stack](/week6/data\_structures\_and\_algorithms/data\_structures/stack/README.md)
     * [Queue](/week6/data\_structures\_and\_algorithms/data\_structures/queue/README.md)
+    * [Linked List](/week6/data\_structures\_and\_algorithms/data\_structures/linked\_list/README.md)
 
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)
