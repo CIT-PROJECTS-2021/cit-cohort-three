@@ -1,0 +1,2 @@
+google-cloud-speech
+youtube-dl
