@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .container form label {
+            margin-bottom: 10px;
+        }
+        .container form input, .container form select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .container form button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(17, 17, 17);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .container form button:hover {
+            background-color: #000;
+        }
+
+        .container .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .container .result p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CIT Currency Converter</h1>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="{{url_for('convert')}}" method="POST">
+            <label for="amount">Amount</label>
+            <input type="number" name="amount" id="amount" placeholder="Enter amount">
+            <label for="from_currency">From</label>
+            <select name="from_currency" id="from">
+               {% for symbol, name in symbols.items() %}
+                <option value="{{symbol}}">{{symbol}} - {{name}}</option>
+                {% endfor %}
+            </select>
+            <label for="to_currency">To</label>
+            <select name="to_currency" id="to">
+                {% for symbol, name in symbols.items() %}
+                <option value="{{symbol}}">{{symbol}} - {{name}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" value="Convert">Convert</button>
+        </form>
+        <div class="results">
+            {% if result %}
+                <h2>Result</h2>
+                <p>{{message}}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
