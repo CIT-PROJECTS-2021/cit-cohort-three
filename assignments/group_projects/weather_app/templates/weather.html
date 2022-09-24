@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather for {{ weather.city }}</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+        }
+        .weather {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .weather__icon {
+            width: 100px;
+            height: 100px;
+        }
+        .weather__info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .weather__info > * {
+            margin: 0;
+        }
+        .weather__info > *:first-child {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .weather__info > *:last-child {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather for {{ weather.city }}</h1>
+        <div class="weather">
+            <img class="weather__icon" src="{{ weather.icon }}" alt="Weather icon">
+            <div class="weather__info">
+                <p>{{ weather.temperature }}°C</p>
+                <p>{{ weather.description }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

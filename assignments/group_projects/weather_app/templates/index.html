@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather APP</title>
+    <style>
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .container p {
+            font-size: 1.2rem;
+        }
+
+        .container form {
+            margin-top: 2rem;
+        }
+
+        .container form input {
+            padding: 0.5rem;
+            font-size: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .container form button {
+            padding: 0.5rem;
+            font-size: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+
+        .container form button:hover {
+            background-color: #ccc;
+        }
+
+        .container form button:active {
+            background-color: #aaa;
+        }
+
+        .container form button:focus {
+            outline: none;
+        }
+
+        .error {
+            color: red;
+            font-size: small;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather APP</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="{{url_for('index')}}" method="POST">
+            <input type="text" name="city" id="city" placeholder="Enter City Name">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
