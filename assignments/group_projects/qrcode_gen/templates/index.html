@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRCODE Generator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>QRCODE Generator</h1>
+        <form action="/qrcode" method="POST">
+            <input type="text" name="url" placeholder="Enter URL">
+            <button type="submit">Generate</button>
+        </form>
+
+        {% if qrcode %}
+            <img src="{{ qrcode }}" alt="QR Code">
+        {% endif %}
+    </div>
+</body>
+</html>
