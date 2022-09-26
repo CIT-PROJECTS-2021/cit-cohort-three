@@ -60,6 +60,8 @@
     * [Stack](/week6/data\_structures\_and\_algorithms/data\_structures/stack/README.md)
     * [Queue](/week6/data\_structures\_and\_algorithms/data\_structures/queue/README.md)
     * [Linked List](/week6/data\_structures\_and\_algorithms/data\_structures/linked\_list/README.md)
+    * [Bubble Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/bubble_sort/README.md)
+    * [Selection Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/selection_sort_algorithm/README.md)
 
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)

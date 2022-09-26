@@ -61,5 +61,13 @@ It is divided into weeks, each of which contains a Markdown files with the week'
    * [Python File Methods](week4/python\_file\_handling/python\_file\_methods/README.md)
 
 10. [Data Structures and Algorithms](week6/data\_structures\_and\_algorithms/README.md)
+    * [DSA Introduction](#table-of-contents)
+    * [What is an Algorithm?](/week6/data\_structures\_and\_algorithms/algorithms/README.md)
+    * [Data Structures and Types](/week6/data\_structures\_and\_algorithms/data\_structures/README.md)
+    * [Stack](/week6/data\_structures\_and\_algorithms/data\_structures/stack/README.md)
+    * [Queue](/week6/data\_structures\_and\_algorithms/data\_structures/queue/README.md)
+    * [Linked List](/week6/data\_structures\_and\_algorithms/data\_structures/linked\_list/README.md)
+    * [Bubble Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/bubble_sort/README.md)
+    * [Selection Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/selection_sort_algorithm/README.md)
 
 [Assignments and Solutions](assignments/README.md)
