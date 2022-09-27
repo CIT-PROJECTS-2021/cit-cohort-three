@@ -69,5 +69,6 @@ It is divided into weeks, each of which contains a Markdown files with the week'
     * [Linked List](/week6/data\_structures\_and\_algorithms/data\_structures/linked\_list/README.md)
     * [Bubble Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/bubble_sort/README.md)
     * [Selection Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/selection_sort_algorithm/README.md)
+    * [Insertion Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/insertion_sort_algorithm/README.md)
 
 [Assignments and Solutions](assignments/README.md)
