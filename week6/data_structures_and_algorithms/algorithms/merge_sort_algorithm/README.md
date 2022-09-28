@@ -151,3 +151,11 @@ if __name__ == '__main__':
     print("Sorted array is: ")
     printList(array)
 ```
+
+### References
+
+1. [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
+2. [Merge Sort - Programiz](https://www.programiz.com/dsa/merge-sort)
+3. [Merge Sort - Wikipedia](https://en.wikipedia.org/wiki/Merge_sort)
+4. [Merge Sort - Tutorials Point](https://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm)
+5. [Merge Sort - YouTube](https://www.youtube.com/watch?v=JSceec-wEyw)
