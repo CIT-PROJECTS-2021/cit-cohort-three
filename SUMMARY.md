@@ -63,6 +63,7 @@
     * [Bubble Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/bubble_sort/README.md)
     * [Selection Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/selection_sort_algorithm/README.md)
     * [Insertion Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/insertion_sort_algorithm/README.md)
+    * [Merge Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/merge_sort_algorithm/README.md)
 
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)
