@@ -184,6 +184,5 @@ def shuffle_list(lst: list) -> list:
     if len(lst) == 0:
         return lst
     else:
-        return shuffle_list(lst[1:]) + [lst[0]] + shuffle_list(lst[2:])
+        shuffle_list(lst[1:]) + [lst[0]] + shuffle_list(lst[2:])
 
-print(shuffle_list([1,2,3,4,5]))

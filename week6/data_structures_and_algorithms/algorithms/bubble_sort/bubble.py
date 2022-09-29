@@ -28,6 +28,16 @@ def bubble_sort_opt(a):
         n -= 1
     return a
 
+def bubble_sort_other(arr):
+    i = 0
+    while i < len(arr):
+        j = 0
+        while j < len(arr) - 1:
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+            j += 1
+        i += 1
+
 
 # selection sort using a while loop
 def selection_sort(a):
