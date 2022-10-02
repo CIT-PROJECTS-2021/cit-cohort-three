@@ -31,7 +31,7 @@ the game. The game should be played as follows:
     - The program should print out the winner's name and score.
     - If a player rolls a 6, they get an extra roll. If they roll a 6 again, they get another extra roll. If they roll a 6 a third time, they get an extra roll, but their turn ends.
 
-6. Write a Python program that lists out all the default as well as custom properties of the class.
+6. Write a Python program that lists out all the defaults as well as custom properties of the class.
 
 7. Write a Program in Python to implement a Stack Data Structure using Class and Objects, with push, pop, and traversal methods.
 
