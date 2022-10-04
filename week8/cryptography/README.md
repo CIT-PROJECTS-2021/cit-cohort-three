@@ -62,7 +62,7 @@ Examples of symmetric cryptography are:
     
         - Twofish
 
-[!Symmetric Cryptography](https://www.encryptionconsulting.com/wp-content/uploads/2022/08/3.jpg)
+![Symmetric Cryptography](https://www.encryptionconsulting.com/wp-content/uploads/2022/08/3.jpg)
 
 ### **Asymmetric Cryptography**
 
@@ -82,3 +82,28 @@ Examples of asymmetric cryptography are:
 
 
 ![Asymmetric Cryptography](https://www.encryptionconsulting.com/wp-content/uploads/2022/08/4.jpg)
+
+
+### Hash Functions
+Hash functions are used to generate a fixed length of output from a variable length of input. The hash function is a one-way function. It is not possible to reverse the hash function. The hash function is used to generate a unique hash value for a given input. 
+
+The hash value is used to verify the integrity of the data. The hash function is used to generate a unique hash value for a given input. The hash value is used to verify the integrity of the data.
+
+Examples of hashing algorithms:
+    - MD5 (Message Digest 5)
+    - SHA (Secure Hash Algorithm)
+    - SHA-1 (Secure Hash Algorithm 1)
+    - SHA-2 Family which includes SHA-224, SHA-256, SHA-384, SHA-512
+    - SHA-3
+    - Whirlpool
+    - etc
+
+### Python Libraries for Cryptography
+- cryptography
+- pycrypto
+- pycryptodome
+- pyaes
+- pydes
+- pycryptopp
+- hashlib
+- etc
