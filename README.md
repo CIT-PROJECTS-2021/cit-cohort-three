@@ -73,5 +73,7 @@ It is divided into weeks, each of which contains a Markdown files with the week'
     * [Merge Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/merge_sort_algorithm/README.md)
     * [Quick Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/quick_sort_algorithm/README.md)
 11. [Cryptography](week8/cryptography/README.md)
+      * [Reverse Cipher](week8/cryptography/reverse\_cipher/README.md)
+      * [Caesar Cipher](week8/cryptography/caesar\_cipher/README.md)
 
 [Assignments and Solutions](assignments/README.md)
