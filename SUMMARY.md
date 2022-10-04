@@ -65,6 +65,8 @@
     * [Insertion Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/insertion_sort_algorithm/README.md)
     * [Merge Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/merge_sort_algorithm/README.md)
     * [Quick Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/quick_sort_algorithm/README.md)
+* [Week8](week8/README.md)
+    * [Cryptography](week8/cryptography/README.md)
 
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)

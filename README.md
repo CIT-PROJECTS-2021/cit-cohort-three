@@ -72,5 +72,6 @@ It is divided into weeks, each of which contains a Markdown files with the week'
     * [Insertion Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/insertion_sort_algorithm/README.md)
     * [Merge Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/merge_sort_algorithm/README.md)
     * [Quick Sort Algorithm](/week6/data_structures_and_algorithms/algorithms/quick_sort_algorithm/README.md)
+11. [Cryptography](week8/cryptography/README.md)
 
 [Assignments and Solutions](assignments/README.md)
