@@ -36,3 +36,49 @@ The basic characteristics of modern cryptography are as follows −
     - It uses mathematical algorithms for securing the information.
 
     - It requires parties interested in secure communication channel to achieve privacy.
+
+
+### **Types of Cryptography**
+The cryptography can be broadly classified into two types −
+
+### **Symmetric Cryptography**
+In symmetric cryptography, the same key is used for both encryption and decryption. The key is shared between the sender and receiver. The sender encrypts the message using the key and sends it to the receiver. The receiver decrypts the message using the same key. The sender and receiver must have the same key to decrypt the message.
+
+Examples of symmetric cryptography are:
+    
+        - DES (Data Encryption Standard)
+    
+        - AES (Advanced Encryption Standard)
+    
+        - Blowfish
+    
+        - RC4
+    
+        - RC5
+    
+        - IDEA
+    
+        - Triple DES
+    
+        - Twofish
+
+[!Symmetric Cryptography](https://www.encryptionconsulting.com/wp-content/uploads/2022/08/3.jpg)
+
+### **Asymmetric Cryptography**
+
+In asymmetric cryptography, two different keys are used for encryption and decryption. One key is used for encryption and the other key is used for decryption. The sender encrypts the message using the public key and sends it to the receiver. The receiver decrypts the message using the private key. The sender and receiver must have the same key to decrypt the message.
+
+Examples of asymmetric cryptography are:
+    
+        - RSA (Rivest–Shamir–Adleman)
+    
+        - Diffie–Hellman key exchange
+    
+        - ElGamal encryption
+    
+        - DSA (Digital Signature Algorithm)
+    
+        - ECC (Elliptic Curve Cryptography)
+
+
+![Asymmetric Cryptography](https://www.encryptionconsulting.com/wp-content/uploads/2022/08/4.jpg)
