@@ -75,5 +75,6 @@ It is divided into weeks, each of which contains a Markdown files with the week'
 11. [Cryptography](week8/cryptography/README.md)
       * [Reverse Cipher](week8/cryptography/reverse\_cipher/README.md)
       * [Caesar Cipher](week8/cryptography/caesar\_cipher/README.md)
+      * [Hash Functions](week8/cryptography/hash\_functions/README.md)
 
 [Assignments and Solutions](assignments/README.md)

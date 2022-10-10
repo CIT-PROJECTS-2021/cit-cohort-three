@@ -69,6 +69,10 @@
     * [Cryptography](week8/cryptography/README.md)
         * [Reverse Cipher](week8/cryptography/reverse\_cipher/README.md)
         * [Caesar Cipher](week8/cryptography/caesar\_cipher/README.md)
+        * [Hash Functions](week8/cryptography/hash\_functions/README.md)
+             * [Applications of Hash Functions](week8/cryptography/hash\_functions/applications/README.md)
+             * [Examples of Hash Functions](week8/cryptography/hash\_functions/examples/README.md)
+
 
 * [Assignments and Solutions](assignments/README.md)
   * [Loops](assignments/loops/README.md)
