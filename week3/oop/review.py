@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 age = int(input("Enter your age: "))
 
 if age < 18:
@@ -101,3 +104,5 @@ print(mul(2, 3, 4))
 add = lambda *args: sum(args)
 
 print(add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+reduce(lambda x, y: x + y, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])

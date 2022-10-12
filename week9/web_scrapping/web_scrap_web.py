@@ -42,3 +42,4 @@ for index, card in enumerate(cards):
 
 with open('jobs.json', 'w') as json_file:
     json.dump(jobs, json_file, indent=4)
+
