@@ -1,16 +1,18 @@
-import threading
+# import threading
 import requests
 from bs4 import BeautifulSoup
 import json
-import time
+# import time
 
 search_term = input("What product do you want to search for?: ")
 
+# mac book => mac+book
 url = f"https://www.newegg.ca/p/pl?d={search_term.replace(' ', '+')}"
 
+# text or content
 page = requests.get(url).text
 
-# lxml
+# lxml => pip install lxml
 doc = BeautifulSoup(page, 'html.parser')
 
 
@@ -37,18 +39,18 @@ def scrape_data(url):
                 price = price_elm.text
 
             image = item.find('img').get('src')
+            # image = item.find('img')['src']
+            # <img src="https://www.somepage.com/images/fancy_image.png" alt="some image">
 
             items_found[index+1] = {"product_name": product_name, "price": int(price.replace(",", '')), "image": image, "link": link}
 
-            # time.sleep(5)
 
 
 scrape_data(url)
 
-items_found = sorted(items_found.items(), key = lambda x: x[1]["price"])
-items_found = dict(items_found)
+items_found = dict(sorted(items_found.items(), key = lambda x: x[1]["price"]))
 
-with open("items.json", "w") as file:
+with open(f"{search_term.replace(' ', '_')}.json", "w") as file:
     json.dump(items_found, file, indent=4)
 
 print("Done")
