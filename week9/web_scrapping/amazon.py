@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 base_url = "https://www.amazon.com"
 
@@ -30,6 +31,37 @@ headers = {
   "viewport-width": "1600" 
 }
 
+search_term = input("Which product do you want to search for? ")
 
-r = requests.get(base_url, headers=headers)
-print(r.status_code)
+url = base_url + "/s?k=" + search_term.replace(" ", "+")
+# chrome book => chrome+book
+
+amazon_products = {}
+
+r = requests.get(url, headers=headers).text
+
+doc = BeautifulSoup(r, "html.parser")
+
+products = doc.find_all("div", class_="s-card-container s-overflow-hidden aok-relative puis-include-content-margin puis s-latency-cf-section s-card-border")
+
+for product in products:
+    image = product.find("img", class_="s-image")["src"]
+    title = product.find("span", class_="a-size-medium a-color-base a-text-normal").text
+    num_reviews = product.find("span", class_="a-size-base s-underline-text").text
+    price = product.find('span', class_="a-offscreen").text
+    link = product.find("a", class_ = "a-link-normal")['href']
+    link = base_url + link
+    
+    amazon_products[title] = {
+        "image": image,
+        "title": title,
+        "num_reviews": num_reviews,
+        "price": price,
+        "link": link
+    }
+
+
+with open("amazon_products.json", "w") as file:
+    json.dump(amazon_products, file, indent=4)
+
+print("Done")
