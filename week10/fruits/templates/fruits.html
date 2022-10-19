@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* style the page */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        h3 {
+            color: #fff;
+            background-color: #333;
+            padding: 10px;
+            margin: 10px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .table-container {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid rgb(224, 224, 224);
+            box-shadow: 0 0 10px rgb(224, 224, 224);
+            border-radius: 5px;
+            width: 50%;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid rgb(224, 224, 224);
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        .form-container input[type=submit] {
+            background-color: #333;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body class="container">
+    <h3>My fruits</h3>
+    <div class="table-container">
+      {% if fruits %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fruit in fruits %}
+                <tr>
+                    <td>{{ fruit.name }}</td>
+                    <td>{{ fruit.color }}</td>
+                    <td>{{ fruit.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+       {% else %}
+       <p>No fruits available yet! please add some fruits</p>
+       {% endif %}
+    </div>
+    <div class=" form-container">
+        <form method="post" action="{{ url_for('views.add_fruits')}}">
+            <input type="text" name="name" placeholder="Enter a fruit">
+            <input name="color" type="text" placeholder="Enter a fruit color">
+            <input name="price" type="number" placeholder="0">
+            <input type="submit" value="Add fruit">
+            <!-- <button type="submit">Add fruit</button> -->
+        </form>
+    </div>
+</body>
+</html>

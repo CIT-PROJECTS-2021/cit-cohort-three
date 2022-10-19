@@ -1,0 +1,1 @@
+from .fruits_view import views as fruits
