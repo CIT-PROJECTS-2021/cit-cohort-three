@@ -8,15 +8,35 @@
 </head>
 <body>
     <h5>My fruits</h5>
-    <ul>
-        {% for fruit in fruits %}
-        <li>{{ fruit }}</li>
-        {% endfor %}
-    </ul>
+      {% if fruits %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fruit in fruits %}
+                <tr>
+                    <td>{{ fruit.name }}</td>
+                    <td>{{ fruit.color }}</td>
+                    <td>{{ fruit.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+       {% else %}
+       <p>No fruits available yet! please add some fruits</p>
+       {% endif %}
     <br>
     <form method="post" action="{{ url_for('add_fruits')}}">
-        <input type="text" name="fruit" placeholder="Enter a fruit">
+        <input type="text" name="name" placeholder="Enter a fruit">
+        <input name="color" type="text" placeholder="Enter a fruit color">
+        <input name="price" type="number" placeholder="0">
         <input type="submit" value="Add fruit">
+        <!-- <button type="submit">Add fruit</button> -->
     </form>
 </body>
 </html>
