@@ -15,6 +15,7 @@ ma = Marshmallow()
 migrate = Migrate()
 
 TEMPLATES_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+STATIC_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 
 
 def create_app():

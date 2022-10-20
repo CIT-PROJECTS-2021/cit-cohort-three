@@ -1,3 +1,4 @@
+import json
 from flask import Blueprint, request, redirect, render_template
 from bs4 import BeautifulSoup
 import requests
@@ -49,10 +50,25 @@ def hacker_news():
     # loop through data
     for news in data:
         # check if news already exists in database
-        if not news in hnews:
+        if news.get('title').lower() not in [hn.title.lower() for hn in hnews]:
             hnew = HackerNews(title=news['title'], link=news['link'])
             hnew.save()
         else:
             continue
 
     return render_template('hacker_news.html', data=hnews)
+
+
+
+@hviews.route('/hacker-news/search', methods=['GET', 'POST'])
+def search_hacker_news():
+    # /hacker-news/search?q=python
+    query = request.args.get('q')
+    # search in database for anythign that matches the query
+    data = HackerNews.query.filter(HackerNews.title.like(f'%{query}%')).all()
+    return {'data': [news.serialize() for news in data]}
+
+
+@hviews.route('/search')
+def search():
+    return render_template('search.html')

@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CIT Search</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+    <meta name="robots" content="noindex, follow" />
+    <style>
+        /* style the results container to be below the search box with enough spacing on top */
+        .s003 .result {
+            position: absolute;
+            z-index: 999;
+            top: 60%;
+            left: 30%;
+            right: 0;
+        }
+
+        .s003 .result p {
+            margin: 0;
+            padding: 10px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            width: 70%;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="s003">
+      <form>
+        <div class="inner-form">
+          <div class="input-field second-wrap">
+            <input id="search" type="text" placeholder="Enter Keywords?" />
+          </div>
+        </div>
+      </form>
+      <div class="result"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
