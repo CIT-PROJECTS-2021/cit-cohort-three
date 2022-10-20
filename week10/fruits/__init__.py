@@ -24,8 +24,10 @@ def create_app():
     ma.init_app(app)
     migrate.init_app(app, db)
 
-    from .views.fruits_view import views
+    from .views.fruits_view import views as fruits_views
+    from .views.hacker_news import hviews as hacker_news_views
 
-    app.register_blueprint(views)
+    app.register_blueprint(fruits_views)
+    app.register_blueprint(hacker_news_views)
 
     return app

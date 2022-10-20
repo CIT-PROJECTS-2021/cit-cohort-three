@@ -3,3 +3,5 @@ Flask-Migrate
 flask-marshmallow
 Flask-SQLAlchemy
 PyMySQL
+requests
+beautifulsoup4
