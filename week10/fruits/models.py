@@ -24,3 +24,13 @@ class Fruit(db.Model, ExtraMixin):
     @classmethod
     def get_all(cls):
         return cls.query.all()
+
+
+class HackerNews(db.Model, ExtraMixin):
+    __tablename__ = 'hacker_news'
+    title = db.Column(db.String(100), nullable=False)
+    link = db.Column(db.String(100), nullable=False)
+
+    @classmethod
+    def get_all_news(cls):
+        return cls.query.all()
