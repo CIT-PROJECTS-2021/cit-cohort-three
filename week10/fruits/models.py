@@ -39,6 +39,8 @@ class HackerNews(db.Model, ExtraMixin):
             'created_at': str(self.created_at),
         }
 
+    
+
     @classmethod
     def get_all_news(cls):
         return cls.query.all()

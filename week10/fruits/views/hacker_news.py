@@ -3,6 +3,8 @@ from flask import Blueprint, request, redirect, render_template
 from bs4 import BeautifulSoup
 import requests
 from fruits.models import HackerNews
+from fruits import db
+from sqlalchemy import text, engine
 
 hviews = Blueprint('hviews', __name__)
 
@@ -50,6 +52,7 @@ def hacker_news():
     # loop through data
     for news in data:
         # check if news already exists in database
+        # news['title'] is the title of the news
         if news.get('title').lower() not in [hn.title.lower() for hn in hnews]:
             hnew = HackerNews(title=news['title'], link=news['link'])
             hnew.save()
@@ -63,9 +66,15 @@ def hacker_news():
 @hviews.route('/hacker-news/search', methods=['GET', 'POST'])
 def search_hacker_news():
     # /hacker-news/search?q=python
-    query = request.args.get('q')
+    query = request.args['q']
     # search in database for anythign that matches the query
+    # SELECT * FROM hacker_news WHERE title LIKE '%python%'
+    # data = db.session.query(HackerNews).filter(HackerNews.title.like(f'%{query}%')).all()
+    # sql = text('SELECT * FROM hacker_news WHERE title LIKE :query')
+    # data = db.engine.execute(sql, query=f'%{query}%').fetchall()
     data = HackerNews.query.filter(HackerNews.title.like(f'%{query}%')).all()
+    # print(data)
+    # [<HackNews 1>, <HackNews 2>]
     return {'data': [news.serialize() for news in data]}
 
 
