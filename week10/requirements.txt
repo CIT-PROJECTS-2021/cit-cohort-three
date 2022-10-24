@@ -2,6 +2,7 @@ Flask
 Flask-Migrate
 flask-marshmallow
 Flask-SQLAlchemy
+lxml
 PyMySQL
 requests
 beautifulsoup4
