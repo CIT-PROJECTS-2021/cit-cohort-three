@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+</head>
+<body>
+    {% for todo in todos %}
+        <p>{{ todo.todo }}</p>
+    {% endfor %}
+
+    <form method="post" action="{{ url_for('todos.create') }}">
+        <input type="text" name="todo">
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
