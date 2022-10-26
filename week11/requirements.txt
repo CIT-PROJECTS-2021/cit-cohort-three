@@ -1,0 +1,15 @@
+Flask
+Flask-Restful
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-Marshmallow
+flask-jwt-extended
+Flask-Bcrypt
+Flask-Cors
+Flask-JWT
+Flask-Mail
+PyJWT
+PyMySQL
+SQLAlchemy
+marshmallow-sqlalchemy
+gunicorn
