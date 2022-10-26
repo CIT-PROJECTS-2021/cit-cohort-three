@@ -106,6 +106,9 @@ class Todo(db.Model, ExtraMixin):
     todo = db.Column(db.String(100), nullable=False)
     created_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+    def delete_instance(self, using_transaction=True, keep_parents=False):
+        db.session.delete(self)
+        db.session.commit()
 
     @classmethod
     def get_all_todos(cls):
@@ -114,5 +117,9 @@ class Todo(db.Model, ExtraMixin):
     @classmethod
     def get_todos_by_user_id(cls, user_id):
         return cls.query.filter_by(created_by=user_id).all()
+
+    @classmethod
+    def get_by_id(cls, todo_id):
+        return cls.query.filter_by(id=todo_id).first()
 
 

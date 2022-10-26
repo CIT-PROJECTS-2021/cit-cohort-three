@@ -1,19 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todos</title>
-</head>
-<body>
-    {% for todo in todos %}
-        <p>{{ todo.todo }}</p>
-    {% endfor %}
+{% extends "base.html" %}
+{% block content %}
+    <h1>Todo List</h1>
+       <!-- add a container to center content using bulma css -->
+    <div class="container">
+        <div class="column is-4 is-offset-4">
+        <table class="table" style="width: 100%;">
+            <!-- using bulma css -->
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{ todo.todo }}</td>
+                        <td>
+                           <!-- delete todo -->
+                            <form action="{{ url_for('todos.delete', todo_id=todo.id) }}" method="POST">
+                                <button class="button is-danger" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- form to create a new todo -->
+        <form action="{{ url_for('todos.create') }}" method="POST">
+            <div class="field">
+                <label class="label">Add a new todo</label>
+                <div class="control">
+                    <input class="input" type="text" name="todo" placeholder="Add a new todo">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-link">Submit</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
 
-    <form method="post" action="{{ url_for('todos.create') }}">
-        <input type="text" name="todo">
-        <input type="submit" value="Add">
-    </form>
-</body>
-</html>
+{% endblock %}

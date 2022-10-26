@@ -23,3 +23,15 @@ def create():
     new_todo.save()
     flash('Todo created successfully')
     return redirect(url_for('todos.index'))
+
+
+@todos.route('/<int:todo_id>/delete', methods=['POST'])
+@login_required
+def delete(todo_id):
+    todo = Todo.get_by_id(todo_id)
+    if todo and todo.created_by == current_user.id:
+        todo.delete_instance()
+        flash('Todo deleted successfully')
+    else:
+        flash('Todo not found')
+    return redirect(url_for('todos.index'))

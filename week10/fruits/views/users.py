@@ -64,9 +64,12 @@ def register():
 
 
 
-@userviews.route('/logout', methods=['POST'])
+@userviews.route('/logout', methods=['POST', 'GET'])
 @login_required
 def logout():
     if request.method == 'POST':
         logout_user()
         return redirect(url_for('userviews.login'))
+    
+    logout_user()
+    return redirect(url_for('userviews.login'))
