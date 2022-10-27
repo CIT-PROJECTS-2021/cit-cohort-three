@@ -18,4 +18,34 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/users/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2Njg4MzIzNSwianRpIjoiYWYxNWU2NjktM2Y4NC00NWM3LTk5NjUtNjIwMWQ1OTBjNThiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2ODgzMjM1LCJleHAiOjE2NjY4ODQxMzV9.fKQcCuHV4E_L5EwR1jk0QaEX65rMpGxpQrUMoeRcbC4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2Njg4OTIxNiwianRpIjoiYWFmNTAwZjEtNDZiNS00NjhmLTkyNGItYzVjM2I4MjIzMmM5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2ODg5MjE2LCJleHAiOjE2NjY4OTAxMTZ9.Xm_470mNyJDVuzKbMqsusR9vF15sHUiBZ4LRUl81wTA
+
+
+###
+GET http://localhost:5000/api/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2Njg4OTIxNiwianRpIjoiYWFmNTAwZjEtNDZiNS00NjhmLTkyNGItYzVjM2I4MjIzMmM5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2ODg5MjE2LCJleHAiOjE2NjY4OTAxMTZ9.Xm_470mNyJDVuzKbMqsusR9vF15sHUiBZ4LRUl81wTA
+
+
+###
+POST http://localhost:5000/api/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2Njg4OTIxNiwianRpIjoiYWFmNTAwZjEtNDZiNS00NjhmLTkyNGItYzVjM2I4MjIzMmM5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2ODg5MjE2LCJleHAiOjE2NjY4OTAxMTZ9.Xm_470mNyJDVuzKbMqsusR9vF15sHUiBZ4LRUl81wTA
+Content-Type: application/json
+
+{
+  "title": "CIT TODO API",
+  "description": "This is an api for CIT",
+  "due_date": "2022-10-27"
+}
+
+###
+PUT http://localhost:5000/api/todos/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2Njg4OTIxNiwianRpIjoiYWFmNTAwZjEtNDZiNS00NjhmLTkyNGItYzVjM2I4MjIzMmM5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2ODg5MjE2LCJleHAiOjE2NjY4OTAxMTZ9.Xm_470mNyJDVuzKbMqsusR9vF15sHUiBZ4LRUl81wTA
+
+{
+  "complete": true
+}
+
+###
+DELETE http://localhost:5000/api/todos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2Njg4OTIxNiwianRpIjoiYWFmNTAwZjEtNDZiNS00NjhmLTkyNGItYzVjM2I4MjIzMmM5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2ODg5MjE2LCJleHAiOjE2NjY4OTAxMTZ9.Xm_470mNyJDVuzKbMqsusR9vF15sHUiBZ4LRUl81wTA

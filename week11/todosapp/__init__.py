@@ -62,7 +62,9 @@ def create_app():
 
 from .auth import auth_routes
 from .users import user_routes
+from .todos import todos_routes
 
 
 auth_routes(api)
 user_routes(api)
+todos_routes(api)
