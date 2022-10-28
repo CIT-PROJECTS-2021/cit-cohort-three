@@ -42,7 +42,7 @@ def create_app():
     jwt.init_app(app)
     cors.init_app(app)
 
-    from .erros.handlers import errors
+    from .errors.handlers import errors
     app.register_blueprint(errors)
 
     @jwt.user_identity_loader

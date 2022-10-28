@@ -63,3 +63,4 @@ class Todo(db.Model, ExtraMixin):
     @classmethod
     def get_todo_by_id(cls, todo_id):
         return cls.query.filter_by(id=todo_id).first()
+        
