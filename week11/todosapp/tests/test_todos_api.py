@@ -29,6 +29,30 @@ class TodosAPITest(BaseTestCase):
         self.assertEqual(response.status_code, 201)
         self.assertIn(test_user['email'].encode(), response.data)
 
+    def test_login_user(self):
+        self.app.post("/api/register", json=test_user)
+        response = self.app.post("/api/login", json={"email": test_user['email'], "password": test_user['password']})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("access_token".encode(), response.data)
+        self.assertIn("refresh_token".encode(), response.data)
+
+    def test_get_todos(self):
+        self.app.post("/api/register", json=test_user)
+        response = self.app.post("/api/login", json={"email": test_user['email'], "password": test_user['password']})
+        access_token = response.json['access_token']
+        response = self.app.get("/api/todos", headers={"Authorization": f"Bearer {access_token}"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, [])
+
+    def test_create_todo(self):
+        self.app.post("/api/register", json=test_user)
+        response = self.app.post("/api/login", json={"email": test_user['email'], "password": test_user['password']})
+        access_token = response.json['access_token']
+        response = self.app.post("/api/todos", \
+        headers={"Authorization": f"Bearer {access_token}"}, \
+         json={"title": "test todo", "description": "test description", "due_date": "2022-10-10"})
+        self.assertEqual(response.status_code, 201)
+
 
 
 if __name__ == "__main__":
