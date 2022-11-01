@@ -84,7 +84,7 @@ print(arr.shape)
 # Reshaping Arrays
 arr = np.array([i+1 for i in range(12)])
 print(arr)
-# [ 1  2  3  4  5  6  7  8  9 10 11 12]
+# [ 1  2  3  4  5  6  7  8  9 10 11 12] => 1D array
 # [[1, 2, 3],[4, 5, 6],[7, 8, 9],[10, 11, 12]]
 # [[1, 2, 3, 4, 5, 6],[7, 8, 9, 10, 11, 12]]
 arr = arr.reshape(4, 3)
