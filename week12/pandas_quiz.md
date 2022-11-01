@@ -12,25 +12,6 @@ df = pd.DataFrame(np.random.randn(5, 3), columns=['col1', 'col2', 'col3'])
 df.apply(lambda x: x.max() - x.min())
 ```
 
-A. col1    1.0
-    col2    1.0
-    col3    1.0
-    dtype: float64
-
-B. col1    1.0
-    col2    1.0
-    col3    1.0
-    dtype: float64
-
-C. col1    1.0
-    col2    1.0
-    col3    1.0
-    dtype: float64
-
-D. col1    1.0
-    col2    1.0
-    col3    1.0
-    dtype: float64
 
 ## Question 2
 
