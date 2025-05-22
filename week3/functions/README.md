@@ -32,15 +32,17 @@ A function name to uniquely identify the function. Function naming follows the s
 **Example of a function**
 
 ```python
-def greet(name):
+def greet(name: str) -> None:
     """
     This function greets to
     the person passed in as
     a parameter
     """
-    print("Hello, " + name + ". Good morning!")
+    print(f"Hello, {name}. Good morning!")
 
 ```
+
+(Note: `name: str` and `-> None` are type hints. They suggest the expected type of arguments and the return type of the function. While optional in Python, they improve code readability and can help catch errors early.)
 
 **How to call a function in python?**
 
@@ -56,13 +58,13 @@ Hello, Paul. Good morning!
 Try running the above code in the Python program with the function definition to see the output.
 
 ```python
-def greet(name):
+def greet(name: str) -> None:
     """
     This function greets to
     the person passed in as
     a parameter
     """
-    print("Hello, " + name + ". Good morning!")
+    print(f"Hello, {name}. Good morning!")
 
 greet('Paul')
 ```
@@ -74,13 +76,13 @@ greet('Paul')
 greet('Paul')
 
 # function definition
-def greet(name):
+def greet(name: str) -> None:
     """
     This function greets to
     the person passed in as
     a parameter
     """
-    print("Hello, " + name + ". Good morning!")
+    print(f"Hello, {name}. Good morning!")
 
 # Error: name 'greet' is not defined
 ```
@@ -128,7 +130,7 @@ Here, `None` is the returned value since `greet()` directly prints the name and 
 Example of return
 
 ```python
-def absolute_value(num):
+def absolute_value(num: int) -> int:
     """This function returns the absolute
     value of the entered number"""
 
@@ -159,7 +161,7 @@ They are destroyed once we return from the function. Hence, a function does not 
 Here is an example to illustrate the scope of a variable inside a function.
 
 ```python
-def my_func():
+def my_func() -> None:
 	x = 10
 	print("Value inside function:",x)
 
