@@ -33,10 +33,10 @@ is_cloudy = False
 Float, or "floating point number" is a number, positive or negative containing one or more decimals.
 Example:
 ```python
-  float_number = 7.0
-  # Another way of declaring float is using float() function.
-  float_number_via_function = float(7)
-  float_negative = -35.59
+float_number = 7.0
+# Another way of declaring float is using float() function.
+float_number_via_function = float(7)
+float_negative = -35.59
 ```
 
 

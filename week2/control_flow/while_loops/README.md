@@ -33,21 +33,21 @@ Python interprets any non-zero value as True. None and 0 are interpreted as Fals
 # Program to add natural
 # numbers up to nth term
 
-# sequence: sum = 1 + 2 + 3 + ... + n
+# sequence: total = 1 + 2 + 3 + ... + n
 
-# initialize sum and counter
-sum = 0
+# initialize total and counter
+total = 0
 counter = 1
 
 n = int(input("Enter the value of n: "))
 
-# calculate sum of first n natural numbers
+# calculate total of first n natural numbers
 while counter <= n:
-    sum = sum + counter
+    total = total + counter
     counter = counter + 1
 
-# display the sum
-print("The sum is", sum)
+# display the total
+print(f"The sum is {total}")
 ```
 
 When you run the program, the output will be:

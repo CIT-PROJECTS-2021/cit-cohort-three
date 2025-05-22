@@ -18,33 +18,37 @@ Arithmetic operators are used to perform mathematical operations like addition, 
 x = 15
 y = 4
 
-# **Output:** x + y = 19
-print('x + y =',x+y)
+# Output: x + y = 19
+print(f'x + y = {x+y}')
 
-# **Output:** x - y = 11
-print('x - y =',x-y)
+# Output: x - y = 11
+print(f'x - y = {x-y}')
 
-# **Output:** x * y = 60
-print('x * y =',x*y)
+# Output: x * y = 60
+print(f'x * y = {x*y}')
 
-# **Output:** x / y = 3.75
-print('x / y =',x/y)
+# Output: x / y = 3.75
+print(f'x / y = {x/y}')
 
-# **Output:** x // y = 3
-print('x // y =',x//y)
+# Output: x // y = 3
+print(f'x // y = {x//y}')
 
-# **Output:** x ** y = 50625
-print('x ** y =',x**y)
+# Output: x % y = 3
+print(f'x % y = {x%y}')
+
+# Output: x ** y = 50625
+print(f'x ** y = {x**y}')
 ```
 
 ### **Output:**
 
-```python
+```
 x + y = 19
 x - y = 11
 x * y = 60
 x / y = 3.75
 x // y = 3
+x % y = 3
 x ** y = 50625
 ```
 
@@ -153,12 +157,11 @@ print (res2)
 
 ```python:
 2
--1
 1
+-1
 ```
 
-The remainder will be positive if the Dividend is positive and vice-versa.
-Even if the Divisor is negative but the Dividend is positive, the remainder will be positive.
+The sign of the result of the modulus operator (`%`) in Python is always the same as the sign of the *divisor*. For example, `a % n` will have the same sign as `n`.
 
 ### Exponentiation
 
@@ -195,7 +198,7 @@ print (flo)
 **Output:**
 
 ```python:
-2.0
+2
 ```
 
 ### Order of precedence of Arithmetic operators in Python
@@ -221,7 +224,7 @@ print (((5 + 4) / 3) * 2)
 **Output:**
 
 ```python:
-6
+6.0
 ```
 
 Here, as you can see according to the order of precedence, Parentheses will be computed first. So inside the innermost parenthesis, there is an addition operator.
