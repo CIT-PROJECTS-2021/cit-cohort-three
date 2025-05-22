@@ -55,7 +55,7 @@ This is the clearest and most Pythonic form. Don’t use:
 
 ```python
 if x is True:
-if x:  # Corrected typo and also generally discouraged
+if x == True:  # Corrected typo and also generally discouraged
 if bool(x):
 ```
 <br>

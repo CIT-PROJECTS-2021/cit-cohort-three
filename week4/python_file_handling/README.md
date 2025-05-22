@@ -26,12 +26,15 @@ Python has a built-in `open()` function to open a file. This function returns a 
 The `open()` function takes two parameters; filename, and mode.
 
 ```python
-file = open("filename.txt", "mode") # syntax
-f = open("test.txt")    # open file in current directory
-f = open("C:/Python38/README.txt")  # specifying full path
+file = open("filename.txt", "mode") # General syntax
+# Modern recommended way:
+# with open("filename.txt", "mode", encoding="utf-8") as f:
+#     # operations
+f = open("test.txt", encoding="utf-8")    # open file in current directory, encoding specified
+# f = open("C:/Python38/README.txt", encoding="utf-8")  # specifying full path, encoding specified
 ```
 
-We can specify the mode while opening a file. In mode, we specify whether we want to read r, write w or append a to the file. We can also specify if we want to open the file in text mode or binary mode.
+We can specify the mode while opening a file. In mode, we specify whether we want to read (`r`), write (`w`), or append (`a`) to the file. We also specify if we want to open the file in text mode (`t`, default) or binary mode (`b`).
 
 The default is reading in text mode. In this mode, we get strings when reading from the file.
 
@@ -62,11 +65,11 @@ There are various modes available for opening a file. The default mode is `r`, w
 |- `xt`|  - open for exclusive creation in text mode, failing if the file already exists
 
 ```python
-f = open("test.txt")      # equivalent to 'r' or 'rt'
-f = open("test.txt",'w')  # write in text mode
+f = open("test.txt", encoding="utf-8")      # equivalent to 'rt', encoding specified
+f = open("test.txt", 'w', encoding="utf-8")  # write in text mode, encoding specified
 f = open("img.bmp",'r+b') # read and write in binary mode
 ```
-Unlike other languages, the character a does not imply the number 97 until it is encoded using ASCII (or other equivalent encodings).
+Unlike other languages, the character 'a' does not represent the number 97 until it is encoded using an encoding scheme like ASCII or UTF-8.
 
 Moreover, the default encoding is platform dependent. In windows, it is cp1252 but utf-8 in Linux.
 
@@ -81,132 +84,187 @@ f = open("test.txt", mode='r', encoding='utf-8')
 Closing Files in Python
 When we are done with performing operations on the file, we need to properly close the file.
 
-Closing a file will free up the resources that were tied with the file. It is done using the close() method available in Python.
+Closing a file will free up the resources that were tied with the file. While Python's garbage collector might eventually close unreferenced files, explicitly closing files is crucial.
 
-Python has a garbage collector to clean up unreferenced objects but we must not rely on it to close the file.
-
+The `close()` method is used for this:
 ```python
-f = open("test.txt", encoding = 'utf-8')
+f = open("test.txt", encoding='utf-8')
 # perform file operations
 f.close()
 ```
 
-This method is not entirely safe. If an exception occurs when we are performing some operation with the file, the code exits without closing the file.
-
-A safer way is to use a `try...finally` block.
-
+However, if an exception occurs during file operations, the `f.close()` line might be skipped. A `try...finally` block can guarantee closure:
 ```python
 try:
-   f = open("test.txt", encoding = 'utf-8')
+   f = open("test.txt", encoding='utf-8')
    # perform file operations
 finally:
    f.close()
 ```
 
-This way, we are guaranteeing that the file is properly closed even if an exception is raised that causes program flow to stop.
-
-The best way to close a file is by using the with statement. This ensures that the file is closed when the block inside the with statement is exited.
-
-We don't need to explicitly call the `close()` method. It is done internally.
+**The recommended and most Pythonic way to handle files is using the `with` statement.** This ensures that the file is automatically closed when the block inside the `with` statement is exited, even if errors occur.
 
 ```python
-with open("test.txt", encoding = 'utf-8') as f:
+with open("test.txt", encoding='utf-8') as f:
    # perform file operations
-
+   # f.close() is not needed; it's handled automatically
 ```
+This approach is cleaner and safer.
 
 ### Writing to Files in Python
 In order to write into a file in Python, we need to open it in write `w`, append a or exclusive creation `x` mode.
 
-We need to be careful with the `w` mode, as it will overwrite into the file if it already exists. Due to this, all the previous data are erased.
+We need to be careful with the `w` mode, as it will overwrite the file if it already exists, erasing all previous data. If the file does not exist, it creates a new one.
 
-Writing a string or sequence of bytes (for binary files) is done using the `write() ` method. This method returns the number of characters written to the file.
+Writing a string (in text mode) or a sequence of bytes (in binary mode) is done using the `write()` method. 
+- In text mode, `write()` returns the number of characters written.
+- In binary mode, it returns the number of bytes written.
 
 ```python
-with open("test.txt",'w',encoding = 'utf-8') as f:
-   f.write("my first file\n")
-   f.write("This file\n\n")
-   f.write("contains three lines\n")
+# Example of writing to a text file
+content_to_write = "my first file\nThis file\n\ncontains three lines\n"
+try:
+    with open("test.txt", 'w', encoding='utf-8') as f:
+        num_chars_written = f.write(content_to_write)
+        print(f"Number of characters written: {num_chars_written}")
+except IOError as e:
+    print(f"Error writing to file: {e}")
+
 ```
 
-This program will create a new file named `test.txt` in the current directory if it does not exist. If it does exist, it is overwritten.
+This program will create a new file named `test.txt` in the current directory if it does not exist. If it does exist, it is overwritten with the new content.
 
-We must include the newline characters ourselves to distinguish the different lines.
+We must include newline characters (`\n`) ourselves to distinguish different lines in text files.
 
 ### Reading Files in Python
 To read a file in Python, we must open the file in reading r mode.
 
 There are various methods available for this purpose. We can use the read(size) method to read in the size number of data. If the size parameter is not specified, it reads and returns up to the end of the file.
 
-We can read the text.txt file we wrote in the above section in the following way:
+Assuming `test.txt` was created with the content:
+```
+my first file
+This file
+
+contains three lines
+```
+We can read it in the following ways:
 
 ```python
->>> f = open("test.txt",'r',encoding = 'utf-8')
->>> f.read(4)    # read the first 4 data
-'This'
+# Open the file (ensure it exists from the writing example)
+try:
+    with open("test.txt", 'r', encoding='utf-8') as f:
+        # read the first 4 data
+        print(f"f.read(4): '{f.read(4)}'") # Output: 'my f'
 
->>> f.read(4)    # read the next 4 data
-' is '
-
->>> f.read()     # read in the rest till end of file
-'my first file\nThis file\ncontains three lines\n'
-
->>> f.read()  # further reading returns empty sting
-''
+        # read the next 4 data
+        print(f"f.read(4) again: '{f.read(4)}'") # Output: 'irst'
+        
+        # read in the rest till end of file
+        print(f"f.read() for the rest:\n'{f.read()}'")
+        # Output: 
+        # ' file
+        # This file
+        # 
+        # contains three lines
+        # '
+        
+        # further reading returns empty string
+        print(f"f.read() at EOF: '{f.read()}'") # Output: ''
+except FileNotFoundError:
+    print("Error: test.txt not found. Run the writing example first.")
+except IOError as e:
+    print(f"Error reading file: {e}")
 ```
 
 We can see that the `read()` method returns a newline as `'\n'`. Once the end of the file is reached, we get an empty string on further reading.
 
-We can change our current file cursor (position) using the seek() method. Similarly, the `tell()` method returns our current position (in number of bytes).
+We can change our current file cursor (position) using the `seek()` method. Similarly, the `tell()` method returns our current position (in number of bytes).
 
 ```python
->>> f.tell()    # get the current file position
-56
+try:
+    with open("test.txt", 'r', encoding='utf-8') as f:
+        f.read() # Read to the end to know file size for tell()
+        file_size = f.tell() # get the current file position (end of file)
+        print(f"f.tell() after reading whole file: {file_size}")
 
->>> f.seek(0)   # bring file cursor to initial position
-0
+        f.seek(0)   # bring file cursor to initial position
+        print(f"f.seek(0), new position: {f.tell()}")
 
->>> print(f.read())  # read the entire file
+        print("\nContent after f.seek(0):")
+        print(f.read()) # read the entire file
+except FileNotFoundError:
+    print("Error: test.txt not found.")
+except IOError as e:
+    print(f"Error with seek/tell: {e}")
+```
+Output for `seek()`/`tell()` example (assuming `test.txt` content from above):
+```
+f.tell() after reading whole file: 44 
+f.seek(0), new position: 0
 
-This is my first file
+Content after f.seek(0):
+my first file
 This file
+
 contains three lines
+
 ```
 
-We can read a file line-by-line using a for loop. This is both efficient and fast.
+We can read a file line-by-line using a `for` loop. This is both efficient and memory-friendly for large files.
 
 ```python
->>> for line in f:
-...     print(line, end = '')
-...
-This is my first file
+try:
+    with open("test.txt", 'r', encoding='utf-8') as f:
+        print("\nReading line by line with a for loop:")
+        for line in f:
+            print(line, end='') # end='' prevents double newlines
+except FileNotFoundError:
+    print("Error: test.txt not found.")
+except IOError as e:
+    print(f"Error reading line by line: {e}")
+
+```
+Output:
+```
+Reading line by line with a for loop:
+my first file
 This file
+
 contains three lines
 ```
 
 In this program, the lines in the file itself include a newline character `\n`. So, we use the end parameter of the `print()` function to avoid two newlines when printing.
 
-Alternatively, we can use the `readline()` method to read individual lines of a file. This method reads a file till the newline, including the newline character.
+Alternatively, we can use the `readline()` method to read individual lines of a file. This method reads a file up to and including the next newline character.
 
 ```python
->>> f.readline()
-'This is my first file\n'
-
->>> f.readline()
-'This file\n'
-
->>> f.readline()
-'contains three lines\n'
-
->>> f.readline()
-''
+try:
+    with open("test.txt", 'r', encoding='utf-8') as f:
+        print("\nUsing f.readline():")
+        print(f"1st readline: '{f.readline()}'", end='') # 'my first file\n'
+        print(f"2nd readline: '{f.readline()}'", end='') # 'This file\n'
+        print(f"3rd readline: '{f.readline()}'", end='') # '\n'
+        print(f"4th readline: '{f.readline()}'", end='') # 'contains three lines\n'
+        print(f"5th readline (EOF): '{f.readline()}'")   # ''
+except FileNotFoundError:
+    print("Error: test.txt not found.")
+except IOError as e:
+    print(f"Error with readline(): {e}")
 ```
 
-Lastly, the `readlines()` method returns a list of remaining lines of the entire file. All these reading methods return empty values when the end of file (EOF) is reached.
+Lastly, the `readlines()` method reads all remaining lines from the file and returns them as a list of strings. Each string in the list includes the newline character.
 
 ```python
->>> f.readlines()
-['This is my first file\n', 'This file\n', 'contains three lines\n']
+try:
+    with open("test.txt", 'r', encoding='utf-8') as f:
+        lines_list = f.readlines()
+        print(f"\n\nUsing f.readlines():\n{lines_list}")
+        # Output: ['my first file\n', 'This file\n', '\n', 'contains three lines\n']
+except FileNotFoundError:
+    print("Error: test.txt not found.")
+except IOError as e:
+    print(f"Error with readlines(): {e}")
 ```
 
 ### Python File Methods
@@ -233,64 +291,286 @@ Here is the complete list of methods in text mode with a brief description:
 |write(s)	|Writes the string s to the file and returns the number of characters written.
 |writelines(lines)	|Writes a list of lines to the file.
 
-### Python Directory and File Management
-In this section, we will learn how to create, delete, rename, and move files and directories in Python.
+### Directory and File Path Management
 
-### Creating a Directory
-In order to create a directory in Python, we can use the `mkdir()` method of the `os` module.
+Python provides robust tools for managing directories and file paths. While the `os` module has traditionally been used, the `pathlib` module (introduced in Python 3.4) offers an object-oriented and more readable approach.
 
-```python
-import os
-os.mkdir("newdir")
-```
+**Using `pathlib.Path` (Recommended)**
 
-This will create a new directory named `newdir` in the current working directory.
-
-We can also create a nested directory using the `makedirs()` method. This method creates all intermediate-level directories if they do not exist.
+The `pathlib` module provides `Path` objects to represent file system paths.
 
 ```python
-import os
-os.makedirs("newdir/subdir")
+from pathlib import Path
 ```
 
-This will create a new directory named `subdir` in the `newdir` directory.
-
-### Deleting a Directory
-In order to delete a directory in Python, we can use the `rmdir()` method of the `os` module.
+**Creating a Directory:**
 
 ```python
+# Using pathlib
+p_newdir = Path("newdir_pathlib")
+try:
+    p_newdir.mkdir(exist_ok=True) # exist_ok=True prevents error if directory already exists
+    print(f"Directory '{p_newdir}' created or already exists.")
+except OSError as e:
+    print(f"Error creating directory {p_newdir}: {e}")
+
+# Equivalent with os module
 import os
-os.rmdir("newdir/subdir")
+os_newdir = "newdir_os"
+if not os.path.exists(os_newdir):
+    os.mkdir(os_newdir)
+    print(f"Directory '{os_newdir}' created.")
+else:
+    print(f"Directory '{os_newdir}' already exists.")
 ```
 
-This will delete the `subdir` directory from the `newdir` directory.
-
-We can also delete a nested directory using the `removedirs()` method. This method removes all intermediate-level directories if they are empty.
+**Creating Nested Directories:**
 
 ```python
+# Using pathlib
+p_nested = Path("parent_pathlib/child_subdir")
+try:
+    p_nested.mkdir(parents=True, exist_ok=True) # parents=True creates parent dirs if needed
+    print(f"Nested directory '{p_nested}' created or already exists.")
+except OSError as e:
+    print(f"Error creating nested directory {p_nested}: {e}")
+
+# Equivalent with os module
 import os
-os.removedirs("newdir/subdir")
+os_nested = "parent_os/child_subdir_os"
+try:
+    os.makedirs(os_nested, exist_ok=True)
+    print(f"Nested directory '{os_nested}' created or already exists.")
+except OSError as e:
+    print(f"Error creating nested directory {os_nested}: {e}")
 ```
 
-This will delete the `subdir` directory from the `newdir` directory.
-
-### Renaming a Directory
-In order to rename a directory in Python, we can use the `rename()` method of the `os` module.
+**Deleting a Directory:**
+Note: These methods typically only work if the directory is empty.
 
 ```python
-import os
-os.rename("newdir", "olddir")
+# Using pathlib
+# Assuming p_nested from above exists and is empty
+try:
+    p_nested_child = Path("parent_pathlib/child_subdir")
+    p_nested_child.rmdir() # Remove child_subdir
+    print(f"Directory '{p_nested_child}' deleted.")
+    Path("parent_pathlib").rmdir() # Remove parent_pathlib
+    print(f"Directory 'parent_pathlib' deleted.")
+except FileNotFoundError:
+    print("Directory not found for deletion.")
+except OSError as e: # Catches error if directory is not empty
+    print(f"Error deleting directory: {e}")
+
+
+# Equivalent with os module
+# Assuming os_nested from above exists and is empty
+try:
+    os.rmdir("parent_os/child_subdir_os")
+    print("Directory 'parent_os/child_subdir_os' deleted.")
+    os.rmdir("parent_os")
+    print("Directory 'parent_os' deleted.")
+except FileNotFoundError:
+    print("Directory not found for deletion with os.rmdir.")
+except OSError as e:
+    print(f"Error deleting directory with os.rmdir: {e}")
+
+# os.removedirs can remove nested empty directories:
+# os.removedirs("parent_os/child_subdir_os") # This would remove both if empty
 ```
 
-This will rename the `newdir` directory to `olddir`.
-
-### Moving a Directory
-In order to move a directory in Python, we can use the `rename()` method of the `os` module.
+**Renaming a File or Directory:**
 
 ```python
-import os
-os.rename("olddir", "newdir/olddir")
+# Using pathlib
+p_old = Path("original_name_pathlib")
+p_new = Path("renamed_name_pathlib")
+try:
+    p_old.mkdir(exist_ok=True) # Create a directory to rename
+    p_old.rename(p_new)
+    print(f"Directory '{p_old}' (original) renamed to '{p_new}'.")
+    p_new.rmdir() # Clean up
+except OSError as e:
+    print(f"Error renaming with pathlib: {e}")
+
+
+# Equivalent with os module
+os_old = "original_name_os"
+os_new = "renamed_name_os"
+try:
+    if not os.path.exists(os_old):
+        os.mkdir(os_old)
+    os.rename(os_old, os_new)
+    print(f"Directory '{os_old}' (original) renamed to '{os_new}'.")
+    os.rmdir(os_new) # Clean up
+except OSError as e:
+    print(f"Error renaming with os: {e}")
 ```
 
-This will move the `olddir` directory to the `newdir` directory.
+**Moving a File or Directory:**
+Moving is often achieved by renaming to a different path.
+
+```python
+# Using pathlib
+source_dir = Path("source_dir_pathlib")
+source_dir.mkdir(exist_ok=True)
+# Example file within source_dir
+# (Path(source_dir) / "file_to_move.txt").write_text("Hello", encoding="utf-8") 
+
+destination_dir_parent = Path("destination_parent_pathlib")
+destination_dir_parent.mkdir(exist_ok=True)
+new_location = destination_dir_parent / source_dir.name # e.g. destination_parent_pathlib/source_dir_pathlib
+
+try:
+    source_dir.rename(new_location)
+    print(f"Directory '{source_dir}' moved to '{new_location}'.")
+    # Clean up
+    # (new_location / "file_to_move.txt").unlink(missing_ok=True)
+    new_location.rmdir()
+    destination_dir_parent.rmdir()
+except OSError as e:
+    print(f"Error moving with pathlib: {e}")
+
+
+# Equivalent with os module
+os_source_dir = "source_dir_os"
+if not os.path.exists(os_source_dir):
+    os.mkdir(os_source_dir)
+
+os_dest_parent = "destination_parent_os"
+if not os.path.exists(os_dest_parent):
+    os.mkdir(os_dest_parent)
+os_new_location = os.path.join(os_dest_parent, os_source_dir)
+
+try:
+    os.rename(os_source_dir, os_new_location)
+    print(f"Directory '{os_source_dir}' moved to '{os_new_location}'.")
+    # Clean up
+    os.rmdir(os_new_location)
+    os.rmdir(os_dest_parent)
+except OSError as e:
+    print(f"Error moving with os: {e}")
+
+```
+`pathlib` offers many more features for path manipulation, checking existence, iterating over directory contents, etc., making it a powerful tool for modern Python development.
+
+### Error Handling for File Operations
+
+When working with files, various errors can occur. Common ones include `FileNotFoundError` if a file doesn't exist when trying to read it, or `PermissionError` if the script doesn't have the necessary permissions. It's good practice to handle these exceptions using `try-except` blocks.
+
+```python
+filename = "non_existent_file.txt"
+try:
+    with open(filename, 'r', encoding='utf-8') as f:
+        content = f.read()
+        print(content)
+except FileNotFoundError:
+    print(f"Error: The file '{filename}' was not found.")
+except PermissionError:
+    print(f"Error: You don't have permission to read '{filename}'.")
+except IOError as e: # General I/O error
+    print(f"An I/O error occurred: {e}")
+
+# Example for permission error (conceptual, actual error depends on environment)
+# try:
+#    with open("/root/protected_file.txt", 'r', encoding='utf-8') as f: # Assuming no permission
+#        content = f.read()
+# except PermissionError:
+#    print("Error: Permission denied to access a protected file.")
+```
+
+### Working with Common File Formats (CSV & JSON)
+
+Python's standard library includes modules for easily working with common structured data formats like CSV and JSON.
+
+**CSV (Comma-Separated Values)**
+
+CSV files are simple text files where values are typically separated by commas. The `csv` module helps manage the nuances of CSV formatting.
+
+**Writing to a CSV file:**
+```python
+import csv
+
+data_to_write = [
+    ['Name', 'Age', 'City'],
+    ['Alice', 30, 'New York'],
+    ['Bob', 24, 'Los Angeles'],
+    ['Charlie', 35, 'Chicago']
+]
+csv_filename = "users.csv"
+
+try:
+    with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(data_to_write)
+    print(f"Data written to {csv_filename}")
+except IOError as e:
+    print(f"Error writing CSV: {e}")
+```
+Note: `newline=''` is recommended when opening CSV files for writing to prevent blank rows.
+
+**Reading from a CSV file:**
+```python
+import csv
+
+csv_filename = "users.csv" # Assuming it was created above
+try:
+    with open(csv_filename, 'r', newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
+        print(f"\nReading data from {csv_filename}:")
+        for row in reader:
+            print(row)
+except FileNotFoundError:
+    print(f"Error: {csv_filename} not found.")
+except IOError as e:
+    print(f"Error reading CSV: {e}")
+```
+
+**JSON (JavaScript Object Notation)**
+
+JSON is a lightweight data-interchange format that is easily readable by humans and parsable by machines. The `json` module is used to work with JSON data.
+
+**Writing Python dictionary to a JSON file:**
+```python
+import json
+
+data_to_write = {
+    "name": "Alice Wonderland",
+    "age": 30,
+    "email": "alice@example.com",
+    "isStudent": False,
+    "courses": [
+        {"title": "Python 101", "credits": 3},
+        {"title": "Advanced Python", "credits": 4}
+    ]
+}
+json_filename = "user_data.json"
+
+try:
+    with open(json_filename, 'w', encoding='utf-8') as jsonfile:
+        json.dump(data_to_write, jsonfile, indent=4) # indent for pretty printing
+    print(f"\nData written to {json_filename}")
+except IOError as e:
+    print(f"Error writing JSON: {e}")
+```
+
+**Reading from a JSON file into a Python dictionary:**
+```python
+import json
+
+json_filename = "user_data.json" # Assuming it was created above
+try:
+    with open(json_filename, 'r', encoding='utf-8') as jsonfile:
+        data_read = json.load(jsonfile)
+        print(f"\nData read from {json_filename}:")
+        print(data_read)
+        print(f"Name: {data_read.get('name')}")
+except FileNotFoundError:
+    print(f"Error: {json_filename} not found.")
+except json.JSONDecodeError:
+    print(f"Error: Could not decode JSON from {json_filename}.")
+except IOError as e:
+    print(f"Error reading JSON: {e}")
+```
+These modules simplify handling the specifics of these formats, such as escaping special characters in CSV or converting between Python types and JSON types.
 
