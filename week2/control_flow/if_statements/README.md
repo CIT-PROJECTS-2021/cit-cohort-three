@@ -23,30 +23,21 @@ Below is a flowchart that shows the execution of the if statement:
 
 The elif and else clauses are optional. Note that unlike some languages, Python does not have a switch statement, so you must use if, elif, and else for all conditional processing.
 
-Here’s a typical if statement:
+Here’s a typical if statement, demonstrating the preferred multi-line style:
 
 ```python
-if x < 0: print "x is negative"
-elif x % 2: print "x is positive and odd"
-else: print "x is even and non-negative"
+x = 10  # Try changing this value (e.g., -5, 7, 0) to see different outputs
+if x < 0:
+    print(f"x ({x}) is negative")
+elif x % 2 != 0: # Check for odd
+    print(f"x ({x}) is positive and odd")
+else:
+    print(f"x ({x}) is even and non-negative (or zero)")
 ```
 <br>
-When there are multiple statements in a clause (i.e., the clause controls a block of statements), the statements are placed on separate logical lines after the line containing the clause’s keyword (known as the header line of the clause) and indented rightward from the header line. 
+When there are multiple statements in a clause (i.e., the clause controls a block of statements), the statements are placed on separate logical lines after the line containing the clause’s keyword (known as the header line of the clause) and indented rightward from the header line. The block terminates when the indentation returns to that of the clause header (or further left from there).
 
-The block terminates when the indentation returns to that of the clause header (or further left from there). 
-
-When there is just a single simple statement, as here, it can follow the `:` on the same logical line as the header, but it can also be placed on a separate logical line, immediately after the header line and indented rightward from it. 
-
-Many Python practitioners consider the separate-line style more readable:
-
-```python
-if x < 0:
-    print "x is negative"
-elif x % 2:
-    print "x is positive and odd"
-else:
-    print "x is even and non-negative"
-```
+While Python allows a single simple statement to follow the `:` on the same logical line as the header, the separate-line style, as shown above, is generally considered more readable and is recommended.
 <br>
 You can use any Python expression as the condition in an if or elif clause. 
 
@@ -64,7 +55,7 @@ This is the clearest and most Pythonic form. Don’t use:
 
 ```python
 if x is True:
-if x =  = True:
+if x == True:  # Corrected typo and also generally discouraged
 if bool(x):
 ```
 <br>

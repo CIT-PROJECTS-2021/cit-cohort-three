@@ -14,16 +14,16 @@ In Python, Logical operators are used on conditional statements (either `True` o
 x = True
 y = False
 
-print('x and y is',x and y)
+print(f'x and y is {x and y}')
 
-print('x or y is',x or y)
+print(f'x or y is {x or y}')
 
-print('not x is',not x)
+print(f'not x is {not x}')
 ```
 
 **Output:**
 
-```python
+```
 x and y is False
 x or y is True
 not x is False
@@ -32,9 +32,6 @@ not x is False
 `and` will result into `True` only if both the operands are `True`
 
 The truth table for `and` is given below:
-
-| Truth table for `and` |
-| --------------------- |
 
 | A     | B     | A and B |
 | ----- | ----- | ------- |
@@ -47,9 +44,6 @@ The truth table for `and` is given below:
 
 The truth table for or is given below:
 
-| Truth table for `or` |
-| -------------------- |
-
 | A     | B     | A or B |
 | ----- | ----- | ------ |
 | True  | True  | True   |
@@ -60,9 +54,6 @@ The truth table for or is given below:
 `not` operator is used to invert the truth value.
 
 The truth table for `not` is given below:
-
-| Truth table for `not` |
-| --------------------- |
 
 | A     | not A |
 | ----- | ----- |

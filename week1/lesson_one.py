@@ -30,4 +30,4 @@ my_age = 12
 my_weight = 12.5
 
 # My name is Iden, I am 12 years old and I weigh 12.5kgs
-print("My name is " + my_name + ", I am " + str(my_age) + " years old")
+print(f"My name is {my_name}, I am {my_age} years old")

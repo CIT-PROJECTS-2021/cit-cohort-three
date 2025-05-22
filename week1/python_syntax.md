@@ -14,7 +14,7 @@ Python uses indentation to indicate a block of code.
 
 ```python
 if 5 > 2:
-  print("Five is greater than two!")
+    print("Five is greater than two!")
 ```
 
 Python will give you an error if you skip the indentation.
@@ -26,7 +26,7 @@ Python has commenting capability for the purpose of in-code documentation.
 Comments start with a `#`, and Python will render the rest of the line as a comment:
 
 ```python
-#This is a comment.
+# This is a comment.
 print("Hello, World!")
 ```
 

@@ -47,7 +47,7 @@ We can generate a sequence of numbers using `range()` function. `range(10)` will
 
 We can also define the start, stop and step size as `range(start, stop,step_size)`. `step_size` defaults to `1` if not provided.
 
-The range object is `"lazy"` in a sense because it doesn't generate every number that it "contains" when we create it. However, it is not an iterator since it supports in, `len` and `__getitem__` operations.
+The `range()` function is efficient because it doesn't store all its numbers in memory at once. Instead, it generates them as needed as you loop through them. You can convert it to a list using `list(range(...))` to see all its numbers explicitly.
 
 This function does not store all the values in memory; it would be inefficient. So it remembers the `start`, `stop`, `step` size and generates the next number on the go.
 
@@ -82,15 +82,15 @@ We can use the `range()` function in for loops to iterate through a sequence of 
 fruits = ["apple", "banana", "cherry"]
 
 for i in range(len(fruits)):
-    print("Current fruit :", fruits[i])
+    print(f"Current fruit: {fruits[i]}")
 ```
 
 Output
 
 ```
-Current fruit : apple
-Current fruit : banana
-Current fruit : cherry
+Current fruit: apple
+Current fruit: banana
+Current fruit: cherry
 ```
 
 ### for loop with else
@@ -133,15 +133,15 @@ marks = {'James': 90, 'Jules': 55, 'Arthur': 77}
 
 for student in marks:
     if student == student_name:
-        print(marks[student])
+        print(f"{student_name}'s marks: {marks[student]}")
         break
 else:
-    print('No entry with that name found.')
+    print(f'No entry for {student_name} found.')
 ```
 
 Output
 
 ```
-No entry with that name found.
+No entry for Priscilla found.
 ```
 
