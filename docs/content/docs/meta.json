@@ -1,0 +1,22 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "index",
+    "---Week 1---",
+    "---Week 2---",
+    "week2/control-flow",
+    "---Week 3---",
+    "week3/functions",
+    "week3/oop",
+    "week3/modules",
+    "week3/exceptions",
+    "---Week 4---",
+    "week4/file-handling",
+    "---Week 6---",
+    "week6/data-structures-and-algorithms",
+    "---Week 8---",
+    "week8/cryptography",
+    "---Assignments---",
+    "assignments/index"
+  ]
+}
