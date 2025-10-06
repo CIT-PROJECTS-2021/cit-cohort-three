@@ -11,6 +11,24 @@ This repository contains the code for the Python for CIT Students Cohort 3 2022 
 It is divided into weeks, each of which contains a Markdown files with the week's content as well as a Python file with the week's code.
 
 
+
+## 📚 Documentation Site
+
+**[View the interactive documentation site →](docs/)**
+
+We've created a beautiful documentation site using Fumadocs that makes it easy to browse all course materials. Features include:
+- 📖 Organized content by weeks
+- 🔍 Search functionality
+- 📱 Responsive design
+- 🌓 Dark mode support
+
+To run locally:
+```bash
+cd docs
+npm install
+npm run dev
+```
+
 ### Table of Contents
 
 1. Getting Started
