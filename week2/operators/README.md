@@ -5,14 +5,23 @@ description: >-
 
 # Python Operators
 
-**What are operators in python?**
+Operators are special symbols that perform computations on values (operands).
 
-Operators are special symbols in Python that carry out arithmetic or logical computation. The value that the operator operates on is called the operand.
-
-For example:
 ```python
->>> 5 + 3
-8
+result = 5 + 3  # 8
 ```
 
-Here, `+` is the operator that performs addition. `5` and `3` are the operands and `8` is the output of the operation.
+## Operator Groups
+- Arithmetic
+- Comparison
+- Logical
+- Assignment
+- Identity
+- Membership
+- Bitwise
+
+## Notes
+- Some operators return numbers, others return booleans.
+- Operator precedence affects how expressions are evaluated.
+
+[Next](/week2/operators/arithmetic/README.md) | [Previous](/week2/control_flow/break_and_continue/README.md)
