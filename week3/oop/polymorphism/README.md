@@ -1,11 +1,8 @@
-# Polymorphism in Python
+# Polymorphism
 
-## What is Polymorphism?
+Polymorphism lets different classes provide the same interface.
 
-**Polymorphism** means "many forms." In Python, this allows different classes to have methods with the same name, and you can use these objects interchangeably.
-
-## Basic Example
-
+## Example
 ```python
 class Bird:
     def make_sound(self):
@@ -18,21 +15,11 @@ class Dog:
 def animal_sound(animal):
     animal.make_sound()
 
-bird = Bird()
-dog = Dog()
-animal_sound(bird)  # Output: Chirp
-animal_sound(dog)   # Output: Woof
+animal_sound(Bird())
+animal_sound(Dog())
 ```
 
-## Real World Use Cases
+## Key Idea
+If objects share a method name, you can treat them the same way.
 
-- **Payment Processing**: A function can process `CreditCard`, `PayPal`, or `BankTransfer` objects, as long as they implement a `pay()` method.
-- **Drawing Software**: Different shapes (`Circle`, `Rectangle`, `Triangle`) have a `draw()` method, so a loop can call draw on all shapes without knowing their specific types.
-- **File Handling**: Different file readers (`PDFReader`, `WordReader`) can have a `read()` method, making it easy to process files of various types with the same interface.
-
-## Key Points
-
-- Write code that works with objects of different types, as long as they have the required method.
-- Makes code flexible and extensible.
-
----
+[Next](/week3/oop/encapsulation/README.md) | [Previous](/week3/oop/inheritance/README.md)
