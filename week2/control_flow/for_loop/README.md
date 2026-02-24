@@ -1,147 +1,61 @@
-In this Lecture, you'll learn to iterate over a sequence of elements using the different variations of for loop.
+# `for` Loops
 
-**What is for loop in Python?**
+Use `for` loops to iterate over sequences (lists, tuples, strings) and other
+iterables.
 
-The for loop in Python is used to iterate over a sequence (`list`, `tuple`, `string`) or other iterable objects.
-
-> Iterating over a sequence is called traversal.
-
-**Syntax of for Loop**
-
+## Syntax
 ```python
-for <variable> in <sequence>:
-    <statements>
+for item in sequence:
+    print(item)
 ```
 
-Here, `<variable>` is the variable that takes the value of the item inside the sequence on each iteration.
-
-Loop continues until we reach the last item in the sequence. The body of for loop is separated from the rest of the code using indentation.
-
-**Flowchart of for Loop**
-
-<img src="https://cdn.programiz.com/sites/tutorial2program/files/forLoop.jpg" alt="for loop flowchart">
-
-<br>
-
-### Example 1:
-
+## Basic Example
 ```python
-# A program to print individual fruit in a list of fruits
 fruits = ["apple", "banana", "cherry"]
 
 for fruit in fruits:
     print(fruit)
 ```
 
-When you run the program, the output will be:
-
-```
-apple
-banana
-cherry
-```
-
-### The `range()` function
-
-We can generate a sequence of numbers using `range()` function. `range(10)` will generate numbers from `0` to `9` (`10 numbers`).
-
-We can also define the start, stop and step size as `range(start, stop,step_size)`. `step_size` defaults to `1` if not provided.
-
-The `range()` function is efficient because it doesn't store all its numbers in memory at once. Instead, it generates them as needed as you loop through them. You can convert it to a list using `list(range(...))` to see all its numbers explicitly.
-
-This function does not store all the values in memory; it would be inefficient. So it remembers the `start`, `stop`, `step` size and generates the next number on the go.
-
-To force this function to output all the `items`, we can use the function `list()`.
-
-The following example will clarify this.
+## Using `range()`
+`range()` generates numbers on demand, which is memory-efficient.
 
 ```python
-print(range(10))
-
-print(list(range(10)))
-
-print(list(range(2, 8)))
-
-print(list(range(2, 20, 3)))
+for i in range(5):
+    print(i)
 ```
 
-Output
-
-```
-range(0, 10)
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-[2, 3, 4, 5, 6, 7]
-[2, 5, 8, 11, 14, 17]
-```
-
-We can use the `range()` function in for loops to iterate through a sequence of numbers. It can be combined with the `len()` function to iterate through a sequence using indexing. Here is an example.
+`range(start, stop, step)` is also supported:
 
 ```python
-# A Program to iterate through a list using indexing
+print(list(range(2, 10, 2)))  # [2, 4, 6, 8]
+```
 
+## Index + Value with `enumerate()`
+```python
 fruits = ["apple", "banana", "cherry"]
 
-for i in range(len(fruits)):
-    print(f"Current fruit: {fruits[i]}")
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
 ```
 
-Output
-
-```
-Current fruit: apple
-Current fruit: banana
-Current fruit: cherry
-```
-
-### for loop with else
-
-A `for` loop can have an optional `else` block as well. The else part is executed if the items in the sequence used in for loop exhausts.
-
-The break keyword can be used to stop a for loop. In such cases, the else part is ignored.
-
-Hence, a for loop's else part runs if no break occurs.
-
-Here is an example to illustrate this.
+## `for` ... `else`
+The `else` block runs only if the loop completes without a `break`.
 
 ```python
-digits = [0, 1, 5]
+targets = ["Ada", "Grace", "Linus"]
+name = "Guido"
 
-for digit in digits:
-    print(digit)
-else:
-    print("No items left.")
-```
-
-When you run the program, the output will be:
-
-```
-0
-1
-5
-No items left.
-```
-
-Here, the for loop prints items of the list until the loop exhausts. When the for loop exhausts, it executes the block of code in the `else` and prints `No items left.`
-
-This `for...else` statement can be used with the break keyword to run the `else` block only when the break keyword was not executed. Let's take an example:
-
-```python
-# program to display student's marks from record
-student_name = 'Priscilla'
-
-marks = {'James': 90, 'Jules': 55, 'Arthur': 77}
-
-for student in marks:
-    if student == student_name:
-        print(f"{student_name}'s marks: {marks[student]}")
+for target in targets:
+    if target == name:
+        print("Found")
         break
 else:
-    print(f'No entry for {student_name} found.')
+    print("Not found")
 ```
 
-Output
+## Common Pitfalls
+- Modifying a list while iterating over it.
+- Using `range(len(...))` when `enumerate()` is clearer.
 
-```
-No entry for Priscilla found.
-```
-
+[Next](/week2/control_flow/while_loops/README.md) | [Previous](/week2/control_flow/if_statements/README.md)
