@@ -1,0 +1,116 @@
+---
+title: Numpy Array Quiz
+description: Practice questions for NumPy arrays.
+---
+
+# Numpy Array Quiz
+
+<Callout type="info">
+Use NumPy for fast numerical operations on arrays.
+</Callout>
+
+## Quick Tutorial
+NumPy arrays support fast, element‑wise operations.
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+print(a + b)  # [5 7 9]
+```
+
+### Reshaping
+```python
+zeros = np.zeros(10)
+reshaped = zeros.reshape(2, 5)
+print(reshaped)
+```
+
+### Indexing and Slicing
+```python
+a = np.array([[1, 2, 3], [4, 5, 6]])
+print(a[0, 1])  # 2
+print(a[:, 1])  # column 1
+```
+**Expected output**
+```
+2
+[2 5]
+```
+
+### Aggregations
+```python
+data = np.array([1, 2, 3, 4, 5])
+print(data.mean())
+print(data.max())
+```
+**Expected output**
+```
+3.0
+5
+```
+
+## Question 1
+What is the result of the following code?
+
+```python
+import numpy as np
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+c = a + b
+print(c)
+```
+
+## Question 2
+Create a numpy array of 10 zeros and reshape it to `(2, 5)`.
+
+## Question 3
+Find mean, mode, median, and standard deviation of:
+
+```python
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+```
+
+## Question 4
+Create a 6x6 numpy array with random values and find the min and max.
+
+## Question 5
+Create a 3D numpy array and reshape it to 2D.
+
+## Question 6
+Create a 1D array from:
+
+```python
+data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+```
+
+## Mini Exercises
+1. Create a `4x4` array of random integers from 1 to 9.
+2. Compute the mean of each column.
+3. Flatten a 2D array into 1D.
+
+## Common Mistakes
+- Confusing element‑wise addition with matrix multiplication.
+- Reshaping to an incompatible shape.
+- Forgetting that NumPy uses zero‑based indexing.
+
+## Quick Quiz
+1. What does `a[:, 0]` return?
+2. How do you reshape an array of 12 items into 3x4?
+3. What’s the difference between `*` and `@` in NumPy?
+
+## References
+- [NumPy](https://numpy.org/doc/)
+
+
+## Common Mistakes
+- Confusing element‑wise operations with matrix operations.
+- Forgetting to reshape before using 2D ops.
+- Not setting a random seed when needed.
+
+
+## Quick Quiz
+1. What does `a + b` do for NumPy arrays?
+2. How do you reshape an array?
+3. Why might you set a random seed?

@@ -1,0 +1,169 @@
+---
+title: TODO API
+description: Build a simple TODO API with Flask and SQLite.
+---
+
+# TODO API
+
+This is a simple TODO API built with Python (Flask) and SQLite.
+
+<Callout type="tip">
+Start with one model and one endpoint. Get it working, then expand.
+</Callout>
+
+## Goals
+- Define a basic Task model
+- Create CRUD endpoints
+- Persist data with SQLite
+
+## 1) Install Dependencies
+```bash
+pip install flask sqlalchemy
+```
+
+## 2) Define the model
+```python
+from sqlalchemy import create_engine, Column, Integer, String, Boolean
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
+
+class Task(Base):
+    __tablename__ = "tasks"
+    id = Column(Integer, primary_key=True)
+    title = Column(String(200))
+    done = Column(Boolean, default=False)
+```
+
+## 3) Create the database
+```python
+engine = create_engine("sqlite:///todo.db")
+Base.metadata.create_all(engine)
+```
+
+## 4) Build the API
+```python
+from flask import Flask, request, jsonify
+from sqlalchemy.orm import Session
+
+app = Flask(__name__)
+
+@app.get("/tasks")
+def list_tasks():
+    with Session(engine) as session:
+        tasks = session.query(Task).all()
+        return jsonify([{"id": t.id, "title": t.title, "done": t.done} for t in tasks])
+
+@app.post("/tasks")
+def create_task():
+    payload = request.json or {}
+    if "title" not in payload:
+        return jsonify({"error": "title is required"}), 400
+    with Session(engine) as session:
+        task = Task(title=payload["title"])
+        session.add(task)
+        session.commit()
+        return jsonify({"id": task.id, "title": task.title, "done": task.done}), 201
+```
+**Expected response**
+```json
+{"id": 1, "title": "Read docs", "done": false}
+```
+
+## 5) Get, Update, Delete
+```python
+@app.get("/tasks/<int:task_id>")
+def get_task(task_id):
+    with Session(engine) as session:
+        task = session.get(Task, task_id)
+        if not task:
+            return jsonify({"error": "not found"}), 404
+        return jsonify({"id": task.id, "title": task.title, "done": task.done})
+
+@app.put("/tasks/<int:task_id>")
+def update_task(task_id):
+    payload = request.json or {}
+    with Session(engine) as session:
+        task = session.get(Task, task_id)
+        if not task:
+            return jsonify({"error": "not found"}), 404
+        task.title = payload.get("title", task.title)
+        task.done = payload.get("done", task.done)
+        session.commit()
+        return jsonify({"id": task.id, "title": task.title, "done": task.done})
+
+@app.delete("/tasks/<int:task_id>")
+def delete_task(task_id):
+    with Session(engine) as session:
+        task = session.get(Task, task_id)
+        if not task:
+            return jsonify({"error": "not found"}), 404
+        session.delete(task)
+        session.commit()
+        return jsonify({"status": "deleted"})
+```
+**Expected response**
+```json
+{"status": "deleted"}
+```
+
+## Suggested Endpoints
+```
+GET /tasks
+GET /tasks/:id
+POST /tasks
+PUT /tasks/:id
+DELETE /tasks/:id
+```
+
+## Testing with curl
+```bash
+curl -X POST http://localhost:5000/tasks -H "Content-Type: application/json" \\
+  -d '{\"title\":\"Read docs\"}'
+
+curl http://localhost:5000/tasks
+```
+**Expected output**
+```json
+[{"id": 1, "title": "Read docs", "done": false}]
+```
+
+## Mini Exercises
+1. Add a `description` field to the Task model.
+2. Implement `PUT /tasks/:id` to update `done`.
+3. Return 404 when a task is not found.
+
+## Common Mistakes
+- Forgetting `Content-Type: application/json` when sending JSON.
+- Not handling missing tasks (return 404).
+- Returning SQLAlchemy objects directly (not JSON).
+
+## Quick Quiz
+1. What HTTP verb is used to create a task?
+2. What status code should you return for missing resources?
+3. Why validate input payloads?
+
+## References
+- [Flask](https://flask.palletsprojects.com/)
+- [SQLAlchemy](https://docs.sqlalchemy.org/)
+
+## Suggested Endpoints
+```
+GET /tasks
+GET /tasks/:id
+POST /tasks
+PUT /tasks/:id
+DELETE /tasks/:id
+```
+
+
+## Common Mistakes
+- Not validating input data in POST/PUT.
+- Returning raw database errors to users.
+- Forgetting to handle 404 cases.
+
+
+## Quick Quiz
+1. What does CRUD stand for?
+2. Why is input validation important?
+3. Name one endpoint in the TODO API.

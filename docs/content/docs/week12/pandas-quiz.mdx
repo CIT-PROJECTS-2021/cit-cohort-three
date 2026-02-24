@@ -1,0 +1,116 @@
+---
+title: Pandas Quiz
+description: Practice questions for Pandas dataframes.
+---
+
+# Pandas Quiz
+
+<Callout type="info">
+Pandas is built on NumPy and is great for tabular data.
+</Callout>
+
+## Quick Tutorial
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    "name": ["Ada", "Grace", "Linus"],
+    "score": [95, 88, 76],
+})
+print(df.head())
+```
+**Expected output**
+```
+    name  score
+0    Ada     95
+1  Grace     88
+2  Linus     76
+```
+
+### Loading JSON
+```python
+df = pd.read_json("https://jsonplaceholder.typicode.com/albums")
+print(df.head())
+```
+**Expected output**
+```
+   userId  id                                     title
+0       1   1                                     quidem
+1       1   2                                 sunt qui
+2       1   3                          omnis laborum
+3       1   4                       non esse culpa
+4       1   5  eaque aut omnis a
+```
+
+### Filtering
+```python
+high_scores = df[df["score"] >= 80]
+```
+
+### Aggregation
+```python
+print(df["score"].mean())
+```
+
+## Question 1
+What is the result of the following code?
+
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(5, 3), columns=['col1', 'col2', 'col3'])
+df.apply(lambda x: x.max() - x.min())
+```
+
+## Question 2
+Download a CSV from:
+`https://stats.govt.nz/assets/Uploads/Business-employment-data/Business-employment-data-June-2022-quarter/Download-data/business-employment-data-june-2022-quarter-csv.zip`
+
+Load it into a pandas DataFrame. How many rows and columns are there?
+
+## Question 3
+What method can be used to get the number of non‑NA values in a DataFrame?
+
+A. `df.count()`  
+B. `df.na_count()`  
+C. `df.na_values()`  
+D. `df.na_count()`
+
+## Question 4
+Create a DataFrame with 10 rows and 3 columns of random numbers between 1 and 10.
+Replace all values greater than 5 with 10.
+
+## Question 5
+Create a DataFrame from:
+`https://jsonplaceholder.typicode.com/albums`
+
+## Mini Exercises
+1. Add a new column `passed` where score >= 80.
+2. Filter rows where `score` < 80.
+3. Sort by `score` descending.
+
+## Common Mistakes
+- Forgetting to inspect `df.head()` after loading.
+- Mixing up row and column selection.
+- Mutating data without making a copy when needed.
+
+## Quick Quiz
+1. What does `df.shape` return?
+2. How do you select a single column?
+3. How do you filter rows by a condition?
+
+## References
+- [Pandas](https://pandas.pydata.org/docs/)
+
+
+## Common Mistakes
+- Forgetting to inspect missing values.
+- Using the wrong axis in `apply`.
+- Not checking DataFrame shape after load.
+
+
+## Quick Quiz
+1. What does `df.count()` return?
+2. How do you load JSON into a DataFrame?
+3. Why is `shape` useful?

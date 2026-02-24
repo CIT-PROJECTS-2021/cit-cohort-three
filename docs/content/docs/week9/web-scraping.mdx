@@ -1,4 +1,160 @@
 ---
 title: Web Scraping in Python
-description: This week we will learn how to scrape data from the web using BeautifulSoup library to extract data from HTML pages.
+description: Learn how to scrape data from websites using requests and BeautifulSoup.
 ---
+
+# Web Scraping in Python
+
+Web scraping is extracting data from web pages. In Python, this is commonly
+done with `requests` and `beautifulsoup4`.
+
+<Callout type="warning">
+Always check a site’s terms of use and `robots.txt` before scraping.
+</Callout>
+
+Scraping typically follows the same flow: fetch HTML, parse it, then extract
+the fields you care about.
+
+## Install Dependencies
+```bash
+pip install requests beautifulsoup4
+```
+
+## Step-by-Step Example
+We will:
+1. Fetch a web page
+2. Parse the HTML
+3. Extract specific elements
+4. Clean the text
+
+### 1) Fetch the page
+```python
+import requests
+
+url = "https://example.com"
+headers = {"User-Agent": "CIT-Scraper/1.0"}
+response = requests.get(url, headers=headers, timeout=10)
+response.raise_for_status()
+html = response.text
+```
+
+### 2) Parse the HTML
+```python
+from bs4 import BeautifulSoup
+
+soup = BeautifulSoup(html, "html.parser")
+```
+
+### 3) Extract data
+```python
+title = soup.find("h1")
+print(title.get_text(strip=True))
+```
+**Expected output (example.com)**
+```
+Example Domain
+```
+
+### 4) Extract multiple items
+```python
+links = [a["href"] for a in soup.select("a[href]")]
+print(links[:5])
+```
+**Expected output (example.com)**
+```
+['https://www.iana.org/domains/example']
+```
+
+## Understanding Selectors
+CSS selectors are a powerful way to target elements.
+
+```python
+titles = soup.select("h2")
+cards = soup.select(".card")
+links_in_nav = soup.select("nav a")
+```
+
+## Pagination Example
+Some sites split content across pages.
+
+```python
+base = "https://example.com/page="
+all_titles = []
+for page in range(1, 4):
+    response = requests.get(base + str(page), headers=headers, timeout=10)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+    all_titles.extend([h.get_text(strip=True) for h in soup.select("h2")])
+```
+
+## Saving Results
+Save scraped data to CSV for later use.
+
+```python
+import csv
+
+rows = [{"title": t, "link": l} for t, l in zip(titles, links)]
+with open("results.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.DictWriter(f, fieldnames=["title", "link"])
+    writer.writeheader()
+    writer.writerows(rows)
+```
+
+## Basic Example (All-in-One)
+```python
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://example.com"
+headers = {"User-Agent": "CIT-Scraper/1.0"}
+response = requests.get(url, headers=headers, timeout=10)
+response.raise_for_status()
+
+soup = BeautifulSoup(response.text, "html.parser")
+title = soup.find("h1")
+print(title.get_text(strip=True))
+```
+
+## Tips and Etiquette
+<Steps>
+<Step title="Fetch">
+Use `requests.get()` with a timeout and handle errors.
+</Step>
+<Step title="Parse">
+Extract only the elements you need.
+</Step>
+<Step title="Be polite">
+Rate-limit requests and cache results where possible.
+</Step>
+</Steps>
+
+## Mini Exercises
+1. Extract all `<h2>` headings from a page.
+2. Extract the text of all links (`<a>` tags).
+3. Save the scraped results to a CSV file.
+
+## Common Mistakes
+- Forgetting to call `response.raise_for_status()`.
+- Assuming elements always exist (check for `None`).
+- Scraping too fast and getting blocked.
+
+## Quick Quiz
+1. What does `soup.select(".card")` return?
+2. Why should you set a User‑Agent header?
+3. What is one polite scraping practice?
+
+## References
+- [Requests](https://requests.readthedocs.io/)
+- [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+
+
+## Common Mistakes
+- Scraping too fast and getting blocked.
+- Ignoring `robots.txt` or site terms.
+- Parsing without checking for missing elements.
+
+
+## Quick Quiz
+1. Why add a User-Agent header?
+2. What should you check before scraping a site?
+3. What does `BeautifulSoup` parse?

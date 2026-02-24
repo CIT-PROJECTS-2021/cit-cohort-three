@@ -1,0 +1,73 @@
+---
+title: API Quiz
+description: Design a Tasks API with auth endpoints.
+---
+
+# API Quiz
+
+Create a Tasks API with the following endpoints and models:
+
+<Callout type="info">
+Design your data models first, then build endpoints around them.
+</Callout>
+
+## Models
+- `Task`
+- `User`
+
+## Suggested Flow
+<Steps>
+<Step title="Model">
+Design tables/fields first (id, title, owner, timestamps).
+</Step>
+<Step title="Routes">
+Implement CRUD endpoints with correct status codes.
+</Step>
+<Step title="Auth">
+Add register/login and protect endpoints.
+</Step>
+</Steps>
+
+## Endpoints
+```
+GET /tasks
+GET /tasks/:id
+POST /tasks
+PUT /tasks/:id
+DELETE /tasks/:id
+
+GET /users
+GET /users/:id
+PUT /users/:id
+DELETE /users/:id
+
+POST /auth/login
+POST /auth/register
+```
+
+## Mini Exercises
+1. Add a `created_at` field to the Task model.
+2. Return `401` when a user is not authenticated.
+3. Add pagination to `GET /tasks`.
+
+## Common Mistakes
+- Mixing authentication logic with resource logic.
+- Not hashing passwords before storage.
+- Returning 200 for errors instead of correct status codes.
+
+## Quick Quiz
+1. What status code should `/auth/login` return on failure?
+2. Why separate auth routes from task routes?
+3. What does pagination solve?
+
+
+## Common Mistakes
+- Mixing auth and resource routes in one controller.
+- Not hashing passwords before storage.
+- Skipping authorization checks.
+
+
+## Quick Quiz
+1. What endpoints should handle auth?
+2. Why should passwords be hashed?
+3. Give one example of a `GET` endpoint.

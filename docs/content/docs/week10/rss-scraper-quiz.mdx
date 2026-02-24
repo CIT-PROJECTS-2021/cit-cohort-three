@@ -1,0 +1,153 @@
+---
+title: RSS Scraper Quiz
+description: Build an RSS scraper and store results with SQLAlchemy.
+---
+
+# RSS Scraper Project (Tutorial)
+
+This tutorial shows how to scrape an RSS feed, store items in a database, and
+serve them via a simple API.
+
+<Callout type="info">
+We’ll build it step‑by‑step: fetch → parse → store → serve.
+</Callout>
+
+## 1) Install Dependencies
+```bash
+pip install requests lxml sqlalchemy flask
+```
+
+## 2) Fetch the RSS feed
+```python
+import requests
+
+URL = "https://www.cbsnews.com/latest/rss/main"
+response = requests.get(URL, timeout=10)
+response.raise_for_status()
+xml_text = response.text
+```
+
+## 3) Parse with `lxml`
+```python
+from lxml import etree
+
+root = etree.fromstring(xml_text.encode("utf-8"))
+items = root.findall(".//item")
+
+data = []
+for item in items:
+    title = item.findtext("title")
+    link = item.findtext("link")
+    description = item.findtext("description")
+    # Some feeds store images in media:content
+    image = None
+    media = item.find("{http://search.yahoo.com/mrss/}content")
+    if media is not None:
+        image = media.get("url")
+    data.append({"title": title, "link": link, "description": description, "image": image})
+```
+
+## 4) Store with SQLAlchemy
+```python
+from sqlalchemy import create_engine, Column, Integer, String, Text
+from sqlalchemy.orm import declarative_base, Session
+
+Base = declarative_base()
+
+class CBSNews(Base):
+    __tablename__ = "cbs_news"
+    id = Column(Integer, primary_key=True)
+    title = Column(String(300))
+    link = Column(String(500))
+    image = Column(String(500))
+    description = Column(Text)
+
+engine = create_engine("sqlite:///news.db")
+Base.metadata.create_all(engine)
+
+with Session(engine) as session:
+    for row in data:
+        session.add(CBSNews(**row))
+    session.commit()
+```
+
+## 5) Serve via Flask
+```python
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.get("/cbs_news")
+def get_news():
+    with Session(engine) as session:
+        rows = session.query(CBSNews).all()
+        return jsonify([
+            {"title": r.title, "link": r.link, "image": r.image, "description": r.description}
+            for r in rows
+        ])
+
+if __name__ == "__main__":
+    app.run(debug=True)
+```
+
+## Project Structure (Suggested)
+```
+rss_scraper/
+  app.py
+  models.py
+  scraper.py
+  requirements.txt
+```
+
+## Avoiding Duplicates
+Use the RSS link as a unique key.
+
+```python
+from sqlalchemy import select
+
+with Session(engine) as session:
+    for row in data:
+        exists = session.execute(
+            select(CBSNews).where(CBSNews.link == row["link"])
+        ).first()
+        if exists:
+            continue
+        session.add(CBSNews(**row))
+    session.commit()
+```
+
+## Scheduling Updates
+Run the scraper on a schedule (e.g., every hour) using cron or a task scheduler.
+
+## Mini Exercises
+1. Add a `published_at` column if the feed includes it.
+2. Avoid duplicates by checking if `link` already exists.
+3. Add a route to return only the latest 10 items.
+
+## Common Mistakes
+- Parsing XML without namespaces (media tags disappear).
+- Inserting duplicate items on every run.
+- Returning raw DB objects instead of JSON.
+
+## Quick Quiz
+1. Why do we use `lxml` for RSS?
+2. What field could be used as a unique identifier?
+3. What does `/cbs_news` return?
+
+## References
+- [Requests](https://requests.readthedocs.io/)
+- [lxml](https://lxml.de/)
+- [SQLAlchemy](https://docs.sqlalchemy.org/)
+- [Flask](https://flask.palletsprojects.com/)
+
+
+## Common Mistakes
+- Parsing XML without handling missing fields.
+- Inserting duplicate items into the database.
+- Skipping error handling on HTTP requests.
+
+
+## Quick Quiz
+1. What is RSS used for?
+2. Why should you handle missing fields?
+3. What does `/cbs_news` return?
