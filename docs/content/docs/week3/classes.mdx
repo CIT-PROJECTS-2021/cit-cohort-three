@@ -1,0 +1,64 @@
+---
+title: Classes
+description: Learn how to define classes and create objects.
+---
+
+# Classes
+
+A class is a blueprint for creating objects with attributes and methods.
+
+<Callout type="info">
+Use classes when you want to model a real‑world thing with data and behavior.
+</Callout>
+
+## Example
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        print(f"Hi, I'm {self.name}")
+
+person = Person("Ada", 28)
+person.greet()
+```
+
+**Expected output**
+```
+Hi, I'm Ada
+```
+
+## Key Ideas
+- `__init__` initializes a new object.
+- `self` refers to the current instance.
+
+## Additional Example: Student
+```python
+class Student:
+    def __init__(self, name, student_id):
+        self.name = name
+        self.student_id = student_id
+
+    def info(self):
+        return f"{self.name} ({self.student_id})"
+
+student = Student("Lara", "ST-102")
+print(student.info())
+```
+
+**Expected output**
+```
+Lara (ST-102)
+```
+
+## Common Mistakes
+- Forgetting `self` in method definitions.
+- Setting attributes outside `__init__` without a reason.
+- Using classes when a simple dictionary would do.
+
+## Quick Quiz
+1. What does `__init__` do?
+2. What is `self`?
+3. Why use a class instead of a dictionary?

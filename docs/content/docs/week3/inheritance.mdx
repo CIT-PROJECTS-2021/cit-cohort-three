@@ -1,0 +1,54 @@
+---
+title: Inheritance
+description: Reuse and extend behavior with inheritance.
+---
+
+# Inheritance
+
+Inheritance allows a class to reuse and extend another class.
+
+## Example
+```python
+class Vehicle:
+    def move(self):
+        print("Moving")
+
+class Car(Vehicle):
+    def honk(self):
+        print("Beep")
+
+car = Car()
+car.move()
+car.honk()
+```
+
+**Expected output**
+```
+Moving
+Beep
+```
+
+## `super()`
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name)
+        self.breed = breed
+```
+
+## Use Cases
+- Base class for shared behavior (e.g., `User`, `Admin`)
+- Extending models without rewriting code
+
+## Common Mistakes
+- Overusing inheritance where composition is simpler
+- Forgetting to call `super().__init__()`
+
+## Quick Quiz
+1. What does `super()` do?
+2. When is inheritance useful?
+3. Name one downside of deep inheritance trees.

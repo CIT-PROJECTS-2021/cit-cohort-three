@@ -1,0 +1,36 @@
+---
+title: Encapsulation
+description: Hide internal state and expose safe interfaces.
+---
+
+# Encapsulation
+
+Encapsulation groups data and behavior together and hides internal details.
+
+## Example
+```python
+class User:
+    def __init__(self, username, password):
+        self.username = username
+        self._password = password
+
+    def check_password(self, candidate):
+        return candidate == self._password
+```
+
+## Notes
+- `_name` is a convention (not enforced).
+- `__name` triggers name‑mangling for stronger privacy.
+
+## Use Cases
+- Protecting sensitive data (passwords, tokens)
+- Controlling access through methods
+
+## Common Mistakes
+- Exposing everything as public
+- Assuming `__` makes data completely private
+
+## Quick Quiz
+1. What does a single underscore mean?
+2. Is `__password` truly private?
+3. Why encapsulate data?

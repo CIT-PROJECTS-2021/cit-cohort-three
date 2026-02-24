@@ -1,0 +1,44 @@
+---
+title: Polymorphism
+description: One interface, many implementations.
+---
+
+# Polymorphism
+
+Polymorphism lets different classes provide the same interface.
+
+## Example
+```python
+class Bird:
+    def make_sound(self):
+        print("Chirp")
+
+class Dog:
+    def make_sound(self):
+        print("Woof")
+
+def animal_sound(animal):
+    animal.make_sound()
+
+animal_sound(Bird())
+animal_sound(Dog())
+```
+
+**Expected output**
+```
+Chirp
+Woof
+```
+
+## Use Cases
+- Payment processors with the same `pay()` method
+- Drawing shapes with a shared `draw()` method
+
+## Common Mistakes
+- Relying on type checks instead of shared interfaces
+- Mixing unrelated behaviors under one method name
+
+## Quick Quiz
+1. What does polymorphism allow you to do?
+2. Why is it useful for extensible code?
+3. Give one real‑world example.

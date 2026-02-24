@@ -1,0 +1,53 @@
+---
+title: Composition vs Inheritance
+description: Learn when to use composition instead of inheritance.
+---
+
+# Composition vs Inheritance
+
+Both composition and inheritance help you reuse code, but they solve different
+problems.
+
+## Inheritance (is‑a)
+Use inheritance when one class **is a** specialized version of another.
+
+```python
+class Vehicle:
+    def move(self):
+        return "Moving"
+
+class Car(Vehicle):
+    pass
+```
+
+## Composition (has‑a)
+Use composition when one class **has a** dependency or component.
+
+```python
+class Engine:
+    def start(self):
+        return "Engine started"
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()
+
+    def drive(self):
+        return self.engine.start()
+```
+
+## Quick Comparison
+- **Inheritance** shares behavior through a parent class.
+- **Composition** builds behavior using smaller parts.
+
+## Rule of Thumb
+Prefer composition unless inheritance clearly models a real relationship.
+
+## Common Mistakes
+- Deep inheritance trees that are hard to change.
+- Using inheritance for code reuse when composition is clearer.
+
+## Quick Quiz
+1. When is inheritance a good fit?
+2. What does “has‑a” mean?
+3. Why prefer composition by default?

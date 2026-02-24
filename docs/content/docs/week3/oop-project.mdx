@@ -1,0 +1,89 @@
+---
+title: OOP Project Walkthrough
+description: Build a small library system using classes.
+---
+
+# OOP Project Walkthrough: Library System
+
+We’ll build a tiny library system with `Book`, `Member`, and `Library` classes.
+This shows how objects work together in a realistic way.
+
+## 1) Define `Book`
+```python
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        self.is_borrowed = False
+
+    def borrow(self):
+        if self.is_borrowed:
+            return False
+        self.is_borrowed = True
+        return True
+
+    def return_book(self):
+        self.is_borrowed = False
+```
+
+## 2) Define `Member`
+```python
+class Member:
+    def __init__(self, name):
+        self.name = name
+        self.books = []
+
+    def borrow_book(self, book):
+        if book.borrow():
+            self.books.append(book)
+            return True
+        return False
+
+    def return_book(self, book):
+        if book in self.books:
+            book.return_book()
+            self.books.remove(book)
+            return True
+        return False
+```
+
+## 3) Define `Library`
+```python
+class Library:
+    def __init__(self):
+        self.catalog = []
+
+    def add_book(self, book):
+        self.catalog.append(book)
+
+    def list_available(self):
+        return [b.title for b in self.catalog if not b.is_borrowed]
+```
+
+## 4) Try It
+```python
+library = Library()
+book = Book("Clean Code", "Robert C. Martin")
+member = Member("Ada")
+
+library.add_book(book)
+print(library.list_available())
+
+member.borrow_book(book)
+print(library.list_available())
+
+member.return_book(book)
+print(library.list_available())
+```
+
+**Expected output**
+```
+['Clean Code']
+[]
+['Clean Code']
+```
+
+## Mini Exercises
+1. Add a `genre` field to `Book`.
+2. Prevent members from borrowing more than 3 books.
+3. Add a `find_book(title)` method to `Library`.

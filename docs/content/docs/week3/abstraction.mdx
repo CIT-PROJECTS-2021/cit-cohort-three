@@ -1,0 +1,43 @@
+---
+title: Abstraction
+description: Hide implementation details behind a simple interface.
+---
+
+# Abstraction
+
+Abstraction hides complex details and exposes only what users need.
+
+## Example
+```python
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+    @abstractmethod
+    def start_engine(self):
+        pass
+
+class Motorcycle(Vehicle):
+    def start_engine(self):
+        print("Engine started")
+
+bike = Motorcycle()
+bike.start_engine()
+```
+
+**Expected output**
+```
+Engine started
+```
+
+## Use Cases
+- Defining required methods for subclasses
+- Designing consistent interfaces
+
+## Common Mistakes
+- Instantiating abstract base classes directly
+- Forgetting to implement abstract methods
+
+## Quick Quiz
+1. What does `@abstractmethod` enforce?
+2. Why use an abstract base class?
+3. Can you instantiate `Vehicle` directly?
