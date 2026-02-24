@@ -1,72 +1,44 @@
-# Logical operators
+# Logical Operators
 
-In Python, Logical operators are used on conditional statements (either `True` or `False`). They perform Logical `AND`, Logical `OR` and Logical `NOT` operations.
+Logical operators combine boolean expressions.
 
-| Operator | Meaning                                      | Example                |
-| -------- | -------------------------------------------- | ---------------------- |
-| and      | Logical AND - True if both operands are true | 5 > 3 and 3 > 2 = True |
-| or       | Logical OR - True if either operand is true  | 5 > 3 or 3 > 2 = True  |
-| not      | Logical NOT - True if operand is false       | not 5 > 3 = False      |
+| Operator | Meaning | Example |
+| --- | --- | --- |
+| `and` | true if both operands are true | `x > 0 and y > 0` |
+| `or` | true if either operand is true | `x > 0 or y > 0` |
+| `not` | inverts truth value | `not is_valid` |
 
-#### Example 1: Logical operators in Python
-
+## Example
 ```python
 x = True
 y = False
 
-print(f'x and y is {x and y}')
-
-print(f'x or y is {x or y}')
-
-print(f'not x is {not x}')
+print(x and y)  # False
+print(x or y)   # True
+print(not x)    # False
 ```
 
-**Output:**
+## Truth Tables
+`and`
+| A | B | A and B |
+| --- | --- | --- |
+| True | True | True |
+| True | False | False |
+| False | True | False |
+| False | False | False |
 
-```
-x and y is False
-x or y is True
-not x is False
-```
+`or`
+| A | B | A or B |
+| --- | --- | --- |
+| True | True | True |
+| True | False | True |
+| False | True | True |
+| False | False | False |
 
-`and` will result into `True` only if both the operands are `True`
+`not`
+| A | not A |
+| --- | --- |
+| True | False |
+| False | True |
 
-The truth table for `and` is given below:
-
-| A     | B     | A and B |
-| ----- | ----- | ------- |
-| True  | True  | True    |
-| True  | False | False   |
-| False | True  | False   |
-| False | False | False   |
-
-`or` will result into `True` if any of the operands is `True`.
-
-The truth table for or is given below:
-
-| A     | B     | A or B |
-| ----- | ----- | ------ |
-| True  | True  | True   |
-| True  | False | True   |
-| False | True  | True   |
-| False | False | False  |
-
-`not` operator is used to invert the truth value.
-
-The truth table for `not` is given below:
-
-| A     | not A |
-| ----- | ----- |
-| True  | False |
-| False | True  |
-
-some example of their usage are given below
-
-```python
->>> True and False
-False
->>> True or False
-True
->>> not False
-True
-```
+[Next](/week2/operators/assignment/README.md) | [Previous](/week2/operators/comparison/README.md)
