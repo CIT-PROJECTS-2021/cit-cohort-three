@@ -1,0 +1,18 @@
+{
+  "title": "Week 3: Advanced Concepts",
+  "pages": [
+    "functions",
+    "---OOP Deep Dive---",
+    "oop",
+    "classes",
+    "inheritance",
+    "composition-vs-inheritance",
+    "polymorphism",
+    "encapsulation",
+    "abstraction",
+    "oop-project",
+    "modules",
+    "exceptions",
+    "recap"
+  ]
+}

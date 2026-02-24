@@ -1,0 +1,22 @@
+{
+  "title": "Week 2: Control Flow & Data Types",
+  "pages": [
+    "control-flow",
+    "---Operators---",
+    "operators",
+    "operators-arithmetic",
+    "operators-comparison",
+    "operators-logical",
+    "operators-assignment",
+    "operators-identity",
+    "operators-membership",
+    "operators-bitwise",
+    "---Data Types---",
+    "strings",
+    "lists",
+    "tuples",
+    "sets",
+    "dictionaries",
+    "recap"
+  ]
+}

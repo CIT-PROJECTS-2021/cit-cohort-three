@@ -5,6 +5,7 @@ import {
   DocsPage,
   DocsTitle,
 } from 'fumadocs-ui/page';
+import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
 import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
@@ -21,6 +22,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
     <DocsPage toc={page.data.toc} full={page.data.full}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
+      <InlineTOC items={page.data.toc}>Table of Contents</InlineTOC>
       <DocsBody>
         <MDX
           components={getMDXComponents({

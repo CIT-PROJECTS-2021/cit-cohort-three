@@ -1,0 +1,10 @@
+{
+  "title": "Group Projects",
+  "pages": [
+    "index",
+    "weather-app",
+    "url-shortner",
+    "currency-converter",
+    "youtube-summarizer"
+  ]
+}
