@@ -1,35 +1,32 @@
-# Inheritance in Python
+# Inheritance
 
-## What is Inheritance?
+Inheritance lets a class reuse and extend another class.
 
-**Inheritance** is when a class (child/subclass) takes on properties and behaviors (attributes and methods) from another class (parent/superclass). This helps you reuse code and organize programs efficiently.
-
-## Basic Example
-
+## Example
 ```python
 class Vehicle:
     def move(self):
-        print("Vehicle is moving")
+        print("Moving")
 
-class Car(Vehicle):  # Car inherits from Vehicle
+class Car(Vehicle):
     def honk(self):
-        print("Car honks: Beep beep!")
+        print("Beep")
 
-my_car = Car()
-my_car.move()  # Output: Vehicle is moving  (inherited)
-my_car.honk()  # Output: Car honks: Beep beep!
+car = Car()
+car.move()
+car.honk()
 ```
 
-## Real World Use Cases
+## `super()`
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
 
-- **Banking Applications**: A `BankAccount` base class can be inherited by `SavingsAccount` and `CheckingAccount` subclasses, each with specific features.
-- **E-commerce Systems**: A general `Product` class can be the parent for `Electronics`, `Clothing`, and `Books`, each with additional properties.
-- **Game Development**: A generic `Character` class can be inherited by `Hero` and `Enemy`, sharing some behaviors but also having unique ones.
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name)
+        self.breed = breed
+```
 
-## Key Points
-
-- Reduces code duplication.
-- Easier to extend and maintain code.
-- "is-a" relationship: a Car "is a" Vehicle.
-
----
+[Next](/week3/oop/polymorphism/README.md) | [Previous](/week3/oop/classes/README.md)
