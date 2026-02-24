@@ -1,3 +1,246 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  font-family: var(--font-body), ui-sans-serif, system-ui;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), var(--font-body), ui-sans-serif;
+  letter-spacing: -0.015em;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* Editor card custom styling (scoped, high-specificity) */
+.hero-editor {
+  isolation: isolate;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 18, 31, 0.9) 0%,
+    rgba(10, 14, 24, 0.94) 100%
+  );
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow:
+    0 30px 80px rgba(15, 23, 42, 0.35),
+    0 0 0 1px rgba(148, 163, 184, 0.08) inset;
+}
+
+.hero-editor * {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+.hero-editor .editor-bar {
+  background: rgba(15, 23, 42, 0.7);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.hero-editor .editor-tab {
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: rgba(226, 232, 240, 0.8);
+}
+
+.hero-editor .editor-gutter {
+  color: rgba(148, 163, 184, 0.6);
+}
+
+.hero-editor .editor-code {
+  color: rgba(226, 232, 240, 0.9);
+}
+
+.hero-editor .editor-keyword {
+  color: #38bdf8;
+}
+
+.hero-editor .editor-func {
+  color: #facc15;
+}
+
+.hero-editor .editor-callout {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.hero-editor .editor-caret-line {
+  background: linear-gradient(
+    90deg,
+    rgba(56, 189, 248, 0.08),
+    rgba(56, 189, 248, 0.02)
+  );
+  border-left: 2px solid rgba(56, 189, 248, 0.6);
+}
+
+.hero-editor .editor-tree {
+  background: rgba(15, 23, 42, 0.6);
+  border-right: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.hero-editor .editor-tree-item {
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.hero-editor .editor-tree-item.active {
+  color: rgba(56, 189, 248, 0.9);
+  background: rgba(56, 189, 248, 0.12);
+  border-left: 2px solid rgba(56, 189, 248, 0.7);
+}
+
+.hero-editor .editor-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: rgba(248, 250, 252, 0.9);
+  margin-left: 2px;
+  animation: caret-blink 1s steps(2) infinite;
+  vertical-align: -2px;
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-editor .editor-line {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: line-reveal 0.6s ease forwards;
+}
+
+.hero-editor .editor-line.delay-1 {
+  animation-delay: 0.3s;
+}
+
+.hero-editor .editor-line.delay-2 {
+  animation-delay: 0.9s;
+}
+
+.hero-editor .editor-line.delay-3 {
+  animation-delay: 1.5s;
+}
+
+.hero-editor .editor-line.delay-4 {
+  animation-delay: 2.1s;
+}
+
+.hero-editor .editor-line.delay-5 {
+  animation-delay: 2.7s;
+}
+
+.hero-editor .editor-type {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid rgba(248, 250, 252, 0.9);
+  animation: typewriter 1.2s steps(16) 0.3s forwards,
+    caret-blink 0.9s steps(2) infinite 0.3s;
+  width: 0;
+}
+
+.hero-editor .editor-type.done {
+  border-right-color: transparent;
+  animation: typewriter 1.2s steps(16) 0.3s forwards;
+}
+
+.hero-editor .terminal-line {
+  opacity: 0;
+  animation: line-reveal 0.6s ease forwards;
+}
+
+.hero-editor .terminal-line.delay-1 {
+  animation-delay: 2.1s;
+}
+
+.hero-editor .terminal-line.delay-2 {
+  animation-delay: 2.5s;
+}
+
+.hero-editor .terminal-line.delay-3 {
+  animation-delay: 2.9s;
+}
+
+.hero-editor .line-num {
+  opacity: 0;
+  transform: translateY(3px);
+  animation: line-reveal 0.5s ease forwards;
+}
+
+.hero-editor .line-num.delay-1 {
+  animation-delay: 0.3s;
+}
+
+.hero-editor .line-num.delay-2 {
+  animation-delay: 0.9s;
+}
+
+.hero-editor .line-num.delay-3 {
+  animation-delay: 1.5s;
+}
+
+.hero-editor .line-num.delay-4 {
+  animation-delay: 2.1s;
+}
+
+.hero-editor .spinner {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(226, 232, 240, 0.3);
+  border-top-color: rgba(56, 189, 248, 0.9);
+  border-radius: 999px;
+  animation: spin 0.7s linear infinite;
+  margin-right: 6px;
+}
+
+.hero-editor .prompt {
+  display: inline-block;
+  margin-left: 4px;
+  width: 6px;
+  height: 1em;
+  background: rgba(248, 250, 252, 0.9);
+  animation: caret-blink 1s steps(2) infinite;
+  vertical-align: -2px;
+}
+
+@keyframes line-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typewriter {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
