@@ -1,0 +1,45 @@
+---
+title: Stacks (LIFO)
+description: Learn Last‑In, First‑Out stacks with Python examples.
+---
+
+# Stacks (LIFO)
+
+A **stack** is a data structure where the last item added is the first item
+removed. This is called **LIFO**: Last‑In, First‑Out.
+
+## Key Ideas
+- **Push**: add to the top
+- **Pop**: remove from the top
+- **Peek**: look at the top without removing
+
+## Real‑World Analogy
+Think of a stack of plates. You put a new plate on top, and when you take one,
+you take the top plate first.
+
+## Example in Python
+```python
+stack = []
+
+stack.append("A")  # push
+stack.append("B")
+stack.append("C")
+
+top = stack.pop()  # pop -> "C"
+print(top)
+print(stack)       # ["A", "B"]
+```
+
+## Use Cases
+- Undo/redo in editors
+- Browser back/forward history
+- Expression evaluation (e.g., parentheses matching)
+
+## Common Mistakes
+- Using `pop(0)` (that’s a queue behavior, and it’s slow)
+- Forgetting to check if stack is empty before popping
+
+## Quick Quiz
+1. What does LIFO mean?
+2. What operation removes the top item?
+3. Name one real‑world use case.

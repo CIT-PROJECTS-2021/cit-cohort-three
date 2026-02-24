@@ -1,0 +1,49 @@
+---
+title: Linked Lists
+description: Understand linked lists and how nodes connect.
+---
+
+# Linked Lists
+
+A **linked list** is a chain of nodes. Each node stores:
+- a **value**
+- a **reference** to the next node
+
+Unlike lists, linked lists do not store items in contiguous memory.
+
+## Real‑World Analogy
+Think of a train where each car is linked to the next. You can insert or remove
+cars by changing the links.
+
+## Node Example
+```python
+class Node:
+    def __init__(self, value, next_node=None):
+        self.value = value
+        self.next = next_node
+
+head = Node(1, Node(2, Node(3)))
+print(head.value)       # 1
+print(head.next.value)  # 2
+```
+
+## Traversal
+```python
+current = head
+while current is not None:
+    print(current.value)
+    current = current.next
+```
+
+## Use Cases
+- Frequent insertions/removals in the middle
+- Implementing stacks and queues at low level
+
+## Common Mistakes
+- Losing references when inserting/removing (list becomes broken)
+- Forgetting to update `next` pointers
+
+## Quick Quiz
+1. What does each node store?
+2. What is the “head” of a linked list?
+3. Why might a linked list be better than an array in some cases?
