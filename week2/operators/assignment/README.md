@@ -1,23 +1,33 @@
-# Assignment operators
+# Assignment Operators
 
 Assignment operators are used in Python to assign values to variables.
 
-`a = 5` is a simple assignment operator that assigns the value `5` on the right to the variable a on the left.
+`a = 5` assigns the value `5` to the variable `a`.
 
-There are various compound operators in Python like `a += 5` that adds to the variable and later assigns the same. It is equivalent to `a = a + 5`.
+Compound operators like `a += 5` update the variable in place and are
+equivalent to `a = a + 5`.
 
 | Operator | Example | Equivalent to |
-| -------- | ------- | ------------ |
-| =        | a = 5   | a = 5        |
-| +=       | a += 5  | a = a + 5    |
-| -=       | a -= 5  | a = a - 5    |
-| *=       | a *= 5  | a = a * 5    |
-| /=       | a /= 5  | a = a / 5    |
-| %=       | a %= 5  | a = a % 5    |
-| //=      | a //= 5 | a = a // 5   |
-| **=      | a **= 5 | a = a ** 5   |
-| &=       | a &= 5  | a = a & 5    |
-| \|=       | a \|= 5  | a = a \| 5    |
+| --- | --- | --- |
+| `=` | `a = 5` | `a = 5` |
+| `+=` | `a += 5` | `a = a + 5` |
+| `-=` | `a -= 5` | `a = a - 5` |
+| `*=` | `a *= 5` | `a = a * 5` |
+| `/=` | `a /= 5` | `a = a / 5` |
+| `%=` | `a %= 5` | `a = a % 5` |
+| `//=` | `a //= 5` | `a = a // 5` |
+| `**=` | `a **= 5` | `a = a ** 5` |
+| `&=` | `a &= 5` | `a = a & 5` |
+| `|=` | `a |= 5` | `a = a | 5` |
 
+## Example
+```python
+x = 10
+x += 3
+x *= 2
+print(x)  # 26
+```
+
+[Next](/week2/operators/identity/README.md) | [Previous](/week2/operators/logical/README.md)
 
 
