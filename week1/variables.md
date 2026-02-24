@@ -1,15 +1,51 @@
-Python is completely object oriented, and not "statically typed".
-You do not need to declare variables before using them, or declare
-their type. Every variable in Python is an object.
+# Variables
 
-Unlike other programming languages, Python has no command for
-declaring a variable. A variable is created the moment you first assign
-a value to it.
+Python is dynamically typed, which means you do not declare variable types.
+A variable is created the moment you assign a value to a name.
 
-> A variable can have a short name (like x and y) or a more descriptive name
-(age, carname, total_volume).
-Rules for Python variables:
-- A variable name must start with a letter or the underscore character.
-- A variable name cannot start with a number.
-- A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ ).
-- Variable names are case-sensitive (age, Age and AGE are three different variables).
+```python
+name = "Grace"
+age = 37
+```
+
+Every value in Python is an object, and variables are references to those
+objects.
+
+## Naming Rules
+- Must start with a letter or underscore.
+- Cannot start with a number.
+- May contain letters, numbers, and underscores.
+- Case-sensitive: `age`, `Age`, and `AGE` are different.
+
+## Good Naming
+```python
+total_volume = 12
+user_email = "grace@example.com"
+```
+
+## Multiple Assignment
+```python
+x, y, z = 1, 2, 3
+first_name, last_name = "Ada", "Lovelace"
+```
+
+## Reassignment and Types
+```python
+count = 10
+count = "ten"  # valid, but try to avoid confusing changes
+
+print(type(count))  # <class 'str'>
+```
+
+## Quick Practice
+1. Create a variable `city` and assign your city name.
+2. Create a variable `temperature` and assign a number.
+3. Print both in one sentence using an f-string.
+
+```python
+city = "Lagos"
+temperature = 28
+print(f"The temperature in {city} is {temperature}C.")
+```
+
+[Next](/week1/numbers/README.md) | [Previous](/week1/python_syntax.md)
