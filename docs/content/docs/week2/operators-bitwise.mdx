@@ -1,0 +1,51 @@
+---
+title: Bitwise Operators
+description: Perform bit-level operations on integers.
+---
+
+# Bitwise Operators
+
+Bitwise operators act on operands as if they were strings of binary digits.
+
+<Callout type="info">
+Bitwise operators are most useful for low‑level tasks, flags, and performance
+optimizations. You won’t use them often as a beginner.
+</Callout>
+
+## Operators
+| Operator | Meaning | Example |
+| --- | --- | --- |
+| `&` | bitwise AND | `x & y` |
+| `|` | bitwise OR | `x | y` |
+| `^` | bitwise XOR | `x ^ y` |
+| `~` | bitwise NOT | `~x` |
+| `<<` | shift left | `x << 2` |
+| `>>` | shift right | `x >> 2` |
+
+## Example
+```python
+x = 10  # 1010
+y = 4   # 0100
+
+print(x & y)   # 0
+print(x | y)   # 14
+print(x ^ y)   # 14
+print(~x)      # -11
+print(x << 2)  # 40
+print(x >> 2)  # 2
+```
+
+## Note
+Python does not have the `>>>` operator (unsigned right shift).
+
+
+## Common Mistakes
+- Using bitwise operators when logical operators are intended.
+- Not understanding binary representation before using bitwise ops.
+- Expecting `>>>` to work in Python.
+
+
+## Quick Quiz
+1. What does `x & y` do?
+2. Why doesn’t Python have `>>>`?
+3. Give one practical use of bitwise ops.

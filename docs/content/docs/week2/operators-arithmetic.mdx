@@ -1,0 +1,72 @@
+---
+title: Arithmetic Operators
+description: Perform math operations with Python arithmetic operators.
+---
+
+# Arithmetic Operators
+
+Arithmetic operators perform mathematical operations.
+
+<Callout type="info">
+Use `//` when you want whole-number division and `%` when you need the remainder.
+</Callout>
+
+## Operators
+| Operator | Meaning | Example |
+| --- | --- | --- |
+| `+` | addition | `5 + 3` |
+| `-` | subtraction | `5 - 3` |
+| `*` | multiplication | `5 * 3` |
+| `/` | division (float) | `5 / 2` |
+| `//` | floor division | `5 // 2` |
+| `%` | remainder | `5 % 2` |
+| `**` | exponentiation | `5 ** 2` |
+
+## Example
+```python
+x = 15
+y = 4
+
+print(x + y)   # 19
+print(x - y)   # 11
+print(x * y)   # 60
+print(x / y)   # 3.75
+print(x // y)  # 3
+print(x % y)   # 3
+print(x ** y)  # 50625
+```
+
+## Notes
+- `/` always returns a float.
+- `%` has the same sign as the divisor.
+- `**` has higher precedence than `*`, `/`, and `+`.
+
+**Use cases**
+- Use `//` for pages or groups (e.g., 25 items, 4 per page).
+- Use `%` to check divisibility (e.g., `n % 2 == 0` for even).
+
+**Common pitfalls**
+- `5 / 2` is `2.5`, not `2`. Use `//` for whole numbers.
+- Floating point math can be imprecise for decimals.
+
+## Precedence
+1. Parentheses `()`
+2. Exponentiation `**`
+3. Multiplication, division, floor division, modulo `* / // %`
+4. Addition, subtraction `+ -`
+
+```python
+print(((5 + 4) / 3) * 2)  # 6.0
+```
+
+
+## Common Mistakes
+- Using `/` when you need whole numbers (use `//`).
+- Assuming floats are always exact.
+- Forgetting `%` returns the remainder.
+
+
+## Quick Quiz
+1. What does `%` return?
+2. What’s the difference between `/` and `//`?
+3. When would you use `**`?

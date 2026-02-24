@@ -1,0 +1,74 @@
+---
+title: Logical Operators
+description: Combine boolean expressions with logical operators.
+---
+
+# Logical Operators
+
+Logical operators combine boolean expressions.
+
+<Callout type="info">
+`and` and `or` short‑circuit: Python stops evaluating once the result is known.
+</Callout>
+
+## Operators
+| Operator | Meaning | Example |
+| --- | --- | --- |
+| `and` | true if both operands are true | `x > 0 and y > 0` |
+| `or` | true if either operand is true | `x > 0 or y > 0` |
+| `not` | inverts truth value | `not is_valid` |
+
+## Example
+```python
+x = True
+y = False
+
+print(x and y)  # False
+print(x or y)   # True
+print(not x)    # False
+```
+
+**Short‑circuit example**
+```python
+def is_valid():
+    print("checked")
+    return True
+
+False and is_valid()  # is_valid() is not called
+True or is_valid()    # is_valid() is not called
+```
+
+## Truth Tables
+`and`
+| A | B | A and B |
+| --- | --- | --- |
+| True | True | True |
+| True | False | False |
+| False | True | False |
+| False | False | False |
+
+`or`
+| A | B | A or B |
+| --- | --- | --- |
+| True | True | True |
+| True | False | True |
+| False | True | True |
+| False | False | False |
+
+`not`
+| A | not A |
+| --- | --- |
+| True | False |
+| False | True |
+
+
+## Common Mistakes
+- Forgetting that `and`/`or` short‑circuit.
+- Mixing `and` and `or` without parentheses.
+- Using `not` with the wrong scope.
+
+
+## Quick Quiz
+1. What does `and` return if one side is `False`?
+2. What is short‑circuiting?
+3. Give a real example using `not`.

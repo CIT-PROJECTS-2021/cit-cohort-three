@@ -1,0 +1,100 @@
+---
+title: Strings
+description: Work with text using Python strings.
+---
+
+# Strings
+
+Strings are sequences of characters. In Python, strings are Unicode by default.
+
+<Callout type="info">
+Strings are **immutable**. Any “change” creates a new string.
+</Callout>
+
+## Creating Strings
+```python
+single = 'Hello'
+double = "Hello"
+multi = """Hello,
+world"""
+```
+
+## Indexing and Slicing
+```python
+text = "Python"
+
+print(text[0])    # P
+print(text[-1])   # n
+print(text[1:4])  # yth
+```
+
+If you go out of range, Python raises an `IndexError`.
+
+**Slicing tip**
+```python
+text = "abcdef"
+print(text[:3])   # abc
+print(text[3:])   # def
+print(text[::2])  # ace
+```
+
+## Immutability
+Strings are immutable, so you cannot change a character in place.
+
+```python
+text = "Hello"
+# text[0] = "J"  # TypeError
+```
+
+## Common Operations
+```python
+greeting = "Hello" + " " + "World"
+echo = "Hi" * 3
+```
+
+## Membership and Iteration
+```python
+if "World" in greeting:
+    print("Found")
+
+for ch in "Hi":
+    print(ch)
+```
+
+## Formatting
+```python
+name = "Ada"
+age = 28
+print(f"{name} is {age} years old.")
+```
+
+```python
+print("{} {}".format("Hello", "World"))
+```
+
+**When to use**
+- Prefer f‑strings for readability.
+- Use `.format()` when you need dynamic field names.
+
+## Useful Methods
+```python
+text = "  Hello World  "
+
+print(text.lower())
+print(text.upper())
+print(text.strip())
+print(text.replace("World", "Python"))
+print(text.split())
+```
+
+
+## Common Mistakes
+- Trying to modify a string in place.
+- Forgetting that slicing end index is exclusive.
+- Mixing single and double quotes without escaping.
+
+
+## Quick Quiz
+1. What does `text[1:4]` return?
+2. Why are strings immutable?
+3. When would you use f‑strings?

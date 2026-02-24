@@ -1,33 +1,47 @@
 ---
 title: Python Syntax
-description: Learn about Python Syntax in Python
+description: Learn Python syntax, indentation, comments, and docstrings.
 ---
+
 # Python Syntax
 
-**Python Syntax compared to other programming languages**
+Python was designed for readability. It uses new lines to end statements and
+indentation to define blocks of code.
 
-- Python was designed to for readability, and has some similarities to the English language with influence from mathematics.
-- Python uses new lines to complete a command, as opposed to other programming languages which often use semicolons or parentheses.
-- Python relies on indentation, using whitespace, to define scope; such as the scope of loops, functions and classes. Other programming languages often use curly-brackets for this purpose.
+<Callout type="tip">
+Python uses indentation instead of `{}` braces. If indentation is wrong, your
+program will not run.
+</Callout>
 
-## Python Indentations
-
-Where in other programming languages the indentation in code is for readability only, in Python the indentation is very important.
-
-Python uses indentation to indicate a block of code.
+## Indentation
+Indentation is required to define blocks, such as `if` statements, loops, and
+functions.
 
 ```python
 if 5 > 2:
     print("Five is greater than two!")
 ```
 
-Python will give you an error if you skip the indentation.
+## Statements and New Lines
+Most statements end at the newline.
+
+```python
+name = "Ada"
+print(name)
+```
+
+To continue a statement on multiple lines, wrap it in parentheses:
+
+```python
+total = (
+    10
+    + 20
+    + 30
+)
+```
 
 ## Comments
-
-Python has commenting capability for the purpose of in-code documentation.
-
-Comments start with a `#`, and Python will render the rest of the line as a comment:
+Comments start with `#`. Python ignores everything after the `#` on that line.
 
 ```python
 # This is a comment.
@@ -35,21 +49,28 @@ print("Hello, World!")
 ```
 
 ## Docstrings
-
-Python also has extended documentation capability, called docstrings.
-
-Docstrings can be one line, or multiline. Docstrings are also comments:
-
-Python uses triple quotes at the beginning and end of the docstring:
+Docstrings are multi-line comments used to document functions, classes, and
+modules.
 
 ```python
-"""This is a 
-multiline docstring."""
-print("Hello, World!")
+def greet(name: str) -> None:
+    """Return a friendly greeting."""
+    print(f"Hello, {name}!")
 ```
 
-## References
+## Common Pitfalls
+- Mixing tabs and spaces (use spaces only).
+- Forgetting indentation after `if`, `for`, `while`, `def`, or `class`.
+- Adding extra indentation where it does not belong.
 
-- [w3schools.com](https://www.w3schools.com/python/python_syntax.asp)
 
-[Next](/week1/variables.md) | [Previous](/week1/what_is_python.md)
+## Common Mistakes
+- Using tabs in one block and spaces in another.
+- Writing multiple statements on one line for beginners (hard to read).
+- Forgetting the colon `:` after a header line.
+
+
+## Quick Quiz
+1. Why does Python care about indentation?
+2. What does a docstring describe?
+3. What happens if you forget the colon after `if`?

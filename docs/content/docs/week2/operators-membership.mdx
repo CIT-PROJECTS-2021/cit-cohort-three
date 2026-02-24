@@ -1,0 +1,44 @@
+---
+title: Membership Operators
+description: Test whether a value exists in a sequence or collection.
+---
+
+# Membership Operators
+
+Membership operators test whether a value is in a sequence or collection.
+
+<Callout type="tip">
+For dictionaries, membership checks the **keys**, not the values.
+</Callout>
+
+## Operators
+| Operator | Meaning | Example |
+| --- | --- | --- |
+| `in` | value is present | `"a" in "cat"` |
+| `not in` | value is absent | `4 not in [1, 2, 3]` |
+
+## Example
+```python
+text = "Hello world"
+data = {1: "a", 2: "b"}
+
+print("H" in text)        # True
+print("hello" in text)    # False (case-sensitive)
+print(1 in data)          # True (checks keys)
+print("a" in data)        # False
+```
+
+## Note
+For dictionaries, `in` checks keys, not values.
+
+
+## Common Mistakes
+- Checking dictionary values with `in` instead of keys.
+- Forgetting that membership checks are case‑sensitive.
+- Using `in` on the wrong type.
+
+
+## Quick Quiz
+1. What does `"a" in {"a": 1}` return?
+2. How do you check values in a dictionary?
+3. Give one use case for `in`.

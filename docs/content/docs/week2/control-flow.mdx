@@ -1,14 +1,166 @@
 ---
-title: Control Flow Statements
-description: >-
-  In this section, we shall learn about control flow statements which includes
-  if, if..elif, if..else, while, for loops
+title: Control Flow
+description: Learn how to control program flow with conditionals and loops.
 ---
 
-# Control Flow Statements
+# Control Flow
 
-A program’s control flow is the order in which the program’s code executes.
+Control flow is the order in which your code executes. Python uses `if`
+statements and loops to decide what runs and when.
 
-The control flow of a Python program is regulated by conditional statements, loops, and function calls.&#x20;
+<Callout type="info">
+Most bugs in beginner code come from incorrect conditions or loop logic. Read
+your conditions out loud to confirm they make sense.
+</Callout>
 
-This section covers the if statement and for and while loops; functions are covered later chapters.
+## When to Use What
+<Steps>
+<Step title="Use `if` when you’re making a decision">
+Choose between paths (e.g., “if the user is an adult, allow access”).
+</Step>
+<Step title="Use `for` when you have a collection">
+Loop over items in a list, string, or range (e.g., “for each student, print name”).
+</Step>
+<Step title="Use `while` when the number of iterations is unknown">
+Repeat until a condition changes (e.g., “keep asking until input is valid”).
+</Step>
+</Steps>
+
+## `if` Statements
+```python
+x = 10
+
+if x < 0:
+    print("Negative")
+elif x % 2 != 0:
+    print("Positive and odd")
+else:
+    print("Even or zero")
+```
+
+**Truthiness basics**
+- `0`, `0.0`, `None`, `""`, `[]`, `{}` are treated as `False`.
+- Everything else is treated as `True`.
+
+```python
+name = ""
+if name:
+    print("Has name")
+else:
+    print("Missing name")
+```
+
+**Use cases**
+- Validating input (age, password length, range checks)
+- Branching logic (different outcomes based on conditions)
+
+**When not to use**
+- Don’t stack many `elif` branches for unrelated cases; consider a dictionary lookup.
+- Don’t compare to `True` or `False` directly (use `if x:`).
+
+## `for` Loops
+```python
+fruits = ["apple", "banana", "cherry"]
+
+for fruit in fruits:
+    print(fruit)
+```
+
+Use `for` when you know what you want to iterate over. Use `while` when you
+don’t know how many iterations you need.
+
+**Common patterns**
+```python
+for i in range(5):
+    print(i)  # 0..4
+
+for index, value in enumerate(fruits):
+    print(index, value)
+```
+
+**Use cases**
+- Iterating lists, strings, dictionaries
+- Running a block a fixed number of times using `range()`
+
+**When not to use**
+- Don’t use `for` if the loop needs to keep running until a condition changes.
+
+## `while` Loops
+```python
+total = 0
+counter = 1
+
+while counter <= 5:
+    total += counter
+    counter += 1
+
+print(total)  # 15
+```
+
+**Input validation example**
+```python
+while True:
+    age = input("Enter your age: ")
+    if age.isdigit():
+        break
+    print("Please enter a number.")
+```
+
+**Use cases**
+- User input loops (keep asking until valid)
+- Repeating until a condition becomes false
+
+**When not to use**
+- Don’t use `while` when a `for` loop would be clearer.
+- Always update the condition inside the loop to avoid infinite loops.
+
+## `break` and `continue`
+```python
+for letter in "Python":
+    if letter == "h":
+        break
+    print(letter)
+```
+
+```python
+for letter in "Python":
+    if letter == "h":
+        continue
+    print(letter)
+```
+
+**Use cases**
+- `break`: stop early when you find what you need
+- `continue`: skip unwanted items
+
+<Callout type="tip">
+If you find yourself using `break` often, consider refactoring into a function
+and using `return` instead for clarity.
+</Callout>
+
+## `for ... else`
+The `else` block runs **only if** the loop completes without `break`.
+
+```python
+targets = ["Ada", "Grace", "Linus"]
+name = "Guido"
+
+for target in targets:
+    if target == name:
+        print("Found")
+        break
+else:
+    print("Not found")
+```
+
+
+## Common Mistakes
+- Forgetting to update the loop variable in a `while` loop.
+- Writing conditions that are always `True` or always `False`.
+- Using `for` when `while` is clearer (or vice versa).
+
+
+## Quick Quiz
+1. When should you use a `while` loop instead of a `for` loop?
+2. What does `break` do inside a loop?
+3. What values are considered `False` in Python?

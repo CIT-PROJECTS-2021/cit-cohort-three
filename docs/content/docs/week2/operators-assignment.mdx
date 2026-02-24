@@ -1,0 +1,47 @@
+---
+title: Assignment Operators
+description: Assign and update variables with assignment operators.
+---
+
+# Assignment Operators
+
+Assignment operators are used to assign values to variables.
+
+<Callout type="tip">
+Use compound operators like `+=` to update a variable in place and keep code
+compact.
+</Callout>
+
+## Operators
+| Operator | Example | Equivalent to |
+| --- | --- | --- |
+| `=` | `a = 5` | `a = 5` |
+| `+=` | `a += 5` | `a = a + 5` |
+| `-=` | `a -= 5` | `a = a - 5` |
+| `*=` | `a *= 5` | `a = a * 5` |
+| `/=` | `a /= 5` | `a = a / 5` |
+| `%=` | `a %= 5` | `a = a % 5` |
+| `//=` | `a //= 5` | `a = a // 5` |
+| `**=` | `a **= 5` | `a = a ** 5` |
+| `&=` | `a &= 5` | `a = a & 5` |
+| `|=` | `a |= 5` | `a = a | 5` |
+
+## Example
+```python
+x = 10
+x += 3
+x *= 2
+print(x)  # 26
+```
+
+
+## Common Mistakes
+- Overwriting variables unintentionally.
+- Using `=` in a condition instead of `==`.
+- Forgetting that `+=` modifies the variable in place.
+
+
+## Quick Quiz
+1. What is `a += 3` equivalent to?
+2. When would you prefer `+=` over `a = a + 1`?
+3. Is `a = b` a comparison or assignment?

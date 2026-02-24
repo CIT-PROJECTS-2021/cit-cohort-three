@@ -1,49 +1,80 @@
 ---
-title: Numbers in Python
-description: >-
-  Numbers are the foundation of every programming language. In this module, we will learn how to use numbers in Python.
+title: Numbers
+description: Learn numeric types and common numeric operations in Python.
 ---
-# Numbers / Integers
-There are three numeric types in Python:
-- int (e.g. 2, 4, 20)
-    - bool (e.g. False and True, acting like 0 and 1)
-- float (e.g. 5.0, 1.6)
-- complex (e.g. 5+6j, 4-3j)
 
-### Integers (int)
-- int is a whole number, without decimals, of unlimited length.
- e.g. 2, -2, 0, -0, 2147483647, -2147483648
- ```python
- positive_int = 2
- negative_int = -2
- zero = 0
- ```
+# Numbers
 
-### Boolean (bool)
-Booleans represent the truth values False and True. 
-The two objects representing the values False and True are the only Boolean objects. 
+Python has three main numeric types:
+- `int` for whole numbers (e.g. `2`, `-5`)
+- `float` for decimal numbers (e.g. `3.14`, `-0.5`)
+- `complex` for complex numbers (e.g. `2+3j`)
 
-The Boolean type is a subtype of the integer type, and Boolean values behave like the values 0 and 1, respectively, in almost all contexts, the exception being that when converted to a string, the strings `"False"` or `"True"` are returned, respectively.
-example:
+`bool` is a subtype of `int` where `False` behaves like `0` and `True` behaves
+like `1`.
+
+<Callout type="info">
+Python integers have unlimited precision, but floats can have small rounding
+errors due to how computers store decimals.
+</Callout>
+
+## Integers
+```python
+positive_int = 2
+negative_int = -2
+zero = 0
+```
+
+## Booleans
 ```python
 is_raining = True
 is_cloudy = False
 ```
 
-### Float (float)
-Float, or "floating point number" is a number, positive or negative containing one or more decimals.
-Example:
+## Floats
 ```python
 float_number = 7.0
-# Another way of declaring float is using float() function.
 float_number_via_function = float(7)
 float_negative = -35.59
 ```
 
+## Complex Numbers
+```python
+z = 2 + 3j
+print(z.real)  # 2.0
+print(z.imag)  # 3.0
+```
+
+## Common Operations
+```python
+a = 10
+b = 3
+
+print(a + b)  # 13
+print(a - b)  # 7
+print(a * b)  # 30
+print(a / b)  # 3.333...
+```
+
+## Useful Built-ins
+```python
+print(type(5))             # <class 'int'>
+print(isinstance(5, int))  # True
+print(round(3.14159, 2))   # 3.14
+```
+
+## Common Pitfalls
+- `0.1 + 0.2` is not exactly `0.3` because of floating-point precision.
+- Dividing two integers with `/` always returns a float.
 
 
+## Common Mistakes
+- Using `/` when you want whole numbers (use `//`).
+- Expecting exact results with floating point decimals.
+- Forgetting that `True` and `False` act like `1` and `0`.
 
-### References
-[Python Documentation](https://docs.python.org/3/tutorial/introduction.html)
 
-[W3Schools](https://www.w3schools.com/python/python_numbers.asp)
+## Quick Quiz
+1. What’s the difference between `/` and `//`?
+2. What type is `True` in Python?
+3. Why is `0.1 + 0.2` not exactly `0.3`?
