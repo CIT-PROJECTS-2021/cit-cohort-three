@@ -1,37 +1,21 @@
-# Encapsulation in Python
+# Encapsulation
 
-## What is Encapsulation?
+Encapsulation groups data and behavior together and hides internal details.
+In Python, a leading underscore is a convention for “internal” attributes.
 
-**Encapsulation** is about restricting access to parts of your code (data or methods), exposing only what is necessary. This keeps your code safe and easier to manage.
-
-In Python, we use underscores (`_` or `__`) to indicate that attributes or methods are private (should not be accessed directly).
-
-## Basic Example
-
+## Example
 ```python
 class User:
     def __init__(self, username, password):
         self.username = username
-        self.__password = password  # private attribute
+        self._password = password  # internal use
 
-    def check_password(self, password):
-        return self.__password == password
-
-user = User("alice", "secret123")
-print(user.username)          # Output: alice
-print(user.check_password("wrong"))  # Output: False
-# print(user.__password)     # Error: attribute is private
+    def check_password(self, candidate):
+        return candidate == self._password
 ```
 
-## Real World Use Cases
+## Notes
+- `_name` is a convention (not enforced).
+- `__name` triggers name‑mangling for stronger privacy.
 
-- **Banking Apps**: User account balance is kept private; access is only via methods like `deposit()` or `withdraw()`.
-- **Medical Systems**: Patient details are hidden and only accessible through secure methods.
-- **APIs**: You hide internal logic and only expose certain functions to users.
-
-## Key Points
-
-- Use underscores to indicate private variables or methods.
-- Protects data and reduces bugs by preventing unauthorized access.
-
----
+[Next](/week3/oop/abstraction/README.md) | [Previous](/week3/oop/polymorphism/README.md)
