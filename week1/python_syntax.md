@@ -1,12 +1,12 @@
 # Python Syntax
 
-**Python Syntax compared to other programming languages**
+**Python syntax compared to other programming languages**
 
-- Python was designed to for readability, and has some similarities to the English language with influence from mathematics.
+- Python was designed for readability, and has some similarities to the English language with influence from mathematics.
 - Python uses new lines to complete a command, as opposed to other programming languages which often use semicolons or parentheses.
 - Python relies on indentation, using whitespace, to define scope; such as the scope of loops, functions and classes. Other programming languages often use curly-brackets for this purpose.
 
-## Python Indentations
+## Indentation
 
 Where in other programming languages the indentation in code is for readability only, in Python the indentation is very important.
 
@@ -18,6 +18,24 @@ if 5 > 2:
 ```
 
 Python will give you an error if you skip the indentation.
+
+## Statements and New Lines
+Most statements end at the newline.
+
+```python
+name = "Ada"
+print(name)
+```
+
+To continue a statement on multiple lines, wrap it in parentheses:
+
+```python
+total = (
+    10
+    + 20
+    + 30
+)
+```
 
 ## Comments
 
@@ -43,6 +61,11 @@ Python uses triple quotes at the beginning and end of the docstring:
 multiline docstring."""
 print("Hello, World!")
 ```
+
+## Common Pitfalls
+- Mixing tabs and spaces (use spaces only).
+- Forgetting indentation after `if`, `for`, `while`, `def`, or `class`.
+- Adding extra indentation where it does not belong.
 
 ## References
 
