@@ -1,9 +1,8 @@
 ---
 title: Python Syntax
 description: Learn Python syntax, indentation, comments, and docstrings.
+icon: Code
 ---
-
-# Python Syntax
 
 Python was designed for readability. It uses new lines to end statements and
 indentation to define blocks of code.
@@ -58,19 +57,33 @@ def greet(name: str) -> None:
     print(f"Hello, {name}!")
 ```
 
-## Common Pitfalls
-- Mixing tabs and spaces (use spaces only).
-- Forgetting indentation after `if`, `for`, `while`, `def`, or `class`.
-- Adding extra indentation where it does not belong.
+## Rules
 
+1. **A block is defined by indentation, not braces.** Consistent indentation is the syntax — there is no `{ }` alternative.
+2. **Every line that opens a block ends with a colon `:`** — `if`, `elif`, `else`, `for`, `while`, `def`, `class`, `try`, `except`, `with`. Omit it and you get `SyntaxError`.
+3. **Indent with 4 spaces.** Never mix tabs and spaces in the same file — Python raises `TabError`.
+4. **All lines in one block must be indented the same amount.** Inconsistent depth raises `IndentationError`.
+5. **A block cannot be empty.** If you have nothing to put in it yet, write `pass`.
+6. **Everything after `#` on a line is a comment** and is ignored — unless the `#` is inside a string.
+7. **A statement can span lines only inside brackets** — `(`, `[`, `{` — or after a trailing backslash. Prefer the brackets.
 
 ## Common Mistakes
 - Using tabs in one block and spaces in another.
 - Writing multiple statements on one line for beginners (hard to read).
 - Forgetting the colon `:` after a header line.
+- Mixing tabs and spaces (use spaces only).
+- Forgetting indentation after `if`, `for`, `while`, `def`, or `class`.
+- Adding extra indentation where it does not belong.
 
 
 ## Quick Quiz
 1. Why does Python care about indentation?
 2. What does a docstring describe?
 3. What happens if you forget the colon after `if`?
+
+## Keep going
+
+<Cards>
+  <Card title="Variables" href="/docs/week1/variables" description="Next: giving values names." />
+  <Card title="Control Flow" href="/docs/week2/control-flow" description="Week 2: where indentation really matters." />
+</Cards>

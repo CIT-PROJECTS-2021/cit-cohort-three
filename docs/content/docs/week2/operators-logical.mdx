@@ -1,9 +1,8 @@
 ---
 title: Logical Operators
 description: Combine boolean expressions with logical operators.
+icon: Ampersand
 ---
-
-# Logical Operators
 
 Logical operators combine boolean expressions.
 
@@ -62,6 +61,15 @@ True or is_valid()    # is_valid() is not called
 | False | True |
 
 
+## Rules
+
+1. **`and` and `or` return one of their operands, not a boolean.** `0 or "hi"` is `"hi"`.
+2. **Both short-circuit.** `and` stops at the first falsy operand, `or` at the first truthy one — so the right side may never be evaluated.
+3. **`not` always returns a real boolean.**
+4. **Precedence is `not` → `and` → `or`**, so `a or b and c` means `a or (b and c)`.
+5. **They work on any value, not just booleans**, using the truthiness rules.
+6. **Use `and`/`or` on single values, `&`/`|` on NumPy arrays and Pandas columns.** Mixing them up raises `ValueError` in [Pandas](/docs/week12/pandas).
+
 ## Common Mistakes
 - Forgetting that `and`/`or` short‑circuit.
 - Mixing `and` and `or` without parentheses.
@@ -72,3 +80,11 @@ True or is_valid()    # is_valid() is not called
 1. What does `and` return if one side is `False`?
 2. What is short‑circuiting?
 3. Give a real example using `not`.
+
+## Keep going
+
+<Cards>
+  <Card title="Assignment Operators" href="/docs/week2/operators-assignment" description="Next in the operator pages." />
+  <Card title="if Statements" href="/docs/week2/if-statements" description="Truthiness, and where these apply." />
+  <Card title="Operators" href="/docs/week2/operators" description="Back to the overview." />
+</Cards>

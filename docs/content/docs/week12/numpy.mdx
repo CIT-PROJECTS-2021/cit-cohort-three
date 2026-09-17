@@ -1,0 +1,334 @@
+---
+title: NumPy
+description: Arrays, shapes, reshaping, iteration, and joining.
+icon: Grid3x3
+---
+
+NumPy gives Python a new type: the **array**. It looks like a
+[list](/docs/week2/lists) but behaves very differently — it holds one type of
+number, has a fixed shape, and does arithmetic on every element at once.
+
+```bash
+pip install numpy
+```
+
+```python
+import numpy as np
+```
+
+`np` is the universal convention. Everyone writes it that way.
+
+## Why not just use lists?
+
+To add two lists element by element you need a loop:
+
+```python
+a = [1, 2, 3]
+b = [4, 5, 6]
+result = [x + y for x, y in zip(a, b)]   # [5, 7, 9]
+```
+
+With arrays you just add them:
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+print(a + b)     # [5 7 9]
+```
+
+This is **vectorisation**: the loop still happens, but inside compiled C rather
+than in Python. On a million numbers that's the difference between a second and
+a few milliseconds.
+
+Every arithmetic operator works this way:
+
+```python
+print(a * 2)      # [2 4 6]
+print(a * b)      # [ 4 10 18]   element-wise, not matrix multiplication
+print(a ** 2)     # [1 4 9]
+print(a > 2)      # [False False  True]
+```
+
+<Callout type="info">
+`*` multiplies element by element. For matrix multiplication use `@` or
+`np.dot()`. Confusing the two is the most common NumPy mistake.
+</Callout>
+
+## Creating arrays
+
+```python
+import numpy as np
+
+np.array([1, 2, 3])              # from a list
+np.array([[1, 2], [3, 4]])       # 2D, from nested lists
+
+np.zeros(5)                      # [0. 0. 0. 0. 0.]
+np.ones((2, 3))                  # 2 rows, 3 columns of 1.0
+np.arange(0, 10, 2)              # [0 2 4 6 8]  — like range()
+np.linspace(0, 1, 5)             # [0. 0.25 0.5 0.75 1.]  — 5 evenly spaced
+np.random.rand(3, 3)             # 3x3 of random floats in [0, 1)
+np.random.randint(1, 10, (4, 4)) # 4x4 of random ints from 1 to 9
+```
+
+## Shape
+
+Every array has a **shape** — a tuple of its size in each dimension.
+
+```python
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+print(arr.shape)    # (2, 3)  — 2 rows, 3 columns
+print(arr.ndim)     # 2       — number of dimensions
+print(arr.size)     # 6       — total elements
+print(arr.dtype)    # int64   — the type of every element
+```
+
+`shape` is the single most useful attribute when debugging. If an operation
+fails, print the shapes first.
+
+## Reshape vs resize
+
+Both change an array's shape. The difference is what happens when the sizes don't
+match.
+
+### `reshape` — same data, new shape
+
+```python
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+print(arr.reshape(3, 3))
+```
+
+**Output**
+
+```
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+```
+
+The total must match: 9 elements into 3×3 works, into 2×5 raises `ValueError`.
+
+Use `-1` to let NumPy work out one dimension:
+
+```python
+arr.reshape(3, -1)     # 3 rows, NumPy computes 3 columns
+arr.reshape(-1)        # flatten back to 1D
+```
+
+### `resize` — force a shape, padding or truncating
+
+```python
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+print(np.resize(arr, (2, 2)))    # truncates
+print(np.resize(arr, (4, 3)))    # repeats from the start to fill
+```
+
+**Output**
+
+```
+[[1 2]
+ [3 4]]
+
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]
+ [1 2 3]]
+```
+
+<Callout type="warn">
+`np.resize` silently discards or repeats data. `reshape` raises an error when the
+sizes don't match — which is almost always what you want, because a size mismatch
+usually means a bug upstream. Reach for `reshape`.
+</Callout>
+
+## Indexing and slicing
+
+```python
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+print(arr[0, 1])     # 2       — row 0, column 1
+print(arr[0])        # [1 2 3] — the whole first row
+print(arr[:, 1])     # [2 5]   — the whole second column
+print(arr[:, 1:])    # columns 1 onward
+```
+
+`arr[0, 1]` — one pair of brackets, comma-separated — is the NumPy way.
+`arr[0][1]` also works but creates an intermediate array and is slower.
+
+### Boolean indexing
+
+Filter without a loop by indexing with a condition:
+
+```python
+data = np.array([1, 5, 2, 8, 3])
+
+print(data > 3)        # [False  True False  True False]
+print(data[data > 3])  # [5 8]
+
+data[data > 3] = 0     # assign through the filter
+print(data)            # [1 0 2 0 3]
+```
+
+This is the idiomatic way to select and modify data in NumPy, and it carries
+straight over to [Pandas](/docs/week12/pandas).
+
+## Iterating
+
+You *can* loop over an array like a list, but nested loops for nested arrays get
+tedious:
+
+```python
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+for row in arr:
+    for value in row:
+        print(value)
+```
+
+### `nditer()` — every element, any number of dimensions
+
+```python
+for value in np.nditer(arr):
+    print(value)
+```
+
+One loop regardless of how many dimensions the array has.
+
+### `ndenumerate()` — element *and* its position
+
+```python
+arr = np.array([[1, 2], [3, 4]])
+
+for index, value in np.ndenumerate(arr):
+    print(index, value)
+```
+
+**Output**
+
+```
+(0, 0) 1
+(0, 1) 2
+(1, 0) 3
+(1, 1) 4
+```
+
+<Callout type="tip">
+If you're writing a loop over an array, pause — there's usually a vectorised
+operation that does it faster and in one line. Loops are for when you genuinely
+need each element individually.
+</Callout>
+
+## Joining arrays
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+print(np.concatenate((a, b)))   # [1 2 3 4 5 6]
+```
+
+For 2D arrays, `axis` decides the direction:
+
+```python
+a = np.array([[1, 2], [3, 4]])
+b = np.array([[5, 6], [7, 8]])
+
+print(np.concatenate((a, b), axis=0))   # stack rows (vertically)
+print(np.concatenate((a, b), axis=1))   # stack columns (horizontally)
+```
+
+**Output**
+
+```
+[[1 2]
+ [3 4]
+ [5 6]
+ [7 8]]
+
+[[1 2 5 6]
+ [3 4 7 8]]
+```
+
+Shapes must agree along the axis you're *not* joining on. To join arrays of
+different shapes, flatten first:
+
+```python
+a = np.array([[1, 2, 3], [8, 9, 10]])
+b = np.array([4, 5, 6, 7])
+
+print(np.concatenate((a.flatten(), b)))
+# [ 1  2  3  8  9 10  4  5  6  7]
+```
+
+`flatten()` returns a 1D copy. `ravel()` does the same but returns a view where
+it can, avoiding the copy.
+
+## Aggregations
+
+```python
+data = np.array([[1, 2, 3], [4, 5, 6]])
+
+print(data.sum())            # 21
+print(data.mean())           # 3.5
+print(data.min(), data.max())# 1 6
+print(data.std())            # standard deviation
+```
+
+Add `axis` to aggregate along one direction instead of the whole array:
+
+```python
+print(data.sum(axis=0))      # [5 7 9]     — down each column
+print(data.sum(axis=1))      # [ 6 15]     — across each row
+```
+
+Remember it this way: `axis=0` collapses the rows, `axis=1` collapses the
+columns.
+
+## Rules
+
+1. **An array holds one dtype.** Mixing types upcasts everything (ints become floats, then strings).
+2. **Arrays have a fixed size.** "Growing" one creates a new array.
+3. **`reshape()` requires the element count to match exactly**, or it raises `ValueError`. `np.resize()` silently pads or truncates instead.
+4. **`*` is element-wise; `@` is matrix multiplication.**
+5. **Operations need compatible shapes.** Mismatches raise `ValueError` unless broadcasting rules apply.
+6. **`axis=0` collapses rows (down columns); `axis=1` collapses columns (across rows).**
+7. **Slicing returns a *view*, not a copy.** Writing to the slice changes the original — call `.copy()` if that's not what you want.
+8. **Index with `arr[row, col]`, not `arr[row][col]`.**
+9. **Prefer vectorised operations over loops.** A Python loop over an array throws away the reason to use NumPy.
+
+## Common Mistakes
+
+- Using `*` when you meant matrix multiplication (`@`).
+- Reshaping to an incompatible size — check `arr.size` first.
+- Forgetting arrays are zero-indexed, like everything else in Python.
+- Expecting `np.resize` to error on a size mismatch. It won't.
+- Looping element by element when a vectorised operation exists.
+- Mixing up `axis=0` and `axis=1`.
+
+## Practice
+
+1. Create a 4×4 array of random integers from 1 to 9, then find its min and max.
+2. Compute the mean of each column, then of each row.
+3. Flatten a 2D array into 1D two different ways.
+4. Create an array of 12 numbers and reshape it to 3×4, then to 2×6, then to
+   4×3. What happens if you try 5×3?
+5. Use boolean indexing to replace every value above 5 with 0.
+
+## References
+
+- [NumPy documentation](https://numpy.org/doc/)
+- [NumPy absolute basics for beginners](https://numpy.org/doc/stable/user/absolute_beginners.html)
+
+## Keep going
+
+<Cards>
+  <Card title="Pandas" href="/docs/week12/pandas" description="Next: labelled, tabular data built on NumPy." />
+  <Card title="NumPy Quiz" href="/docs/week12/numpy-quiz" description="Six questions to test this page." />
+  <Card title="Lists" href="/docs/week2/lists" description="Week 2: what arrays replace." />
+</Cards>

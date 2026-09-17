@@ -1,0 +1,136 @@
+---
+title: while Loops
+description: Repeat until a condition changes — and how to avoid infinite loops.
+icon: RotateCw
+---
+
+A `while` loop repeats as long as its condition stays true. Reach for it when you
+*can't say in advance* how many iterations you need.
+
+## Syntax
+
+```python
+while condition:
+    # this block repeats
+```
+
+Python checks the condition, runs the body, then checks again. The moment the
+condition is false, the loop stops.
+
+## Example
+
+```python
+total = 0
+counter = 1
+n = 5
+
+while counter <= n:
+    total += counter
+    counter += 1        # this line is what ends the loop
+
+print(total)  # 15
+```
+
+<Callout type="warn" title="The one rule">
+Something inside the loop must eventually make the condition false. Here it's
+`counter += 1`. Forget that line and the loop runs forever — press
+`Ctrl+C` to stop a runaway program.
+</Callout>
+
+## The classic use: validating input
+
+You don't know how many times the user will get it wrong, so a `for` loop can't
+help you.
+
+```python
+while True:
+    age = input("Enter your age: ")
+    if age.isdigit():
+        break
+    print("Please enter a number.")
+
+print(f"You are {age}")
+```
+
+`while True:` looks like an infinite loop, and it is — until
+[`break`](/docs/week2/break-and-continue) escapes it. This is a normal, idiomatic
+pattern.
+
+## `while` ... `else`
+
+Like [`for` ... `else`](/docs/week2/for-loops), the `else` runs only if the loop
+ended naturally rather than via `break`.
+
+```python
+counter = 0
+
+while counter < 3:
+    print("Loop")
+    counter += 1
+else:
+    print("Done")
+```
+
+**Output**
+
+```
+Loop
+Loop
+Loop
+Done
+```
+
+## for or while?
+
+| Situation | Use |
+| :- | :- |
+| Looping over a list, string, or dict | [`for`](/docs/week2/for-loops) |
+| Repeating an exact number of times | [`for`](/docs/week2/for-loops) with `range()` |
+| Repeating until the user gets it right | `while` |
+| Repeating until a file, queue, or API runs dry | `while` |
+| Repeating until a calculation converges | `while` |
+
+If you find yourself manually incrementing a counter to walk a list, you wanted a
+`for` loop.
+
+## Rules
+
+1. **The condition is checked before every pass**, including the first — so a loop whose condition starts false never runs at all.
+2. **Something in the body must be able to make the condition false**, or the loop never ends.
+3. **`while True:` is only safe with a reachable `break`** (or `return`) inside it.
+4. **`Ctrl+C` stops a runaway loop.** It raises `KeyboardInterrupt` in the running program.
+5. **`while ... else` runs the `else` only when the loop ended naturally**, not when it was broken out of.
+6. **A `while` loop needs a colon and an indented body**, exactly like `if` and `for`.
+
+## Common Mistakes
+
+- **Forgetting to update the loop variable** — the most common infinite loop.
+- **Updating the wrong variable**, which is the same bug wearing a disguise.
+- **Using `while` where `for` is clearer.**
+- **Checking the condition at the wrong time.** The condition is tested *before*
+  each pass, so a loop whose condition is false at the start never runs at all.
+
+## Practice
+
+1. Print the first 10 natural numbers using a `while` loop.
+2. Count the digits in a number like `4673453`.
+3. Display numbers from `-10` to `-1`.
+4. Reverse a number: `12345` → `54321`.
+5. Find the factorial of a number.
+
+More in [Loops Practice](/docs/assignments/loops).
+
+<Accordions>
+<Accordion title="Hint for question 2">
+Repeatedly divide by 10 (`n //= 10`) and count how many times you can do it
+before `n` reaches 0.
+</Accordion>
+</Accordions>
+
+## Keep going
+
+<Cards>
+  <Card title="break and continue" href="/docs/week2/break-and-continue" description="Next: steering a loop mid-flight." />
+  <Card title="for Loops" href="/docs/week2/for-loops" description="The other loop, for when you know the count." />
+  <Card title="Loops Practice" href="/docs/assignments/loops" description="14 exercises to drill both loops." />
+</Cards>

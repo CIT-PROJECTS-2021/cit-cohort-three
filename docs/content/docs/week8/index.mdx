@@ -1,0 +1,58 @@
+---
+title: Overview
+description: Week 8 — ciphers, hashing, and the difference between them.
+icon: Lock
+---
+
+Two ideas this week, and the most important thing is not to confuse them:
+**encryption** is reversible by design, **hashing** is not.
+
+<Callout title="Before you start">
+You need [Strings](/docs/week2/strings) and [Functions](/docs/week3/functions).
+The ciphers are mostly string manipulation.
+</Callout>
+
+## What you'll learn
+
+- How a substitution cipher turns readable text into unreadable text — and back
+- Why the ciphers you'll write here are *teaching tools*, not security
+- What a cryptographic hash is, and the four properties that make one useful
+- Where hashing shows up in software you already use: Git, passwords, checksums
+
+## Pages in this week
+
+<Cards>
+  <Card
+    title="Cryptography"
+    href="/docs/week8/cryptography"
+    description="The vocabulary: plaintext, ciphertext, keys, encryption vs hashing."
+  />
+  <Card
+    title="Reverse Cipher"
+    href="/docs/week8/reverse-cipher"
+    description="The simplest possible cipher — and why it's useless for security."
+  />
+  <Card
+    title="Caesar Cipher"
+    href="/docs/week8/caesar-cipher"
+    description="Shift every letter by a fixed amount. Encrypt, decrypt, and break it."
+  />
+  <Card
+    title="Hash Functions"
+    href="/docs/week8/hash-functions"
+    description="One-way digests with hashlib, and what they're really used for."
+  />
+</Cards>
+
+<Callout type="warn">
+Nothing in this week is safe to protect real data with. Write your own ciphers to
+understand them; use a reviewed library like `cryptography` when it matters.
+</Callout>
+
+## Practice
+
+[Week 8 Recap](/docs/week8/recap)
+
+## What's next
+
+[Week 9](/docs/week9) — pulling data off the web.

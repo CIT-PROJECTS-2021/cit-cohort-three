@@ -1,0 +1,175 @@
+---
+title: Glossary
+description: Every term used in this course, defined in one line, linked to its page.
+icon: BookA
+---
+
+Terms in the order they're introduced. Use ⌘K to search, or your browser's find.
+
+## Week 1 — basics
+
+| Term | Meaning |
+| :- | :- |
+| **Interpreter** | The program that runs your Python code, line by line. |
+| **Script** | A `.py` file you run from start to finish. |
+| **Syntax** | The rules for how code must be written. Break them and Python refuses to run. See [Python Syntax](/docs/week1/python-syntax). |
+| **Indentation** | Leading spaces that define which lines belong to a block. In Python this is syntax, not style. |
+| **Comment** | A line starting with `#` that Python ignores. |
+| **Docstring** | A string at the top of a function or module describing what it does. |
+| **Variable** | A name bound to a value. See [Variables](/docs/week1/variables). |
+| **Dynamic typing** | Variables don't declare a type; the value carries it. |
+| **Integer / float** | Whole number / number with a decimal point. See [Numbers](/docs/week1/numbers). |
+| **Boolean** | `True` or `False`. |
+| **f-string** | `f"Hello {name}"` — a string with values substituted in. |
+
+## Week 2 — control flow and data
+
+| Term | Meaning |
+| :- | :- |
+| **Control flow** | The order statements execute in. See [Control Flow](/docs/week2/control-flow). |
+| **Condition** | An expression evaluated as true or false. |
+| **Truthy / falsy** | Values treated as true/false in a condition. `0`, `""`, `[]`, `None` are falsy. See [if Statements](/docs/week2/if-statements). |
+| **Branch** | One path through an `if` / `elif` / `else`. |
+| **Iterate** | To go through a collection one item at a time. |
+| **Iterable** | Anything you can loop over — list, string, dict, range. |
+| **`range()`** | Generates numbers on demand. See [for Loops](/docs/week2/for-loops). |
+| **`enumerate()`** | Yields index and value together. |
+| **Infinite loop** | A loop whose condition never becomes false. See [while Loops](/docs/week2/while-loops). |
+| **`break` / `continue`** | Exit the loop / skip to the next iteration. See [break and continue](/docs/week2/break-and-continue). |
+| **Operator** | A symbol that performs an operation. See [Operators](/docs/week2/operators). |
+| **Operand** | A value an operator acts on. |
+| **Mutable / immutable** | Can be changed after creation / cannot. Lists are mutable; tuples and strings aren't. |
+| **Index** | An item's position, counting from `0`. |
+| **Slice** | A range of items: `text[1:4]`. See [Strings](/docs/week2/strings). |
+| **List** | Ordered, mutable collection. See [Lists](/docs/week2/lists). |
+| **Tuple** | Ordered, immutable collection. See [Tuples](/docs/week2/tuples). |
+| **Set** | Unordered collection of unique values. See [Sets](/docs/week2/sets). |
+| **Dictionary** | Key/value pairs. See [Dictionaries](/docs/week2/dictionaries). |
+| **Key / value** | The name you look something up by / what you get back. |
+| **Comprehension** | Building a collection in one expression: `[x * 2 for x in nums]`. |
+
+## Week 3 — functions and OOP
+
+| Term | Meaning |
+| :- | :- |
+| **Function** | A named, reusable block of code. See [Functions](/docs/week3/functions). |
+| **Parameter / argument** | The name in the definition / the value passed at the call. See [Function Arguments](/docs/week3/function-arguments). |
+| **Return value** | What a function hands back. Without `return`, that's `None`. |
+| **Scope** | Where a name is visible. Variables inside a function are local to it. |
+| **`*args` / `**kwargs`** | Collect extra positional / keyword arguments. |
+| **Lambda** | A one-expression anonymous function. See [Lambda Functions](/docs/week3/lambda-functions). |
+| **Recursion** | A function calling itself. See [Recursion](/docs/week3/recursion). |
+| **Base case** | The condition that stops a recursion. |
+| **Class** | A blueprint for objects. See [Classes](/docs/week3/classes). |
+| **Object / instance** | A specific thing built from a class. |
+| **Attribute** | A piece of data belonging to an object. |
+| **Method** | A function belonging to a class. |
+| **`__init__`** | The method that runs when an object is created. |
+| **`self`** | The instance a method was called on. |
+| **Inheritance** | A class building on another. See [Inheritance](/docs/week3/inheritance). |
+| **Composition** | A class *containing* another rather than inheriting from it. See [Composition vs Inheritance](/docs/week3/composition-vs-inheritance). |
+| **Polymorphism** | Different classes responding to the same method call. See [Polymorphism](/docs/week3/polymorphism). |
+| **Encapsulation** | Keeping internal state private. See [Encapsulation](/docs/week3/encapsulation). |
+| **Abstraction** | Exposing what something does, hiding how. See [Abstraction](/docs/week3/abstraction). |
+| **Module** | A `.py` file you can import from. See [Modules](/docs/week3/modules). |
+| **Package** | A folder of modules. |
+| **Exception** | An error raised at runtime. See [Exceptions](/docs/week3/exceptions). |
+| **`try` / `except`** | Attempt something / handle it when it fails. |
+| **Traceback** | The report Python prints when an exception isn't handled. |
+
+## Week 4 — files
+
+| Term | Meaning |
+| :- | :- |
+| **File mode** | `r` read, `w` write (truncates), `a` append, `b` binary. See [File Handling](/docs/week4/file-handling). |
+| **`with` statement** | Opens a file and guarantees it's closed afterwards. |
+| **Encoding** | How characters map to bytes. Use `utf-8`. |
+| **Cursor** | The current read/write position in an open file. |
+| **Path** | A file's location. See [File Paths](/docs/week4/file-paths). |
+| **Relative / absolute path** | From the current directory / from the filesystem root. |
+| **`pathlib`** | The modern, object-oriented path library. |
+| **CSV** | Comma-separated values — a text table. See [CSV and JSON](/docs/week4/csv-and-json). |
+| **JSON** | A nested text format, used by nearly every API. |
+| **Serialise / deserialise** | Turn an object into text / text back into an object. |
+
+## Week 6 — data structures and algorithms
+
+| Term | Meaning |
+| :- | :- |
+| **Data structure** | A way of arranging data. See [DSA](/docs/week6/data-structures-and-algorithms). |
+| **Algorithm** | A sequence of steps that solves a problem. |
+| **Stack / LIFO** | Last in, first out. See [Stacks](/docs/week6/stacks). |
+| **Queue / FIFO** | First in, first out. See [Queues](/docs/week6/queues). |
+| **Linked list** | Nodes each pointing to the next. See [Linked Lists](/docs/week6/linked-lists). |
+| **Node** | One element of a linked structure: a value plus a pointer. |
+| **Big-O** | How work grows with input size. `O(n²)` means quadrupling when the input doubles. |
+| **In place** | Modifying the original rather than building a copy. |
+| **Stable sort** | Equal items keep their original relative order. See [Sorting](/docs/week6/sorting). |
+| **Pivot** | The element quick sort partitions around. See [Quick Sort](/docs/week6/quick-sort). |
+| **Divide and conquer** | Split a problem, solve the parts, combine. Used by [merge](/docs/week6/merge-sort) and [quick](/docs/week6/quick-sort) sort. |
+| **Timsort** | Python's built-in sort — merge sort plus insertion sort. |
+
+## Week 8 — cryptography
+
+| Term | Meaning |
+| :- | :- |
+| **Plaintext / ciphertext** | The readable message / the encrypted one. See [Cryptography](/docs/week8/cryptography). |
+| **Key** | The secret that makes encryption reversible only for you. |
+| **Symmetric / asymmetric** | One shared key / a public and private pair. |
+| **Substitution cipher** | Each letter consistently replaced by another. See [Caesar Cipher](/docs/week8/caesar-cipher). |
+| **Brute force** | Trying every possible key. |
+| **Hash / digest** | A fixed-size, one-way fingerprint of data. See [Hash Functions](/docs/week8/hash-functions). |
+| **Collision** | Two different inputs producing the same digest. |
+| **Salt** | Random data added before hashing a password, unique per user. |
+| **Avalanche effect** | A tiny input change completely changing the digest. |
+
+## Weeks 9–11 — the web
+
+| Term | Meaning |
+| :- | :- |
+| **Web scraping** | Extracting data from pages built for humans. See [Web Scraping](/docs/week9/web-scraping). |
+| **HTML / DOM** | The markup of a page / its tree structure in memory. |
+| **Selector** | A pattern identifying elements, e.g. `.price` or `div > a`. |
+| **`requests`** | The library for making HTTP requests. |
+| **BeautifulSoup** | The library for parsing HTML. |
+| **Pagination** | Results split across numbered pages. |
+| **`robots.txt`** | A site's statement of what automated clients may fetch. |
+| **API** | An interface built for programs rather than people. See [TODO API](/docs/week11/todo-api). |
+| **Endpoint** | One URL an API exposes. |
+| **CRUD** | Create, Read, Update, Delete. |
+| **HTTP method** | `GET`, `POST`, `PUT`, `PATCH`, `DELETE`. |
+| **Status code** | `200` OK, `201` Created, `404` Not Found, `500` Server Error. |
+| **ORM** | Maps database rows to objects. SQLAlchemy is one. |
+| **Model** | A class representing a database table. |
+| **Migration** | A recorded change to the database schema. |
+
+## Week 12 — data
+
+| Term | Meaning |
+| :- | :- |
+| **Array** | A fixed-shape grid of one type. See [NumPy](/docs/week12/numpy). |
+| **Shape** | An array's size in each dimension, as a tuple. |
+| **Vectorisation** | Operating on a whole array at once instead of looping. |
+| **Axis** | Which direction to operate along. `axis=0` down columns, `axis=1` across rows. |
+| **Broadcasting** | NumPy stretching a smaller array to match a larger one. |
+| **Series** | One labelled column. See [Pandas](/docs/week12/pandas). |
+| **DataFrame** | A labelled table of Series. |
+| **Index** | The row labels of a Series or DataFrame. |
+| **`loc` / `iloc`** | Select by label / by integer position. |
+| **`NaN`** | A missing value. |
+| **`groupby`** | Split by a column, compute per group, combine. |
+
+## Tools and general terms
+
+| Term | Meaning |
+| :- | :- |
+| **Terminal / shell** | The text interface where you run commands. |
+| **PATH** | The list of folders your shell searches for commands. See [Setup](/docs/setup). |
+| **`pip`** | Python's package installer. |
+| **Virtual environment** | A per-project folder of installed packages. |
+| **`requirements.txt`** | A list of a project's dependencies. |
+| **Repository** | A project tracked by Git. |
+| **Commit** | A saved snapshot of changes. |
+| **Regular expression** | A pattern for matching text. See [Regular Expressions](/docs/reference/regex). |
+| **Standard library** | Modules that ship with Python — no install needed. |
+| **Third-party package** | Anything you `pip install`. |

@@ -1,9 +1,8 @@
 ---
 title: Lists
 description: Use lists to store ordered, mutable collections.
+icon: List
 ---
-
-# Lists
 
 Lists are ordered, mutable collections. They can hold mixed types and be
 resized as needed.
@@ -112,6 +111,18 @@ for index, fruit in enumerate(["Apple", "Banana"]):
 ```
 
 
+## Rules
+
+1. **Lists are ordered and mutable**, and may hold mixed types.
+2. **Indexing starts at 0; negative indexes count from the end.** An out-of-range index raises `IndexError`.
+3. **Slices exclude the end index and never raise `IndexError`.**
+4. **`append()` adds one item; `extend()` adds each item of an iterable.** `append([1,2])` nests a list inside the list.
+5. **`sort()`, `reverse()`, `append()`, and `extend()` return `None`.** `numbers = numbers.sort()` sets `numbers` to `None`.
+6. **`remove()` deletes the first matching value and raises `ValueError` if absent; `pop()` deletes by index and raises `IndexError`.**
+7. **Assignment does not copy.** `b = a` gives two names for one list. Use `a.copy()` or `a[:]`.
+8. **A copy is shallow.** Nested lists are still shared — use `copy.deepcopy()` if that matters.
+9. **Never add or remove items while iterating.** Loop over a copy instead.
+
 ## Common Mistakes
 - Modifying a list while iterating over it.
 - Confusing `append` and `extend`.
@@ -122,3 +133,11 @@ for index, fruit in enumerate(["Apple", "Banana"]):
 1. What does `append` add?
 2. How is `extend` different from `append`?
 3. Why can shallow copies be tricky?
+
+## Keep going
+
+<Cards>
+  <Card title="Tuples" href="/docs/week2/tuples" description="Next: lists that can't change." />
+  <Card title="for Loops" href="/docs/week2/for-loops" description="How you'll walk through a list." />
+  <Card title="Stacks" href="/docs/week6/stacks" description="Week 6: a list with rules attached." />
+</Cards>

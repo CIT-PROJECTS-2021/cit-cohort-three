@@ -1,9 +1,8 @@
 ---
 title: Identity Operators
 description: Check if two variables refer to the same object.
+icon: Equal
 ---
-
-# Identity Operators
 
 Identity operators check whether two variables point to the same object in
 memory.
@@ -33,9 +32,13 @@ print(x3 is y3)   # False (different list objects)
 print(x3 == y3)   # True (same contents)
 ```
 
-## Note
-Use `==` to compare values. Use `is` to check identity (e.g., `x is None`).
+## Rules
 
+1. **`is` compares object identity, `==` compares value.** Two equal objects can be distinct objects.
+2. **Use `is` only with `None`, `True`, and `False`.** `if x is None:` is the correct idiom.
+3. **Never use `is` to compare numbers or strings.** Small integers and short strings are cached, so `is` may appear to work and then silently stop working on larger values.
+4. **`is not` is a single operator.** Write `x is not None`, not `not x is None`.
+5. **Identity is what `id()` reports.** `a is b` is exactly `id(a) == id(b)`.
 
 ## Common Mistakes
 - Using `is` to compare values instead of identity.
@@ -47,3 +50,11 @@ Use `==` to compare values. Use `is` to check identity (e.g., `x is None`).
 1. What does `is` check?
 2. When should you use `x is None`?
 3. Why can `is` be misleading for lists?
+
+## Keep going
+
+<Cards>
+  <Card title="Membership Operators" href="/docs/week2/operators-membership" description="Next in the operator pages." />
+  <Card title="Comparison Operators" href="/docs/week2/operators-comparison" description="The == that 'is' is often confused with." />
+  <Card title="Operators" href="/docs/week2/operators" description="Back to the overview." />
+</Cards>

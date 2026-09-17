@@ -1,9 +1,8 @@
 ---
 title: Linked Lists
 description: Understand linked lists and how nodes connect.
+icon: Link
 ---
-
-# Linked Lists
 
 A **linked list** is a chain of nodes. Each node stores:
 - a **value**
@@ -39,6 +38,17 @@ while current is not None:
 - Frequent insertions/removals in the middle
 - Implementing stacks and queues at low level
 
+## Rules
+
+1. **A node holds a value and a reference to the next node.**
+2. **The last node's `next` is `None`.** That's how traversal knows to stop.
+3. **Keep a reference to the head.** Lose it and the whole list is unreachable.
+4. **There is no indexing.** Reaching position *n* means walking *n* links — O(n).
+5. **Insertion and deletion are O(1) *once you hold the node*** — the walk to find it is the expensive part.
+6. **Relink before you unlink.** Set the new `next` pointers first, or you drop the rest of the list.
+7. **Always guard against an empty list** (`head is None`) in every operation.
+8. **Use a Python [list](/docs/week2/lists) in real code.** Build a linked list to understand pointers.
+
 ## Common Mistakes
 - Losing references when inserting/removing (list becomes broken)
 - Forgetting to update `next` pointers
@@ -47,3 +57,11 @@ while current is not None:
 1. What does each node store?
 2. What is the “head” of a linked list?
 3. Why might a linked list be better than an array in some cases?
+
+## Keep going
+
+<Cards>
+  <Card title="Sorting Algorithms" href="/docs/week6/sorting" description="Next: on to the algorithms." />
+  <Card title="Classes" href="/docs/week3/classes" description="Week 3: nodes are classes." />
+  <Card title="Lists" href="/docs/week2/lists" description="Week 2: what Python gives you instead." />
+</Cards>

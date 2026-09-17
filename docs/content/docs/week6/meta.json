@@ -1,11 +1,21 @@
 {
-  "title": "Week 6: Data Structures & Algorithms",
+  "title": "Week 6 · Data Structures & Algorithms",
+  "icon": "Network",
   "pages": [
+    "index",
     "data-structures-and-algorithms",
-    "---Core Structures---",
+    "---Data Structures---",
     "stacks",
     "queues",
     "linked-lists",
+    "---Sorting Algorithms---",
+    "sorting",
+    "bubble-sort",
+    "selection-sort",
+    "insertion-sort",
+    "merge-sort",
+    "quick-sort",
+    "---Wrap Up---",
     "recap"
   ]
 }

@@ -1,9 +1,8 @@
 ---
 title: Classes
 description: Learn how to define classes and create objects.
+icon: Box
 ---
-
-# Classes
 
 A class is a blueprint for creating objects with attributes and methods.
 
@@ -53,6 +52,17 @@ print(student.info())
 Lara (ST-102)
 ```
 
+## Rules
+
+1. **Define with `class Name:` and an indented body.**
+2. **`__init__` runs on instantiation and must return `None`.** Returning anything else raises `TypeError`.
+3. **Instance attributes are created by assigning to `self.something`**, normally inside `__init__`.
+4. **`self` is a convention, not a keyword** — but always use it; it must be the first parameter of every instance method.
+5. **Access instance state through `self` inside methods.** A bare `name` refers to a local variable, not `self.name`.
+6. **Reading an attribute that was never assigned raises `AttributeError`.**
+7. **Mutable class attributes are shared across all instances.** Put per-instance state in `__init__`.
+8. **`__str__` controls what `print(obj)` shows** and must return a string.
+
 ## Common Mistakes
 - Forgetting `self` in method definitions.
 - Setting attributes outside `__init__` without a reason.
@@ -62,3 +72,11 @@ Lara (ST-102)
 1. What does `__init__` do?
 2. What is `self`?
 3. Why use a class instead of a dictionary?
+
+## Keep going
+
+<Cards>
+  <Card title="Inheritance" href="/docs/week3/inheritance" description="Next: building on an existing class." />
+  <Card title="Encapsulation" href="/docs/week3/encapsulation" description="Keeping attributes private." />
+  <Card title="Classes Quiz One" href="/docs/assignments/classes-quiz-one" description="Practice building a class." />
+</Cards>

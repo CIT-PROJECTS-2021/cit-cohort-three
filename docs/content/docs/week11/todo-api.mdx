@@ -1,9 +1,8 @@
 ---
 title: TODO API
 description: Build a simple TODO API with Flask and SQLite.
+icon: Webhook
 ---
-
-# TODO API
 
 This is a simple TODO API built with Python (Flask) and SQLite.
 
@@ -128,6 +127,18 @@ curl http://localhost:5000/tasks
 [{"id": 1, "title": "Read docs", "done": false}]
 ```
 
+## Rules
+
+1. **Match the HTTP method to the action:** `GET` read, `POST` create, `PUT`/`PATCH` update, `DELETE` remove.
+2. **`GET` must not change data.** Anything that modifies state needs a different method.
+3. **Return the right status code:** `200` OK, `201` Created, `204` No Content, `400` Bad Request, `401` Unauthorized, `404` Not Found, `500` Server Error.
+4. **Return JSON, and let Flask set the content type** by returning a dict or using `jsonify`.
+5. **Validate every incoming field before touching the database**, and return `400` with a message rather than letting it raise.
+6. **A missing resource is `404`, not an empty `200`.**
+7. **URLs name resources, not actions.** `/todos/1`, not `/getTodo?id=1`.
+8. **Never build SQL by string formatting.** Use the ORM or parameterised queries.
+9. **Never return password hashes or secrets** in a response body.
+
 ## Mini Exercises
 1. Add a `description` field to the Task model.
 2. Implement `PUT /tasks/:id` to update `done`.
@@ -147,23 +158,10 @@ curl http://localhost:5000/tasks
 - [Flask](https://flask.palletsprojects.com/)
 - [SQLAlchemy](https://docs.sqlalchemy.org/)
 
-## Suggested Endpoints
-```
-GET /tasks
-GET /tasks/:id
-POST /tasks
-PUT /tasks/:id
-DELETE /tasks/:id
-```
+## Keep going
 
-
-## Common Mistakes
-- Not validating input data in POST/PUT.
-- Returning raw database errors to users.
-- Forgetting to handle 404 cases.
-
-
-## Quick Quiz
-1. What does CRUD stand for?
-2. Why is input validation important?
-3. Name one endpoint in the TODO API.
+<Cards>
+  <Card title="API Quiz" href="/docs/week11/api-quiz" description="Next: build one yourself." />
+  <Card title="RSS Scraper Project" href="/docs/week10/rss-scraper-quiz" description="Week 10: where Flask first appeared." />
+  <Card title="Classes" href="/docs/week3/classes" description="Week 3: models are classes." />
+</Cards>

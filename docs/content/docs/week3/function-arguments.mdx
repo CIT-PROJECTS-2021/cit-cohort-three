@@ -1,0 +1,190 @@
+---
+title: Function Arguments
+description: Positional, keyword, default, *args and **kwargs.
+icon: Parentheses
+---
+
+A [function](/docs/week3/functions) declares **parameters**; a call supplies
+**arguments**. Python gives you several ways to match one to the other.
+
+## Positional arguments
+
+Matched by position, left to right. The most common form.
+
+```python
+def add(x, y):
+    return x + y
+
+print(add(1, 2))   # 3
+```
+
+Order matters. `add(2, 1)` gives the same answer here, but
+`divide(10, 2)` and `divide(2, 10)` certainly don't.
+
+## Default arguments
+
+Give a parameter a fallback and the caller can leave it out.
+
+```python
+def add(x, y=5):
+    return x + y
+
+print(add(1))      # 6
+print(add(1, 2))   # 3
+```
+
+Parameters with defaults must come **after** those without:
+
+```python
+def greet(name, greeting="Hello"):   # fine
+    ...
+
+def greet(greeting="Hello", name):   # SyntaxError
+    ...
+```
+
+<Callout type="warn" title="Never default to a mutable value">
+`def add_item(item, basket=[])` looks harmless but the list is created **once**,
+when the function is defined, and shared by every call that omits it.
+
+```python
+def add_item(item, basket=[]):
+    basket.append(item)
+    return basket
+
+print(add_item("apple"))   # ['apple']
+print(add_item("bread"))   # ['apple', 'bread']  ← surprise
+```
+
+Use `None` as the default and build the list inside:
+
+```python
+def add_item(item, basket=None):
+    if basket is None:
+        basket = []
+    basket.append(item)
+    return basket
+```
+</Callout>
+
+## Keyword arguments
+
+Name the argument at the call site. Order no longer matters, and the call
+documents itself.
+
+```python
+def login(username, password):
+    print(username, password)
+
+login(username="admin", password="1234")
+login(password="1234", username="admin")   # same thing
+```
+
+Keyword arguments must come after any positional ones:
+
+```python
+login("admin", password="1234")   # fine
+login(username="admin", "1234")   # SyntaxError
+```
+
+<Callout type="tip">
+Any call with a bare `True`/`False`/number whose meaning isn't obvious from the
+outside reads better as a keyword argument.
+`send(message, retry=True)` beats `send(message, True)`.
+</Callout>
+
+## Variable-length: `*args`
+
+Collects any extra positional arguments into a [tuple](/docs/week2/tuples).
+
+```python
+def total(*args):
+    return sum(args)
+
+print(total(1, 2, 3))       # 6
+print(total(1, 2, 3, 4, 5)) # 15
+print(total())              # 0
+```
+
+Inside the function, `args` is just a tuple — loop it, index it, measure it.
+
+## Variable-length: `**kwargs`
+
+Collects any extra *keyword* arguments into a
+[dictionary](/docs/week2/dictionaries).
+
+```python
+def profile(**kwargs):
+    return kwargs
+
+print(profile(name="Ada", age=28))
+# {'name': 'Ada', 'age': 28}
+```
+
+## Putting them in order
+
+When you use several kinds at once, Python requires this order:
+
+```python
+def example(a, b=2, *args, **kwargs):
+    print(a, b, args, kwargs)
+
+example(1)                          # 1 2 () {}
+example(1, 3, 4, 5, mode="fast")    # 1 3 (4, 5) {'mode': 'fast'}
+```
+
+| Position | Form | Collects |
+| :- | :- | :- |
+| 1 | `a` | one required positional |
+| 2 | `b=2` | one optional positional |
+| 3 | `*args` | any remaining positionals, as a tuple |
+| 4 | `**kwargs` | any remaining keywords, as a dict |
+
+## Unpacking at the call site
+
+The same `*` and `**` work in reverse — spreading a collection into arguments:
+
+```python
+def add(x, y):
+    return x + y
+
+pair = (3, 4)
+print(add(*pair))           # 7
+
+values = {"x": 3, "y": 4}
+print(add(**values))        # 7
+```
+
+## Rules
+
+1. **Parameters with defaults must come after those without.** `def f(a=1, b)` is a `SyntaxError`.
+2. **Positional arguments must come before keyword arguments** at the call site.
+3. **Each parameter can be filled only once.** `f(1, a=2)` raises `TypeError` for a duplicate value.
+4. **Default values are evaluated once, at definition time.** A mutable default (`[]`, `{}`) is shared across calls — use `None` instead.
+5. **The declaration order is `positional, default, *args, **kwargs`.** Any other order is a `SyntaxError`.
+6. **`*args` is always a tuple and `**kwargs` is always a dict**, even when empty.
+7. **`**kwargs` keys must be valid identifiers** and must not collide with named parameters.
+8. **`*` and `**` at a call site unpack; in a definition they collect.** Same symbols, opposite directions.
+
+## Common Mistakes
+
+- Putting a default parameter before a required one.
+- Using a mutable default (`[]`, `{}`) — see the callout above.
+- Passing a positional argument after a keyword argument.
+- Reaching for `*args` when two named parameters would be clearer.
+
+## Practice
+
+1. Write `greet(name, greeting="Hello")` and call it both ways.
+2. Write `average(*numbers)` that returns the mean, and handles being called
+   with no arguments at all.
+3. Write `make_user(**fields)` that returns a dict but raises a `ValueError` if
+   `"email"` is missing.
+
+## Keep going
+
+<Cards>
+  <Card title="Lambda Functions" href="/docs/week3/lambda-functions" description="Next: functions without a name." />
+  <Card title="Functions" href="/docs/week3/functions" description="Back to the basics of defining and calling." />
+  <Card title="Dictionaries" href="/docs/week2/dictionaries" description="What **kwargs hands you." />
+</Cards>

@@ -1,55 +1,16 @@
 ---
 title: Numpy Array Quiz
 description: Practice questions for NumPy arrays.
+icon: ClipboardCheck
 ---
 
-# Numpy Array Quiz
-
-<Callout type="info">
-Use NumPy for fast numerical operations on arrays.
+<Callout type="info" title="Learn it first">
+These questions assume you've read [NumPy](/docs/week12/numpy). Keep it open in
+another tab — every question here is answerable from that page.
 </Callout>
 
-## Quick Tutorial
-NumPy arrays support fast, element‑wise operations.
-
-```python
-import numpy as np
-
-a = np.array([1, 2, 3])
-b = np.array([4, 5, 6])
-print(a + b)  # [5 7 9]
-```
-
-### Reshaping
-```python
-zeros = np.zeros(10)
-reshaped = zeros.reshape(2, 5)
-print(reshaped)
-```
-
-### Indexing and Slicing
-```python
-a = np.array([[1, 2, 3], [4, 5, 6]])
-print(a[0, 1])  # 2
-print(a[:, 1])  # column 1
-```
-**Expected output**
-```
-2
-[2 5]
-```
-
-### Aggregations
-```python
-data = np.array([1, 2, 3, 4, 5])
-print(data.mean())
-print(data.max())
-```
-**Expected output**
-```
-3.0
-5
-```
+Work through these on your own before looking anything up. Write real code and
+run it; don't answer from memory.
 
 ## Question 1
 What is the result of the following code?
@@ -103,14 +64,9 @@ data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 ## References
 - [NumPy](https://numpy.org/doc/)
 
+## Keep going
 
-## Common Mistakes
-- Confusing element‑wise operations with matrix operations.
-- Forgetting to reshape before using 2D ops.
-- Not setting a random seed when needed.
-
-
-## Quick Quiz
-1. What does `a + b` do for NumPy arrays?
-2. How do you reshape an array?
-3. Why might you set a random seed?
+<Cards>
+  <Card title="Pandas Quiz" href="/docs/week12/pandas-quiz" description="Next quiz." />
+  <Card title="NumPy" href="/docs/week12/numpy" description="The page these questions come from." />
+</Cards>

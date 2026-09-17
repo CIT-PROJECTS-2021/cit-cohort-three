@@ -1,15 +1,15 @@
 {
   "title": "Assignments",
+  "icon": "PencilLine",
   "pages": [
     "index",
     "---Practice---",
     "loops",
-    "projects",
-    "---Quizzes---",
     "quiz-week4",
     "classes-quiz-one",
     "classes-questions",
-    "---Group Projects---",
+    "---Build---",
+    "projects",
     "group-projects"
   ]
 }

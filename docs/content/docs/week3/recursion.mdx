@@ -1,0 +1,150 @@
+---
+title: Recursion
+description: Functions that call themselves — and the base case that stops them.
+icon: Orbit
+---
+
+Recursion is a [function](/docs/week3/functions) calling itself. It suits problems
+that contain smaller copies of themselves: a factorial, a folder tree, a
+[merge sort](/docs/week6/merge-sort).
+
+Every recursive function needs two things:
+
+1. A **base case** — the smallest input, answered without recursing
+2. A **recursive case** — reduce the problem, then call yourself
+
+Miss the base case and the function never stops.
+
+## Example: factorial
+
+`5! = 5 × 4 × 3 × 2 × 1`. Notice that `5! = 5 × 4!` — the problem contains itself.
+
+```python
+def factorial(n: int) -> int:
+    if n <= 1:          # base case
+        return 1
+    return n * factorial(n - 1)   # recursive case
+
+print(factorial(5))   # 120
+```
+
+### Tracing it
+
+```
+factorial(3)
+└─ 3 * factorial(2)
+     └─ 2 * factorial(1)
+          └─ 1          ← base case, stops here
+     └─ 2 * 1 = 2
+└─ 3 * 2 = 6
+```
+
+The calls stack up on the way down, then the answers multiply back up.
+
+## Base case vs recursive case
+
+```python
+def countdown(n: int) -> None:
+    if n == 0:            # base case
+        print("Done")
+        return
+    print(n)
+    countdown(n - 1)      # recursive case — n gets smaller each time
+
+countdown(3)
+```
+
+**Output**
+
+```
+3
+2
+1
+Done
+```
+
+<Callout type="info">
+The recursive call must move *toward* the base case. `countdown(n - 1)` shrinks
+`n` every time, so it's guaranteed to reach `0`. `countdown(n)` would not.
+</Callout>
+
+## Recursion vs iteration
+
+Anything recursive can be written as a loop, and vice versa. Factorial is clearer
+as a loop:
+
+```python
+def factorial(n: int) -> int:
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+```
+
+Recursion pays off when the *data* is nested — trees, nested dictionaries,
+directory structures — where a loop needs its own explicit
+[stack](/docs/week6/stacks) to keep track.
+
+```python
+def total(items) -> int:
+    """Sum a list that may contain other lists, nested any depth."""
+    running = 0
+    for item in items:
+        if isinstance(item, list):
+            running += total(item)      # recurse into the nested list
+        else:
+            running += item
+    return running
+
+print(total([1, [2, 3], [4, [5, 6]]]))   # 21
+```
+
+Writing that with a loop is possible, but noticeably worse.
+
+## Rules
+
+1. **Every recursive function needs a base case** that returns without recursing.
+2. **Each recursive call must move toward the base case.** Passing the same argument back recurses forever.
+3. **Python's recursion limit is about 1000 frames.** Exceeding it raises `RecursionError` — there is no tail-call optimisation.
+4. **Each call gets its own local variables.** They do not carry over between calls.
+5. **The base case must be reachable for every valid input**, including empty and zero.
+6. **Anything recursive can be written iteratively.** Prefer recursion only when the data itself is nested.
+
+## Common Mistakes
+
+- **No base case** — the function calls itself forever.
+- **A base case that's never reached**, because the input doesn't shrink.
+- **Very deep recursion.** Python caps the call stack at about 1000 frames and
+  raises `RecursionError` past it. Deep recursion on large inputs wants a loop.
+- **Recomputing the same values.** Naive recursive Fibonacci recalculates the
+  same numbers exponentially many times. `functools.cache` fixes it:
+  ```python
+  from functools import cache
+
+  @cache
+  def fib(n):
+      return n if n < 2 else fib(n - 1) + fib(n - 2)
+  ```
+
+## Practice
+
+1. Write `countdown(n)` and trace it on paper for `n = 3`.
+2. Write a recursive `sum_list(numbers)` that adds a flat list.
+3. Write a recursive function that reverses a string.
+4. Write `fib(n)` recursively, then time `fib(30)` with and without
+   `@cache`.
+
+<Accordions>
+<Accordion title="Hint for question 3">
+The base case is an empty string. The recursive case is the last character plus
+the reverse of everything before it: `text[-1] + reverse(text[:-1])`.
+</Accordion>
+</Accordions>
+
+## Keep going
+
+<Cards>
+  <Card title="OOP" href="/docs/week3/oop" description="Next in Week 3." />
+  <Card title="Merge Sort" href="/docs/week6/merge-sort" description="Week 6: recursion doing real work." />
+  <Card title="Stacks" href="/docs/week6/stacks" description="The structure recursion uses under the hood." />
+</Cards>

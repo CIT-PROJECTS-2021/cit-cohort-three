@@ -1,0 +1,158 @@
+---
+title: break and continue
+description: Exit a loop early, or skip the rest of one iteration.
+icon: SkipForward
+---
+
+Both keywords change what a loop does next. They work in
+[`for`](/docs/week2/for-loops) and [`while`](/docs/week2/while-loops) loops alike.
+
+- `break` — stop the loop entirely and move on
+- `continue` — abandon this pass, start the next one
+
+## `break`
+
+```python
+for letter in "Python":
+    if letter == "h":
+        break
+    print(letter)
+```
+
+**Output**
+
+```
+P
+y
+t
+```
+
+The loop never reaches `o` or `n`. Use `break` when you've found what you were
+looking for and there's no point continuing.
+
+```python
+names = ["Ada", "Grace", "Linus"]
+
+for name in names:
+    if name.startswith("G"):
+        print(f"Found {name}")
+        break
+```
+
+## `continue`
+
+```python
+for letter in "Python":
+    if letter == "h":
+        continue
+    print(letter)
+```
+
+**Output**
+
+```
+P
+y
+t
+o
+n
+```
+
+`h` is skipped, but the loop carries on. Use `continue` to filter out items you
+don't care about.
+
+```python
+for number in [1, -2, 3, -4, 5]:
+    if number < 0:
+        continue
+    print(number)   # 1 3 5
+```
+
+## They only affect the innermost loop
+
+In nested loops, `break` exits just the loop it's directly inside.
+
+```python
+for i in range(3):
+    for j in range(3):
+        if j == 1:
+            break       # ends the inner loop only
+        print(i, j)
+```
+
+**Output**
+
+```
+0 0
+1 0
+2 0
+```
+
+The outer loop still runs all three times.
+
+## `break` interacts with `else`
+
+A loop's `else` block runs only when the loop was **not** broken out of. This is
+the cleanest way to express "search, and handle not-found":
+
+```python
+for target in ["Ada", "Grace", "Linus"]:
+    if target == "Guido":
+        print("Found")
+        break
+else:
+    print("Not found")
+```
+
+## Rules
+
+1. **Both are legal only inside a loop.** Anywhere else is a `SyntaxError`.
+2. **Each affects only the innermost enclosing loop.** `break` in a nested loop exits that loop, not the outer one.
+3. **`break` skips the loop's `else` block; `continue` does not.**
+4. **`continue` jumps straight to the next iteration**, skipping every remaining line in the body — including any counter update, which is how `while` loops hang.
+5. **Inside a function, `return` beats both.** It exits the loop *and* the function, and hands back a value.
+
+## Common Mistakes
+
+- **Using `break` when you meant `return`.** Inside a function, `return` both
+  stops the loop and hands back the answer — usually what you actually want.
+  ```python
+  def find(names, prefix):
+      for name in names:
+          if name.startswith(prefix):
+              return name     # clearer than break + a flag variable
+      return None
+  ```
+- **`continue` skipping a necessary update.** In a `while` loop, jumping past the
+  line that increments your counter creates an infinite loop:
+  ```python
+  i = 0
+  while i < 5:
+      if i == 2:
+          continue    # i never increments again — hangs forever
+      print(i)
+      i += 1
+  ```
+- **Expecting `break` to exit every nested loop.** It exits one level. To leave
+  several, put the loops in a function and `return`.
+
+<Callout type="tip">
+If a loop has several `break`s scattered through it, that's usually a sign it
+wants to be a [function](/docs/week3/functions) with `return` statements instead.
+</Callout>
+
+## Practice
+
+1. Loop over `[12, 75, 150, 180, 145, 525, 50]`. Print numbers divisible by 5,
+   skip any number above 150, and stop entirely at the first number above 500.
+2. Search a list of names for one that doesn't exist, and print `"Not found"`
+   using `for ... else`.
+3. Rewrite exercise 1 as a function using `return` instead of `break`.
+
+## Keep going
+
+<Cards>
+  <Card title="Operators" href="/docs/week2/operators" description="Next in Week 2." />
+  <Card title="for Loops" href="/docs/week2/for-loops" description="Where break and continue live." />
+  <Card title="Functions" href="/docs/week3/functions" description="Week 3: return, the better break." />
+</Cards>

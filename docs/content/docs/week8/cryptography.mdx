@@ -1,9 +1,8 @@
 ---
 title: Cryptography
 description: Learn the basics of encryption, decryption, and hashing.
+icon: KeyRound
 ---
-
-# Cryptography
 
 Cryptography protects information by transforming it into a form that is hard
 to read without a key.
@@ -49,28 +48,28 @@ Use the correct key to recover the original message.
 </Step>
 </Steps>
 
-## Hash Functions
-Hashing produces a fixed-length output from any input. Hashes are one-way and
-used for integrity checks.
 
-Examples: SHA‑256, SHA‑3, MD5 (legacy).
+## Hashing is not encryption
 
-<Callout type="warning">
-MD5 is fast but insecure. Use modern hashes like SHA‑256.
-</Callout>
+Everything above is **reversible** — that's the point of a key. Hashing is the
+opposite: a one-way digest you can compare but never undo.
 
-**Example with `hashlib`**
 ```python
 import hashlib
 
-text = "hello".encode("utf-8")
-digest = hashlib.sha256(text).hexdigest()
-print(digest)
+print(hashlib.sha256(b"hello").hexdigest())
+# 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
 ```
-**Expected output**
-```
-2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
-```
+
+| | Encryption | Hashing |
+| :- | :- | :- |
+| Reversible | yes, with the key | no |
+| Needs a key | yes | no |
+| Output size | grows with input | fixed |
+| Use for | messages you must read later | passwords, integrity, IDs |
+
+Password storage, file checksums, and content IDs all belong to hashing — they
+have their own page: [Hash Functions](/docs/week8/hash-functions).
 
 ## Symmetric Encryption Example (Fernet)
 Fernet provides authenticated symmetric encryption.
@@ -171,68 +170,55 @@ except Exception:
 Signature valid
 ```
 
-## Password Hashing (with Salt)
-Never store raw passwords. Use hashing with a random salt.
+## Don't roll your own
 
-```python
-import os
-import hashlib
+<Callout type="warn">
+Every example on this page uses the `cryptography` library rather than
+hand-written maths. That's deliberate. Cryptographic code fails silently — it
+produces plausible-looking output while being trivially breakable — so the
+implementation details matter more than almost anywhere else in programming.
 
-password = "hunter2".encode("utf-8")
-salt = os.urandom(16)
-hashed = hashlib.pbkdf2_hmac("sha256", password, salt, 100_000)
-
-print(salt.hex())
-print(hashed.hex())
-```
-
-**Expected output**
-```
-<random 32 hex chars>
-<derived hash in hex>
-```
-
-## Integrity Check Example
-```python
-import hashlib
-
-def sha256_file(path):
-    h = hashlib.sha256()
-    with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(8192), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-print(sha256_file("file.txt"))
-```
-
-**Expected output**
-```
-<sha256 hex digest>
-```
-
-## Beginner Guidance
-<Callout type="tip">
-Don’t build your own cryptography. Use trusted libraries and well‑known
-algorithms.
+Write the [Caesar cipher](/docs/week8/caesar-cipher) to understand substitution.
+Use a reviewed library for anything real.
 </Callout>
 
-## Mini Exercises
-1. Hash two different strings and compare their digests.
-2. Change one character and note how the hash changes.
-3. Explain why hashes are good for password storage (but require salts).
+## Rules
+
+1. **Encryption is reversible with the key; hashing is not reversible at all.** Pick by whether you need the original back.
+2. **Symmetric encryption uses one shared key; asymmetric uses a public key to encrypt and a private key to decrypt.**
+3. **The algorithm is public; only the key is secret.** A scheme that depends on its method staying hidden is not secure.
+4. **Never write your own cryptographic primitives.** Use `cryptography` or `hashlib`.
+5. **Never commit keys to version control.** Use environment variables or a `.env` file that is git-ignored.
+6. **Generate keys with a cryptographic random source** — `secrets` or `os.urandom()`, never `random`.
+7. **A Fernet token decrypts only with the exact key that produced it.** Lose the key and the data is gone.
+8. **Encrypt passwords never; hash them always.** See [Hash Functions](/docs/week8/hash-functions).
+
+## Practice
+
+1. Encrypt and decrypt a message with Fernet. What happens if you generate a new
+   key and try to decrypt with it?
+2. Explain in one sentence each: plaintext, ciphertext, key, digest.
+3. You're storing user passwords. Encryption or hashing — and why?
+4. You're sending a message that the recipient must read. Encryption or hashing?
+5. Sign a message, change one character of it, then verify. What happens?
 
 ## Common Mistakes
-- Storing plaintext passwords instead of hashes.
-- Using MD5 or SHA‑1 for security-sensitive data.
-- Rolling your own encryption instead of trusted libraries.
 
-## Quick Quiz
-1. What is the difference between encryption and hashing?
-2. Which cryptography type uses a public and private key?
-3. Why is salting important for password hashes?
+- Storing plaintext passwords, or encrypting them instead of hashing them.
+- Using MD5 or SHA-1 for anything security-sensitive.
+- Writing your own encryption instead of using a reviewed library.
+- Committing keys to Git. Keys belong in environment variables.
 
 ## References
-- [hashlib](https://docs.python.org/3/library/hashlib.html)
-- [cryptography](https://cryptography.io/en/latest/)
-- [pycryptodome](https://pycryptodome.readthedocs.io/)
+
+- [`hashlib`](https://docs.python.org/3/library/hashlib.html) — hashing, in the standard library
+- [`cryptography`](https://cryptography.io/en/latest/) — the library used above (`pip install cryptography`)
+- [`secrets`](https://docs.python.org/3/library/secrets.html) — generating secure random tokens
+
+## Keep going
+
+<Cards>
+  <Card title="Reverse Cipher" href="/docs/week8/reverse-cipher" description="Start the hands-on ciphers." />
+  <Card title="Caesar Cipher" href="/docs/week8/caesar-cipher" description="A cipher with a key — encrypt, decrypt, break." />
+  <Card title="Hash Functions" href="/docs/week8/hash-functions" description="One-way digests and what they're for." />
+</Cards>

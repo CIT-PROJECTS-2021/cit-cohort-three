@@ -1,9 +1,8 @@
 ---
 title: Functions
 description: Learn what functions are, how to define them, and how return values work.
+icon: SquareFunction
 ---
-
-# Functions
 
 Functions group reusable logic into a named block.
 
@@ -77,6 +76,17 @@ Avoid using `global` unless necessary; it makes code harder to test.
 - Built-in functions (e.g., `print`, `len`)
 - User-defined functions (your own)
 
+## Rules
+
+1. **Define with `def name(...):` and an indented body.** The body cannot be empty — use `pass`.
+2. **A function must be defined before it is called** at runtime; calling it earlier raises `NameError`.
+3. **Defining a function does not run it.** Only a call with parentheses does — `greet` is the function object, `greet()` calls it.
+4. **Without `return`, a function returns `None`.** A bare `return` does the same.
+5. **`return` exits immediately.** Code after it in the same block never runs.
+6. **Function names follow the same rules as variable names** — see [Variables](/docs/week1/variables).
+7. **Names assigned inside a function are local to it** and vanish when it ends. Reading an outer name is fine; rebinding one needs `global` or `nonlocal`.
+8. **The number of arguments must match the parameters** or Python raises `TypeError`.
+
 ## Mini Exercises
 1. Write a function `add(a, b)` that returns the sum.
 2. Write a function `is_even(n)` that returns `True` or `False`.
@@ -92,14 +102,10 @@ Avoid using `global` unless necessary; it makes code harder to test.
 2. What are parameters vs arguments?
 3. Why prefer returning values over printing?
 
+## Keep going
 
-## Common Mistakes
-- Printing instead of returning when a value is needed.
-- Forgetting to call the function after defining it.
-- Using global variables unnecessarily.
-
-
-## Quick Quiz
-1. What does a function return if there is no `return` statement?
-2. What is the difference between parameters and arguments?
-3. Why prefer returning a value over printing it?
+<Cards>
+  <Card title="Function Arguments" href="/docs/week3/function-arguments" description="Next: every way to pass values in." />
+  <Card title="Modules" href="/docs/week3/modules" description="Where functions go when there are lots of them." />
+  <Card title="break and continue" href="/docs/week2/break-and-continue" description="Week 2: why return often beats break." />
+</Cards>

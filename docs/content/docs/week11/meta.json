@@ -1,6 +1,8 @@
 {
-  "title": "Week 11: APIs",
+  "title": "Week 11 · APIs",
+  "icon": "Webhook",
   "pages": [
+    "index",
     "todo-api",
     "api-quiz",
     "recap"

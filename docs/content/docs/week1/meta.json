@@ -1,6 +1,8 @@
 {
-  "title": "Week 1: Getting Started",
+  "title": "Week 1 · Getting Started",
+  "icon": "Rocket",
   "pages": [
+    "index",
     "what-is-python",
     "python-syntax",
     "variables",

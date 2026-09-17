@@ -1,7 +1,15 @@
 {
-  "title": "Week 8: Cryptography",
+  "title": "Week 8 · Cryptography",
+  "icon": "Lock",
   "pages": [
+    "index",
     "cryptography",
+    "---Classical Ciphers---",
+    "reverse-cipher",
+    "caesar-cipher",
+    "---Hashing---",
+    "hash-functions",
+    "---Wrap Up---",
     "recap"
   ]
 }

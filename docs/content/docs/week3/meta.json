@@ -1,8 +1,14 @@
 {
-  "title": "Week 3: Advanced Concepts",
+  "title": "Week 3 · Functions & OOP",
+  "icon": "Boxes",
   "pages": [
+    "index",
+    "---Functions---",
     "functions",
-    "---OOP Deep Dive---",
+    "function-arguments",
+    "lambda-functions",
+    "recursion",
+    "---Object-Oriented Programming---",
     "oop",
     "classes",
     "inheritance",
@@ -11,8 +17,10 @@
     "encapsulation",
     "abstraction",
     "oop-project",
+    "---Organising Code---",
     "modules",
     "exceptions",
+    "---Wrap Up---",
     "recap"
   ]
 }

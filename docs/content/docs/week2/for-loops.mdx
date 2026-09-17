@@ -1,0 +1,177 @@
+---
+title: for Loops
+description: Iterate over sequences with range(), enumerate(), and for/else.
+icon: Repeat
+---
+
+A `for` loop walks through a collection one item at a time. Use it when you
+already know *what* you're looping over — a [list](/docs/week2/lists), a
+[string](/docs/week2/strings), a [dictionary](/docs/week2/dictionaries), or a
+range of numbers.
+
+## Syntax
+
+```python
+for item in sequence:
+    print(item)
+```
+
+`item` is a variable Python creates for you. On each pass it holds the next value
+from `sequence`.
+
+## Basic example
+
+```python
+fruits = ["apple", "banana", "cherry"]
+
+for fruit in fruits:
+    print(fruit)
+```
+
+**Output**
+
+```
+apple
+banana
+cherry
+```
+
+## Looping a fixed number of times with `range()`
+
+`range()` produces numbers on demand rather than building a list in memory, so
+it's cheap even for huge counts.
+
+```python
+for i in range(5):
+    print(i)      # 0 1 2 3 4
+```
+
+`range()` stops *before* the number you give it. It also takes a start and a step:
+
+```python
+range(5)            # 0, 1, 2, 3, 4
+range(2, 6)         # 2, 3, 4, 5
+range(2, 10, 2)     # 2, 4, 6, 8
+range(5, 0, -1)     # 5, 4, 3, 2, 1
+```
+
+<Callout type="tip">
+`range()` isn't a list. `print(range(5))` shows `range(0, 5)`, not the numbers.
+Wrap it in `list()` if you want to see them: `print(list(range(5)))`.
+</Callout>
+
+## Index *and* value with `enumerate()`
+
+When you need the position as well as the value, use `enumerate()` rather than
+counting by hand.
+
+```python
+fruits = ["apple", "banana", "cherry"]
+
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+```
+
+**Output**
+
+```
+0 apple
+1 banana
+2 cherry
+```
+
+Start counting from 1 instead:
+
+```python
+for number, fruit in enumerate(fruits, start=1):
+    print(f"{number}. {fruit}")
+```
+
+## Looping over a dictionary
+
+```python
+prices = {"apple": 120, "banana": 45}
+
+for name in prices:                  # keys
+    print(name)
+
+for name, price in prices.items():   # keys and values
+    print(name, price)
+```
+
+## `for` ... `else`
+
+The `else` block runs only if the loop finished **without** hitting a
+[`break`](/docs/week2/break-and-continue). It's the "I looked at everything and
+never found it" case.
+
+```python
+targets = ["Ada", "Grace", "Linus"]
+name = "Guido"
+
+for target in targets:
+    if target == name:
+        print("Found")
+        break
+else:
+    print("Not found")
+```
+
+**Output**
+
+```
+Not found
+```
+
+## Rules
+
+1. **`for` works on any iterable** — list, tuple, string, set, dict, range, file object, generator. Iterating a non-iterable raises `TypeError`.
+2. **`range(stop)` excludes `stop`.** `range(5)` yields `0,1,2,3,4`.
+3. **`range()` takes integers only.** `range(2.5)` raises `TypeError`.
+4. **A `range` is not a list.** Printing one shows `range(0, 5)`; wrap it in `list()` to see the values.
+5. **Don't add or remove items from a collection while looping over it.** Iterate a copy (`items[:]`) or build a new collection.
+6. **The loop variable survives the loop** and holds the last value used. It is not scoped to the loop body.
+7. **Looping over a dict yields its keys**, not its values. Use `.items()` for both, `.values()` for values.
+8. **`for ... else` runs the `else` only when the loop was *not* broken out of.**
+
+## Common Mistakes
+
+- **Modifying a list while looping over it.** Removing items shifts the
+  positions underneath you and the loop skips entries. Build a new list instead:
+  ```python
+  # wrong
+  for n in numbers:
+      if n < 0:
+          numbers.remove(n)
+
+  # right
+  numbers = [n for n in numbers if n >= 0]
+  ```
+- **Using `range(len(items))` when `enumerate()` is clearer.** If you only need
+  the value, don't index at all — just loop over the collection.
+- **Expecting the loop variable to survive unchanged.** After the loop, `item`
+  still exists and holds the last value.
+
+## Practice
+
+1. Print the first 10 natural numbers.
+2. Print every character of `"Python"` on its own line.
+3. Given `numbers = [12, 75, 150, 180, 145, 525, 50]`, print each number
+   divisible by 5.
+4. Build this pattern with a nested `for` loop:
+   ```
+   *
+   * *
+   * * *
+   * * * *
+   ```
+
+More of these in [Loops Practice](/docs/assignments/loops).
+
+## Keep going
+
+<Cards>
+  <Card title="while Loops" href="/docs/week2/while-loops" description="Next: loop without knowing the count." />
+  <Card title="break and continue" href="/docs/week2/break-and-continue" description="Exit or skip mid-loop." />
+  <Card title="Lists" href="/docs/week2/lists" description="The collection you'll loop over most." />
+</Cards>

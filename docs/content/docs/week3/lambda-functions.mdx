@@ -1,0 +1,140 @@
+---
+title: Lambda Functions
+description: Small anonymous functions, and where they actually help.
+icon: Zap
+---
+
+A `lambda` is a function written inline, in a single expression, without a name.
+
+## Syntax
+
+```python
+lambda arguments: expression
+```
+
+There's no `def`, no name, and no `return` — the expression's value *is* the
+return value.
+
+```python
+double = lambda x: x * 2
+print(double(5))   # 10
+```
+
+That's exactly equivalent to:
+
+```python
+def double(x):
+    return x * 2
+```
+
+<Callout type="warn">
+If you're assigning a `lambda` to a name, as above, just use `def`. It's the same
+length, it gives the function a real name in tracebacks, and it can hold more
+than one expression later. The example above is here to show the equivalence, not
+to recommend it.
+</Callout>
+
+## Where lambdas earn their place
+
+A lambda is worth it when a function is needed **as an argument**, is used once,
+and is too small to deserve a name.
+
+```python
+nums = [1, 2, 3, 4, 5]
+
+evens = list(filter(lambda x: x % 2 == 0, nums))
+doubled = list(map(lambda x: x * 2, nums))
+
+print(evens)     # [2, 4]
+print(doubled)   # [2, 4, 6, 8, 10]
+```
+
+### Sorting by a computed key
+
+This is the most genuinely useful case:
+
+```python
+people = [
+    {"name": "Ada", "age": 36},
+    {"name": "Grace", "age": 45},
+    {"name": "Linus", "age": 28},
+]
+
+by_age = sorted(people, key=lambda person: person["age"])
+
+for person in by_age:
+    print(person["name"])
+```
+
+**Output**
+
+```
+Linus
+Ada
+Grace
+```
+
+Sort by a second field, or descending:
+
+```python
+sorted(people, key=lambda p: p["name"])
+sorted(people, key=lambda p: p["age"], reverse=True)
+```
+
+## Lambdas vs comprehensions
+
+For `map` and `filter` specifically, a list comprehension is usually more
+readable and doesn't need `list()` wrapped around it:
+
+```python
+# with lambda
+evens = list(filter(lambda x: x % 2 == 0, nums))
+
+# with a comprehension — preferred
+evens = [x for x in nums if x % 2 == 0]
+```
+
+The `key=` argument to `sorted()`, `min()`, and `max()` is where lambdas stay the
+best tool.
+
+## When a lambda isn't enough
+
+A conditional *expression* is fine, because it produces a value:
+
+```python
+classify = lambda n: "even" if n % 2 == 0 else "odd"
+```
+
+But anything needing a statement — a loop, an assignment, a `try` — cannot be a
+lambda. If you're fighting that, you want a `def`.
+
+## Rules
+
+1. **A lambda holds exactly one expression.** No statements, no `if/else` blocks, no loops, no assignments — those are `SyntaxError`.
+2. **There is no `return`.** The expression's value is returned automatically.
+3. **A conditional expression is allowed**, because it produces a value: `lambda n: "even" if n % 2 == 0 else "odd"`.
+4. **Lambdas take the same argument forms as `def`** — defaults, `*args`, `**kwargs` all work.
+5. **A lambda is an ordinary function object.** It can be passed, stored, and called like any other.
+6. **PEP 8 says don't assign a lambda to a name.** If it needs a name, use `def`.
+7. **`map()` and `filter()` return iterators, not lists.** Wrap in `list()` to see the result.
+
+## Common Mistakes
+
+- Writing a long, unreadable lambda to avoid naming a function.
+- Assigning lambdas to names instead of using `def`.
+- Forgetting that `map()` and `filter()` return iterators, not lists — wrap them
+  in `list()` to see the result.
+
+## Practice
+
+1. Sort `["banana", "kiwi", "apple"]` by word length using `sorted(key=...)`.
+2. Use `filter()` and a lambda to keep only positive numbers from a list.
+3. Rewrite both of the above as list comprehensions. Which reads better?
+
+## Keep going
+
+<Cards>
+  <Card title="Recursion" href="/docs/week3/recursion" description="Next: functions that call themselves." />
+  <Card title="Function Arguments" href="/docs/week3/function-arguments" description="The argument forms a lambda can take." />
+  <Card title="Lists" href="/docs/week2/lists" description="Comprehensions live here." />
+</Cards>

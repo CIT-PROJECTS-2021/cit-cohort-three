@@ -1,0 +1,119 @@
+---
+title: Reverse Cipher
+description: The simplest possible cipher — and a clear lesson in what security isn't.
+icon: FlipHorizontal
+---
+
+The reverse cipher encrypts a message by writing it backwards. That's the whole
+algorithm.
+
+It's here because it's the smallest complete example of an encryption scheme:
+there's a plaintext, a ciphertext, an encryption step, and a decryption step. It
+also makes an important point — being *unreadable at a glance* and being *secure*
+are completely different things.
+
+## The algorithm
+
+- Encryption: reverse the string.
+- Decryption: reverse it again.
+- There is no key.
+
+Encryption and decryption are **the same operation**. Applying it twice returns
+the original.
+
+```
+plaintext:   This is program to explain reverse cipher
+ciphertext:  repihc esrever nialpxe ot margorp si sihT
+```
+
+## Implementation
+
+```python
+def reverse_cipher(text: str) -> str:
+    result = ""
+    for i in range(len(text) - 1, -1, -1):
+        result += text[i]
+    return result
+
+
+message = "This is program to explain reverse cipher"
+encrypted = reverse_cipher(message)
+
+print("Plain text:", message)
+print("Cipher:    ", encrypted)
+print("Decrypted: ", reverse_cipher(encrypted))
+```
+
+**Output**
+
+```
+Plain text: This is program to explain reverse cipher
+Cipher:     repihc esrever nialpxe ot margorp si sihT
+Decrypted:  This is program to explain reverse cipher
+```
+
+The loop counts *backwards*: `range(len(text) - 1, -1, -1)` starts at the last
+index, stops before `-1` (so it includes `0`), and steps by `-1`. See
+[for Loops](/docs/week2/for-loops) if that range looks strange.
+
+## The Pythonic version
+
+Python reverses a [string](/docs/week2/strings) with slice notation:
+
+```python
+def reverse_cipher(text: str) -> str:
+    return text[::-1]
+```
+
+`[start:stop:step]` with a step of `-1` and no bounds means "the whole thing,
+backwards". This is what you'd actually write — the loop version is there to show
+what the slice is doing.
+
+## Why it isn't encryption
+
+A cipher is only as good as its resistance to someone who knows the algorithm.
+Here:
+
+- **No key.** Anyone who knows it's a reverse cipher can read every message. Real
+  ciphers keep the algorithm public and the *key* secret.
+- **The keyspace has one entry.** There's nothing to guess.
+- **It leaks everything.** Word lengths, letter frequencies, and spacing all
+  survive intact. `repihc` is visibly a six-letter word.
+
+<Callout type="warn">
+This is an obfuscation exercise, not security. Anything more than a party trick
+needs a real algorithm — see the [Cryptography overview](/docs/week8/cryptography).
+</Callout>
+
+## Rules
+
+1. **Encryption and decryption are the same operation.** Applying it twice returns the original.
+2. **There is no key**, so there is nothing to keep secret and nothing to guess.
+3. **Every character is preserved** — letters, spaces, punctuation, and digits all simply move.
+4. **Word lengths and letter frequencies survive intact**, which is why it leaks almost everything.
+5. **`text[::-1]` is the idiomatic Python form** of the whole algorithm.
+6. **This is obfuscation, not encryption.** Never use it to protect anything.
+
+## Common Mistakes
+
+- Writing `range(len(text), 0, -1)` and getting an `IndexError` on the first access.
+- Forgetting the final `-1` step, so the loop produces nothing.
+- Calling this encryption in anything that matters.
+- Building the result with `+=` in a loop over a large string instead of using a slice or `join()`.
+
+## Practice
+
+1. Rewrite the reverse cipher using a `while` loop instead of a `for` loop.
+2. Rewrite it as a one-line `lambda`. (See
+   [Lambda Functions](/docs/week3/lambda-functions).)
+3. Write a version that reverses the order of *words* but not the letters within
+   them: `"hello there world"` → `"world there hello"`.
+4. Confirm that applying the cipher twice returns the original, for a message
+   containing punctuation and numbers.
+
+## Keep going
+
+<Cards>
+  <Card title="Caesar Cipher" href="/docs/week8/caesar-cipher" description="Next: a cipher that actually has a key." />
+  <Card title="Strings" href="/docs/week2/strings" description="Week 2: slicing, indexing, and string methods." />
+</Cards>

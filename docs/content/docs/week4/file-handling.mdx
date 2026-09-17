@@ -1,9 +1,8 @@
 ---
 title: File Handling
 description: Learn how to read and write files in Python.
+icon: FileText
 ---
-
-# File Handling
 
 Files let you store data permanently on disk. Typical file operations follow
 this order:
@@ -140,6 +139,18 @@ print(loaded)
 {'name': 'Ada', 'score': 95}
 ```
 
+## Rules
+
+1. **Always open files with `with`.** It closes the file even if an exception is raised.
+2. **`open()` defaults to mode `"r"` (read, text).** The file must already exist or you get `FileNotFoundError`.
+3. **`"w"` truncates an existing file to zero bytes immediately.** Use `"a"` to add to a file, `"x"` to fail if it already exists.
+4. **Always pass `encoding="utf-8"` in text mode.** The default varies by platform and silently corrupts non-ASCII text.
+5. **Binary mode (`"rb"`, `"wb"`) reads and writes `bytes`, not `str`**, and must not take an `encoding`.
+6. **`write()` does not add a newline.** Include `\n` yourself.
+7. **`write()` takes a string.** Passing a number raises `TypeError` — convert with `str()`.
+8. **A file can only be read once through.** `read()` at end-of-file returns `""`; use `seek(0)` to go back.
+9. **Reading and writing the same file at once needs mode `"r+"` or `"w+"`.** Plain `"r"` rejects `write()` with `io.UnsupportedOperation`.
+
 ## Common Mistakes
 - Using `"w"` when you meant to append (data loss).
 - Forgetting to close files when not using `with`.
@@ -155,14 +166,10 @@ print(loaded)
 2. Read a file and count how many times a word appears.
 3. Append a timestamp to a log file.
 
+## Keep going
 
-## Common Mistakes
-- Opening files without closing them.
-- Overwriting a file accidentally with `w` mode.
-- Forgetting to set encoding for text files.
-
-
-## Quick Quiz
-1. What does `with open(...)` guarantee?
-2. When should you use `a` mode?
-3. What does `read()` return at EOF?
+<Cards>
+  <Card title="File Paths and Directories" href="/docs/week4/file-paths" description="Next: building the paths you open." />
+  <Card title="CSV and JSON" href="/docs/week4/csv-and-json" description="Then: structured formats." />
+  <Card title="Exceptions" href="/docs/week3/exceptions" description="Week 3: handling the failures." />
+</Cards>

@@ -1,9 +1,8 @@
 ---
 title: Assignment Operators
 description: Assign and update variables with assignment operators.
+icon: MoveRight
 ---
-
-# Assignment Operators
 
 Assignment operators are used to assign values to variables.
 
@@ -35,6 +34,15 @@ print(x)  # 26
 ```
 
 
+## Rules
+
+1. **`=` assigns; it is a statement, not an expression.** You cannot use it inside an `if`.
+2. **Augmented assignment requires the variable to already exist.** `x += 1` on an undefined `x` raises `NameError`.
+3. **`x += y` is not always `x = x + y`.** On a list, `+=` mutates in place and affects every other name pointing at it.
+4. **Multiple assignment unpacks left to right** and the counts must match: `a, b = 1, 2, 3` raises `ValueError`.
+5. **Chained assignment binds all names to the same object.** `a = b = []` gives both names one shared list.
+6. **The walrus `:=` assigns inside an expression** and always needs parentheses in a condition: `if (n := len(s)) > 3:`.
+
 ## Common Mistakes
 - Overwriting variables unintentionally.
 - Using `=` in a condition instead of `==`.
@@ -45,3 +53,11 @@ print(x)  # 26
 1. What is `a += 3` equivalent to?
 2. When would you prefer `+=` over `a = a + 1`?
 3. Is `a = b` a comparison or assignment?
+
+## Keep going
+
+<Cards>
+  <Card title="Identity Operators" href="/docs/week2/operators-identity" description="Next in the operator pages." />
+  <Card title="Variables" href="/docs/week1/variables" description="Week 1: what you're assigning to." />
+  <Card title="Operators" href="/docs/week2/operators" description="Back to the overview." />
+</Cards>

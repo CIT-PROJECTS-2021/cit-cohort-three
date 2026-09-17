@@ -1,0 +1,331 @@
+---
+title: Pandas
+description: Series, DataFrames, loading CSV and JSON, and selecting data.
+icon: Table
+---
+
+Pandas is built on [NumPy](/docs/week12/numpy) and adds the two things NumPy
+lacks for real-world data: **labels** and **mixed types**. A NumPy array is a
+grid of numbers; a Pandas DataFrame is a table with named columns, like a
+spreadsheet or a database result.
+
+```bash
+pip install pandas
+```
+
+```python
+import pandas as pd
+```
+
+`pd` is the universal convention.
+
+## The two objects
+
+| | `Series` | `DataFrame` |
+| :- | :- | :- |
+| Shape | one column | a whole table |
+| Like | a labelled list | a labelled dict of Series |
+| Made from | a list, a dict | a dict of lists, a CSV, an API response |
+
+A DataFrame is a collection of Series sharing an index.
+
+## Series: one labelled column
+
+```python
+import pandas as pd
+
+numbers = [i + 1 for i in range(10)]
+series = pd.Series(numbers)
+
+print(series[0])   # 1
+```
+
+By default the labels are `0, 1, 2, ...` — the **index**. You can supply your own:
+
+```python
+series = pd.Series([10, 20, 30], index=["a", "b", "c"])
+
+print(series["a"])   # 10
+```
+
+Building one from a [dictionary](/docs/week2/dictionaries) uses the keys as the
+index automatically:
+
+```python
+calories = {"day1": 420, "day2": 380, "day3": 390, "day4": 420}
+
+series = pd.Series(calories)
+print(series)
+```
+
+**Output**
+
+```
+day1    420
+day2    380
+day3    390
+day4    420
+dtype: int64
+```
+
+## DataFrame: the table
+
+The most common way to build one is a dict of lists, where each key becomes a
+column:
+
+```python
+import pandas as pd
+
+data = {
+    "name": ["John", "Jane", "Joe", "Jack", "Jill"],
+    "marks": [90, 80, 70, 60, 50],
+}
+
+df = pd.DataFrame(data)
+print(df)
+```
+
+**Output**
+
+```
+   name  marks
+0  John     90
+1  Jane     80
+2   Joe     70
+3  Jack     60
+4  Jill     50
+```
+
+The leftmost column is the index — Pandas added it.
+
+## First look at any DataFrame
+
+Whenever you load data you haven't seen, run these four before anything else:
+
+```python
+df.head()        # first 5 rows (df.head(10) for more)
+df.shape         # (rows, columns)
+df.info()        # column names, types, and non-null counts
+df.describe()    # count, mean, std, min, quartiles, max — numeric columns only
+```
+
+`df.info()` is the one that catches problems: it shows which columns have missing
+values and whether a column you expected to be numeric came in as text.
+
+## Loading data
+
+### From CSV
+
+```python
+df = pd.read_csv("bands.csv")
+print(df.head())
+```
+
+One line replaces the whole [`csv` module](/docs/week4/csv-and-json) dance — and
+unlike the `csv` module, Pandas infers types, so numbers arrive as numbers.
+
+`read_csv` handles a URL directly too:
+
+```python
+df = pd.read_csv("https://example.com/data.csv")
+```
+
+Useful arguments:
+
+```python
+pd.read_csv("data.csv", sep=";")             # semicolon-separated
+pd.read_csv("data.csv", header=None)         # no header row
+pd.read_csv("data.csv", index_col="id")      # use a column as the index
+pd.read_csv("data.csv", nrows=100)           # just the first 100 rows
+```
+
+### From JSON
+
+```python
+df = pd.read_json("https://jsonplaceholder.typicode.com/todos")
+print(df.head())
+```
+
+Or build it from a response you already have — which is what you'll do after
+[calling an API](/docs/week11/todo-api):
+
+```python
+import requests
+
+todos = requests.get("https://jsonplaceholder.typicode.com/todos").json()
+df = pd.DataFrame(todos)
+
+print(df.head())
+```
+
+<Callout type="tip">
+`pd.DataFrame()` accepts a list of dictionaries directly, which is exactly the
+shape most JSON APIs return. This is the fastest path from an API response to
+something you can analyse.
+</Callout>
+
+### Writing back out
+
+```python
+df.to_csv("output.csv", index=False)     # index=False omits the 0,1,2 column
+df.to_json("output.json", orient="records", indent=2)
+```
+
+## Selecting data
+
+### Columns
+
+```python
+df["marks"]              # one column, as a Series
+df[["name", "marks"]]    # several columns, as a DataFrame
+```
+
+Note the double brackets for multiple columns — you're passing a
+[list](/docs/week2/lists) of column names.
+
+### Rows: `loc` and `iloc`
+
+This is the distinction to get right:
+
+- `loc` selects by **label**
+- `iloc` selects by **integer position**
+
+```python
+calories = {"day1": 420, "day2": 380, "day3": 390, "day4": 420}
+df = pd.DataFrame(calories, index=["day1", "day2", "day3", "day4"])
+
+print(df.loc["day2"])    # by label
+print(df.iloc[1])        # by position — the second row
+```
+
+They take a second argument for columns:
+
+```python
+df.loc["day2", "calories"]     # one cell, by label
+df.iloc[1, 0]                  # one cell, by position
+df.loc["day1":"day3"]          # label slices INCLUDE the endpoint
+df.iloc[0:3]                   # position slices exclude it, like lists
+```
+
+<Callout type="warn">
+`loc` slices are inclusive on both ends; `iloc` slices are not.
+`df.loc["day1":"day3"]` gives three rows, `df.iloc[0:3]` gives three rows too —
+but `df.loc[0:3]` on a default integer index gives **four**. This surprises
+everyone once.
+</Callout>
+
+### Filtering rows by condition
+
+Same boolean indexing as [NumPy](/docs/week12/numpy#boolean-indexing):
+
+```python
+df[df["marks"] >= 80]                          # one condition
+df[(df["marks"] >= 60) & (df["marks"] < 90)]   # two conditions
+df[df["name"].isin(["John", "Jill"])]          # membership
+```
+
+Use `&` and `|`, not `and` and `or`, and bracket each condition. Python's
+keywords work on single values; Pandas needs the element-wise operators.
+
+## Adding and changing columns
+
+```python
+df["passed"] = df["marks"] >= 80          # a new boolean column
+df["adjusted"] = df["marks"] * 1.1        # arithmetic across the column
+df["grade"] = df["marks"].apply(
+    lambda m: "A" if m >= 80 else "B"
+)
+```
+
+`apply()` runs a function over every value. It's flexible but slow — prefer
+vectorised arithmetic or `np.where` when you can:
+
+```python
+import numpy as np
+df["grade"] = np.where(df["marks"] >= 80, "A", "B")
+```
+
+## Sorting and aggregating
+
+```python
+df.sort_values("marks", ascending=False)
+df.sort_values(["grade", "marks"])       # by one column, then another
+
+df["marks"].mean()
+df["marks"].sum()
+df["marks"].value_counts()               # how many of each value
+
+df.groupby("grade")["marks"].mean()      # mean per group
+```
+
+`groupby` is Pandas' most powerful feature: split the table by a column, compute
+something per group, and get the results back as a table.
+
+## Missing data
+
+Real data has holes. Pandas marks them `NaN`.
+
+```python
+df.isna().sum()             # count missing values per column
+df.dropna()                 # drop rows with any missing value
+df.fillna(0)                # replace them
+df["marks"].fillna(df["marks"].mean())   # fill with the column average
+```
+
+Check `df.isna().sum()` on every dataset you load. Missing values propagate
+silently through calculations.
+
+## Rules
+
+1. **`loc` selects by label, `iloc` by integer position.** They are not interchangeable.
+2. **`loc` slices include the endpoint; `iloc` slices exclude it.**
+3. **Filter with `&`, `|`, and `~`, never `and`, `or`, `not`** — and bracket each condition, because `&` binds tighter than `==`.
+4. **Selecting several columns needs a list:** `df[["a", "b"]]`.
+5. **Most operations return a new DataFrame.** Reassign the result, or pass `inplace=True` where it exists.
+6. **Chained assignment may not stick.** Use a single `df.loc[rows, cols] = value` instead of `df[rows][cols] = value`.
+7. **`NaN` never equals anything, including itself.** Test with `.isna()`, not `== NaN`.
+8. **Missing values propagate**, and are skipped by default in aggregations.
+9. **Pass `index=False` to `to_csv`** unless the index is real data.
+10. **Inspect with `head()`, `shape`, `info()`, and `isna().sum()` before analysing anything.**
+
+## Common Mistakes
+
+- Loading data and not running `df.head()` and `df.info()` first.
+- Mixing up `loc` (labels) and `iloc` (positions).
+- Using `and` / `or` instead of `&` / `|` when filtering.
+- Forgetting `index=False` in `to_csv`, adding a junk column every save.
+- Modifying a slice and expecting the original to change — or not change. When in
+  doubt, `.copy()`.
+- Reaching for a loop. If you're iterating rows, there's nearly always a
+  vectorised way.
+
+## Practice
+
+1. Build a DataFrame from the `name`/`marks` dict above. Add a `passed` column
+   where `marks >= 80`.
+2. Filter to rows where `marks < 80`, then sort by `marks` descending.
+3. Load a CSV from a URL and report its shape, column names, and how many missing
+   values each column has.
+4. Fetch `https://jsonplaceholder.typicode.com/todos`, build a DataFrame, and
+   count how many todos each `userId` has completed.
+5. Create a DataFrame of 10 rows × 3 columns of random numbers from 1 to 10, then
+   replace every value above 5 with 10.
+
+<Accordions>
+<Accordion title="Hint for question 4">
+`df.groupby("userId")["completed"].sum()` — booleans sum as 1 and 0.
+</Accordion>
+</Accordions>
+
+## References
+
+- [Pandas documentation](https://pandas.pydata.org/docs/)
+- [10 minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
+
+## Keep going
+
+<Cards>
+  <Card title="Pandas Quiz" href="/docs/week12/pandas-quiz" description="Five questions to test this page." />
+  <Card title="NumPy" href="/docs/week12/numpy" description="The library Pandas is built on." />
+  <Card title="CSV and JSON" href="/docs/week4/csv-and-json" description="Week 4: the manual way." />
+</Cards>

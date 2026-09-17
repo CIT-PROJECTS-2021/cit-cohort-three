@@ -1,9 +1,8 @@
 ---
 title: Strings
 description: Work with text using Python strings.
+icon: Type
 ---
-
-# Strings
 
 Strings are sequences of characters. In Python, strings are Unicode by default.
 
@@ -88,6 +87,17 @@ print(text.split())
 ```
 
 
+## Rules
+
+1. **Strings are immutable.** `text[0] = "J"` raises `TypeError`; every "change" returns a new string.
+2. **Indexing starts at 0**, and negative indexes count from the end: `text[-1]` is the last character.
+3. **An out-of-range index raises `IndexError`, but an out-of-range slice does not.** `"abc"[9]` errors; `"abc"[1:99]` returns `"bc"`.
+4. **A slice excludes its end index.** `text[1:4]` gives characters 1, 2, and 3.
+5. **Quotes must match.** Open with `'` and close with `'`; use the other style or `\` to include a quote.
+6. **`+` only concatenates strings.** `"age: " + 30` raises `TypeError` — convert with `str()` or use an f-string.
+7. **An f-string needs the `f` prefix.** Without it, `"{name}"` is the literal text.
+8. **Strings are Unicode.** Encoding to bytes with `.encode()` is required before hashing or writing in binary mode.
+
 ## Common Mistakes
 - Trying to modify a string in place.
 - Forgetting that slicing end index is exclusive.
@@ -98,3 +108,11 @@ print(text.split())
 1. What does `text[1:4]` return?
 2. Why are strings immutable?
 3. When would you use f‑strings?
+
+## Keep going
+
+<Cards>
+  <Card title="Lists" href="/docs/week2/lists" description="Next: ordered, changeable collections." />
+  <Card title="Regular Expressions" href="/docs/reference/regex" description="Reference: pattern matching on text." />
+  <Card title="f-strings" href="/docs/week1/variables" description="Week 1: formatting values into text." />
+</Cards>

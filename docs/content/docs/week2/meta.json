@@ -1,7 +1,14 @@
 {
-  "title": "Week 2: Control Flow & Data Types",
+  "title": "Week 2 · Control Flow & Data Types",
+  "icon": "GitBranch",
   "pages": [
+    "index",
+    "---Control Flow---",
     "control-flow",
+    "if-statements",
+    "for-loops",
+    "while-loops",
+    "break-and-continue",
     "---Operators---",
     "operators",
     "operators-arithmetic",
@@ -17,6 +24,7 @@
     "tuples",
     "sets",
     "dictionaries",
+    "---Wrap Up---",
     "recap"
   ]
 }

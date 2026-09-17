@@ -1,9 +1,8 @@
 ---
 title: Web Scraping in Python
 description: Learn how to scrape data from websites using requests and BeautifulSoup.
+icon: Globe
 ---
-
-# Web Scraping in Python
 
 Web scraping is extracting data from web pages. In Python, this is commonly
 done with `requests` and `beautifulsoup4`.
@@ -128,6 +127,17 @@ Rate-limit requests and cache results where possible.
 </Step>
 </Steps>
 
+## Rules
+
+1. **Check `robots.txt` and the site's terms before scraping.** Being technically able to fetch a page is not permission.
+2. **Always check `response.status_code`** — or call `raise_for_status()` — before parsing. A 404 page parses perfectly well and yields nothing.
+3. **Rate-limit yourself.** Put a `time.sleep()` between requests; hammering a site gets you blocked and is rude.
+4. **Set a real `User-Agent` header.** Many sites reject the default `python-requests` one.
+5. **`requests` does not run JavaScript.** If the data isn't in `response.text`, it was rendered client-side and you need the underlying API or a browser tool.
+6. **`find()` returns `None` when there's no match; `find_all()` returns an empty list.** Check before accessing `.text`, or you get `AttributeError`.
+7. **Selectors break when the site changes.** Expect scrapers to need maintenance.
+8. **Never scrape personal data, credentials, or anything behind a login you don't own.**
+
 ## Mini Exercises
 1. Extract all `<h2>` headings from a page.
 2. Extract the text of all links (`<a>` tags).
@@ -147,14 +157,10 @@ Rate-limit requests and cache results where possible.
 - [Requests](https://requests.readthedocs.io/)
 - [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
+## Keep going
 
-## Common Mistakes
-- Scraping too fast and getting blocked.
-- Ignoring `robots.txt` or site terms.
-- Parsing without checking for missing elements.
-
-
-## Quick Quiz
-1. Why add a User-Agent header?
-2. What should you check before scraping a site?
-3. What does `BeautifulSoup` parse?
+<Cards>
+  <Card title="Week 9 Recap" href="/docs/week9/recap" description="Check yourself before moving on." />
+  <Card title="RSS Scraper Project" href="/docs/week10/rss-scraper-quiz" description="Week 10: turn this into a real project." />
+  <Card title="CSV and JSON" href="/docs/week4/csv-and-json" description="Week 4: saving what you scrape." />
+</Cards>

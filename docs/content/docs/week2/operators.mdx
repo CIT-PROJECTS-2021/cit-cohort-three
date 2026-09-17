@@ -1,9 +1,8 @@
 ---
 title: Operators
 description: Overview of Python operator types.
+icon: Calculator
 ---
-
-# Operators
 
 Operators are special symbols that perform computations on values (operands).
 
@@ -20,10 +19,14 @@ When expressions look confusing, add parentheses to make the order clear.
 - Membership
 - Bitwise
 
-## Notes
-- Some operators return numbers, others return booleans.
-- Operator precedence affects how expressions are evaluated.
+## Rules
 
+1. **Every operator needs the right number of operands.** Most are binary (`a + b`); `not`, unary `-`, and `~` are unary.
+2. **Precedence decides evaluation order**, not left-to-right reading. Roughly: `**` → unary `-` → `* / // %` → `+ -` → comparisons → `not` → `and` → `or`.
+3. **Parentheses override precedence** and are always allowed. When in doubt, add them.
+4. **Most operators are left-associative; `**` is right-associative.** `2 ** 3 ** 2` is `512`, not `64`.
+5. **Operators are type-sensitive.** `+` concatenates strings and lists but raises `TypeError` between a string and a number.
+6. **Comparison and logical operators return booleans; arithmetic operators return numbers.**
 
 ## Common Mistakes
 - Ignoring operator precedence and getting unexpected results.
@@ -35,3 +38,11 @@ When expressions look confusing, add parentheses to make the order clear.
 1. What does operator precedence mean?
 2. When should you add parentheses in an expression?
 3. Give one example of a comparison operator.
+
+## Keep going
+
+<Cards>
+  <Card title="Arithmetic Operators" href="/docs/week2/operators-arithmetic" description="Start here — the maths ones." />
+  <Card title="Comparison Operators" href="/docs/week2/operators-comparison" description="Build the conditions for if statements." />
+  <Card title="Logical Operators" href="/docs/week2/operators-logical" description="Combine conditions with and / or / not." />
+</Cards>
