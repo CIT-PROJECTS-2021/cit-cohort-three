@@ -1,9 +1,8 @@
 ---
 title: Tuples
 description: Use tuples for ordered, immutable collections.
+icon: Parentheses
 ---
-
-# Tuples
 
 Tuples are ordered and immutable collections.
 
@@ -79,6 +78,16 @@ for item in t:
 - Keys in dictionaries (tuples are hashable if they contain only immutable items).
 
 
+## Rules
+
+1. **Tuples are immutable.** `t[0] = 9` raises `TypeError` — there is no `append`, `remove`, or `sort`.
+2. **A one-item tuple needs a trailing comma.** `(1)` is the integer 1; `(1,)` is a tuple.
+3. **The comma makes the tuple, not the parentheses.** `x = 1, 2` is a valid tuple.
+4. **Immutability is shallow.** A list inside a tuple can still be modified.
+5. **Unpacking counts must match exactly.** `a, b = (1, 2, 3)` raises `ValueError`; use `a, *rest = ...` to absorb the extras.
+6. **Tuples can be dictionary keys and set members — lists cannot** — provided every element is itself hashable.
+7. **Tuples have exactly two methods: `count()` and `index()`.**
+
 ## Common Mistakes
 - Forgetting the trailing comma for single‑item tuples.
 - Trying to modify tuple elements.
@@ -89,3 +98,11 @@ for item in t:
 1. How do you create a single‑item tuple?
 2. Are tuples mutable or immutable?
 3. Give a use case for tuples.
+
+## Keep going
+
+<Cards>
+  <Card title="Sets" href="/docs/week2/sets" description="Next: unique, unordered values." />
+  <Card title="Lists" href="/docs/week2/lists" description="The mutable counterpart." />
+  <Card title="Function Arguments" href="/docs/week3/function-arguments" description="Week 3: *args hands you a tuple." />
+</Cards>

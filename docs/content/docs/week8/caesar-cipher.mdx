@@ -1,0 +1,198 @@
+---
+title: Caesar Cipher
+description: Shift every letter by a fixed amount — encrypt it, decrypt it, then break it.
+icon: RotateCcw
+---
+
+The Caesar cipher replaces each letter with the one a fixed number of places
+further along the alphabet. Shift by 3 and `A` becomes `D`, `B` becomes `E`, and
+`Z` wraps around to `C`.
+
+It's named after Julius Caesar, who reportedly used a shift of 3 for military
+messages. It's a **substitution cipher**: each letter is swapped for another,
+consistently.
+
+Unlike the [reverse cipher](/docs/week8/reverse-cipher), this one has a **key** —
+the shift amount.
+
+## How the shift works
+
+```
+alphabet:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+shift 4:   E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
+                                                       ↑
+                                            wraps back to the start
+```
+
+```
+plaintext:   CEASER CIPHER DEMO
+shift:       4
+ciphertext:  GIEWIV GMTLIV HIQS
+```
+
+## The arithmetic
+
+Letters aren't numbers, so you convert, shift, and convert back:
+
+- `ord(char)` gives a character's numeric code — `ord('A')` is `65`, `ord('a')` is `97`
+- `chr(number)` converts back — `chr(65)` is `'A'`
+
+The formula for an uppercase letter:
+
+```python
+chr((ord(char) - 65 + shift) % 26 + 65)
+```
+
+Read it piece by piece:
+
+| Step | Purpose |
+| :- | :- |
+| `ord(char) - 65` | convert `'A'`–`'Z'` to `0`–`25` |
+| `+ shift` | apply the key |
+| `% 26` | wrap around past `Z` back to `A` |
+| `+ 65` | convert `0`–`25` back to a letter code |
+| `chr(...)` | back to a character |
+
+The `% 26` is what makes `Z` wrap to `A` instead of running into punctuation.
+Lowercase works identically with `97` instead of `65`.
+
+## Encryption
+
+```python
+def encrypt(text: str, shift: int) -> str:
+    result = ""
+
+    for char in text:
+        if char.isupper():
+            result += chr((ord(char) - 65 + shift) % 26 + 65)
+        elif char.islower():
+            result += chr((ord(char) - 97 + shift) % 26 + 97)
+        else:
+            result += char          # leave spaces and punctuation alone
+
+    return result
+
+
+text = "CEASER CIPHER DEMO"
+shift = 4
+
+print("Text:  ", text)
+print("Shift: ", shift)
+print("Cipher:", encrypt(text, shift))
+```
+
+**Output**
+
+```
+Text:   CEASER CIPHER DEMO
+Shift:  4
+Cipher: GIEWIV GMTLIV HIQS
+```
+
+<Callout type="info">
+The `else` branch matters. Without it, spaces and punctuation get shifted into
+random characters — and because a space sits below `'A'` in the character table,
+the result comes out mangled rather than merely encrypted.
+</Callout>
+
+## Decryption
+
+Shift the other way. That's the only change:
+
+```python
+def decrypt(text: str, shift: int) -> str:
+    return encrypt(text, -shift)
+
+
+print(decrypt("GIEWIV GMTLIV HIQS", 4))
+# CEASER CIPHER DEMO
+```
+
+Python's `%` returns a non-negative result for a positive divisor, so
+`(-3) % 26` is `23` and the wraparound works with negative shifts too. Written
+out in full it's the same formula with `- shift`:
+
+```python
+def decrypt(text: str, shift: int) -> str:
+    result = ""
+
+    for char in text:
+        if char.isupper():
+            result += chr((ord(char) - 65 - shift) % 26 + 65)
+        elif char.islower():
+            result += chr((ord(char) - 97 - shift) % 26 + 97)
+        else:
+            result += char
+
+    return result
+```
+
+## Breaking it
+
+The Caesar cipher has 25 useful keys. You don't need to be clever — try them all
+and read the output. This is a **brute-force attack**:
+
+```python
+def crack(ciphertext: str) -> None:
+    for shift in range(1, 26):
+        print(f"{shift:2}: {decrypt(ciphertext, shift)}")
+
+
+crack("GIEWIV GMTLIV HIQS")
+```
+
+One of the 25 lines will be readable English. That's the answer.
+
+<Callout type="warn">
+A keyspace of 25 is no keyspace at all. Even a full substitution cipher — where
+each letter maps to an arbitrary other letter, giving 26! ≈ 4×10²⁶ keys — falls
+quickly to frequency analysis, because `e` stays the most common letter no matter
+what you map it to.
+
+For anything real, use the library examples on the
+[Cryptography](/docs/week8/cryptography) page.
+</Callout>
+
+## Rules
+
+1. **Every letter shifts by the same fixed amount** — that amount is the key.
+2. **The alphabet wraps.** `% 26` is what takes `Z` back to `A`.
+3. **Uppercase and lowercase need separate offsets** (65 and 97), or the result is mangled.
+4. **Non-letters must be passed through untouched**, or spaces and punctuation turn into noise.
+5. **Decryption is encryption with the negated shift.**
+6. **Only shifts 1–25 are distinct.** A shift of 26 changes nothing, and 30 is the same as 4.
+7. **25 keys is brute-forceable by hand.** This is a teaching cipher, not security.
+
+## Common Mistakes
+
+- Using `else` for lowercase instead of `elif char.islower()`, so spaces and punctuation get mangled.
+- Leaving out `% 26`, so `Z` shifts past the alphabet into unrelated characters.
+- Mixing up the 65 and 97 offsets between the upper and lower branches.
+- Forgetting that a shift of 26 (or 0) leaves the text unchanged.
+- Treating 25 possible keys as security.
+
+## Practice
+
+1. Encrypt your name with a shift of 7, then decrypt it to confirm.
+2. What happens with a shift of 26? Of 30? Explain using `% 26`.
+3. Write `crack()` and use it to break `"Wkh txlfn eurzq ira"`.
+4. Modify the cipher to handle digits `0`–`9` as well, wrapping with `% 10`.
+5. Write a version that takes a *word* as the key instead of a number (a Vigenère
+   cipher): shift each letter by the corresponding letter of the key, repeating
+   the key as needed.
+
+<Accordions>
+<Accordion title="Answer to question 2">
+A shift of 26 returns the plaintext unchanged — every letter wraps a full circle.
+A shift of 30 is identical to a shift of 4, because `30 % 26 == 4`. Only shifts
+1–25 produce distinct results, which is exactly why brute-forcing it is trivial.
+</Accordion>
+</Accordions>
+
+## Keep going
+
+<Cards>
+  <Card title="Hash Functions" href="/docs/week8/hash-functions" description="Next: one-way transformations." />
+  <Card title="Reverse Cipher" href="/docs/week8/reverse-cipher" description="The previous, simpler cipher." />
+  <Card title="Strings" href="/docs/week2/strings" description="Week 2: the string methods used here." />
+</Cards>

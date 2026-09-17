@@ -1,9 +1,8 @@
 ---
 title: Bitwise Operators
 description: Perform bit-level operations on integers.
+icon: Binary
 ---
-
-# Bitwise Operators
 
 Bitwise operators act on operands as if they were strings of binary digits.
 
@@ -39,6 +38,16 @@ print(x >> 2)  # 2
 Python does not have the `>>>` operator (unsigned right shift).
 
 
+## Rules
+
+1. **Bitwise operators work on integers only.** Applying them to a float raises `TypeError`.
+2. **They operate on the binary representation**, two's complement, with conceptually infinite sign bits.
+3. **`^` is XOR, not exponentiation.** Exponentiation is `**`.
+4. **`~x` equals `-x - 1`**, so `~5` is `-6`.
+5. **`<<` and `>>` shift by whole bits.** A negative shift count raises `ValueError`.
+6. **`x << n` multiplies by `2**n`; `x >> n` floor-divides by `2**n`.**
+7. **Bitwise operators bind tighter than comparisons but looser than arithmetic**, so parenthesise when mixing: `(x & 1) == 0`.
+
 ## Common Mistakes
 - Using bitwise operators when logical operators are intended.
 - Not understanding binary representation before using bitwise ops.
@@ -49,3 +58,10 @@ Python does not have the `>>>` operator (unsigned right shift).
 1. What does `x & y` do?
 2. Why doesn’t Python have `>>>`?
 3. Give one practical use of bitwise ops.
+
+## Keep going
+
+<Cards>
+  <Card title="Strings" href="/docs/week2/strings" description="Next: on to the data types." />
+  <Card title="Operators" href="/docs/week2/operators" description="Back to the overview." />
+</Cards>

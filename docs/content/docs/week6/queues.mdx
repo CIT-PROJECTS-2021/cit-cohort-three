@@ -1,9 +1,8 @@
 ---
 title: Queues (FIFO)
 description: Learn First‑In, First‑Out queues with Python examples.
+icon: ArrowRightLeft
 ---
-
-# Queues (FIFO)
 
 A **queue** is a data structure where the first item added is the first item
 removed. This is called **FIFO**: First‑In, First‑Out.
@@ -37,6 +36,15 @@ print(list(queue))       # ["B", "C"]
 - Print job queues
 - Message processing systems
 
+## Rules
+
+1. **First in, first out.** Items leave in the order they arrived.
+2. **Enqueue and dequeue happen at opposite ends.**
+3. **Dequeuing an empty queue is an error.** Check first, or catch it.
+4. **Use `collections.deque`, not a list.** `deque.popleft()` is O(1); `list.pop(0)` is O(n).
+5. **`append()` adds to the right and `popleft()` removes from the left** — mixing the ends turns your queue into a stack.
+6. **A queue exposes only its two ends.** No indexing, no searching.
+
 ## Common Mistakes
 - Using a list with `pop(0)` for large queues (slow)
 - Forgetting to check if the queue is empty before dequeue
@@ -45,3 +53,10 @@ print(list(queue))       # ["B", "C"]
 1. What does FIFO mean?
 2. What operation removes the front item?
 3. Why is `deque` better than a list for queues?
+
+## Keep going
+
+<Cards>
+  <Card title="Linked Lists" href="/docs/week6/linked-lists" description="Next: nodes pointing at nodes." />
+  <Card title="Stacks" href="/docs/week6/stacks" description="The LIFO counterpart." />
+</Cards>

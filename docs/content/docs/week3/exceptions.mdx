@@ -1,9 +1,8 @@
 ---
 title: Exceptions
 description: Learn how exceptions work and how to handle them safely.
+icon: TriangleAlert
 ---
-
-# Exceptions
 
 Exceptions are runtime errors that stop normal program flow. You can handle
 them with `try` and `except`.
@@ -116,6 +115,17 @@ except ValueError:
     logging.exception("Failed to parse integer")
 ```
 
+## Rules
+
+1. **`try` must be followed by at least one `except`, or by `finally`.**
+2. **Order `except` blocks from most specific to most general.** Only the first match runs, so a broad one first hides the rest.
+3. **Never write a bare `except:`.** It catches `KeyboardInterrupt` and `SystemExit` too. Use `except Exception:` at minimum.
+4. **`else` runs only when no exception was raised; `finally` runs either way** — including when the `try` block returns.
+5. **Custom exceptions must inherit from `Exception`** (directly or indirectly).
+6. **`raise` with no argument is only valid inside an `except` block**, where it re-raises the current exception.
+7. **Catch only what you can actually handle.** Swallowing an exception and continuing with bad data is worse than crashing.
+8. **`except ValueError as e:` binds the exception to `e`**, which is deleted when the block ends.
+
 ## Mini Exercises
 1. Write a function that converts input to `int` and handles errors.
 2. Write a division function that handles divide‑by‑zero.
@@ -131,3 +141,10 @@ except ValueError:
 1. Why is `except:` usually discouraged?
 2. What does `finally` guarantee?
 3. Give a real example of a `ValueError`.
+
+## Keep going
+
+<Cards>
+  <Card title="Week 3 Recap" href="/docs/week3/recap" description="You've finished Week 3 — check yourself." />
+  <Card title="File Handling" href="/docs/week4/file-handling" description="Week 4: where you'll need these constantly." />
+</Cards>

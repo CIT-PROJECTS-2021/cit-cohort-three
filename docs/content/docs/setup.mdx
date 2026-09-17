@@ -1,0 +1,157 @@
+---
+title: Set Up Your Machine
+description: Install Python, choose an editor, and run your first program.
+icon: Download
+---
+
+You need two things: Python itself, and somewhere to write it. Budget about
+twenty minutes.
+
+## 1. Install Python
+
+<Tabs items={['Windows', 'macOS', 'Linux']}>
+<Tab value="Windows">
+Download the installer from [python.org/downloads](https://www.python.org/downloads/).
+
+<Callout type="warn" title="Tick the box">
+On the first screen of the installer, tick **"Add python.exe to PATH"** before
+clicking Install. Missing it is the single most common setup problem on Windows —
+Python installs fine but the `python` command isn't found in the terminal.
+</Callout>
+
+Then open **PowerShell** and check:
+
+```powershell
+python --version
+```
+</Tab>
+<Tab value="macOS">
+macOS ships with an old Python that you should leave alone. Install a current one
+with [Homebrew](https://brew.sh):
+
+```bash
+brew install python
+```
+
+Or download the installer from
+[python.org/downloads](https://www.python.org/downloads/).
+
+Then open **Terminal** and check:
+
+```bash
+python3 --version
+```
+
+On macOS the command is usually `python3`, not `python`.
+</Tab>
+<Tab value="Linux">
+Most distributions include Python already. Check first:
+
+```bash
+python3 --version
+```
+
+If it's missing or older than 3.10:
+
+```bash
+# Debian / Ubuntu
+sudo apt update && sudo apt install python3 python3-pip python3-venv
+
+# Fedora
+sudo dnf install python3 python3-pip
+```
+</Tab>
+</Tabs>
+
+You should see something like `Python 3.12.1`. Any version 3.10 or newer is fine
+for this course.
+
+## 2. Install an editor
+
+[**Visual Studio Code**](https://code.visualstudio.com/) is free, runs everywhere,
+and is what most of this cohort uses. Install it, then add the **Python
+extension** by Microsoft from the Extensions panel (the blocks icon in the left
+bar).
+
+That extension gives you syntax highlighting, error underlining as you type, and
+a Run button.
+
+## 3. Run your first program
+
+<Steps>
+<Step title="Make a folder">
+Create a folder for your course work — `python-course`, anywhere you like — and
+open it in VS Code with **File → Open Folder**.
+</Step>
+<Step title="Create a file">
+New file, named `hello.py`. The `.py` extension is what tells everything it's
+Python.
+</Step>
+<Step title="Write something">
+```python
+print("Hello, world!")
+
+name = input("What's your name? ")
+print(f"Nice to meet you, {name}")
+```
+</Step>
+<Step title="Run it">
+Press the ▶ Run button in the top right, or in a terminal:
+
+```bash
+python hello.py      # Windows
+python3 hello.py     # macOS / Linux
+```
+</Step>
+</Steps>
+
+If you see `Hello, world!` and it asks your name, you're set up. Go to
+[Week 1](/docs/week1).
+
+## Virtual environments
+
+From [Week 9](/docs/week9) onward you'll install packages like `requests`,
+`flask`, and `pandas`. Install them into a **virtual environment** — a per-project
+folder of packages — rather than globally, so projects can't break each other.
+
+```bash
+# create one (do this once per project)
+python3 -m venv .venv
+
+# activate it (do this every time you open a terminal)
+source .venv/bin/activate      # macOS / Linux
+.venv\Scripts\activate         # Windows
+
+# now install things — they go into .venv, not your system
+pip install requests
+```
+
+Your prompt gets a `(.venv)` prefix when it's active. To leave, type
+`deactivate`.
+
+<Callout type="tip">
+Add `.venv/` to your `.gitignore`. Never commit it — it's large, it's
+machine-specific, and `requirements.txt` is how you share dependencies instead:
+
+```bash
+pip freeze > requirements.txt     # record what you installed
+pip install -r requirements.txt   # recreate it elsewhere
+```
+</Callout>
+
+## Common setup problems
+
+| Symptom | Cause and fix |
+| :- | :- |
+| `python: command not found` | On macOS/Linux use `python3`. On Windows, reinstall with "Add to PATH" ticked. |
+| `pip: command not found` | Use `python3 -m pip` instead of `pip`. |
+| `ModuleNotFoundError` after installing | You installed into a different environment than you're running. Activate the venv, then reinstall. |
+| Wrong version runs | Several Pythons installed. `which python3` (or `where python`) shows which one wins. |
+| VS Code underlines valid imports | Wrong interpreter selected. **⌘⇧P** → "Python: Select Interpreter" → pick the `.venv` one. |
+
+## Keep going
+
+<Cards>
+  <Card title="Start Here" href="/docs/start-here" description="How these notes are organised." />
+  <Card title="Week 1" href="/docs/week1" description="Begin the course." />
+</Cards>

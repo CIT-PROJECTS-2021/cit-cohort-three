@@ -1,9 +1,8 @@
 ---
 title: OOP Project Walkthrough
 description: Build a small library system using classes.
+icon: Hammer
 ---
-
-# OOP Project Walkthrough: Library System
 
 We’ll build a tiny library system with `Book`, `Member`, and `Library` classes.
 This shows how objects work together in a realistic way.
@@ -83,7 +82,32 @@ print(library.list_available())
 ['Clean Code']
 ```
 
+## Rules
+
+1. **Give each class one responsibility.** `Book` describes a book; `Library` manages the collection.
+2. **Initialise every attribute in `__init__`**, so an object is never half-built.
+3. **Methods change state through `self`** and return values rather than printing, so they can be tested and reused.
+4. **Validate in the method that owns the data**, and raise rather than print on invalid input.
+5. **Keep display logic out of the model classes.** Build the string in `__str__`; decide when to print it outside.
+6. **Give one class ownership of each collection.** Two classes mutating the same list is where the bugs start.
+
+## Common Mistakes
+
+- Putting every method on `Library` and leaving `Book` and `Member` as bare data holders.
+- Printing inside model methods, so they can't be reused or tested.
+- Forgetting `self.` and quietly creating a local variable instead of updating the object.
+- Letting two classes mutate the same list, so neither one can be trusted.
+- Storing a member's borrowed books as a copy rather than a reference, so returns never register.
+
 ## Mini Exercises
 1. Add a `genre` field to `Book`.
 2. Prevent members from borrowing more than 3 books.
 3. Add a `find_book(title)` method to `Library`.
+
+## Keep going
+
+<Cards>
+  <Card title="Modules" href="/docs/week3/modules" description="Next: splitting this across files." />
+  <Card title="Classes Questions" href="/docs/assignments/classes-questions" description="More practice." />
+  <Card title="Banking Console App" href="/docs/final-project/banking-app" description="The final project, same ideas." />
+</Cards>

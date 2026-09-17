@@ -1,9 +1,8 @@
 ---
 title: Polymorphism
 description: One interface, many implementations.
+icon: Shapes
 ---
-
-# Polymorphism
 
 Polymorphism lets different classes provide the same interface.
 
@@ -34,6 +33,15 @@ Woof
 - Payment processors with the same `pay()` method
 - Drawing shapes with a shared `draw()` method
 
+## Rules
+
+1. **Polymorphism needs a shared method name**, not a shared base class. Python uses duck typing.
+2. **Classes sharing an interface must accept compatible arguments** and return compatible results.
+3. **Calling a method the object doesn't have raises `AttributeError`** — that's the failure mode of duck typing.
+4. **Overriding requires the exact same method name**, spelling and case included.
+5. **Prefer a shared method over `isinstance` checks.** A chain of type tests is polymorphism written by hand.
+6. **Python has no method overloading by signature.** A second `def` of the same name replaces the first; use default or `*args` parameters instead.
+
 ## Common Mistakes
 - Relying on type checks instead of shared interfaces
 - Mixing unrelated behaviors under one method name
@@ -42,3 +50,11 @@ Woof
 1. What does polymorphism allow you to do?
 2. Why is it useful for extensible code?
 3. Give one real‑world example.
+
+## Keep going
+
+<Cards>
+  <Card title="Encapsulation" href="/docs/week3/encapsulation" description="Next OOP pillar." />
+  <Card title="Abstraction" href="/docs/week3/abstraction" description="Closely related — read them together." />
+  <Card title="Inheritance" href="/docs/week3/inheritance" description="How polymorphism usually arrives." />
+</Cards>

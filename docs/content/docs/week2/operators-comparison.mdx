@@ -1,9 +1,8 @@
 ---
 title: Comparison Operators
 description: Compare values and return booleans.
+icon: Equal
 ---
-
-# Comparison Operators
 
 Comparison operators compare values and return `True` or `False`.
 
@@ -35,31 +34,55 @@ print(x >= y)  # False
 print(x <= y)  # True
 ```
 
-## Notes
-- Numbers of different numeric types can be compared (`5` and `5.0`).
-- Strings are compared lexicographically (dictionary order).
-- Tuples are compared element by element from left to right.
+## Comparing Different Types
+
+Numeric types compare across the board, so `5 == 5.0` is `True`.
+
+Strings compare lexicographically — dictionary order, by Unicode code point:
 
 ```python
-print((1, 2, 3) > (1, 2))   # True
-print((1, 2, 3) > (1, 5))   # False
+print("apple" < "banana")   # True
+print("Apple" < "apple")    # True  — uppercase sorts first
 ```
 
-**Use cases**
+Tuples compare element by element, left to right, stopping at the first
+difference:
+
+```python
+print((1, 2, 3) > (1, 2))   # True  — longer, and equal so far
+print((1, 2, 3) > (1, 5))   # False — 2 < 5 decides it
+```
+
+## Use Cases
+
 - Range checks: `0 <= score <= 100`
 - Sorting and ordering data
 
-**Common pitfalls**
-- Comparing strings is case‑sensitive (`"A" < "a"`).
+## Rules
 
+1. **All six return `True` or `False`** and nothing else.
+2. **`==` compares values; `is` compares identity.** They are not interchangeable.
+3. **Comparisons can be chained.** `1 < x < 10` is valid and means `1 < x and x < 10`.
+4. **Ordering comparisons need compatible types.** `"3" > 1` raises `TypeError`; only `==` and `!=` work across unrelated types.
+5. **Strings compare by Unicode code point, left to right.** `"Z" < "a"` is `True`, so case matters when sorting.
+6. **Never test floats with `==`.** Compare with a tolerance: `abs(a - b) < 1e-9`.
 
 ## Common Mistakes
 - Comparing strings without considering case sensitivity.
 - Confusing `==` with `is` for identity.
 - Assuming different types always compare as false.
+- Forgetting string comparison is case-sensitive — `"A" < "a"` is `True`.
 
 
 ## Quick Quiz
 1. What does `==` check?
 2. Give a valid chained comparison.
 3. When should you use `is` instead of `==`?
+
+## Keep going
+
+<Cards>
+  <Card title="Logical Operators" href="/docs/week2/operators-logical" description="Next: combining comparisons." />
+  <Card title="if Statements" href="/docs/week2/if-statements" description="Where comparisons get used." />
+  <Card title="Operators" href="/docs/week2/operators" description="Back to the overview." />
+</Cards>

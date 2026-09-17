@@ -1,6 +1,8 @@
 {
-  "title": "Week 10: Web Scraping Project",
+  "title": "Week 10 · Scraper Project",
+  "icon": "Rss",
   "pages": [
+    "index",
     "rss-scraper-quiz",
     "recap"
   ]

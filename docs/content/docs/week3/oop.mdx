@@ -1,9 +1,8 @@
 ---
 title: Object-Oriented Programming (OOP)
 description: Learn the core ideas of OOP in Python.
+icon: Boxes
 ---
-
-# Object-Oriented Programming (OOP)
 
 OOP models real‑world things as objects with data (attributes) and behavior
 (methods).
@@ -37,6 +36,15 @@ print(pet.speak())
 - A class is the blueprint.
 - An object is the actual thing built from the blueprint.
 
+## Rules
+
+1. **Class names use `CapWords`; methods and attributes use `snake_case`.**
+2. **Every instance method takes `self` as its first parameter.** Omitting it raises `TypeError` on call.
+3. **`self` is passed automatically.** You write `obj.method()`, not `obj.method(obj)`.
+4. **A class must have a body.** Use `pass` if it's empty for now.
+5. **Creating an instance calls `__init__`** if one is defined.
+6. **Each instance has its own attributes; class attributes are shared by every instance.**
+
 ## Mini Exercises
 1. Create a `Car` class with `make` and `year`.
 2. Add a method `describe()` that prints details.
@@ -66,14 +74,10 @@ Continue with:
 - [Encapsulation](/docs/week3/encapsulation)
 - [Abstraction](/docs/week3/abstraction)
 
+## Keep going
 
-## Common Mistakes
-- Confusing a class with an object instance.
-- Forgetting `self` in method definitions.
-- Storing unrelated behavior in one class.
-
-
-## Quick Quiz
-1. What is an object?
-2. What does `self` refer to?
-3. Why use classes at all?
+<Cards>
+  <Card title="Classes" href="/docs/week3/classes" description="Next: the actual syntax." />
+  <Card title="Composition vs Inheritance" href="/docs/week3/composition-vs-inheritance" description="The design question that matters most." />
+  <Card title="OOP Project Walkthrough" href="/docs/week3/oop-project" description="Put it together." />
+</Cards>

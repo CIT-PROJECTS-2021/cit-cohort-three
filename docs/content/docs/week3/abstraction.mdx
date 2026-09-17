@@ -1,9 +1,8 @@
 ---
 title: Abstraction
 description: Hide implementation details behind a simple interface.
+icon: Layers
 ---
-
-# Abstraction
 
 Abstraction hides complex details and exposes only what users need.
 
@@ -33,6 +32,15 @@ Engine started
 - Defining required methods for subclasses
 - Designing consistent interfaces
 
+## Rules
+
+1. **An abstract base class inherits from `ABC`** (`from abc import ABC, abstractmethod`).
+2. **A class with any unimplemented `@abstractmethod` cannot be instantiated** — `TypeError` on the attempt.
+3. **A subclass must implement every abstract method** before it can be instantiated.
+4. **`@abstractmethod` must be the innermost decorator** when stacked with `@property` or `@staticmethod`.
+5. **An abstract method may still have a body**, callable through `super()`.
+6. **Abstraction defines what must exist, not how.** Put the shared contract in the base, the specifics in subclasses.
+
 ## Common Mistakes
 - Instantiating abstract base classes directly
 - Forgetting to implement abstract methods
@@ -41,3 +49,11 @@ Engine started
 1. What does `@abstractmethod` enforce?
 2. Why use an abstract base class?
 3. Can you instantiate `Vehicle` directly?
+
+## Keep going
+
+<Cards>
+  <Card title="OOP Project Walkthrough" href="/docs/week3/oop-project" description="Next: all four pillars at once." />
+  <Card title="Encapsulation" href="/docs/week3/encapsulation" description="The pillar this builds on." />
+  <Card title="Polymorphism" href="/docs/week3/polymorphism" description="Abstraction's usual partner." />
+</Cards>

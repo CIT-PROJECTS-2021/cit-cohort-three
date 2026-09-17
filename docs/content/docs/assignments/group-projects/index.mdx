@@ -1,6 +1,61 @@
 ---
 title: Group Projects
-description: Group project ideas and references.
+description: Four project briefs built by cohort teams, with source and screenshots.
+icon: Users
 ---
 
-# Group Projects
+These were built in teams during the course. Each brief describes what the app
+does, what it's built with, and where the source lives in the repository.
+
+They're all Flask apps talking to an external API or a database, so they exercise
+the same skills as [Week 11](/docs/week11) — pick whichever one interests you.
+
+<Cards>
+  <Card
+    title="Weather App"
+    href="/docs/assignments/group-projects/weather-app"
+    description="Fetch and display weather data for a city. The simplest of the four — start here."
+  />
+  <Card
+    title="URL Shortener"
+    href="/docs/assignments/group-projects/url-shortner"
+    description="Shorten links and redirect them. Flask plus MySQL — the one with real persistence."
+  />
+  <Card
+    title="Currency Converter"
+    href="/docs/assignments/group-projects/currency-converter"
+    description="Convert between currencies using a live exchange-rate API."
+  />
+  <Card
+    title="YouTube Summarizer"
+    href="/docs/assignments/group-projects/youtube-summarizer"
+    description="Pull a video transcript and summarise it. The most ambitious of the four."
+  />
+</Cards>
+
+## What you'll need
+
+All four assume you're comfortable with:
+
+- [Functions](/docs/week3/functions) and [Classes](/docs/week3/classes) — Week 3
+- [CSV and JSON](/docs/week4/csv-and-json) — Week 4, for handling API responses
+- [The TODO API](/docs/week11/todo-api) — Week 11, for the Flask patterns
+
+Set up a [virtual environment](/docs/setup#virtual-environments) per project and
+keep each one's `requirements.txt` up to date.
+
+<Callout type="warn" title="Keep your API keys out of Git">
+Three of these need an API key. Put it in an environment variable or a `.env`
+file listed in `.gitignore` — never hard-code it into a file you commit. A key
+pushed to a public repository is a key someone else is now using.
+</Callout>
+
+## Working as a team
+
+- **Split by feature, not by file.** Two people editing one file conflicts
+  constantly; two people owning separate features don't.
+- **Agree the data shape first.** What does the API layer hand the template? Fix
+  that early and you can work in parallel.
+- **Commit small and often**, with messages that say what changed.
+- **Get the ugliest possible version working end to end first.** A working app
+  you can improve beats three polished pieces that don't connect.

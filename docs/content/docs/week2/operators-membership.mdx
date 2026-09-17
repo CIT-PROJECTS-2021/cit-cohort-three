@@ -1,9 +1,8 @@
 ---
 title: Membership Operators
 description: Test whether a value exists in a sequence or collection.
+icon: Search
 ---
-
-# Membership Operators
 
 Membership operators test whether a value is in a sequence or collection.
 
@@ -32,6 +31,15 @@ print("a" in data)        # False
 For dictionaries, `in` checks keys, not values.
 
 
+## Rules
+
+1. **`in` works on any container or iterable** — string, list, tuple, set, dict, range. On a non-container it raises `TypeError`.
+2. **On a dictionary, `in` tests keys, not values.** Use `value in d.values()` for values.
+3. **On a string, `in` tests substrings**, so `"ell" in "hello"` is `True`.
+4. **`in` is O(1) on sets and dicts, O(n) on lists and tuples.** For repeated lookups over large data, use a [set](/docs/week2/sets).
+5. **`not in` is a single operator**, and is preferred over `not (x in y)`.
+6. **`in` always returns a boolean.**
+
 ## Common Mistakes
 - Checking dictionary values with `in` instead of keys.
 - Forgetting that membership checks are case‑sensitive.
@@ -42,3 +50,11 @@ For dictionaries, `in` checks keys, not values.
 1. What does `"a" in {"a": 1}` return?
 2. How do you check values in a dictionary?
 3. Give one use case for `in`.
+
+## Keep going
+
+<Cards>
+  <Card title="Bitwise Operators" href="/docs/week2/operators-bitwise" description="Next in the operator pages." />
+  <Card title="Sets" href="/docs/week2/sets" description="The fastest collection for 'in' tests." />
+  <Card title="Operators" href="/docs/week2/operators" description="Back to the overview." />
+</Cards>

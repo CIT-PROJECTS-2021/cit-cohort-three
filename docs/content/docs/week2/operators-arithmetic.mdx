@@ -1,9 +1,8 @@
 ---
 title: Arithmetic Operators
 description: Perform math operations with Python arithmetic operators.
+icon: Plus
 ---
-
-# Arithmetic Operators
 
 Arithmetic operators perform mathematical operations.
 
@@ -36,18 +35,12 @@ print(x % y)   # 3
 print(x ** y)  # 50625
 ```
 
-## Notes
-- `/` always returns a float.
-- `%` has the same sign as the divisor.
-- `**` has higher precedence than `*`, `/`, and `+`.
+## Use Cases
 
-**Use cases**
-- Use `//` for pages or groups (e.g., 25 items, 4 per page).
-- Use `%` to check divisibility (e.g., `n % 2 == 0` for even).
-
-**Common pitfalls**
-- `5 / 2` is `2.5`, not `2`. Use `//` for whole numbers.
-- Floating point math can be imprecise for decimals.
+- Use `//` for pages or groups — 25 items, 4 per page.
+- Use `%` to test divisibility — `n % 2 == 0` for even.
+- Use `%` to wrap a value into a range, as the
+  [Caesar cipher](/docs/week8/caesar-cipher) does with `% 26`.
 
 ## Precedence
 1. Parentheses `()`
@@ -60,13 +53,32 @@ print(((5 + 4) / 3) * 2)  # 6.0
 ```
 
 
+## Rules
+
+1. **`/` always produces a `float`.** Use `//` when you want an `int`.
+2. **`%` takes the sign of the right operand** in Python, so `-7 % 3` is `2`, not `-1`.
+3. **`/`, `//`, and `%` raise `ZeroDivisionError` on a zero right operand.**
+4. **`**` is exponentiation, not `^`.** `^` is [bitwise XOR](/docs/week2/operators-bitwise).
+5. **`+` and `*` are overloaded for sequences.** `"ab" * 3` repeats, `[1] + [2]` concatenates — but `"1" + 1` raises `TypeError`.
+6. **Mixing `int` and `float` produces a `float`.**
+
 ## Common Mistakes
 - Using `/` when you need whole numbers (use `//`).
 - Assuming floats are always exact.
 - Forgetting `%` returns the remainder.
+- Expecting `5 / 2` to be `2` — it's `2.5`. Use `//` for whole numbers.
+- Relying on exact decimal results from floating-point arithmetic.
 
 
 ## Quick Quiz
 1. What does `%` return?
 2. What’s the difference between `/` and `//`?
 3. When would you use `**`?
+
+## Keep going
+
+<Cards>
+  <Card title="Comparison Operators" href="/docs/week2/operators-comparison" description="Next: comparing values." />
+  <Card title="Numbers" href="/docs/week1/numbers" description="Week 1: the values you're operating on." />
+  <Card title="Operators" href="/docs/week2/operators" description="Back to the overview." />
+</Cards>

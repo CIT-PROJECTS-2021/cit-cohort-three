@@ -1,6 +1,8 @@
 {
-  "title": "Week 9: Web Scraping",
+  "title": "Week 9 · Web Scraping",
+  "icon": "Globe",
   "pages": [
+    "index",
     "web-scraping",
     "recap"
   ]

@@ -1,9 +1,8 @@
 ---
 title: Composition vs Inheritance
 description: Learn when to use composition instead of inheritance.
+icon: Combine
 ---
-
-# Composition vs Inheritance
 
 Both composition and inheritance help you reuse code, but they solve different
 problems.
@@ -40,8 +39,14 @@ class Car:
 - **Inheritance** shares behavior through a parent class.
 - **Composition** builds behavior using smaller parts.
 
-## Rule of Thumb
-Prefer composition unless inheritance clearly models a real relationship.
+## Rules
+
+1. **Inheritance expresses "is-a"; composition expresses "has-a".** Choose by which sentence is true.
+2. **A subclass must be usable anywhere its parent is.** If it has to break or ignore inherited behaviour, it shouldn't inherit.
+3. **Prefer composition by default.** Reach for inheritance only when the is-a relationship is genuine.
+4. **Keep inheritance shallow.** More than two or three levels becomes hard to follow and change.
+5. **Never inherit purely to reuse code.** That's what composition and plain functions are for.
+6. **Composed objects are ordinary attributes** — set them in `__init__` and delegate to them in methods.
 
 ## Common Mistakes
 - Deep inheritance trees that are hard to change.
@@ -51,3 +56,10 @@ Prefer composition unless inheritance clearly models a real relationship.
 1. When is inheritance a good fit?
 2. What does “has‑a” mean?
 3. Why prefer composition by default?
+
+## Keep going
+
+<Cards>
+  <Card title="Polymorphism" href="/docs/week3/polymorphism" description="Next: one interface, many types." />
+  <Card title="Inheritance" href="/docs/week3/inheritance" description="The approach this page pushes back on." />
+</Cards>

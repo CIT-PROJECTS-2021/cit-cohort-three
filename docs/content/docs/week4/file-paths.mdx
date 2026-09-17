@@ -1,0 +1,237 @@
+---
+title: File Paths and Directories
+description: Build paths and manage directories with pathlib (and the os equivalents).
+icon: FolderTree
+---
+
+[Opening a file](/docs/week4/file-handling) is only half the job. You also need to
+build the path you're opening, check whether it exists, and create the folders
+around it.
+
+Python has two toolkits for this. `os` is the old one; `pathlib` is the modern,
+object-oriented one, and it's what you should reach for. Both are shown below
+because you'll meet `os` in existing code.
+
+## Why not just use strings?
+
+```python
+path = "data" + "/" + "users.csv"     # breaks on Windows
+```
+
+Path separators differ between operating systems, and gluing strings together
+gets fragile fast. `pathlib` handles this for you with the `/` operator:
+
+```python
+from pathlib import Path
+
+path = Path("data") / "users.csv"
+print(path)          # data/users.csv  (or data\users.csv on Windows)
+```
+
+## Inspecting a path
+
+```python
+from pathlib import Path
+
+p = Path("data/reports/summary.csv")
+
+print(p.name)        # summary.csv
+print(p.stem)        # summary
+print(p.suffix)      # .csv
+print(p.parent)      # data/reports
+print(p.exists())    # False, unless it's really there
+print(p.is_file())   # False
+print(p.is_dir())    # False
+```
+
+Two paths that matter often:
+
+```python
+Path.cwd()           # where the program is running from
+Path.home()          # the current user's home directory
+```
+
+## Creating directories
+
+<Tabs items={['pathlib', 'os']}>
+<Tab value="pathlib">
+```python
+from pathlib import Path
+
+Path("newdir").mkdir(exist_ok=True)
+
+# create parents too
+Path("parent/child/grandchild").mkdir(parents=True, exist_ok=True)
+```
+</Tab>
+<Tab value="os">
+```python
+import os
+
+if not os.path.exists("newdir"):
+    os.mkdir("newdir")
+
+os.makedirs("parent/child/grandchild", exist_ok=True)
+```
+</Tab>
+</Tabs>
+
+`exist_ok=True` means "don't complain if it's already there". Without it you get
+a `FileExistsError`. `parents=True` creates any missing directories along the way.
+
+## Listing what's inside
+
+```python
+from pathlib import Path
+
+for item in Path("data").iterdir():
+    print(item)
+
+# only CSV files
+for csv_file in Path("data").glob("*.csv"):
+    print(csv_file)
+
+# every CSV, at any depth
+for csv_file in Path("data").rglob("*.csv"):
+    print(csv_file)
+```
+
+## Renaming and moving
+
+Both are the same operation: give the file a new full path.
+
+```python
+from pathlib import Path
+
+Path("old_name.txt").rename("new_name.txt")            # rename
+Path("report.txt").rename("archive/report.txt")        # move
+```
+
+<Callout type="warn">
+`rename()` overwrites the destination silently on most systems, and the
+destination directory must already exist. Check first:
+
+```python
+destination = Path("archive/report.txt")
+destination.parent.mkdir(parents=True, exist_ok=True)
+if destination.exists():
+    raise FileExistsError(destination)
+Path("report.txt").rename(destination)
+```
+</Callout>
+
+To move across drives or filesystems, use `shutil.move()` instead.
+
+## Deleting
+
+```python
+from pathlib import Path
+
+Path("temp.txt").unlink()                  # delete a file
+Path("temp.txt").unlink(missing_ok=True)   # don't complain if it's gone
+
+Path("emptydir").rmdir()                   # delete an EMPTY directory
+```
+
+`rmdir()` refuses to delete a directory with anything in it. To remove a
+directory and its contents:
+
+```python
+import shutil
+shutil.rmtree("olddir")
+```
+
+<Callout type="warn">
+`shutil.rmtree()` deletes everything underneath, with no confirmation and no
+undo. Print the path before you delete it, at least the first few times.
+</Callout>
+
+## Reading and writing in one line
+
+For small files, `pathlib` skips the `open()` dance entirely:
+
+```python
+from pathlib import Path
+
+Path("note.txt").write_text("Hello", encoding="utf-8")
+content = Path("note.txt").read_text(encoding="utf-8")
+```
+
+For anything large, or anything you read line by line, stick with
+[`with open(...)`](/docs/week4/file-handling).
+
+## Handling the errors
+
+Path operations fail for ordinary reasons, and
+[exceptions](/docs/week3/exceptions) are how you deal with them.
+
+```python
+from pathlib import Path
+
+filename = Path("non_existent_file.txt")
+
+try:
+    content = filename.read_text(encoding="utf-8")
+    print(content)
+except FileNotFoundError:
+    print(f"Error: '{filename}' was not found.")
+except PermissionError:
+    print(f"Error: no permission to read '{filename}'.")
+except OSError as error:
+    print(f"An I/O error occurred: {error}")
+```
+
+Catch the specific exceptions first and the general `OSError` last — Python uses
+the first matching `except` block.
+
+## os and pathlib side by side
+
+| Task | `pathlib` | `os` / `os.path` |
+| :- | :- | :- |
+| Join paths | `Path("a") / "b"` | `os.path.join("a", "b")` |
+| Does it exist? | `p.exists()` | `os.path.exists(p)` |
+| Is it a file? | `p.is_file()` | `os.path.isfile(p)` |
+| Filename | `p.name` | `os.path.basename(p)` |
+| Containing folder | `p.parent` | `os.path.dirname(p)` |
+| Create a directory | `p.mkdir()` | `os.mkdir(p)` |
+| Create with parents | `p.mkdir(parents=True)` | `os.makedirs(p)` |
+| List contents | `p.iterdir()` | `os.listdir(p)` |
+| Rename or move | `p.rename(target)` | `os.rename(p, target)` |
+| Delete a file | `p.unlink()` | `os.remove(p)` |
+| Delete a directory | `p.rmdir()` | `os.rmdir(p)` |
+
+## Rules
+
+1. **Build paths with `Path` and `/`, or `os.path.join` — never string concatenation.** Separators differ across platforms.
+2. **Relative paths resolve against the current working directory**, which is where the program was *launched*, not where the file lives.
+3. **`mkdir()` raises `FileExistsError` unless you pass `exist_ok=True`.**
+4. **`mkdir()` raises `FileNotFoundError` if a parent is missing** — pass `parents=True`.
+5. **`rmdir()` only removes empty directories.** Use `shutil.rmtree()` for the rest, carefully.
+6. **`unlink()` raises `FileNotFoundError` on a missing file** unless you pass `missing_ok=True`.
+7. **`rename()` needs an existing destination directory and may overwrite silently.** Check first.
+8. **`Path` objects are immutable.** Every operation returns a new path.
+9. **A `Path` is not a string.** Most of the standard library accepts one, but older APIs may need `str(path)`.
+
+## Common Mistakes
+
+- Building paths with `+` and `"/"` instead of `Path` or `os.path.join`.
+- Calling `mkdir()` without `exist_ok=True` on a directory that may exist.
+- Expecting `rmdir()` to delete a non-empty directory.
+- Forgetting that relative paths resolve against `Path.cwd()`, which is wherever
+  the program was *launched from*, not where the script file lives.
+
+## Practice
+
+1. Print the name, stem, suffix, and parent of `Path("reports/2024/q1.csv")`.
+2. Create a directory `output/logs`, write a file into it, then list its contents.
+3. Write a function `safe_move(source, destination)` that creates the destination
+   directory if needed and raises if the destination already exists.
+4. Count every `.py` file under the current directory, at any depth.
+
+## Keep going
+
+<Cards>
+  <Card title="CSV and JSON" href="/docs/week4/csv-and-json" description="Next: structured file formats." />
+  <Card title="File Handling" href="/docs/week4/file-handling" description="Back to open(), modes, and reading." />
+  <Card title="Exceptions" href="/docs/week3/exceptions" description="Week 3: handling the failures above." />
+</Cards>

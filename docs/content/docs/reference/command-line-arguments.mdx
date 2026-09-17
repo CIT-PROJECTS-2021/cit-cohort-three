@@ -1,0 +1,290 @@
+---
+title: Command-Line Arguments
+description: Let your scripts take input from the command line with sys.argv and argparse.
+icon: Terminal
+---
+
+`input()` asks questions while the program runs. Command-line arguments are given
+*up front*, when you launch it:
+
+```bash
+python calculator.py add 1 2
+```
+
+That's how every command-line tool you use works, and it's what makes a script
+scriptable — you can call it from another program, or run it on a schedule,
+without a human there to answer prompts.
+
+There are two ways to read them. Start with `sys.argv` to understand the
+mechanism, then use `argparse` for anything real.
+
+## `sys.argv` — the raw list
+
+`sys.argv` is a [list](/docs/week2/lists) of the words typed after `python`. The
+first item is always the script name.
+
+```python
+import sys
+
+print(sys.argv)
+```
+
+```bash
+$ python args.py add 1 2
+['args.py', 'add', '1', '2']
+```
+
+<Callout type="warn">
+Everything in `sys.argv` is a **string**. `sys.argv[2]` above is `'1'`, not `1`.
+Convert before doing arithmetic, or you'll concatenate instead of adding.
+</Callout>
+
+### A small calculator
+
+```python
+import sys
+
+
+def add(a, b):
+    return a + b
+
+
+def multiply(a, b):
+    return a * b
+
+
+if len(sys.argv) < 4:
+    print("usage: python calculator.py <add|mul> <a> <b>")
+    sys.exit(1)
+
+operation = sys.argv[1]
+first = int(sys.argv[2])
+second = int(sys.argv[3])
+
+if operation == "add":
+    print(add(first, second))
+elif operation == "mul":
+    print(multiply(first, second))
+else:
+    print(f"Unknown operation: {operation}")
+    sys.exit(1)
+```
+
+```bash
+$ python calculator.py add 1 2
+3
+```
+
+Two things worth copying from this:
+
+- **Check `len(sys.argv)` before indexing.** Otherwise a user who forgets an
+  argument gets an `IndexError` traceback instead of a helpful message.
+- **`sys.exit(1)`** ends the program with a non-zero code, the convention for
+  "something went wrong". Other programs check that.
+
+### Where `sys.argv` runs out
+
+You now have to write, by hand: optional flags, `--help`, type conversion, error
+messages, default values, and `-v`/`--verbose` both meaning the same thing. That's
+what `argparse` is for.
+
+## `argparse` — the real tool
+
+`argparse` is in the standard library. You declare what your program accepts, and
+it handles parsing, validating, converting, and documenting.
+
+```python
+import argparse
+
+parser = argparse.ArgumentParser(description="A simple calculator")
+
+parser.add_argument("operation", choices=["add", "mul"], help="what to do")
+parser.add_argument("a", type=int, help="first number")
+parser.add_argument("b", type=int, help="second number")
+
+args = parser.parse_args()
+
+if args.operation == "add":
+    print(args.a + args.b)
+else:
+    print(args.a * args.b)
+```
+
+```bash
+$ python calculator.py add 1 2
+3
+```
+
+That's the whole program, and you got a great deal for free:
+
+```bash
+$ python calculator.py --help
+usage: calculator.py [-h] {add,mul} a b
+
+A simple calculator
+
+positional arguments:
+  {add,mul}   what to do
+  a           first number
+  b           second number
+
+options:
+  -h, --help  show this help message and exit
+```
+
+```bash
+$ python calculator.py add one 2
+usage: calculator.py [-h] {add,mul} a b
+calculator.py: error: argument a: invalid int value: 'one'
+```
+
+`type=int` converted the numbers. `choices=` rejected bad operations. `--help`
+wrote itself. None of that is code you maintain.
+
+## Positional vs optional arguments
+
+```python
+parser.add_argument("filename")            # positional — required, by order
+parser.add_argument("--output")            # optional — by name
+parser.add_argument("-o", "--output")      # with a short form
+```
+
+The leading `--` is what makes an argument optional. Access it as
+`args.output` either way — `argparse` strips the dashes.
+
+## The argument types you'll need
+
+```python
+import argparse
+
+parser = argparse.ArgumentParser()
+
+# a value
+parser.add_argument("--count", type=int, default=1,
+                    help="how many times (default: 1)")
+
+# a flag — True when present, False when absent
+parser.add_argument("-v", "--verbose", action="store_true",
+                    help="print more detail")
+
+# required, even though it's optional-style
+parser.add_argument("--input", required=True)
+
+# restricted to a fixed set
+parser.add_argument("--format", choices=["csv", "json"], default="csv")
+
+# accepts several values, collected into a list
+parser.add_argument("--tags", nargs="*", default=[])
+
+args = parser.parse_args()
+
+if args.verbose:
+    print(f"Reading {args.input} as {args.format}")
+```
+
+```bash
+$ python tool.py --input data.csv --format json -v --tags a b c
+```
+
+<Callout type="tip">
+Always set `help=` on every argument and `description=` on the parser. It costs
+one string and turns `--help` into real documentation — including for you, in six
+months.
+</Callout>
+
+## A realistic example
+
+A scraper that takes a URL, an optional output file, and a page count:
+
+```python
+import argparse
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Scrape a listing page and save the results."
+    )
+    parser.add_argument("url", help="the page to scrape")
+    parser.add_argument("-o", "--output", default="results.json",
+                        help="where to write the results (default: results.json)")
+    parser.add_argument("-p", "--pages", type=int, default=1,
+                        help="how many pages to follow (default: 1)")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="print progress")
+
+    args = parser.parse_args()
+
+    for page in range(1, args.pages + 1):
+        if args.verbose:
+            print(f"Fetching page {page} of {args.pages}...")
+        # ... scrape it ...
+
+    print(f"Saved to {args.output}")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+```bash
+$ python scrape.py https://example.com -p 3 -v
+```
+
+The `if __name__ == "__main__":` guard means the file can also be imported as a
+[module](/docs/week3/modules) without running anything. See
+[Modules](/docs/week3/modules) for why.
+
+## Which to use
+
+| | `sys.argv` | `argparse` |
+| :- | :- | :- |
+| Setup | none | a few lines |
+| Type conversion | you write it | `type=int` |
+| `--help` | you write it | automatic |
+| Validation | you write it | `choices=`, `required=` |
+| Optional flags | painful | one line |
+| Use when | a throwaway script, or one argument | anything you'll run twice |
+
+## Rules
+
+1. **`sys.argv[0]` is the script name.** Real arguments start at index 1.
+2. **Every argument is a string.** Convert before doing arithmetic.
+3. **Check `len(sys.argv)` before indexing**, or a missing argument raises `IndexError`.
+4. **In `argparse`, a leading `--` makes an argument optional; no dashes makes it positional.**
+5. **`argparse` converts dashes to underscores.** `--my-flag` is read as `args.my_flag`.
+6. **`type=` converts and validates.** A bad value exits with a usage message instead of raising.
+7. **Flags use `action="store_true"`** and default to `False` — don't give them a `type`.
+8. **`parse_args()` exits the program on error or on `--help`.** It does not return.
+9. **Exit non-zero on failure** with `sys.exit(1)`, so other programs can detect it.
+
+## Common Mistakes
+
+- Forgetting arguments are strings and concatenating instead of adding.
+- Indexing `sys.argv` without checking its length — `IndexError` on a typo.
+- Building your own `--help` and flag parsing instead of using `argparse`.
+- Confusing `args.output` with `args.--output` — the dashes are stripped.
+- Using a dash in an argument name: `--my-flag` becomes `args.my_flag`.
+
+## Practice
+
+1. Write a script that greets the name passed as `sys.argv[1]`, printing a usage
+   message if none is given.
+2. Rewrite it with `argparse`, adding an optional `--greeting` that defaults to
+   `"Hello"`.
+3. Write a word-count tool: takes a filename, plus `--lines`, `--words`, and
+   `--chars` flags, printing only what was asked for.
+4. Add `--output` to one of your [Week 9](/docs/week9/web-scraping) scrapers so
+   the destination file isn't hard-coded.
+
+## References
+
+- [`argparse` tutorial](https://docs.python.org/3/howto/argparse.html)
+- [`sys.argv`](https://docs.python.org/3/library/sys.html#sys.argv)
+
+## Keep going
+
+<Cards>
+  <Card title="Modules" href="/docs/week3/modules" description="Week 3: the __main__ guard used above." />
+  <Card title="Regular Expressions" href="/docs/reference/regex" description="Another useful extra." />
+  <Card title="Glossary" href="/docs/reference/glossary" description="Every term in this course." />
+</Cards>

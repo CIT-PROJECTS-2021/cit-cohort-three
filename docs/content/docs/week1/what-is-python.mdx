@@ -1,9 +1,8 @@
 ---
 title: What Is Python
 description: Learn what Python is, why it is popular, and where it is used.
+icon: CircleQuestionMark
 ---
-
-# What Is Python
 
 Python is a general-purpose programming language created by Guido van Rossum
 and first released in 1991. It emphasizes readability and quick development
@@ -40,15 +39,24 @@ print("Hello, Python!")
 ```
 
 ## Good to Know
-- We will use Python 3 in this course.
-- Python 2 is legacy and should not be used for new projects.
-- You can write Python in any text editor, but a code editor like VS Code helps.
+
+You can write Python in any text editor, but a code editor like VS Code gives you
+syntax highlighting, error underlining, and a run button. See
+[Set Up Your Machine](/docs/setup).
 
 ## Key Terms
 - `interpreter`: program that reads and executes your code.
 - `script`: a file containing Python code, usually with a `.py` extension.
 - `library`: reusable code you can import into your programs.
 
+
+## Rules
+
+1. **Python 3 only.** Python 2 reached end of life in 2020. Every example in this course is Python 3.
+2. **Source files end in `.py`.** That extension is what the interpreter, your editor, and every tool look for.
+3. **Python is interpreted, not compiled.** You run the source file directly; there is no separate build step producing an executable.
+4. **Python is case-sensitive everywhere.** `print` works, `Print` raises `NameError`.
+5. **One statement per line.** Statements end at the newline, not at a semicolon.
 
 ## Common Mistakes
 - Confusing Python with “only for data science”.
@@ -60,3 +68,10 @@ print("Hello, Python!")
 1. Why is Python considered beginner‑friendly?
 2. Name two areas where Python is commonly used.
 3. What is the Python interpreter?
+
+## Keep going
+
+<Cards>
+  <Card title="Python Syntax" href="/docs/week1/python-syntax" description="Next: the rules your code has to follow." />
+  <Card title="Set Up Your Machine" href="/docs/setup" description="Install Python if you haven't yet." />
+</Cards>

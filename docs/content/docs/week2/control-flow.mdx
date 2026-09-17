@@ -1,32 +1,60 @@
 ---
 title: Control Flow
-description: Learn how to control program flow with conditionals and loops.
+description: How Python decides what runs next — and which tool to reach for.
+icon: Split
 ---
 
-# Control Flow
+Control flow is the order your code executes in. By default Python runs one line
+after another, top to bottom. Control flow statements let you break that order:
+run something *only sometimes*, or run it *many times*.
 
-Control flow is the order in which your code executes. Python uses `if`
-statements and loops to decide what runs and when.
+There are only three tools, and choosing between them is most of the skill.
 
 <Callout type="info">
-Most bugs in beginner code come from incorrect conditions or loop logic. Read
-your conditions out loud to confirm they make sense.
+Most bugs in beginner code come from an incorrect condition or loop logic — not
+from syntax. Read your conditions out loud to check they say what you meant.
 </Callout>
 
-## When to Use What
+## Which one do I need?
+
 <Steps>
-<Step title="Use `if` when you’re making a decision">
-Choose between paths (e.g., “if the user is an adult, allow access”).
+<Step title="Making a decision? Use if">
+You have two or more paths and need to pick one. *"If the user is an adult, allow
+access."* → [if Statements](/docs/week2/if-statements)
 </Step>
-<Step title="Use `for` when you have a collection">
-Loop over items in a list, string, or range (e.g., “for each student, print name”).
+<Step title="Have a collection? Use for">
+You already know what you're looping over — a list, a string, a range of numbers.
+*"For each student, print their name."* → [for Loops](/docs/week2/for-loops)
 </Step>
-<Step title="Use `while` when the number of iterations is unknown">
-Repeat until a condition changes (e.g., “keep asking until input is valid”).
+<Step title="Don't know how many times? Use while">
+You repeat until something changes, and you can't say in advance how long that
+takes. *"Keep asking until the input is valid."* → [while Loops](/docs/week2/while-loops)
 </Step>
 </Steps>
 
-## `if` Statements
+Both loops can be steered mid-flight with
+[`break` and `continue`](/docs/week2/break-and-continue).
+
+## The shape of all of them
+
+Every control flow statement follows the same two rules:
+
+1. The header line ends with a colon `:`
+2. The body is **indented** underneath it
+
+```python
+if temperature > 30:
+    print("Hot")      # indented — part of the if
+print("Done")         # not indented — always runs
+```
+
+Python uses indentation where other languages use `{ }`. This isn't a style
+preference; it's the syntax. See [Python Syntax](/docs/week1/python-syntax).
+
+## A quick taste of each
+
+<Tabs items={['if', 'for', 'while']}>
+<Tab value="if">
 ```python
 x = 10
 
@@ -38,27 +66,9 @@ else:
     print("Even or zero")
 ```
 
-**Truthiness basics**
-- `0`, `0.0`, `None`, `""`, `[]`, `{}` are treated as `False`.
-- Everything else is treated as `True`.
-
-```python
-name = ""
-if name:
-    print("Has name")
-else:
-    print("Missing name")
-```
-
-**Use cases**
-- Validating input (age, password length, range checks)
-- Branching logic (different outcomes based on conditions)
-
-**When not to use**
-- Don’t stack many `elif` branches for unrelated cases; consider a dictionary lookup.
-- Don’t compare to `True` or `False` directly (use `if x:`).
-
-## `for` Loops
+Full details: [if Statements](/docs/week2/if-statements)
+</Tab>
+<Tab value="for">
 ```python
 fruits = ["apple", "banana", "cherry"]
 
@@ -66,26 +76,9 @@ for fruit in fruits:
     print(fruit)
 ```
 
-Use `for` when you know what you want to iterate over. Use `while` when you
-don’t know how many iterations you need.
-
-**Common patterns**
-```python
-for i in range(5):
-    print(i)  # 0..4
-
-for index, value in enumerate(fruits):
-    print(index, value)
-```
-
-**Use cases**
-- Iterating lists, strings, dictionaries
-- Running a block a fixed number of times using `range()`
-
-**When not to use**
-- Don’t use `for` if the loop needs to keep running until a condition changes.
-
-## `while` Loops
+Full details: [for Loops](/docs/week2/for-loops)
+</Tab>
+<Tab value="while">
 ```python
 total = 0
 counter = 1
@@ -97,70 +90,30 @@ while counter <= 5:
 print(total)  # 15
 ```
 
-**Input validation example**
-```python
-while True:
-    age = input("Enter your age: ")
-    if age.isdigit():
-        break
-    print("Please enter a number.")
-```
+Full details: [while Loops](/docs/week2/while-loops)
+</Tab>
+</Tabs>
 
-**Use cases**
-- User input loops (keep asking until valid)
-- Repeating until a condition becomes false
+## Rules
 
-**When not to use**
-- Don’t use `while` when a `for` loop would be clearer.
-- Always update the condition inside the loop to avoid infinite loops.
-
-## `break` and `continue`
-```python
-for letter in "Python":
-    if letter == "h":
-        break
-    print(letter)
-```
-
-```python
-for letter in "Python":
-    if letter == "h":
-        continue
-    print(letter)
-```
-
-**Use cases**
-- `break`: stop early when you find what you need
-- `continue`: skip unwanted items
-
-<Callout type="tip">
-If you find yourself using `break` often, consider refactoring into a function
-and using `return` instead for clarity.
-</Callout>
-
-## `for ... else`
-The `else` block runs **only if** the loop completes without `break`.
-
-```python
-targets = ["Ada", "Grace", "Linus"]
-name = "Guido"
-
-for target in targets:
-    if target == name:
-        print("Found")
-        break
-else:
-    print("Not found")
-```
-
+1. **Every control flow header ends with a colon `:`** and owns the indented block beneath it.
+2. **A block must contain at least one statement.** Use `pass` as a placeholder.
+3. **Conditions are evaluated as booleans.** Any value works — see the truthiness rules on [if Statements](/docs/week2/if-statements).
+4. **`for` needs something iterable**; `while` needs something that becomes false. Using the wrong one is legal but usually a sign the logic is off.
+5. **`break` and `continue` are only valid inside a loop.** Using either outside one is a `SyntaxError`.
 
 ## Common Mistakes
-- Forgetting to update the loop variable in a `while` loop.
-- Writing conditions that are always `True` or always `False`.
-- Using `for` when `while` is clearer (or vice versa).
 
+- Forgetting the colon `:` at the end of the header line.
+- Inconsistent indentation inside a block — Python raises `IndentationError`.
+- Forgetting to update the loop variable in a `while` loop, so it never ends.
+- Writing a condition that is always `True` or always `False`.
 
-## Quick Quiz
-1. When should you use a `while` loop instead of a `for` loop?
-2. What does `break` do inside a loop?
-3. What values are considered `False` in Python?
+## Keep going
+
+<Cards>
+  <Card title="if Statements" href="/docs/week2/if-statements" description="Branching and truthiness." />
+  <Card title="for Loops" href="/docs/week2/for-loops" description="Iterate over anything." />
+  <Card title="while Loops" href="/docs/week2/while-loops" description="Repeat until things change." />
+  <Card title="break and continue" href="/docs/week2/break-and-continue" description="Steer a loop mid-flight." />
+</Cards>

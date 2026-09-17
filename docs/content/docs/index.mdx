@@ -1,157 +1,172 @@
 ---
 title: CIT Python Cloud Software Engineering
-description: Comprehensive Python and Cloud Engineering course documentation
+description: A twelve-week path from your first line of Python to a finished project.
+icon: House
 ---
 
-# CIT Python Cloud Software Engineering
+A twelve-week course in Python and software engineering fundamentals, with
+hands-on practice every week. Everything the cohort covered is here — notes,
+examples, exercises, quizzes, and projects.
 
-Welcome to the course documentation. This is a structured, beginner‑friendly path
-to Python and software engineering fundamentals with hands‑on practice each week.
+<Callout title="New here?">
+Read [Start Here](/docs/start-here) first — two minutes on how these notes are
+organised. Then [set up your machine](/docs/setup) and begin
+[Week 1](/docs/week1).
+</Callout>
 
-## Course Objectives
+## What you'll be able to do
 
-By the end of this course, you will:
+By the end of the course you will:
 
-- Master Python programming fundamentals and advanced concepts
-- Understand Object-Oriented Programming (OOP) principles
-- Work with data structures and algorithms
-- Learn file handling and data manipulation
-- Explore cryptography and web scraping
-- Prepare for AWS and Python certifications
+- Write Python confidently — data types, control flow, functions, and error handling
+- Model problems with classes and apply the four OOP principles
+- Implement the core data structures and sorting algorithms from scratch
+- Read and write files, CSV, and JSON
+- Scrape websites and build APIs backed by a database
+- Analyse data with NumPy and Pandas
+- Ship a complete project of your own
 
-## Course Structure
+## The course
 
-The course is organized into weekly modules. Use the sidebar to jump into any
-week, or start from Week 1 and follow in order.
+### Foundations — Weeks 1–4
 
-## Weekly Map
-<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 1</div>
-    <h3 className="mt-2 text-lg font-semibold">Getting Started</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Python basics, syntax, variables, and numbers.
-    </div>
-    <a href="/docs/week1/what-is-python" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Start Week 1 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 2</div>
-    <h3 className="mt-2 text-lg font-semibold">Control Flow & Data Types</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Decisions, loops, operators, and core data structures.
-    </div>
-    <a href="/docs/week2/control-flow" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 2 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 3</div>
-    <h3 className="mt-2 text-lg font-semibold">Advanced Concepts</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Functions, OOP, modules, and exceptions.
-    </div>
-    <a href="/docs/week3/functions" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 3 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 4</div>
-    <h3 className="mt-2 text-lg font-semibold">File Handling</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Read, write, and manage files safely.
-    </div>
-    <a href="/docs/week4/file-handling" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 4 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 6</div>
-    <h3 className="mt-2 text-lg font-semibold">DSA</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Core data structures and sorting algorithms.
-    </div>
-    <a href="/docs/week6/data-structures-and-algorithms" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 6 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 8</div>
-    <h3 className="mt-2 text-lg font-semibold">Cryptography</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Encryption, hashing, and security basics.
-    </div>
-    <a href="/docs/week8/cryptography" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 8 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 9</div>
-    <h3 className="mt-2 text-lg font-semibold">Web Scraping</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Extract data from the web using Python.
-    </div>
-    <a href="/docs/week9/web-scraping" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 9 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 10</div>
-    <h3 className="mt-2 text-lg font-semibold">RSS Scraper</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Build a scraper + API project with SQLAlchemy.
-    </div>
-    <a href="/docs/week10/rss-scraper-quiz" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 10 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 11</div>
-    <h3 className="mt-2 text-lg font-semibold">APIs</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      Design and build CRUD APIs with auth.
-    </div>
-    <a href="/docs/week11/todo-api" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 11 →
-    </a>
-  </div>
-  <div className="rounded-2xl border border-fd-border/80 bg-fd-background/70 p-5">
-    <div className="text-xs uppercase tracking-[0.2em] text-fd-muted-foreground">Week 12</div>
-    <h3 className="mt-2 text-lg font-semibold">Data Analysis</h3>
-    <div className="mt-2 text-sm text-fd-muted-foreground">
-      NumPy and Pandas practice for data work.
-    </div>
-    <a href="/docs/week12/numpy-quiz" className="mt-3 inline-flex text-sm font-semibold text-fd-primary">
-      Explore Week 12 →
-    </a>
-  </div>
-</div>
+<Cards>
+  <Card
+    title="Week 1 · Getting Started"
+    href="/docs/week1"
+    description="What Python is, how its syntax works, variables, and numbers."
+  />
+  <Card
+    title="Week 2 · Control Flow & Data Types"
+    href="/docs/week2"
+    description="Decisions, loops, every operator, and the four core collections."
+  />
+  <Card
+    title="Week 3 · Functions & OOP"
+    href="/docs/week3"
+    description="Functions, classes, the four OOP pillars, modules, and exceptions."
+  />
+  <Card
+    title="Week 4 · File Handling"
+    href="/docs/week4"
+    description="Read and write files, manage paths, and handle CSV and JSON."
+  />
+</Cards>
 
-## Getting Started
+### Computer science — Weeks 5–8
+
+<Cards>
+  <Card
+    title="Week 5 · Consolidation"
+    href="/docs/week5"
+    description="No new material — catch up and practise."
+  />
+  <Card
+    title="Week 6 · Data Structures & Algorithms"
+    href="/docs/week6"
+    description="Stacks, queues, linked lists, and five sorting algorithms."
+  />
+  <Card
+    title="Week 7 · Consolidation"
+    href="/docs/week7"
+    description="Rebuild Week 6 from memory."
+  />
+  <Card
+    title="Week 8 · Cryptography"
+    href="/docs/week8"
+    description="Ciphers, hashing, and the difference between them."
+  />
+</Cards>
+
+### Building real things — Weeks 9–12
+
+<Cards>
+  <Card
+    title="Week 9 · Web Scraping"
+    href="/docs/week9"
+    description="Extract data from websites with requests and BeautifulSoup."
+  />
+  <Card
+    title="Week 10 · Scraper Project"
+    href="/docs/week10"
+    description="An RSS scraper with a database and an HTTP interface."
+  />
+  <Card
+    title="Week 11 · APIs"
+    href="/docs/week11"
+    description="Design and build CRUD APIs with Flask, including auth."
+  />
+  <Card
+    title="Week 12 · Data Analysis"
+    href="/docs/week12"
+    description="NumPy arrays and Pandas dataframes."
+  />
+</Cards>
+
+### Then build something
+
+<Cards>
+  <Card
+    title="Assignments"
+    href="/docs/assignments"
+    description="Exercises, quizzes, and group project briefs."
+  />
+  <Card
+    title="Final Project"
+    href="/docs/final-project/banking-app"
+    description="A complete console banking application."
+  />
+</Cards>
+
+## Reference
+
+<Cards>
+  <Card
+    title="Glossary"
+    href="/docs/reference/glossary"
+    description="Every term in the course, defined and linked to its page."
+  />
+  <Card
+    title="Regular Expressions"
+    href="/docs/reference/regex"
+    description="Pattern matching for text — a cheat sheet you'll come back to."
+  />
+  <Card
+    title="Command-Line Arguments"
+    href="/docs/reference/command-line-arguments"
+    description="Make your scripts take input with sys.argv and argparse."
+  />
+</Cards>
+
+## How to use these notes
 
 <Steps>
-<Step title="Start with Week 1">
-Begin with Python basics and follow the week‑by‑week structure.
+<Step title="Set up your machine">
+Install Python and an editor — [Set Up Your Machine](/docs/setup) walks through
+it. About twenty minutes.
 </Step>
-<Step title="Use the sidebar and search">
-Jump to specific topics quickly using the sidebar and search (⌘K / Ctrl+K).
+<Step title="Follow the weeks in order">
+Each week's Overview page lists what you need first. The **Next** link at the
+bottom of every page takes you through the whole course in sequence.
 </Step>
-<Step title="Practice as you read">
-Each page includes examples, quizzes, and mini exercises to reinforce learning.
+<Step title="Type every example">
+Don't copy and paste. Typing it forces you to read every character.
+</Step>
+<Step title="Do the practice before reading on">
+Every page ends with questions. They're short, and they're where the learning
+actually happens.
+</Step>
+<Step title="Search when you're stuck">
+Press ⌘K (or Ctrl+K) and type. Faster than scrolling the sidebar.
 </Step>
 </Steps>
 
-## Learning Tips
+## External resources
 
-- **Code along**: type every example yourself
-- **Experiment**: change values and see what happens
-- **Build projects**: apply concepts to small real‑world tasks
+- [Python documentation](https://docs.python.org/3/) — the official reference
+- [AWS documentation](https://docs.aws.amazon.com/) — cloud engineering
+- [GitHub repository](https://github.com/CIT-PROJECTS-2021/cit-cohort-three) — all course code and materials
 
-## Additional Resources
+---
 
-- [GitHub Repository](https://github.com/CIT-PROJECTS-2021/cit-cohort-three) - Access all course materials and code
-- [Python Documentation](https://docs.python.org/3/) - Official Python reference
-- [AWS Documentation](https://docs.aws.amazon.com/) - Cloud engineering resources
-
-Ready to begin? Start with [Week 1: What is Python](/docs/week1/what-is-python).
+Ready? [Start Here](/docs/start-here) →

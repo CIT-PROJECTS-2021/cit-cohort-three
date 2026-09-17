@@ -1,0 +1,242 @@
+---
+title: CSV and JSON
+description: Read and write the two structured formats you'll actually be handed.
+icon: FileJson
+---
+
+Plain text files are fine for notes. Real data arrives structured, and almost
+always in one of two shapes: **CSV** (a table) or **JSON** (nested keys and
+values). Both have a module in Python's standard library — nothing to install.
+
+| | CSV | JSON |
+| :- | :- | :- |
+| Shape | flat table, rows and columns | nested objects and arrays |
+| Types | everything is a string | strings, numbers, booleans, null, lists, objects |
+| Comes from | spreadsheets, exports, databases | APIs, config files, JavaScript |
+| Python module | `csv` | `json` |
+
+## CSV
+
+A CSV file is text where each line is a row and commas separate the columns:
+
+```
+Name,Age,City
+Alice,30,New York
+Bob,24,Los Angeles
+```
+
+You *could* split on commas yourself. Don't — a value containing a comma
+(`"Springfield, IL"`) breaks that immediately. The `csv` module handles quoting,
+escaping, and line endings for you.
+
+### Writing a CSV
+
+```python
+import csv
+
+rows = [
+    ["Name", "Age", "City"],
+    ["Alice", 30, "New York"],
+    ["Bob", 24, "Los Angeles"],
+    ["Charlie", 35, "Chicago"],
+]
+
+with open("users.csv", "w", newline="", encoding="utf-8") as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerows(rows)
+```
+
+<Callout type="warn" title="Always pass newline=''">
+Without `newline=""`, Python adds its own line ending on top of the one the `csv`
+module writes, and every other row in your file comes out blank. This applies
+when reading too.
+</Callout>
+
+### Reading a CSV
+
+```python
+import csv
+
+with open("users.csv", newline="", encoding="utf-8") as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        print(row)
+```
+
+**Output**
+
+```
+['Name', 'Age', 'City']
+['Alice', '30', 'New York']
+['Bob', '24', 'Los Angeles']
+['Charlie', '35', 'Chicago']
+```
+
+Note `'30'` — a string, not a number. **CSV has no types.** Convert what you need:
+
+```python
+age = int(row[1])
+```
+
+### Working with headers: `DictReader` and `DictWriter`
+
+Indexing by number (`row[1]`) breaks the moment a column moves. Reading rows as
+[dictionaries](/docs/week2/dictionaries) is more robust and much easier to read:
+
+```python
+import csv
+
+with open("users.csv", newline="", encoding="utf-8") as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        print(row["Name"], "is", row["Age"])
+```
+
+`DictReader` takes the first line as the header automatically. Writing back:
+
+```python
+import csv
+
+people = [
+    {"Name": "Alice", "Age": 30, "City": "New York"},
+    {"Name": "Bob", "Age": 24, "City": "Los Angeles"},
+]
+
+with open("users.csv", "w", newline="", encoding="utf-8") as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=["Name", "Age", "City"])
+    writer.writeheader()
+    writer.writerows(people)
+```
+
+<Callout type="tip">
+Prefer `DictReader`/`DictWriter` over `reader`/`writer` in anything you'll keep.
+</Callout>
+
+## JSON
+
+JSON is the format APIs speak. It nests, and it keeps types.
+
+### Writing a dict to a JSON file
+
+```python
+import json
+
+data = {
+    "name": "Alice Wonderland",
+    "age": 30,
+    "email": "alice@example.com",
+    "isStudent": False,
+    "courses": [
+        {"title": "Python 101", "credits": 3},
+        {"title": "Advanced Python", "credits": 4},
+    ],
+}
+
+with open("user_data.json", "w", encoding="utf-8") as jsonfile:
+    json.dump(data, jsonfile, indent=4)
+```
+
+`indent=4` pretty-prints it. Leave it out and you get one dense line — smaller,
+but unreadable.
+
+### Reading a JSON file
+
+```python
+import json
+
+with open("user_data.json", encoding="utf-8") as jsonfile:
+    data = json.load(jsonfile)
+
+print(data["name"])                    # Alice Wonderland
+print(data["courses"][0]["title"])     # Python 101
+```
+
+What comes back is ordinary Python — dicts, lists, strings, numbers, booleans.
+Navigate it exactly as you would any [dictionary](/docs/week2/dictionaries).
+
+### Strings vs files: the four function names
+
+This trips everyone up once. The `s` means "string":
+
+| Function | Direction | Works on |
+| :- | :- | :- |
+| `json.dump(obj, file)` | Python → JSON | a file |
+| `json.dumps(obj)` | Python → JSON | a string |
+| `json.load(file)` | JSON → Python | a file |
+| `json.loads(text)` | JSON → Python | a string |
+
+You'll use `json.loads()` constantly when [scraping](/docs/week9/web-scraping) or
+[calling APIs](/docs/week11/todo-api), because the response arrives as text.
+
+### How types map
+
+| JSON | Python |
+| :- | :- |
+| `object` | `dict` |
+| `array` | `list` |
+| `string` | `str` |
+| `number` | `int` or `float` |
+| `true` / `false` | `True` / `False` |
+| `null` | `None` |
+
+Anything outside that table — a `datetime`, a `set`, a custom class — raises
+`TypeError` when you try to dump it. Convert to a string or list first.
+
+## Handling the errors
+
+Both formats fail in predictable ways. Catch them:
+
+```python
+import json
+
+try:
+    with open("user_data.json", encoding="utf-8") as jsonfile:
+        data = json.load(jsonfile)
+except FileNotFoundError:
+    print("The file doesn't exist.")
+except json.JSONDecodeError as error:
+    print(f"The file isn't valid JSON: {error}")
+except OSError as error:
+    print(f"Couldn't read the file: {error}")
+```
+
+See [Exceptions](/docs/week3/exceptions) for the full pattern.
+
+## Rules
+
+1. **Open CSV files with `newline=""`**, for reading and writing. Without it you get blank rows on Windows.
+2. **Every value read from a CSV is a string.** Convert before doing arithmetic.
+3. **Never split CSV lines on `,` yourself.** Quoted values containing commas will break it.
+4. **`DictWriter` requires `fieldnames`**, and `writeheader()` must be called explicitly.
+5. **`DictWriter` raises `ValueError` on a key not in `fieldnames`.**
+6. **JSON keys are always strings.** `json.dump({1: "a"})` writes `"1"`, so the key comes back as a string.
+7. **Only JSON-native types can be dumped** — dict, list, str, int, float, bool, None. A `set`, `datetime`, or custom object raises `TypeError`.
+8. **`load`/`dump` take a file; `loads`/`dumps` take a string.** The `s` means string.
+9. **Invalid JSON raises `json.JSONDecodeError`**, which is a subclass of `ValueError`.
+10. **Pass `index=False` to `to_csv`** or you add an unnamed index column on every save.
+
+## Common Mistakes
+
+- Omitting `newline=""` when opening a CSV, producing blank rows.
+- Forgetting CSV values are always strings, then doing maths on `'30'`.
+- Splitting CSV lines on `,` by hand instead of using the `csv` module.
+- Mixing up `json.load` (file) and `json.loads` (string).
+- Trying to `json.dump` an object JSON has no equivalent for.
+
+## Practice
+
+1. Write a list of five dictionaries to a CSV with `DictWriter`, then read it
+   back with `DictReader` and print the total of a numeric column.
+2. Load `user_data.json` and print every course title.
+3. Convert a CSV file to JSON: read it with `DictReader`, write the resulting
+   list with `json.dump`.
+4. Write a function that reads a JSON file and returns `{}` if the file is
+   missing or malformed, instead of crashing.
+
+## Keep going
+
+<Cards>
+  <Card title="Week 4 Recap" href="/docs/week4/recap" description="Check yourself before moving on." />
+  <Card title="Pandas" href="/docs/week12/pandas" description="Week 12: CSV and JSON without the loops." />
+  <Card title="Web Scraping" href="/docs/week9/web-scraping" description="Week 9: where you'll save results like this." />
+</Cards>

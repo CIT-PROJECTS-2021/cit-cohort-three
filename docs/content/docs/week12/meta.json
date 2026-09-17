@@ -1,8 +1,15 @@
 {
-  "title": "Week 12: Data Analysis",
+  "title": "Week 12 · Data Analysis",
+  "icon": "ChartColumn",
   "pages": [
+    "index",
+    "---Learn---",
+    "numpy",
+    "pandas",
+    "---Practice---",
     "numpy-quiz",
     "pandas-quiz",
+    "---Wrap Up---",
     "recap"
   ]
 }

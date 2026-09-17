@@ -1,9 +1,8 @@
 ---
 title: Numbers
 description: Learn numeric types and common numeric operations in Python.
+icon: Hash
 ---
-
-# Numbers
 
 Python has three main numeric types:
 - `int` for whole numbers (e.g. `2`, `-5`)
@@ -63,18 +62,33 @@ print(isinstance(5, int))  # True
 print(round(3.14159, 2))   # 3.14
 ```
 
-## Common Pitfalls
-- `0.1 + 0.2` is not exactly `0.3` because of floating-point precision.
-- Dividing two integers with `/` always returns a float.
+## Rules
 
+1. **`int` has unlimited precision.** Whole numbers never overflow; they grow as large as memory allows.
+2. **`float` does not.** Floats are binary approximations, so `0.1 + 0.2 == 0.3` is `False`. Compare with a tolerance, or use `decimal.Decimal` for money.
+3. **`/` always returns a float**, even for `6 / 3`. Use `//` for whole-number division.
+4. **`//` rounds toward negative infinity**, so `-7 // 2` is `-4`, not `-3`.
+5. **Division by zero raises `ZeroDivisionError`** for both `/` and `//`.
+6. **`bool` is a subclass of `int`.** `True == 1` and `False == 0`, and `True + True` is `2`.
+7. **Numeric types don't mix silently in output types.** `int + float` gives a `float`; converting back with `int()` truncates toward zero rather than rounding.
+8. **Underscores are allowed as digit separators.** `1_000_000` is the same as `1000000`.
 
 ## Common Mistakes
 - Using `/` when you want whole numbers (use `//`).
 - Expecting exact results with floating point decimals.
 - Forgetting that `True` and `False` act like `1` and `0`.
+- `0.1 + 0.2` is not exactly `0.3` because of floating-point precision.
+- Dividing two integers with `/` always returns a float.
 
 
 ## Quick Quiz
 1. What’s the difference between `/` and `//`?
 2. What type is `True` in Python?
 3. Why is `0.1 + 0.2` not exactly `0.3`?
+
+## Keep going
+
+<Cards>
+  <Card title="Week 1 Recap" href="/docs/week1/recap" description="You've finished Week 1 — check yourself." />
+  <Card title="Arithmetic Operators" href="/docs/week2/operators-arithmetic" description="Week 2: doing maths with these." />
+</Cards>

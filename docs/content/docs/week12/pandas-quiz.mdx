@@ -1,56 +1,16 @@
 ---
 title: Pandas Quiz
 description: Practice questions for Pandas dataframes.
+icon: ClipboardCheck
 ---
 
-# Pandas Quiz
-
-<Callout type="info">
-Pandas is built on NumPy and is great for tabular data.
+<Callout type="info" title="Learn it first">
+These questions assume you've read [Pandas](/docs/week12/pandas). Keep it open in
+another tab — every question here is answerable from that page.
 </Callout>
 
-## Quick Tutorial
-```python
-import pandas as pd
-
-df = pd.DataFrame({
-    "name": ["Ada", "Grace", "Linus"],
-    "score": [95, 88, 76],
-})
-print(df.head())
-```
-**Expected output**
-```
-    name  score
-0    Ada     95
-1  Grace     88
-2  Linus     76
-```
-
-### Loading JSON
-```python
-df = pd.read_json("https://jsonplaceholder.typicode.com/albums")
-print(df.head())
-```
-**Expected output**
-```
-   userId  id                                     title
-0       1   1                                     quidem
-1       1   2                                 sunt qui
-2       1   3                          omnis laborum
-3       1   4                       non esse culpa
-4       1   5  eaque aut omnis a
-```
-
-### Filtering
-```python
-high_scores = df[df["score"] >= 80]
-```
-
-### Aggregation
-```python
-print(df["score"].mean())
-```
+Work through these on your own before looking anything up. Write real code and
+run it; don't answer from memory.
 
 ## Question 1
 What is the result of the following code?
@@ -103,14 +63,9 @@ Create a DataFrame from:
 ## References
 - [Pandas](https://pandas.pydata.org/docs/)
 
+## Keep going
 
-## Common Mistakes
-- Forgetting to inspect missing values.
-- Using the wrong axis in `apply`.
-- Not checking DataFrame shape after load.
-
-
-## Quick Quiz
-1. What does `df.count()` return?
-2. How do you load JSON into a DataFrame?
-3. Why is `shape` useful?
+<Cards>
+  <Card title="Week 12 Recap" href="/docs/week12/recap" description="Check yourself before moving on." />
+  <Card title="Pandas" href="/docs/week12/pandas" description="The page these questions come from." />
+</Cards>

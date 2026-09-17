@@ -1,185 +1,113 @@
 ---
 title: Data Structures and Algorithms
-description: Learn core data structures and common sorting algorithms.
+description: What these two words mean, and how to choose between the options.
+icon: Compass
 ---
 
-# Data Structures and Algorithms
+A **data structure** is a way of arranging data. An **algorithm** is a set of
+steps for doing something with it. Every program is some of each.
 
-Data structures organize data; algorithms are step-by-step procedures to solve
-problems. Together, they help you write efficient programs.
+You already know several data structures — a [list](/docs/week2/lists), a
+[dictionary](/docs/week2/dictionaries), a [set](/docs/week2/sets) — and you've
+written algorithms without calling them that. This week names the rest and shows
+how to build them yourself.
 
 <Callout type="info">
-For beginners: first understand **what** a structure does, then **why** it helps
-with certain problems.
+Understand **what** a structure does before worrying about **how fast** it is.
+Performance is the second question; correctness and fit are the first.
 </Callout>
 
-## Data Structures
-Common structures you should know:
-- **Stack**: last-in, first-out (LIFO)
-- **Queue**: first-in, first-out (FIFO)
-- **Linked List**: nodes connected by references
+## The three structures in this week
 
-**Real‑world intuition**
-- Stack: undo history in an editor.
-- Queue: line at a checkout counter.
-- Linked list: train cars connected in order.
+| Structure | Rule | Real-world picture | Used for |
+| :- | :- | :- | :- |
+| [Stack](/docs/week6/stacks) | Last in, first out | a pile of plates | undo history, browser back button, expression evaluation |
+| [Queue](/docs/week6/queues) | First in, first out | a checkout line | task scheduling, printer jobs, messaging |
+| [Linked list](/docs/week6/linked-lists) | Each node points to the next | train cars coupled in order | playlists, anything with heavy insert/remove in the middle |
 
-**Example use cases**
-- Stack: browser back/forward, expression evaluation.
-- Queue: task scheduling, printer jobs, messaging systems.
-- Linked list: implementing a music playlist where you insert/remove often.
+Each has its own page with a full implementation.
 
-<Tabs>
-<Tab value="stack" title="Stack">
-A stack is like a pile of plates. You add to the top and remove from the top.
+## Choosing a built-in
 
-```python
-stack = []
-stack.append(1)
-stack.append(2)
-print(stack.pop())  # 2
-```
-</Tab>
-<Tab value="queue" title="Queue">
-A queue is like a line. The first person in line is served first.
+Most of the time you shouldn't build a structure — you should pick the right
+built-in. This table answers the question you'll actually have:
 
-```python
-from collections import deque
-
-queue = deque()
-queue.append(1)
-queue.append(2)
-print(queue.popleft())  # 1
-```
-</Tab>
-<Tab value="linked-list" title="Linked List">
-A linked list stores items in nodes, each pointing to the next.
-
-```python
-class Node:
-    def __init__(self, value, next_node=None):
-        self.value = value
-        self.next = next_node
-
-head = Node(1, Node(2, Node(3)))
-print(head.value)       # 1
-print(head.next.value)  # 2
-```
-</Tab>
-</Tabs>
-
-## Algorithms
-Common sorting algorithms:
-- **Bubble sort**
-- **Insertion sort**
-- **Selection sort**
-- **Merge sort**
-- **Quick sort**
+| What you need | Reach for | Why |
+| :- | :- | :- |
+| Ordered items, changeable | `list` | the default; fast at the end |
+| Add/remove at **both** ends | `collections.deque` | `list.pop(0)` is slow, `deque.popleft()` isn't |
+| Fast "is this in here?" | `set` | near-instant, regardless of size |
+| Look something up by name | `dict` | same |
+| Items that must never change | `tuple` | safe to share, usable as a dict key |
+| Count occurrences | `collections.Counter` | one line instead of a loop |
 
 <Callout type="tip">
-Use built-in sorting unless you’re learning how algorithms work.
+A `list` works for a stack as-is: `append()` to push, `pop()` to pop. You'll
+still implement one by hand on the [Stacks](/docs/week6/stacks) page, because
+understanding the structure is the point.
 </Callout>
 
-### Example: Bubble Sort (Short)
-```python
-def bubble_sort(nums):
-    for i in range(len(nums) - 1):
-        for j in range(len(nums) - 1 - i):
-            if nums[j] > nums[j + 1]:
-                nums[j], nums[j + 1] = nums[j + 1], nums[j]
-    return nums
+## Algorithms: the sorting family
 
-print(bubble_sort([5, 2, 4, 1]))
-```
+Sorting is where algorithms are usually taught, because five well-known
+approaches solve the same problem in visibly different ways.
 
-**Explanation**
-- Bubble sort repeatedly compares **neighboring** elements and swaps them if they are out of order.
-- After one full pass, the **largest** element ends up at the end of the list.
-- Then it repeats the process on the remaining items, so the unsorted part gets smaller each time.
-- **Analogy:** like bubbles rising to the top of a glass, the biggest number rises to the end after each pass.
+<Cards>
+  <Card title="Sorting Algorithms" href="/docs/week6/sorting" description="Start here — how they compare and which to learn first." />
+  <Card title="Bubble Sort" href="/docs/week6/bubble-sort" description="Swap neighbours until nothing moves." />
+  <Card title="Selection Sort" href="/docs/week6/selection-sort" description="Repeatedly find the smallest." />
+  <Card title="Insertion Sort" href="/docs/week6/insertion-sort" description="Like sorting cards in your hand." />
+  <Card title="Merge Sort" href="/docs/week6/merge-sort" description="Split, sort each half, merge." />
+  <Card title="Quick Sort" href="/docs/week6/quick-sort" description="Partition around a pivot." />
+</Cards>
 
-**Walkthrough (one pass)**
-For `[5, 2, 4, 1]`:
-- Compare `5` and `2` → swap → `[2, 5, 4, 1]`
-- Compare `5` and `4` → swap → `[2, 4, 5, 1]`
-- Compare `5` and `1` → swap → `[2, 4, 1, 5]`
-Now `5` is in its final position.
+<Callout type="warn">
+In real code, use `sorted()` or `list.sort()`. Python's built-in sort is written
+in C, handles every edge case, and is faster than anything you'll write here. You
+learn these five to understand *how* sorting works — not to use them.
+</Callout>
 
-```mermaid
-flowchart LR
-  A[Start pass] --> B{Compare adjacent}
-  B -->|Swap if needed| C[Move to next pair]
-  B -->|No swap| C
-  C --> D{End of pass?}
-  D -->|No| B
-  D -->|Yes| E[Next pass]
-```
+## A word on Big-O
 
-### Example: Insertion Sort (Short)
-```python
-def insertion_sort(nums):
-    for i in range(1, len(nums)):
-        key = nums[i]
-        j = i - 1
-        while j >= 0 and nums[j] > key:
-            nums[j + 1] = nums[j]
-            j -= 1
-        nums[j + 1] = key
-    return nums
+You'll see notation like `O(n²)` on the sorting pages. It describes how the work
+grows as the input grows, ignoring constants:
 
-print(insertion_sort([5, 2, 4, 1]))
-```
+- **O(1)** — same cost regardless of size. Looking up `my_dict["key"]`.
+- **O(n)** — cost grows in step with size. Scanning a list once.
+- **O(n log n)** — the best a general-purpose sort can do. Merge sort.
+- **O(n²)** — doubling the input quadruples the work. Bubble sort.
 
-**Explanation**
-- Insertion sort builds a **sorted section** on the left, one item at a time.
-- It takes the next item and shifts larger items to the right until it finds the correct spot.
-- This is efficient for nearly‑sorted lists because it does minimal movement.
-- **Analogy:** like sorting cards in your hand, you insert each new card into its correct spot.
+For ten items, none of this matters. For ten million, it's the difference between
+a second and a week.
 
-**Walkthrough (first two insertions)**
-For `[5, 2, 4, 1]`:
-- Start with `5` as sorted.
-- Insert `2`: shift `5` right → `[2, 5, 4, 1]`
-- Insert `4`: shift `5` right → `[2, 4, 5, 1]`
+## Rules
 
-```mermaid
-flowchart LR
-  A[Pick next element] --> B{Shift larger items right}
-  B --> C[Insert element]
-  C --> D{More elements?}
-  D -->|Yes| A
-  D -->|No| E[Done]
-```
-
-## When to Use What
-- Use built-ins like `list.sort()` unless you’re learning algorithms.
-- Choose data structures based on access pattern (LIFO, FIFO, random access).
-
-**Quick choices**
-- Need to add/remove from both ends? Use `deque`.
-- Need fast membership tests? Use a `set`.
-- Need ordered key/value storage? Use `dict`.
-
-## Practice
-1. Implement a queue using only a Python list.
-2. Implement a stack with `push`, `pop`, and `peek`.
-3. Sort a list of names using `sorted()` and reverse order.
-
-## Mini Exercises
-1. Given `[3, 1, 4, 1, 5]`, show one pass of bubble sort.
-2. Implement `peek()` for a stack without removing the top item.
-3. Write a function `is_palindrome(text)` using a stack.
+1. **Choose the structure by access pattern.** LIFO → stack, FIFO → queue, lookup by key → dict, membership → set.
+2. **`list.pop(0)` and `list.insert(0, x)` are O(n).** Use `collections.deque` when you need both ends.
+3. **Membership testing is O(1) on sets and dicts, O(n) on lists and tuples.**
+4. **Set and dict members must be hashable.** Lists and dicts cannot be keys.
+5. **Big-O describes growth, not speed.** For small inputs a "worse" algorithm is often faster.
+6. **Use the built-ins in real code.** Implement these structures to learn them, not to ship them.
 
 ## Common Mistakes
-- Re-read the example and trace values step by step.
-- Use small inputs to test your logic first.
-- Add print statements to confirm assumptions.
 
-## Quick Quiz
-1. Explain the main idea in your own words.
-2. Give one practical use case.
-3. Name one common mistake and how to avoid it.
+- Using a list for membership tests on large data, when a set is O(1).
+- Calling `list.pop(0)` in a loop — that's O(n²) overall; use a `deque`.
+- Optimising for Big-O on twenty items, where the constant factors dominate.
+- Implementing a structure by hand in production code instead of using the built-in.
+- Choosing a structure by what's familiar rather than by the access pattern.
 
-## Beginner Tips
-- Focus on understanding **behavior** before worrying about performance.
-- Draw small examples on paper to follow pointers and steps.
+## Practice
+
+1. Which structure would you use for a browser's back button? For a print queue?
+2. You need to check whether a username is taken, from a collection of 100,000.
+   List or set — and why?
+3. Time `list.pop(0)` against `deque.popleft()` on a 100,000-item collection.
+
+## Keep going
+
+<Cards>
+  <Card title="Stacks" href="/docs/week6/stacks" description="Start with the simplest structure." />
+  <Card title="Sorting Algorithms" href="/docs/week6/sorting" description="Or jump straight to the algorithms." />
+  <Card title="Week 6 Recap" href="/docs/week6/recap" description="The checklist for this week." />
+</Cards>

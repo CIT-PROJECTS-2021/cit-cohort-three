@@ -1,0 +1,259 @@
+---
+title: Regular Expressions
+description: A pattern language for matching, searching, and replacing text.
+icon: Regex
+---
+
+A regular expression (regex) is a pattern that describes a set of strings. You
+use it to search text, validate input, extract parts of a string, or replace
+things — all in far less code than the equivalent loops.
+
+The hard part isn't the concept, it's remembering the syntax. This page is a
+reference; keep it open.
+
+```python
+import re
+```
+
+## The five functions you'll use
+
+```python
+import re
+
+text = "Contact us at hello@example.com or sales@example.com"
+
+re.search(r"\w+@\w+\.\w+", text)      # first match, or None
+re.findall(r"\w+@\w+\.\w+", text)     # every match, as a list
+re.match(r"Contact", text)            # only matches at the START of the string
+re.sub(r"\w+@\w+\.\w+", "[email]", text)   # replace
+re.split(r"\s+", text)                # split on a pattern
+```
+
+| Function | Returns | Use for |
+| :- | :- | :- |
+| `re.search()` | first `Match` or `None` | "is this in here, and where?" |
+| `re.findall()` | list of strings | "give me all of them" |
+| `re.match()` | `Match` or `None` | "does it *start* with this?" |
+| `re.sub()` | new string | find and replace |
+| `re.split()` | list of strings | splitting on something `str.split()` can't express |
+
+<Callout type="tip" title="Always use a raw string">
+Write patterns as `r"\d+"`, not `"\d+"`. The `r` prefix stops Python
+interpreting backslashes before the regex engine sees them. Without it, `"\b"`
+becomes a backspace character and your pattern silently stops working.
+</Callout>
+
+## Character classes
+
+| Pattern | Matches |
+| :- | :- |
+| `.` | any character except newline |
+| `\d` | a digit, `0`–`9` |
+| `\D` | anything that isn't a digit |
+| `\w` | a word character: `a`–`z`, `A`–`Z`, `0`–`9`, `_` |
+| `\W` | anything that isn't a word character |
+| `\s` | whitespace: space, tab, newline |
+| `\S` | anything that isn't whitespace |
+| `\b` | a word boundary (between `\w` and non-`\w`) |
+| `\B` | not a word boundary |
+
+## Anchors
+
+| Pattern | Matches |
+| :- | :- |
+| `^` | start of the string (or line, with `re.MULTILINE`) |
+| `$` | end of the string (or line) |
+
+```python
+import re
+
+print(re.search(r"^x", "regex"))        # None — doesn't start with x
+print(re.search(r"s$", "pythonista"))   # matches the final s
+```
+
+**Output**
+
+```
+None
+<re.Match object; span=(8, 9), match='s'>
+```
+
+## Quantifiers
+
+| Pattern | Matches the preceding item |
+| :- | :- |
+| `*` | 0 or more times |
+| `+` | 1 or more times |
+| `?` | 0 or 1 time |
+| `{n}` | exactly n times |
+| `{n,}` | at least n times |
+| `{,n}` | at most n times |
+| `{m,n}` | between m and n times |
+
+### Greedy vs lazy
+
+Quantifiers are **greedy** by default — they match as much as possible. Add `?`
+to make them **lazy**, matching as little as possible.
+
+```python
+import re
+
+print(re.search(r"Py.*n", "Pygmalion"))    # greedy
+print(re.search(r"Py.*?n", "Pygmalion"))   # lazy
+```
+
+**Output**
+
+```
+<re.Match object; span=(0, 9), match='Pygmalion'>
+<re.Match object; span=(0, 3), match='Pyg'>
+```
+
+The greedy version ran to the last `n`; the lazy one stopped at the first.
+
+<Callout type="warn">
+Greediness is the most common source of regex bugs. Extracting HTML tags with
+`<.*>` swallows everything from the first `<` to the last `>`. Use `<.*?>`.
+</Callout>
+
+## Sets
+
+| Pattern | Matches |
+| :- | :- |
+| `[abc]` | one character: `a`, `b`, or `c` |
+| `[^abc]` | one character that is *not* `a`, `b`, or `c` |
+| `[a-z]` | one character in the range `a`–`z` |
+| `[a-zA-Z0-9]` | one letter or digit |
+
+```python
+import re
+
+print(re.search(r"[aeiou]", "regex"))    # first vowel
+print(re.search(r"[^aeiou]", "regex"))   # first non-vowel
+```
+
+**Output**
+
+```
+<re.Match object; span=(1, 2), match='e'>
+<re.Match object; span=(0, 1), match='r'>
+```
+
+Inside `[ ]`, most special characters lose their meaning — `[.]` matches a
+literal dot.
+
+## Groups
+
+Parentheses capture part of a match so you can pull it out separately.
+
+```python
+import re
+
+match = re.search(r"(\d{4})-(\d{2})-(\d{2})", "Due 2024-03-15 sharp")
+
+print(match.group(0))    # 2024-03-15  — the whole match
+print(match.group(1))    # 2024        — the first group
+print(match.groups())    # ('2024', '03', '15')
+```
+
+Name them to avoid counting:
+
+```python
+match = re.search(r"(?P<year>\d{4})-(?P<month>\d{2})", "2024-03-15")
+print(match.group("year"))    # 2024
+```
+
+Other forms:
+
+| Pattern | Meaning |
+| :- | :- |
+| `(...)` | capturing group |
+| `(?:...)` | group without capturing |
+| `a|b` | match `a` or `b` |
+
+## Useful flags
+
+```python
+re.search(r"hello", text, re.IGNORECASE)   # case-insensitive
+re.findall(r"^\w+", text, re.MULTILINE)    # ^ and $ match each line
+re.search(r"a.b", text, re.DOTALL)         # . also matches newline
+```
+
+## Patterns you'll reach for
+
+```python
+r"^\w+@\w+\.\w{2,}$"                       # rough email check
+r"^\d{4}-\d{2}-\d{2}$"                     # ISO date
+r"https?://[^\s]+"                         # a URL in text
+r"^\+?\d[\d\s-]{7,}$"                      # rough phone number
+r"\s+"                                     # any run of whitespace
+```
+
+<Callout type="warn" title="Don't validate emails with regex">
+The pattern above rejects valid addresses and accepts invalid ones. A rough check
+plus a confirmation email is the real answer. The same goes for parsing HTML —
+use [BeautifulSoup](/docs/week9/web-scraping), not a regex.
+</Callout>
+
+## Compiling
+
+If you reuse a pattern — especially in a loop — compile it once:
+
+```python
+import re
+
+email_pattern = re.compile(r"\w+@\w+\.\w+")
+
+for line in lines:
+    if email_pattern.search(line):
+        print(line)
+```
+
+## Rules
+
+1. **Always write patterns as raw strings** — `r"\d+"`. Without the `r`, Python consumes the backslashes first.
+2. **`re.match()` anchors at the start of the string; `re.search()` scans the whole thing.**
+3. **`search`, `match`, and `fullmatch` return `None` on no match.** Check before calling `.group()` or you get `AttributeError`.
+4. **Quantifiers are greedy by default.** Add `?` (`.*?`) to make them lazy.
+5. **Groups are numbered from 1, left to right by opening parenthesis.** `group(0)` is the entire match.
+6. **Most special characters lose their meaning inside `[ ]`.**
+7. **`findall()` returns the groups when the pattern has any**, and the whole match otherwise.
+8. **Compile patterns you reuse**, especially inside loops.
+9. **Don't parse HTML with regex.** Use [BeautifulSoup](/docs/week9/web-scraping).
+
+## Common Mistakes
+
+- Forgetting the `r` prefix on the pattern string.
+- Using greedy `.*` where `.*?` was meant.
+- Using `re.match()` when you wanted `re.search()` — `match` only looks at the start.
+- Forgetting `re.search()` returns `None` on no match, then calling `.group()` on it.
+- Writing an unreadable regex where two lines of string methods would do.
+
+## Practice
+
+1. Extract every number from `"Order 66 shipped 3 items on 2024-01-05"`.
+2. Match a date in `DD/MM/YYYY` form and capture each part separately.
+3. Replace every run of whitespace in a string with a single space.
+4. Find all words starting with a capital letter.
+5. Explain why `re.findall(r"<.*>", "<a><b>")` returns one match, not two — then
+   fix it.
+
+<Accordions>
+<Accordion title="Answer to question 5">
+`.*` is greedy, so it matches from the first `<` all the way to the last `>`,
+giving `['<a><b>']`. Making it lazy with `<.*?>` gives `['<a>', '<b>']`.
+</Accordion>
+</Accordions>
+
+## References
+
+- [`re` module documentation](https://docs.python.org/3/library/re.html)
+- [regex101.com](https://regex101.com/) — test patterns interactively with an explanation of each part
+
+## Keep going
+
+<Cards>
+  <Card title="Strings" href="/docs/week2/strings" description="Often all you need — check before reaching for regex." />
+  <Card title="Web Scraping" href="/docs/week9/web-scraping" description="Where you'll use regex on real text." />
+  <Card title="Command-Line Arguments" href="/docs/reference/command-line-arguments" description="Another useful extra." />
+</Cards>

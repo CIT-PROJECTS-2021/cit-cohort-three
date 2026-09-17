@@ -1,0 +1,158 @@
+---
+title: if Statements
+description: Run code only when a condition is true, and understand truthiness.
+icon: SignpostBig
+---
+
+An `if` statement runs a block of code only when a condition is true. The `elif`
+("else if") and `else` clauses are optional.
+
+## Syntax
+
+```python
+if condition:
+    # runs if condition is true
+elif another_condition:
+    # runs if the previous conditions were all false
+else:
+    # runs if every condition above was false
+```
+
+Python checks the conditions **in order** and runs the body of the *first* one
+that is true. It then skips the rest — even if they would also be true.
+
+## Example
+
+```python
+x = 10
+
+if x < 0:
+    print("Negative")
+elif x % 2 != 0:
+    print("Positive and odd")
+else:
+    print("Even or zero")
+```
+
+**Output**
+
+```
+Even or zero
+```
+
+Trace it: `x < 0` is false, so Python tries the next. `10 % 2` is `0`, so
+`0 != 0` is false too. Both failed, so the `else` body runs.
+
+## Truthiness
+
+A condition doesn't have to be a comparison. Any value works, because Python can
+treat any value as true or false. These values are **falsy**:
+
+| Falsy value | What it is |
+| :- | :- |
+| `False` | the boolean |
+| `0`, `0.0` | zero, in any numeric type |
+| `None` | the "no value" object |
+| `""` | an empty [string](/docs/week2/strings) |
+| `[]`, `()` | an empty [list](/docs/week2/lists) or [tuple](/docs/week2/tuples) |
+| `{}`, `set()` | an empty [dict](/docs/week2/dictionaries) or [set](/docs/week2/sets) |
+
+Everything else is **truthy**. So the Pythonic way to check "do I have anything
+here?" is just:
+
+```python
+name = ""
+
+if name:
+    print("Has name")
+else:
+    print("Missing name")   # this runs
+```
+
+<Callout type="warn">
+Don't write `if x is True:` or `if x == True:`. Write `if x:`. The first two are
+noisier and behave differently for truthy-but-not-`True` values like `1` or
+`"yes"`.
+</Callout>
+
+## Conditions are just expressions
+
+Anything that produces a value can be a condition, which means the
+[comparison](/docs/week2/operators-comparison),
+[logical](/docs/week2/operators-logical), and
+[membership](/docs/week2/operators-membership) operators all belong here:
+
+```python
+age = 22
+member = True
+
+if age >= 18 and member:
+    print("Full access")
+
+if "admin" in ["admin", "editor"]:
+    print("Elevated role")
+```
+
+## Nesting and when to stop
+
+An `if` can live inside another `if`:
+
+```python
+if logged_in:
+    if is_admin:
+        show_admin_panel()
+```
+
+But two levels is usually the limit before it gets hard to read. Combine the
+conditions instead:
+
+```python
+if logged_in and is_admin:
+    show_admin_panel()
+```
+
+<Callout type="tip">
+If you find yourself writing five or more `elif` branches that each map one value
+to one result, a [dictionary](/docs/week2/dictionaries) lookup is usually clearer.
+</Callout>
+
+## Rules
+
+1. **`if` comes first, `elif` in the middle, `else` last.** An `elif` or `else` without a preceding `if` is a `SyntaxError`.
+2. **Only the first true branch runs.** Once a branch matches, the rest are skipped even if they would also be true.
+3. **`else` takes no condition.** `else x > 5:` is a `SyntaxError` — you want `elif`.
+4. **There can be at most one `else`, but any number of `elif`s.**
+5. **These values are falsy:** `False`, `None`, `0`, `0.0`, `""`, `[]`, `()`, `{}`, `set()`. Everything else is truthy.
+6. **Use `=` to assign and `==` to compare.** `if x = 5:` is a `SyntaxError`.
+7. **Test identity with `is` only for `None`, `True`, and `False`.** For values, use `==`.
+
+## Common Mistakes
+
+- Forgetting the colon `:` after the condition.
+- Missing or inconsistent indentation inside the block.
+- Using `=` (assignment) instead of `==` (comparison).
+- Comparing directly to `True` or `False` when `if x:` would do.
+
+## Practice
+
+1. Print `"adult"` if `age >= 18`, otherwise `"minor"`.
+2. Extend it to print `"senior"` if `age >= 65`. Does the order of your branches
+   matter? Try putting the `>= 18` check first and see.
+3. Write a check that prints `"empty"` for `""`, `[]`, `{}`, and `0` using a
+   single `if`.
+
+<Accordions>
+<Accordion title="Hint for question 2">
+Python stops at the first true branch. If `age >= 18` is checked before
+`age >= 65`, a 70-year-old matches the first one and never reaches the second.
+Check the most specific condition first.
+</Accordion>
+</Accordions>
+
+## Keep going
+
+<Cards>
+  <Card title="for Loops" href="/docs/week2/for-loops" description="Next: repeat over a collection." />
+  <Card title="Comparison Operators" href="/docs/week2/operators-comparison" description="The operators that build conditions." />
+  <Card title="Logical Operators" href="/docs/week2/operators-logical" description="Combine conditions with and / or / not." />
+</Cards>

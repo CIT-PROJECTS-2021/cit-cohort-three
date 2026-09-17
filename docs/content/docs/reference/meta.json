@@ -1,0 +1,9 @@
+{
+  "title": "Reference",
+  "icon": "Library",
+  "pages": [
+    "glossary",
+    "regex",
+    "command-line-arguments"
+  ]
+}

@@ -1,9 +1,8 @@
 ---
 title: Sets
 description: Use sets to store unique, unordered values.
+icon: CircleDot
 ---
-
-# Sets
 
 Sets are unordered collections of unique, immutable items. The set itself is
 mutable, so you can add or remove elements.
@@ -67,6 +66,17 @@ f = frozenset([1, 2, 3])
 ```
 
 
+## Rules
+
+1. **Elements are unique.** Adding a duplicate does nothing and raises no error.
+2. **Elements must be hashable.** Adding a list or dict raises `TypeError`; tuples are fine.
+3. **Sets are unordered.** There is no indexing — `s[0]` raises `TypeError` — and no reliable iteration order.
+4. **The set itself is mutable; `frozenset` is not.**
+5. **An empty set is `set()`.** `{}` creates an empty dictionary.
+6. **`remove()` raises `KeyError` when the item is absent; `discard()` does not.**
+7. **Set operators need sets on both sides.** `{1,2} | [3]` raises `TypeError`; the method forms (`.union()`, `.intersection()`) accept any iterable.
+8. **Membership testing is O(1)**, regardless of size.
+
 ## Common Mistakes
 - Expecting sets to preserve order.
 - Adding unhashable types like lists to a set.
@@ -77,3 +87,11 @@ f = frozenset([1, 2, 3])
 1. What makes sets useful for membership checks?
 2. Why can’t lists be in a set?
 3. Difference between `discard` and `remove`?
+
+## Keep going
+
+<Cards>
+  <Card title="Dictionaries" href="/docs/week2/dictionaries" description="Next: key/value pairs." />
+  <Card title="Membership Operators" href="/docs/week2/operators-membership" description="Why sets make 'in' fast." />
+  <Card title="Lists" href="/docs/week2/lists" description="When order matters instead." />
+</Cards>

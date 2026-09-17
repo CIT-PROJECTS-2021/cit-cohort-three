@@ -1,0 +1,237 @@
+---
+title: Hash Functions
+description: One-way digests with hashlib, and what they're genuinely used for.
+icon: Fingerprint
+---
+
+A hash function takes input of any size and produces output of a fixed size,
+called a **digest** or **hash**. The same input always gives the same digest; a
+different input almost always gives a different one.
+
+The crucial property: **you cannot go backwards.** Unlike a
+[cipher](/docs/week8/caesar-cipher), hashing isn't encryption — there's nothing
+to decrypt. The original data is gone.
+
+```python
+import hashlib
+
+print(hashlib.sha256(b"hello").hexdigest())
+# 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+```
+
+That digest is 256 bits, whether the input was one word or a gigabyte film.
+
+## What makes a hash *cryptographic*
+
+Any function mapping data to a number is "a hash". Python's `dict` uses one
+internally to decide where to store keys. But a **cryptographic** hash must also
+be:
+
+| Property | Meaning | Why it matters |
+| :- | :- | :- |
+| Deterministic | same input → same digest, always | you can compare digests |
+| One-way | can't recover the input from the digest | passwords stay secret |
+| Avalanche effect | a one-bit change scrambles the whole digest | tampering is obvious |
+| Collision-resistant | infeasible to find two inputs with the same digest | a digest identifies its input |
+
+### Seeing the avalanche effect
+
+```python
+import hashlib
+
+print(hashlib.sha256(b"hello").hexdigest())
+print(hashlib.sha256(b"hellp").hexdigest())
+```
+
+**Output**
+
+```
+2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+fdd7585e08c4e2afd71dcabdb4636c89d557a3f42db9e2040c8bbd1708aa4ce7
+```
+
+One letter changed and the digests share nothing. There's no partial similarity
+to exploit — which is the point.
+
+### Collisions
+
+Two different inputs producing the same digest is a **collision**. With a 256-bit
+output there are 2²⁵⁶ possible digests, so collisions exist mathematically but
+finding one should be infeasible. When someone finds a practical method, the
+algorithm is dead: this is what happened to MD5 and SHA-1.
+
+## Using `hashlib`
+
+Input must be **bytes**, not a string, so encode first:
+
+```python
+import hashlib
+
+text = "hello"
+data = text.encode("utf-8")
+
+print("SHA-256: ", hashlib.sha256(data).hexdigest())
+print("SHA3-256:", hashlib.sha3_256(data).hexdigest())
+print("BLAKE2b: ", hashlib.blake2b(data).hexdigest())
+```
+
+`.hexdigest()` gives a readable hex string. `.digest()` gives raw bytes, which is
+what you want when storing or transmitting it.
+
+### Which algorithm?
+
+| Algorithm | Use it? |
+| :- | :- |
+| **SHA-256** | Yes — the sensible default |
+| **SHA3-256** | Yes — a different internal design, equally strong |
+| **BLAKE2** | Yes — faster than SHA-256, built into `hashlib` |
+| **SHA-1** | No — broken since 2017 |
+| **MD5** | No — broken since 2004 |
+
+<Callout type="warn">
+MD5 and SHA-1 still appear in tutorials and old code. They're fine for a
+non-security checksum (detecting accidental corruption) and unacceptable for
+anything an attacker could target.
+</Callout>
+
+## What hashing is actually for
+
+### 1. Integrity verification
+
+Download a file, hash it, compare with the published digest. If they match, the
+file arrived intact and unmodified.
+
+```python
+import hashlib
+
+def sha256_file(path: str) -> str:
+    digest = hashlib.sha256()
+    with open(path, "rb") as f:
+        # read in chunks so a huge file doesn't fill memory
+        for chunk in iter(lambda: f.read(8192), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+print(sha256_file("file.txt"))
+```
+
+`update()` can be called repeatedly — the result is the same as hashing the whole
+thing at once. This is how you hash something larger than RAM.
+
+### 2. Password storage
+
+Never store passwords. Store their hashes, and check by hashing what the user
+typed.
+
+But a plain `sha256(password)` is not enough. Hashes are *fast*, so an attacker
+with the digests can try billions of guesses per second, and identical passwords
+produce identical digests — revealing which users share one.
+
+The fix is a **salt** (random data unique per user) and a **slow** algorithm:
+
+```python
+import hashlib
+import os
+
+password = "hunter2".encode("utf-8")
+salt = os.urandom(16)                    # unique, random, stored alongside
+
+hashed = hashlib.pbkdf2_hmac("sha256", password, salt, 100_000)
+
+print(salt.hex())
+print(hashed.hex())
+```
+
+The `100_000` is the iteration count — it deliberately makes each check slow.
+Imperceptible for one login, ruinous for an attacker trying billions.
+
+<Callout type="info">
+The salt isn't secret; store it in the database next to the hash. Its job is to
+ensure two users with the same password get different digests, which defeats
+precomputed "rainbow tables".
+
+In production, prefer a password-specific algorithm — **bcrypt**, **scrypt**, or
+**Argon2** — over PBKDF2. The `passlib` and `argon2-cffi` packages provide them.
+</Callout>
+
+### 3. Unique identifiers
+
+A digest of some content identifies that content. Git does this: every commit's
+ID is a hash of its contents, which is why `3c3be25bc1757ca99aba55d4157596a8ea217698`
+both names a commit and proves what's in it. Bitcoin addresses work the same way.
+
+```python
+import hashlib
+
+def content_id(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:12]
+
+print(content_id("some document contents"))
+```
+
+### 4. Deduplication and lookup
+
+Hash each file in a folder; identical digests mean identical files. Non-crypto
+hashes also power [dictionaries](/docs/week2/dictionaries) — `dict` hashes each
+key to decide where to store it, which is why lookups are near-instant regardless
+of size.
+
+## Hashing vs encryption
+
+| | Hashing | Encryption |
+| :- | :- | :- |
+| Reversible | no | yes, with the key |
+| Output size | fixed | grows with input |
+| Needs a key | no | yes |
+| Use for | passwords, integrity, IDs | messages you need to read later |
+
+Choosing wrong is a real bug: hashing something you need to recover loses it
+permanently, and encrypting passwords means a stolen key exposes every one of
+them.
+
+## Rules
+
+1. **Hashing is one-way.** There is no decrypt step — the input cannot be recovered.
+2. **The same input always produces the same digest**, and the digest is always the same length regardless of input size.
+3. **`hashlib` takes `bytes`, not `str`.** Call `.encode("utf-8")` first or you get `TypeError`.
+4. **Use SHA-256, SHA3-256, or BLAKE2.** MD5 and SHA-1 are broken and unacceptable for security.
+5. **Never store a password as a plain fast hash.** Use a slow, salted algorithm — PBKDF2, bcrypt, scrypt, or Argon2.
+6. **Every password needs its own random salt**, stored alongside the hash. The salt is not secret.
+7. **Compare digests, never the inputs** — and use `hmac.compare_digest()` for secrets to avoid timing leaks.
+8. **Hash large files in chunks with `update()`**, rather than loading them into memory.
+
+## Common Mistakes
+
+- Passing a `str` to `hashlib` instead of `bytes` — encode first.
+- Using MD5 or SHA-1 for anything security-related.
+- Storing passwords with a plain fast hash and no salt.
+- Calling hashing "encryption" — they solve opposite problems.
+- Loading an entire large file into memory instead of using `update()` in chunks.
+
+## Practice
+
+1. Hash two different strings and compare the digests. Then change one character
+   in one of them and compare again.
+2. Hash the same string with SHA-256, SHA3-256, and BLAKE2b. Are the lengths the
+   same? Why or why not?
+3. Write `sha256_file()` and verify it against `shasum -a 256 <file>` in your
+   terminal.
+4. Hash the same password twice with two different random salts. Explain why the
+   digests differ, and why that's desirable.
+5. Time 100,000 plain SHA-256 hashes against a single `pbkdf2_hmac` call with
+   100,000 iterations. What's being bought with that time?
+
+## References
+
+- [`hashlib` documentation](https://docs.python.org/3/library/hashlib.html)
+- [`cryptography` library](https://cryptography.io/en/latest/)
+- [OWASP Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
+
+## Keep going
+
+<Cards>
+  <Card title="Week 8 Recap" href="/docs/week8/recap" description="Check yourself before moving on." />
+  <Card title="Cryptography" href="/docs/week8/cryptography" description="Symmetric and asymmetric encryption." />
+  <Card title="Caesar Cipher" href="/docs/week8/caesar-cipher" description="The reversible counterpart." />
+</Cards>

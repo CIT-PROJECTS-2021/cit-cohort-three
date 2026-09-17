@@ -1,9 +1,8 @@
 ---
 title: RSS Scraper Quiz
 description: Build an RSS scraper and store results with SQLAlchemy.
+icon: Rss
 ---
-
-# RSS Scraper Project (Tutorial)
 
 This tutorial shows how to scrape an RSS feed, store items in a database, and
 serve them via a simple API.
@@ -119,6 +118,17 @@ with Session(engine) as session:
 ## Scheduling Updates
 Run the scraper on a schedule (e.g., every hour) using cron or a task scheduler.
 
+## Rules
+
+1. **An RSS feed is XML, not HTML.** Parse it with an XML parser.
+2. **Define the model before creating the database.** Changing a model afterwards does not alter an existing table — you need a migration or a fresh database.
+3. **Every SQLAlchemy model needs a primary key.**
+4. **Enforce uniqueness in the database**, with a unique constraint on the article URL or GUID. Checking in Python alone races.
+5. **Commit the session or nothing is saved**, and roll back on failure.
+6. **Close or scope your sessions.** A leaked session holds a connection open.
+7. **Store timestamps in UTC.** Convert for display only.
+8. **Never put credentials in the source.** Read them from the environment.
+
 ## Mini Exercises
 1. Add a `published_at` column if the feed includes it.
 2. Avoid duplicates by checking if `link` already exists.
@@ -140,14 +150,10 @@ Run the scraper on a schedule (e.g., every hour) using cron or a task scheduler.
 - [SQLAlchemy](https://docs.sqlalchemy.org/)
 - [Flask](https://flask.palletsprojects.com/)
 
+## Keep going
 
-## Common Mistakes
-- Parsing XML without handling missing fields.
-- Inserting duplicate items into the database.
-- Skipping error handling on HTTP requests.
-
-
-## Quick Quiz
-1. What is RSS used for?
-2. Why should you handle missing fields?
-3. What does `/cbs_news` return?
+<Cards>
+  <Card title="Week 10 Recap" href="/docs/week10/recap" description="Check yourself before moving on." />
+  <Card title="TODO API" href="/docs/week11/todo-api" description="Week 11: design the API properly." />
+  <Card title="Web Scraping" href="/docs/week9/web-scraping" description="Week 9: the technique behind this." />
+</Cards>

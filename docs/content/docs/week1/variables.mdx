@@ -1,9 +1,8 @@
 ---
 title: Variables
 description: Learn how variables work in Python and how to name them.
+icon: Tag
 ---
-
-# Variables
 
 Python is dynamically typed, which means you do not declare variable types.
 A variable is created the moment you assign a value to a name.
@@ -17,12 +16,6 @@ age = 37
 Dynamic typing means a variable can point to values of different types over
 time, but you should avoid confusing changes.
 </Callout>
-
-## Naming Rules
-- Must start with a letter or underscore.
-- Cannot start with a number.
-- May contain letters, numbers, and underscores.
-- Case-sensitive: `age`, `Age`, and `AGE` are different.
 
 ## Good Naming
 ```python
@@ -56,6 +49,17 @@ print(f"The temperature in {city} is {temperature}C.")
 ```
 
 
+## Rules
+
+1. **A name must start with a letter or an underscore.** `_total` and `total` are fine.
+2. **A name cannot start with a digit.** `2fast` is a `SyntaxError`; `fast2` is fine.
+3. **A name may contain only letters, digits, and underscores.** No spaces, hyphens, or punctuation — `user-name` is read as `user` minus `name`.
+4. **A name cannot be a Python keyword.** `class`, `for`, `if`, `return`, `import`, `lambda`, `None`, `True`, `False` and the rest are reserved. Run `import keyword; print(keyword.kwlist)` for the full list.
+5. **Names are case-sensitive.** `age`, `Age`, and `AGE` are three different variables.
+6. **A variable must be assigned before it is used.** Reading a name that was never assigned raises `NameError`.
+7. **Assignment creates the variable.** There is no separate declaration, and no type is declared — the value carries the type.
+8. **The name goes on the left of `=`, the value on the right.** `5 = x` is a `SyntaxError`.
+
 ## Common Mistakes
 - Using vague names like `x1`, `data2`, `temp` everywhere.
 - Changing a variable’s type mid‑program and getting confused.
@@ -66,3 +70,11 @@ print(f"The temperature in {city} is {temperature}C.")
 1. What is the difference between a variable name and a value?
 2. Why are `age`, `Age`, and `AGE` different?
 3. Give one example of a good variable name.
+
+## Keep going
+
+<Cards>
+  <Card title="Numbers" href="/docs/week1/numbers" description="Next: the values variables hold." />
+  <Card title="Strings" href="/docs/week2/strings" description="Week 2: text values." />
+  <Card title="Python Syntax" href="/docs/week1/python-syntax" description="Back to naming and indentation rules." />
+</Cards>

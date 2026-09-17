@@ -1,9 +1,8 @@
 ---
 title: Dictionaries
 description: Store key/value pairs with Python dictionaries.
+icon: BookOpen
 ---
-
-# Dictionaries
 
 Dictionaries store key/value pairs. Keys must be unique and immutable.
 
@@ -76,6 +75,18 @@ print("Jack" in person.values())  # True
 ```
 
 
+## Rules
+
+1. **Keys must be unique.** Assigning an existing key overwrites its value rather than adding a second entry.
+2. **Keys must be hashable.** Strings, numbers, and tuples work; lists, dicts, and sets raise `TypeError`.
+3. **Values have no restrictions** — any object, including other dicts and lists.
+4. **`d[key]` raises `KeyError` when the key is missing; `d.get(key)` returns `None`** (or a default you supply).
+5. **`in` tests keys, not values.** Use `value in d.values()` for values.
+6. **Insertion order is preserved** from Python 3.7 onward.
+7. **Iterating a dict yields keys.** Use `.items()` for key/value pairs and `.values()` for values.
+8. **Deleting a missing key raises `KeyError`.** `pop(key, default)` is the safe form.
+9. **Never add or remove keys while iterating** — it raises `RuntimeError`.
+
 ## Common Mistakes
 - Assuming `in` checks values instead of keys.
 - Using mutable types as keys.
@@ -86,3 +97,11 @@ print("Jack" in person.values())  # True
 1. What does `dict.get` return if key is missing?
 2. Why must keys be immutable?
 3. Give one use case for dictionaries.
+
+## Keep going
+
+<Cards>
+  <Card title="Week 2 Recap" href="/docs/week2/recap" description="You've finished Week 2 — check yourself." />
+  <Card title="CSV and JSON" href="/docs/week4/csv-and-json" description="Week 4: JSON is dictionaries all the way down." />
+  <Card title="Function Arguments" href="/docs/week3/function-arguments" description="Week 3: **kwargs hands you a dict." />
+</Cards>

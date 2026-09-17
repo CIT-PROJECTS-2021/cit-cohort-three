@@ -1,9 +1,8 @@
 ---
 title: Modules
 description: Learn how to organize code using modules and import them.
+icon: Package
 ---
-
-# Modules
 
 A module is a Python file that contains code you can reuse (functions, classes,
 variables). Modules help you split large programs into manageable pieces.
@@ -68,6 +67,18 @@ import sys
 print(sys.path)
 ```
 
+## Rules
+
+1. **A module is a `.py` file; its module name is the filename without the extension.**
+2. **Module filenames must be valid identifiers** — letters, digits, underscores, not starting with a digit. A hyphen makes the file unimportable.
+3. **Never name a file after a standard library module** (`math.py`, `random.py`, `json.py`). Yours shadows the real one.
+4. **A module's top-level code runs once, on first import.** Later imports reuse the cached module.
+5. **Python searches `sys.path`**, starting with the script's own directory. A module that isn't there raises `ModuleNotFoundError`.
+6. **`import x` requires `x.name`; `from x import name` brings the name in directly.**
+7. **Avoid `from x import *`.** It hides where names came from and silently overwrites existing ones.
+8. **Guard script-only code with `if __name__ == "__main__":`** so importing the file doesn't run it.
+9. **Circular imports fail.** If two modules import each other, move the shared part into a third.
+
 ## Mini Exercises
 1. Create `math_tools.py` with a function `square(n)`.
 2. Import it and call `square(5)` from another file.
@@ -83,14 +94,10 @@ print(sys.path)
 2. How do you rename a module import?
 3. Why avoid `import *`?
 
+## Keep going
 
-## Common Mistakes
-- Using `from module import *` and causing name collisions.
-- Naming your file the same as a standard module (e.g., `math.py`).
-- Forgetting to save a module before importing it.
-
-
-## Quick Quiz
-1. What is a module?
-2. Why avoid `import *`?
-3. How do you rename an import?
+<Cards>
+  <Card title="Exceptions" href="/docs/week3/exceptions" description="Next: handling errors deliberately." />
+  <Card title="Command-Line Arguments" href="/docs/reference/command-line-arguments" description="Reference: the __main__ guard." />
+  <Card title="Functions" href="/docs/week3/functions" description="What you're organising into modules." />
+</Cards>
