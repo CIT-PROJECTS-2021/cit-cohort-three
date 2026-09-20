@@ -1,0 +1,122 @@
+---
+title: Strings
+description: Work with text using Python strings.
+icon: Type
+---
+
+Strings are sequences of characters. In Python, strings are Unicode by default.
+
+<Callout type="info">
+Strings are **immutable**. Any “change” creates a new string.
+</Callout>
+
+## Creating Strings
+```python
+single = 'Hello'
+double = "Hello"
+multi = """Hello,
+world"""
+```
+
+## Indexing and Slicing
+```python
+text = "Python"
+
+print(text[0])    # P
+print(text[-1])   # n
+print(text[1:4])  # yth
+```
+
+If you go out of range, Python raises an `IndexError`.
+
+**Slicing tip**
+```python
+text = "abcdef"
+print(text[:3])   # abc
+print(text[3:])   # def
+print(text[::2])  # ace
+```
+
+Slicing has a few rules worth knowing properly, especially the negative-step
+ones. [Slicing](/docs/week3/slicing) covers all of them.
+
+## Immutability
+Strings are immutable, so you cannot change a character in place.
+
+```python
+text = "Hello"
+# text[0] = "J"  # TypeError
+```
+
+## Common Operations
+```python
+greeting = "Hello" + " " + "World"
+echo = "Hi" * 3
+```
+
+## Membership and Iteration
+```python
+if "World" in greeting:
+    print("Found")
+
+for ch in "Hi":
+    print(ch)
+```
+
+## Formatting
+```python
+name = "Ada"
+age = 28
+print(f"{name} is {age} years old.")
+```
+
+```python
+print("{} {}".format("Hello", "World"))
+```
+
+**When to use**
+- Prefer f‑strings for readability.
+- Use `.format()` when you need dynamic field names.
+
+## Useful Methods
+```python
+text = "  Hello World  "
+
+print(text.lower())
+print(text.upper())
+print(text.strip())
+print(text.replace("World", "Python"))
+print(text.split())
+```
+
+
+## Rules
+
+1. **Strings are immutable.** `text[0] = "J"` raises `TypeError`; every "change" returns a new string.
+2. **Indexing starts at 0**, and negative indexes count from the end: `text[-1]` is the last character.
+3. **An out-of-range index raises `IndexError`, but an out-of-range slice does not.** `"abc"[9]` errors; `"abc"[1:99]` returns `"bc"`.
+4. **A slice excludes its end index.** `text[1:4]` gives characters 1, 2, and 3.
+5. **Quotes must match.** Open with `'` and close with `'`; use the other style or `\` to include a quote.
+6. **`+` only concatenates strings.** `"age: " + 30` raises `TypeError`; convert with `str()` or use an f-string.
+7. **An f-string needs the `f` prefix.** Without it, `"{name}"` is the literal text.
+8. **Strings are Unicode.** Encoding to bytes with `.encode()` is required before hashing or writing in binary mode.
+
+## Common Mistakes
+- Trying to modify a string in place.
+- Forgetting that slicing end index is exclusive.
+- Mixing single and double quotes without escaping.
+
+
+## Quick Quiz
+1. What does `text[1:4]` return?
+2. Why are strings immutable?
+3. When would you use f‑strings?
+
+## Keep going
+
+<Cards>
+  <Card title="Lists" href="/docs/week3/lists" description="Next: ordered, changeable collections." />
+  <Card title="Slicing" href="/docs/week3/slicing" description="[start:stop:step] in full, including negative steps." />
+  <Card title="Regular Expressions" href="/docs/reference/regex" description="Reference: pattern matching on text." />
+  <Card title="f-strings" href="/docs/week1/variables" description="Week 1: formatting values into text." />
+</Cards>

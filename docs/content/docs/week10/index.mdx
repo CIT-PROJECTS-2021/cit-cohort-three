@@ -1,32 +1,38 @@
 ---
 title: Overview
-description: Week 10 — build an RSS scraper backed by a database and served over HTTP.
-icon: Rss
+description: Week 10. Designing and building CRUD APIs with Flask.
+icon: Webhook
 ---
 
-Week 9 was the technique. This week is the project: a scraper that runs on a
-schedule, stores what it finds, and serves it back out.
+Most of the data you'll ever want is behind an API, and most of the software
+you'll ever write will expose one. This week you build both sides of that idea:
+resources, methods, status codes, and auth.
 
 <Callout title="Before you start">
-You need [Web Scraping](/docs/week9/web-scraping) and
-[Classes](/docs/week3/classes) — SQLAlchemy models are classes.
+You need [Classes](/docs/week5/classes) for the SQLAlchemy models,
+[CSV and JSON](/docs/week6/csv-and-json) for the payloads, and
+[Hash Functions](/docs/week9/hash-functions) for storing passwords.
 </Callout>
 
 ## What you'll learn
 
-- Parse XML feeds with `lxml`
-- Model rows as Python classes with SQLAlchemy
-- Avoid inserting the same article twice
-- Serve stored data from a small Flask app
-- Run the scraper on a schedule
+- Map CRUD operations onto HTTP methods and status codes
+- Define models with SQLAlchemy and serialise them to JSON
+- Test endpoints with `curl` and an HTTP client
+- Add registration and login, storing passwords the way Week 9 taught you
 
 ## Pages in this week
 
 <Cards>
   <Card
-    title="RSS Scraper Project"
-    href="/docs/week10/rss-scraper-quiz"
-    description="Step-by-step build: fetch, parse, store, serve, schedule."
+    title="TODO API"
+    href="/docs/week10/todo-api"
+    description="Build a full CRUD API with Flask and SQLite, step by step."
+  />
+  <Card
+    title="API Quiz"
+    href="/docs/week10/api-quiz"
+    description="Design a Tasks API with authentication, on your own this time."
   />
 </Cards>
 
@@ -36,4 +42,5 @@ You need [Web Scraping](/docs/week9/web-scraping) and
 
 ## What's next
 
-[Week 11](/docs/week11) — designing the API properly this time.
+[Week 11](/docs/week11) covers what to do when there is no API: scrape the page
+and build your own.

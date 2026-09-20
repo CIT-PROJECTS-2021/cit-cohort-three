@@ -5,7 +5,7 @@ icon: Grid3x3
 ---
 
 NumPy gives Python a new type: the **array**. It looks like a
-[list](/docs/week2/lists) but behaves very differently — it holds one type of
+[list](/docs/week3/lists) but behaves very differently. It holds one type of
 number, has a fixed shape, and does arithmetic on every element at once.
 
 ```bash
@@ -66,23 +66,23 @@ np.array([[1, 2], [3, 4]])       # 2D, from nested lists
 
 np.zeros(5)                      # [0. 0. 0. 0. 0.]
 np.ones((2, 3))                  # 2 rows, 3 columns of 1.0
-np.arange(0, 10, 2)              # [0 2 4 6 8]  — like range()
-np.linspace(0, 1, 5)             # [0. 0.25 0.5 0.75 1.]  — 5 evenly spaced
+np.arange(0, 10, 2)              # [0 2 4 6 8]  (like range())
+np.linspace(0, 1, 5)             # [0. 0.25 0.5 0.75 1.]  (5 evenly spaced)
 np.random.rand(3, 3)             # 3x3 of random floats in [0, 1)
 np.random.randint(1, 10, (4, 4)) # 4x4 of random ints from 1 to 9
 ```
 
 ## Shape
 
-Every array has a **shape** — a tuple of its size in each dimension.
+Every array has a **shape**, a tuple of its size in each dimension.
 
 ```python
 arr = np.array([[1, 2, 3], [4, 5, 6]])
 
-print(arr.shape)    # (2, 3)  — 2 rows, 3 columns
-print(arr.ndim)     # 2       — number of dimensions
-print(arr.size)     # 6       — total elements
-print(arr.dtype)    # int64   — the type of every element
+print(arr.shape)    # (2, 3)  2 rows, 3 columns
+print(arr.ndim)     # 2       number of dimensions
+print(arr.size)     # 6       total elements
+print(arr.dtype)    # int64   the type of every element
 ```
 
 `shape` is the single most useful attribute when debugging. If an operation
@@ -93,7 +93,7 @@ fails, print the shapes first.
 Both change an array's shape. The difference is what happens when the sizes don't
 match.
 
-### `reshape` — same data, new shape
+### `reshape`: same data, new shape
 
 ```python
 arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -118,7 +118,7 @@ arr.reshape(3, -1)     # 3 rows, NumPy computes 3 columns
 arr.reshape(-1)        # flatten back to 1D
 ```
 
-### `resize` — force a shape, padding or truncating
+### `resize`: force a shape, padding or truncating
 
 ```python
 arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -141,7 +141,7 @@ print(np.resize(arr, (4, 3)))    # repeats from the start to fill
 
 <Callout type="warn">
 `np.resize` silently discards or repeats data. `reshape` raises an error when the
-sizes don't match — which is almost always what you want, because a size mismatch
+sizes don't match, which is almost always what you want, because a size mismatch
 usually means a bug upstream. Reach for `reshape`.
 </Callout>
 
@@ -150,13 +150,13 @@ usually means a bug upstream. Reach for `reshape`.
 ```python
 arr = np.array([[1, 2, 3], [4, 5, 6]])
 
-print(arr[0, 1])     # 2       — row 0, column 1
-print(arr[0])        # [1 2 3] — the whole first row
-print(arr[:, 1])     # [2 5]   — the whole second column
+print(arr[0, 1])     # 2       row 0, column 1
+print(arr[0])        # [1 2 3] the whole first row
+print(arr[:, 1])     # [2 5]   the whole second column
 print(arr[:, 1:])    # columns 1 onward
 ```
 
-`arr[0, 1]` — one pair of brackets, comma-separated — is the NumPy way.
+`arr[0, 1]`, one pair of brackets and comma-separated, is the NumPy way.
 `arr[0][1]` also works but creates an intermediate array and is slower.
 
 ### Boolean indexing
@@ -189,7 +189,7 @@ for row in arr:
         print(value)
 ```
 
-### `nditer()` — every element, any number of dimensions
+### `nditer()`: every element, any number of dimensions
 
 ```python
 for value in np.nditer(arr):
@@ -198,7 +198,7 @@ for value in np.nditer(arr):
 
 One loop regardless of how many dimensions the array has.
 
-### `ndenumerate()` — element *and* its position
+### `ndenumerate()`: element *and* its position
 
 ```python
 arr = np.array([[1, 2], [3, 4]])
@@ -217,7 +217,7 @@ for index, value in np.ndenumerate(arr):
 ```
 
 <Callout type="tip">
-If you're writing a loop over an array, pause — there's usually a vectorised
+If you're writing a loop over an array, pause. There's usually a vectorised
 operation that does it faster and in one line. Loops are for when you genuinely
 need each element individually.
 </Callout>
@@ -283,8 +283,8 @@ print(data.std())            # standard deviation
 Add `axis` to aggregate along one direction instead of the whole array:
 
 ```python
-print(data.sum(axis=0))      # [5 7 9]     — down each column
-print(data.sum(axis=1))      # [ 6 15]     — across each row
+print(data.sum(axis=0))      # [5 7 9]     down each column
+print(data.sum(axis=1))      # [ 6 15]     across each row
 ```
 
 Remember it this way: `axis=0` collapses the rows, `axis=1` collapses the
@@ -298,14 +298,14 @@ columns.
 4. **`*` is element-wise; `@` is matrix multiplication.**
 5. **Operations need compatible shapes.** Mismatches raise `ValueError` unless broadcasting rules apply.
 6. **`axis=0` collapses rows (down columns); `axis=1` collapses columns (across rows).**
-7. **Slicing returns a *view*, not a copy.** Writing to the slice changes the original — call `.copy()` if that's not what you want.
+7. **Slicing returns a *view*, not a copy.** Writing to the slice changes the original, so call `.copy()` if that's not what you want.
 8. **Index with `arr[row, col]`, not `arr[row][col]`.**
 9. **Prefer vectorised operations over loops.** A Python loop over an array throws away the reason to use NumPy.
 
 ## Common Mistakes
 
 - Using `*` when you meant matrix multiplication (`@`).
-- Reshaping to an incompatible size — check `arr.size` first.
+- Reshaping to an incompatible size. Check `arr.size` first.
 - Forgetting arrays are zero-indexed, like everything else in Python.
 - Expecting `np.resize` to error on a size mismatch. It won't.
 - Looping element by element when a vectorised operation exists.
@@ -330,5 +330,5 @@ columns.
 <Cards>
   <Card title="Pandas" href="/docs/week12/pandas" description="Next: labelled, tabular data built on NumPy." />
   <Card title="NumPy Quiz" href="/docs/week12/numpy-quiz" description="Six questions to test this page." />
-  <Card title="Lists" href="/docs/week2/lists" description="Week 2: what arrays replace." />
+  <Card title="Lists" href="/docs/week3/lists" description="Week 3: what arrays replace." />
 </Cards>

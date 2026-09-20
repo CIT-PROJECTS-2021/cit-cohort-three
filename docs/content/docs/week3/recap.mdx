@@ -1,23 +1,33 @@
 ---
 title: Week 3 Recap
-description: Quick checklist for functions, modules, OOP, and exceptions.
+description: Quick checklist for strings, lists, tuples, sets, and dictionaries.
 icon: CircleCheck
 ---
 
 ## Checklist
-- I can define and call functions with return values.
-- I can import and organize code into modules.
-- I understand the difference between class and object.
-- I can handle basic exceptions with `try/except`.
+- I can slice a string and format one with an f-string.
+- I can add to, remove from, and sort a list.
+- I know why a tuple is immutable and when that's the point.
+- I can use a set to remove duplicates and test membership quickly.
+- I can build a dictionary and loop over its keys, values, and items.
+- Given a problem, I can say which of the four collections fits.
+- I know that a slice excludes its stop, and that a negative step flips the defaults.
+- I can reverse a sequence with `[::-1]` and explain why `[1:4:-1]` is empty.
+- I know slicing never raises `IndexError`, and that `[:]` copies only one level.
 
 ## Try This
-1. Write a function that returns the larger of two numbers.
-2. Create a simple class with one method.
-3. Handle a `ValueError` when converting input to `int`.
+1. Count word frequency in a sentence using a dictionary.
+2. Remove duplicates from a list while keeping the original order.
+3. Write a list comprehension that squares the numbers 1 to 5.
+4. Store three people as dictionaries inside a list, then print each name.
+5. Explain what breaks if you try to use a list as a dictionary key.
+6. Given `s = "Python"`, predict `s[1:4]`, `s[-2:]`, `s[::-2]`, and `s[4:1:-1]`
+   before running them.
+7. Write a one-line palindrome check using a slice.
 
 ## Keep going
 
 <Cards>
-  <Card title="Week 4" href="/docs/week4" description="Next: reading and writing files." />
-  <Card title="Classes Quiz One" href="/docs/assignments/classes-quiz-one" description="Practice the OOP material." />
+  <Card title="Week 4" href="/docs/week4" description="Next: functions and modules." />
+  <Card title="Loops Practice" href="/docs/assignments/loops" description="Exercises over these collections." />
 </Cards>

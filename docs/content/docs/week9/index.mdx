@@ -1,35 +1,56 @@
 ---
 title: Overview
-description: Week 9 — extracting data from websites with requests and BeautifulSoup.
-icon: Globe
+description: Week 9. Ciphers, hashing, and the difference between them.
+icon: Lock
 ---
 
-Not every site has an API. Web scraping is how you get structured data out of
-pages built for humans.
+Two ideas this week, and the most important thing is not to confuse them.
+**Encryption** is reversible by design. **Hashing** is not.
+
+This sits where it does for a reason: next week's API needs to store passwords,
+and the only correct way to do that is with the hashing you learn here.
 
 <Callout title="Before you start">
-You need [Lists](/docs/week2/lists), [Dictionaries](/docs/week2/dictionaries),
-[Functions](/docs/week3/functions), and
-[File Handling](/docs/week4/file-handling) to save what you collect.
+You need [Strings](/docs/week3/strings) and [Functions](/docs/week4/functions).
+The ciphers are mostly string manipulation.
 </Callout>
 
 ## What you'll learn
 
-- Fetch a page with `requests` and parse it with BeautifulSoup
-- Find the elements you want using tags, classes, and CSS selectors
-- Walk through paginated listings
-- Save results to CSV or JSON
-- Scrape without getting blocked — or sued
+- How a substitution cipher turns readable text into unreadable text, and back again
+- Why the ciphers you write here are *teaching tools*, not security
+- What a cryptographic hash is, and the four properties that make one useful
+- Where hashing shows up in software you already use: Git, passwords, checksums
 
 ## Pages in this week
 
 <Cards>
   <Card
-    title="Web Scraping in Python"
-    href="/docs/week9/web-scraping"
-    description="The full walkthrough: fetch, parse, select, paginate, save."
+    title="Cryptography"
+    href="/docs/week9/cryptography"
+    description="The vocabulary: plaintext, ciphertext, keys, encryption vs hashing."
+  />
+  <Card
+    title="Reverse Cipher"
+    href="/docs/week9/reverse-cipher"
+    description="The simplest possible cipher, and why it's useless for security."
+  />
+  <Card
+    title="Caesar Cipher"
+    href="/docs/week9/caesar-cipher"
+    description="Shift every letter by a fixed amount. Encrypt, decrypt, and break it."
+  />
+  <Card
+    title="Hash Functions"
+    href="/docs/week9/hash-functions"
+    description="One-way digests with hashlib, and what they're really used for."
   />
 </Cards>
+
+<Callout type="warn">
+Nothing in this week is safe to protect real data with. Write your own ciphers to
+understand them; use a reviewed library like `cryptography` when it matters.
+</Callout>
 
 ## Practice
 
@@ -37,4 +58,5 @@ You need [Lists](/docs/week2/lists), [Dictionaries](/docs/week2/dictionaries),
 
 ## What's next
 
-[Week 10](/docs/week10) turns scraping into a real project with a database behind it.
+[Week 10](/docs/week10) puts the hashing to work: a Flask API with registration
+and login.

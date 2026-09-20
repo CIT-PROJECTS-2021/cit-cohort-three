@@ -1,11 +1,13 @@
 {
-  "title": "Week 4 · File Handling",
-  "icon": "FolderOpen",
+  "title": "Week 4 · Functions & Modules",
+  "icon": "SquareFunction",
   "pages": [
     "index",
-    "file-handling",
-    "file-paths",
-    "csv-and-json",
+    "functions",
+    "function-arguments",
+    "lambda-functions",
+    "recursion",
+    "modules",
     "recap"
   ]
 }

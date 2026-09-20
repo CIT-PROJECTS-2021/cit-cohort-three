@@ -1,50 +1,43 @@
 ---
 title: Overview
-description: Week 4 — reading, writing, and managing files on disk.
-icon: FolderOpen
+description: Week 4. Functions, arguments, recursion, and splitting code across files.
+icon: SquareFunction
 ---
 
-Everything you've written so far disappears when the program ends. This week your
-programs start keeping things.
+So far your programs have been one long script. A function is the first tool
+Python gives you for naming a piece of work and calling it from anywhere, and a
+module is how you move that function out of the way once it's written.
 
 <Callout title="Before you start">
-You need [Exceptions](/docs/week3/exceptions) from [Week 3](/docs/week3) — file
-work fails often enough that error handling isn't optional.
+You need [Week 2](/docs/week2) for the logic you'll be wrapping up, and
+[Week 3](/docs/week3) because most functions take a collection in or hand one
+back.
 </Callout>
 
 ## What you'll learn
 
-- Open files safely with `with`, and pick the right mode
-- Read and write text without mangling encodings
-- Build and manipulate paths with `pathlib`
-- Read and write the two formats you'll meet everywhere: CSV and JSON
+- Define a function, pass it arguments, and return a value
+- Tell positional, keyword, default, `*args`, and `**kwargs` apart
+- Write a one-line `lambda` and know when not to
+- Solve a problem recursively, with a base case that stops it
+- Split code across files and import it back
 
 ## Pages in this week
 
 <Cards>
-  <Card
-    title="File Handling"
-    href="/docs/week4/file-handling"
-    description="open(), modes, reading, writing, and the cursor."
-  />
-  <Card
-    title="File Paths and Directories"
-    href="/docs/week4/file-paths"
-    description="pathlib and os — create, rename, move, and delete."
-  />
-  <Card
-    title="CSV and JSON"
-    href="/docs/week4/csv-and-json"
-    description="Read and write the two formats you'll actually be handed."
-  />
+  <Card title="Functions" href="/docs/week4/functions" description="Define, call, return, and why returning beats printing." />
+  <Card title="Function Arguments" href="/docs/week4/function-arguments" description="Positional, keyword, default, *args and **kwargs." />
+  <Card title="Lambda Functions" href="/docs/week4/lambda-functions" description="Small anonymous functions, and where they actually help." />
+  <Card title="Recursion" href="/docs/week4/recursion" description="Functions that call themselves, and the base case that stops them." />
+  <Card title="Modules" href="/docs/week4/modules" description="Split code into files and import across them." />
 </Cards>
 
 ## Practice
 
-- [Quiz Week 4](/docs/assignments/quiz-week4)
+- [Loops Practice](/docs/assignments/loops): rewrite your answers as functions
 - [Week 4 Recap](/docs/week4/recap)
 
 ## What's next
 
-Weeks 5 and 7 were consolidation weeks — see [Week 5](/docs/week5). The next new
-material is [Week 6: Data Structures and Algorithms](/docs/week6).
+[Week 5](/docs/week5) bundles functions together with the data they operate on,
+which is the whole idea behind classes.

@@ -1,0 +1,48 @@
+---
+title: Encapsulation
+description: Hide internal state and expose safe interfaces.
+icon: Shield
+---
+
+Encapsulation groups data and behavior together and hides internal details.
+
+## Example
+```python
+class User:
+    def __init__(self, username, password):
+        self.username = username
+        self._password = password
+
+    def check_password(self, candidate):
+        return candidate == self._password
+```
+
+## Use Cases
+- Protecting sensitive data (passwords, tokens)
+- Controlling access through methods
+
+## Rules
+
+1. **A leading underscore (`_name`) marks something internal.** It is a convention only, and Python does not stop you.
+2. **A double underscore (`__name`) triggers name mangling** to `_ClassName__name`. It prevents accidental collisions, not deliberate access.
+3. **Nothing in Python is truly private.**
+4. **Expose state through methods or properties**, so validation has somewhere to live.
+5. **`@property` turns a method into a read-only attribute**; a matching `@x.setter` makes it writable.
+6. **A property setter should validate and raise** (`ValueError`) rather than silently accept bad input.
+7. **Never document or rely on another class's underscore-prefixed members.**
+
+## Common Mistakes
+- Exposing everything as public
+- Assuming `__` makes data completely private
+
+## Quick Quiz
+1. What does a single underscore mean?
+2. Is `__password` truly private?
+3. Why encapsulate data?
+
+## Keep going
+
+<Cards>
+  <Card title="Abstraction" href="/docs/week5/abstraction" description="Next: the second pillar." />
+  <Card title="Classes" href="/docs/week5/classes" description="Where attributes are defined." />
+</Cards>

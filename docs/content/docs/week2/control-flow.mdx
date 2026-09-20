@@ -1,6 +1,6 @@
 ---
 title: Control Flow
-description: How Python decides what runs next — and which tool to reach for.
+description: How Python decides what runs next, and which tool to reach for.
 icon: Split
 ---
 
@@ -11,7 +11,7 @@ run something *only sometimes*, or run it *many times*.
 There are only three tools, and choosing between them is most of the skill.
 
 <Callout type="info">
-Most bugs in beginner code come from an incorrect condition or loop logic — not
+Most bugs in beginner code come from an incorrect condition or loop logic, not
 from syntax. Read your conditions out loud to check they say what you meant.
 </Callout>
 
@@ -23,7 +23,7 @@ You have two or more paths and need to pick one. *"If the user is an adult, allo
 access."* → [if Statements](/docs/week2/if-statements)
 </Step>
 <Step title="Have a collection? Use for">
-You already know what you're looping over — a list, a string, a range of numbers.
+You already know what you're looping over: a list, a string, a range of numbers.
 *"For each student, print their name."* → [for Loops](/docs/week2/for-loops)
 </Step>
 <Step title="Don't know how many times? Use while">
@@ -44,8 +44,8 @@ Every control flow statement follows the same two rules:
 
 ```python
 if temperature > 30:
-    print("Hot")      # indented — part of the if
-print("Done")         # not indented — always runs
+    print("Hot")      # indented, part of the if
+print("Done")         # not indented, always runs
 ```
 
 Python uses indentation where other languages use `{ }`. This isn't a style
@@ -98,22 +98,22 @@ Full details: [while Loops](/docs/week2/while-loops)
 
 1. **Every control flow header ends with a colon `:`** and owns the indented block beneath it.
 2. **A block must contain at least one statement.** Use `pass` as a placeholder.
-3. **Conditions are evaluated as booleans.** Any value works — see the truthiness rules on [if Statements](/docs/week2/if-statements).
+3. **Conditions are evaluated as booleans.** Any value works; see the truthiness rules on [if Statements](/docs/week2/if-statements).
 4. **`for` needs something iterable**; `while` needs something that becomes false. Using the wrong one is legal but usually a sign the logic is off.
 5. **`break` and `continue` are only valid inside a loop.** Using either outside one is a `SyntaxError`.
 
 ## Common Mistakes
 
 - Forgetting the colon `:` at the end of the header line.
-- Inconsistent indentation inside a block — Python raises `IndentationError`.
+- Inconsistent indentation inside a block. Python raises `IndentationError`.
 - Forgetting to update the loop variable in a `while` loop, so it never ends.
 - Writing a condition that is always `True` or always `False`.
 
 ## Keep going
 
 <Cards>
-  <Card title="if Statements" href="/docs/week2/if-statements" description="Branching and truthiness." />
-  <Card title="for Loops" href="/docs/week2/for-loops" description="Iterate over anything." />
+  <Card title="if Statements" href="/docs/week2/if-statements" description="Next: branching and truthiness." />
   <Card title="while Loops" href="/docs/week2/while-loops" description="Repeat until things change." />
+  <Card title="for Loops" href="/docs/week2/for-loops" description="Iterate over anything." />
   <Card title="break and continue" href="/docs/week2/break-and-continue" description="Steer a loop mid-flight." />
 </Cards>

@@ -1,7 +1,19 @@
 {
-  "title": "Week 5 · Consolidation",
-  "icon": "CalendarOff",
+  "title": "Week 5 · Object-Oriented Programming",
+  "icon": "Component",
   "pages": [
-    "index"
+    "index",
+    "oop",
+    "classes",
+    "---The Four Pillars---",
+    "encapsulation",
+    "abstraction",
+    "inheritance",
+    "polymorphism",
+    "---Applying It---",
+    "composition-vs-inheritance",
+    "oop-project",
+    "---Wrap Up---",
+    "recap"
   ]
 }

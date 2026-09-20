@@ -7,8 +7,8 @@ icon: SkipForward
 Both keywords change what a loop does next. They work in
 [`for`](/docs/week2/for-loops) and [`while`](/docs/week2/while-loops) loops alike.
 
-- `break` — stop the loop entirely and move on
-- `continue` — abandon this pass, start the next one
+- `break` stops the loop entirely and moves on
+- `continue` abandons this pass and starts the next one
 
 ## `break`
 
@@ -109,13 +109,13 @@ else:
 1. **Both are legal only inside a loop.** Anywhere else is a `SyntaxError`.
 2. **Each affects only the innermost enclosing loop.** `break` in a nested loop exits that loop, not the outer one.
 3. **`break` skips the loop's `else` block; `continue` does not.**
-4. **`continue` jumps straight to the next iteration**, skipping every remaining line in the body — including any counter update, which is how `while` loops hang.
+4. **`continue` jumps straight to the next iteration**, skipping every remaining line in the body, including any counter update, which is how `while` loops hang.
 5. **Inside a function, `return` beats both.** It exits the loop *and* the function, and hands back a value.
 
 ## Common Mistakes
 
 - **Using `break` when you meant `return`.** Inside a function, `return` both
-  stops the loop and hands back the answer — usually what you actually want.
+  stops the loop and hands back the answer, which is usually what you actually want.
   ```python
   def find(names, prefix):
       for name in names:
@@ -129,7 +129,7 @@ else:
   i = 0
   while i < 5:
       if i == 2:
-          continue    # i never increments again — hangs forever
+          continue    # i never increments again, hangs forever
       print(i)
       i += 1
   ```
@@ -138,7 +138,7 @@ else:
 
 <Callout type="tip">
 If a loop has several `break`s scattered through it, that's usually a sign it
-wants to be a [function](/docs/week3/functions) with `return` statements instead.
+wants to be a [function](/docs/week4/functions) with `return` statements instead.
 </Callout>
 
 ## Practice
@@ -152,7 +152,7 @@ wants to be a [function](/docs/week3/functions) with `return` statements instead
 ## Keep going
 
 <Cards>
-  <Card title="Operators" href="/docs/week2/operators" description="Next in Week 2." />
+  <Card title="Week 2 Recap" href="/docs/week2/recap" description="Next: check yourself before Week 3." />
   <Card title="for Loops" href="/docs/week2/for-loops" description="Where break and continue live." />
-  <Card title="Functions" href="/docs/week3/functions" description="Week 3: return, the better break." />
+  <Card title="Functions" href="/docs/week4/functions" description="Week 4: return, the better break." />
 </Cards>

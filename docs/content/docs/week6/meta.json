@@ -1,21 +1,12 @@
 {
-  "title": "Week 6 · Data Structures & Algorithms",
-  "icon": "Network",
+  "title": "Week 6 · Errors & Files",
+  "icon": "FolderOpen",
   "pages": [
     "index",
-    "data-structures-and-algorithms",
-    "---Data Structures---",
-    "stacks",
-    "queues",
-    "linked-lists",
-    "---Sorting Algorithms---",
-    "sorting",
-    "bubble-sort",
-    "selection-sort",
-    "insertion-sort",
-    "merge-sort",
-    "quick-sort",
-    "---Wrap Up---",
+    "exceptions",
+    "file-handling",
+    "file-paths",
+    "csv-and-json",
     "recap"
   ]
 }

@@ -1,53 +1,46 @@
 ---
 title: Overview
-description: Week 8 — ciphers, hashing, and the difference between them.
-icon: Lock
+description: Week 8. Five classic sorting algorithms, how each works, and what each costs.
+icon: ArrowDownWideNarrow
 ---
 
-Two ideas this week, and the most important thing is not to confuse them:
-**encryption** is reversible by design, **hashing** is not.
+Sorting is the standard worked example for algorithm design, because there are
+many correct answers and they are not equally good. Five algorithms, all solving
+the same problem, with performance ranging from unusable to excellent.
+
+You will never write these in production. You will be asked about them, and more
+usefully, they teach you to read an algorithm and reason about its cost.
 
 <Callout title="Before you start">
-You need [Strings](/docs/week2/strings) and [Functions](/docs/week3/functions).
-The ciphers are mostly string manipulation.
+You need [Week 7](/docs/week7), plus [for Loops](/docs/week2/for-loops) and
+[Lists](/docs/week3/lists). [Recursion](/docs/week4/recursion) shows up in merge
+sort and quick sort.
 </Callout>
 
 ## What you'll learn
 
-- How a substitution cipher turns readable text into unreadable text — and back
-- Why the ciphers you'll write here are *teaching tools*, not security
-- What a cryptographic hash is, and the four properties that make one useful
-- Where hashing shows up in software you already use: Git, passwords, checksums
+- Read an algorithm and work out its time complexity
+- Trace five sorting algorithms by hand, step by step
+- Explain why divide-and-conquer beats the quadratic sorts
+- Know why Python's built-in `sorted()` is the right answer in real code
 
-## Pages in this week
+## Start here
 
 <Cards>
-  <Card
-    title="Cryptography"
-    href="/docs/week8/cryptography"
-    description="The vocabulary: plaintext, ciphertext, keys, encryption vs hashing."
-  />
-  <Card
-    title="Reverse Cipher"
-    href="/docs/week8/reverse-cipher"
-    description="The simplest possible cipher — and why it's useless for security."
-  />
-  <Card
-    title="Caesar Cipher"
-    href="/docs/week8/caesar-cipher"
-    description="Shift every letter by a fixed amount. Encrypt, decrypt, and break it."
-  />
-  <Card
-    title="Hash Functions"
-    href="/docs/week8/hash-functions"
-    description="One-way digests with hashlib, and what they're really used for."
-  />
+  <Card title="Sorting Algorithms" href="/docs/week8/sorting" description="Overview and comparison table. Read this first." />
 </Cards>
 
-<Callout type="warn">
-Nothing in this week is safe to protect real data with. Write your own ciphers to
-understand them; use a reviewed library like `cryptography` when it matters.
-</Callout>
+## The five
+
+Work through them in order. Each one fixes a weakness in the one before.
+
+<Cards>
+  <Card title="Bubble Sort" href="/docs/week8/bubble-sort" description="The simplest one. Swap neighbours until sorted." />
+  <Card title="Selection Sort" href="/docs/week8/selection-sort" description="Find the smallest, move it to the front. Repeat." />
+  <Card title="Insertion Sort" href="/docs/week8/insertion-sort" description="Like sorting cards in your hand." />
+  <Card title="Merge Sort" href="/docs/week8/merge-sort" description="Divide and conquer. Always O(n log n)." />
+  <Card title="Quick Sort" href="/docs/week8/quick-sort" description="Partition around a pivot. Fast in practice." />
+</Cards>
 
 ## Practice
 
@@ -55,4 +48,5 @@ understand them; use a reviewed library like `cryptography` when it matters.
 
 ## What's next
 
-[Week 9](/docs/week9) — pulling data off the web.
+[Week 9](/docs/week9) starts the applied half of the course with cryptography,
+and the hashing you'll need for the API you build the week after.

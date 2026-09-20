@@ -8,18 +8,18 @@ These were built in teams during the course. Each brief describes what the app
 does, what it's built with, and where the source lives in the repository.
 
 They're all Flask apps talking to an external API or a database, so they exercise
-the same skills as [Week 11](/docs/week11) — pick whichever one interests you.
+the same skills as [Week 10](/docs/week10), so pick whichever one interests you.
 
 <Cards>
   <Card
     title="Weather App"
     href="/docs/assignments/group-projects/weather-app"
-    description="Fetch and display weather data for a city. The simplest of the four — start here."
+    description="Fetch and display weather data for a city. The simplest of the four, so start here."
   />
   <Card
     title="URL Shortener"
     href="/docs/assignments/group-projects/url-shortner"
-    description="Shorten links and redirect them. Flask plus MySQL — the one with real persistence."
+    description="Shorten links and redirect them. Flask plus MySQL, the one with real persistence."
   />
   <Card
     title="Currency Converter"
@@ -37,16 +37,16 @@ the same skills as [Week 11](/docs/week11) — pick whichever one interests you.
 
 All four assume you're comfortable with:
 
-- [Functions](/docs/week3/functions) and [Classes](/docs/week3/classes) — Week 3
-- [CSV and JSON](/docs/week4/csv-and-json) — Week 4, for handling API responses
-- [The TODO API](/docs/week11/todo-api) — Week 11, for the Flask patterns
+- [Functions](/docs/week4/functions) from Week 4 and [Classes](/docs/week5/classes) from Week 5
+- [CSV and JSON](/docs/week6/csv-and-json) from Week 6, for handling API responses
+- [The TODO API](/docs/week10/todo-api) from Week 10, for the Flask patterns
 
 Set up a [virtual environment](/docs/setup#virtual-environments) per project and
 keep each one's `requirements.txt` up to date.
 
 <Callout type="warn" title="Keep your API keys out of Git">
 Three of these need an API key. Put it in an environment variable or a `.env`
-file listed in `.gitignore` — never hard-code it into a file you commit. A key
+file listed in `.gitignore`. Never hard-code it into a file you commit. A key
 pushed to a public repository is a key someone else is now using.
 </Callout>
 

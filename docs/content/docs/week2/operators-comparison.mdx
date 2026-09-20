@@ -38,19 +38,19 @@ print(x <= y)  # True
 
 Numeric types compare across the board, so `5 == 5.0` is `True`.
 
-Strings compare lexicographically — dictionary order, by Unicode code point:
+Strings compare lexicographically, in dictionary order, by Unicode code point:
 
 ```python
 print("apple" < "banana")   # True
-print("Apple" < "apple")    # True  — uppercase sorts first
+print("Apple" < "apple")    # True  (uppercase sorts first)
 ```
 
 Tuples compare element by element, left to right, stopping at the first
 difference:
 
 ```python
-print((1, 2, 3) > (1, 2))   # True  — longer, and equal so far
-print((1, 2, 3) > (1, 5))   # False — 2 < 5 decides it
+print((1, 2, 3) > (1, 2))   # True  (longer, and equal so far)
+print((1, 2, 3) > (1, 5))   # False (2 < 5 decides it)
 ```
 
 ## Use Cases
@@ -71,7 +71,7 @@ print((1, 2, 3) > (1, 5))   # False — 2 < 5 decides it
 - Comparing strings without considering case sensitivity.
 - Confusing `==` with `is` for identity.
 - Assuming different types always compare as false.
-- Forgetting string comparison is case-sensitive — `"A" < "a"` is `True`.
+- Forgetting string comparison is case-sensitive: `"A" < "a"` is `True`.
 
 
 ## Quick Quiz

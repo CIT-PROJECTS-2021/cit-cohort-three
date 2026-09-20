@@ -1,10 +1,10 @@
 {
-  "title": "Week 11 · APIs",
-  "icon": "Webhook",
+  "title": "Week 11 · Web Scraping",
+  "icon": "Globe",
   "pages": [
     "index",
-    "todo-api",
-    "api-quiz",
+    "web-scraping",
+    "rss-scraper-project",
     "recap"
   ]
 }

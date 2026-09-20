@@ -1,26 +1,14 @@
 {
-  "title": "Week 3 · Functions & OOP",
+  "title": "Week 3 · Collections",
   "icon": "Boxes",
   "pages": [
     "index",
-    "---Functions---",
-    "functions",
-    "function-arguments",
-    "lambda-functions",
-    "recursion",
-    "---Object-Oriented Programming---",
-    "oop",
-    "classes",
-    "inheritance",
-    "composition-vs-inheritance",
-    "polymorphism",
-    "encapsulation",
-    "abstraction",
-    "oop-project",
-    "---Organising Code---",
-    "modules",
-    "exceptions",
-    "---Wrap Up---",
+    "strings",
+    "lists",
+    "tuples",
+    "slicing",
+    "sets",
+    "dictionaries",
     "recap"
   ]
 }

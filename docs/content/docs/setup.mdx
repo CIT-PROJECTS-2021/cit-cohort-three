@@ -15,7 +15,7 @@ Download the installer from [python.org/downloads](https://www.python.org/downlo
 
 <Callout type="warn" title="Tick the box">
 On the first screen of the installer, tick **"Add python.exe to PATH"** before
-clicking Install. Missing it is the single most common setup problem on Windows —
+clicking Install. Missing it is the single most common setup problem on Windows,
 Python installs fine but the `python` command isn't found in the terminal.
 </Callout>
 
@@ -80,7 +80,7 @@ a Run button.
 
 <Steps>
 <Step title="Make a folder">
-Create a folder for your course work — `python-course`, anywhere you like — and
+Create a folder for your course work, called `python-course` or anything you like, and
 open it in VS Code with **File → Open Folder**.
 </Step>
 <Step title="Create a file">
@@ -110,9 +110,9 @@ If you see `Hello, world!` and it asks your name, you're set up. Go to
 
 ## Virtual environments
 
-From [Week 9](/docs/week9) onward you'll install packages like `requests`,
-`flask`, and `pandas`. Install them into a **virtual environment** — a per-project
-folder of packages — rather than globally, so projects can't break each other.
+From [Week 10](/docs/week10) onward you'll install packages like `requests`,
+`flask`, and `pandas`. Install them into a **virtual environment**, a per-project
+folder of packages, rather than globally, so projects can't break each other.
 
 ```bash
 # create one (do this once per project)
@@ -122,7 +122,7 @@ python3 -m venv .venv
 source .venv/bin/activate      # macOS / Linux
 .venv\Scripts\activate         # Windows
 
-# now install things — they go into .venv, not your system
+# now install things; they go into .venv, not your system
 pip install requests
 ```
 
@@ -130,7 +130,7 @@ Your prompt gets a `(.venv)` prefix when it's active. To leave, type
 `deactivate`.
 
 <Callout type="tip">
-Add `.venv/` to your `.gitignore`. Never commit it — it's large, it's
+Add `.venv/` to your `.gitignore`. Never commit it. It's large, it's
 machine-specific, and `requirements.txt` is how you share dependencies instead:
 
 ```bash

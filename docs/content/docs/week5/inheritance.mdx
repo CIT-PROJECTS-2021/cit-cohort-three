@@ -1,0 +1,72 @@
+---
+title: Inheritance
+description: Reuse and extend behavior with inheritance.
+icon: GitFork
+---
+
+Inheritance allows a class to reuse and extend another class.
+
+## Example
+```python
+class Vehicle:
+    def move(self):
+        print("Moving")
+
+class Car(Vehicle):
+    def honk(self):
+        print("Beep")
+
+car = Car()
+car.move()
+car.honk()
+```
+
+**Expected output**
+```
+Moving
+Beep
+```
+
+## `super()`
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name)
+        self.breed = breed
+```
+
+## Use Cases
+- Base class for shared behavior (e.g., `User`, `Admin`)
+- Extending models without rewriting code
+
+## Rules
+
+1. **Declare the parent in the class header:** `class Child(Parent):`.
+2. **The child inherits every attribute and method** of the parent.
+3. **Defining a method with the same name overrides the parent's** for that class.
+4. **If the child defines `__init__`, the parent's does not run automatically.** Call `super().__init__(...)` explicitly.
+5. **`super()` follows the method resolution order (MRO)**, which `ClassName.__mro__` will show you.
+6. **A class can inherit from several parents**, resolved left to right by the MRO.
+7. **`isinstance(child, Parent)` is `True`; `type(child) == Parent` is `False`.** Prefer `isinstance`.
+8. **Inheritance means "is-a".** If the sentence "a Child is a Parent" is false, use [composition](/docs/week5/composition-vs-inheritance).
+
+## Common Mistakes
+- Overusing inheritance where composition is simpler
+- Forgetting to call `super().__init__()`
+
+## Quick Quiz
+1. What does `super()` do?
+2. When is inheritance useful?
+3. Name one downside of deep inheritance trees.
+
+## Keep going
+
+<Cards>
+  <Card title="Polymorphism" href="/docs/week5/polymorphism" description="Next: one interface, many types, which inheritance enables." />
+  <Card title="Composition vs Inheritance" href="/docs/week5/composition-vs-inheritance" description="When not to inherit at all." />
+  <Card title="Classes" href="/docs/week5/classes" description="Back to the basics." />
+</Cards>

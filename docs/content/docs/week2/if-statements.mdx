@@ -19,7 +19,7 @@ else:
 ```
 
 Python checks the conditions **in order** and runs the body of the *first* one
-that is true. It then skips the rest — even if they would also be true.
+that is true. It then skips the rest, even if they would also be true.
 
 ## Example
 
@@ -53,9 +53,9 @@ treat any value as true or false. These values are **falsy**:
 | `False` | the boolean |
 | `0`, `0.0` | zero, in any numeric type |
 | `None` | the "no value" object |
-| `""` | an empty [string](/docs/week2/strings) |
-| `[]`, `()` | an empty [list](/docs/week2/lists) or [tuple](/docs/week2/tuples) |
-| `{}`, `set()` | an empty [dict](/docs/week2/dictionaries) or [set](/docs/week2/sets) |
+| `""` | an empty [string](/docs/week3/strings) |
+| `[]`, `()` | an empty [list](/docs/week3/lists) or [tuple](/docs/week3/tuples) |
+| `{}`, `set()` | an empty [dict](/docs/week3/dictionaries) or [set](/docs/week3/sets) |
 
 Everything else is **truthy**. So the Pythonic way to check "do I have anything
 here?" is just:
@@ -113,14 +113,14 @@ if logged_in and is_admin:
 
 <Callout type="tip">
 If you find yourself writing five or more `elif` branches that each map one value
-to one result, a [dictionary](/docs/week2/dictionaries) lookup is usually clearer.
+to one result, a [dictionary](/docs/week3/dictionaries) lookup is usually clearer.
 </Callout>
 
 ## Rules
 
 1. **`if` comes first, `elif` in the middle, `else` last.** An `elif` or `else` without a preceding `if` is a `SyntaxError`.
 2. **Only the first true branch runs.** Once a branch matches, the rest are skipped even if they would also be true.
-3. **`else` takes no condition.** `else x > 5:` is a `SyntaxError` — you want `elif`.
+3. **`else` takes no condition.** `else x > 5:` is a `SyntaxError`; you want `elif`.
 4. **There can be at most one `else`, but any number of `elif`s.**
 5. **These values are falsy:** `False`, `None`, `0`, `0.0`, `""`, `[]`, `()`, `{}`, `set()`. Everything else is truthy.
 6. **Use `=` to assign and `==` to compare.** `if x = 5:` is a `SyntaxError`.
@@ -152,7 +152,7 @@ Check the most specific condition first.
 ## Keep going
 
 <Cards>
-  <Card title="for Loops" href="/docs/week2/for-loops" description="Next: repeat over a collection." />
+  <Card title="while Loops" href="/docs/week2/while-loops" description="Next: an if that keeps going." />
   <Card title="Comparison Operators" href="/docs/week2/operators-comparison" description="The operators that build conditions." />
   <Card title="Logical Operators" href="/docs/week2/operators-logical" description="Combine conditions with and / or / not." />
 </Cards>

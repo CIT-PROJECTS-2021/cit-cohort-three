@@ -1,23 +1,26 @@
 ---
 title: Week 9 Recap
-description: Quick checklist for web scraping.
+description: Quick checklist for cryptography fundamentals.
 icon: CircleCheck
 ---
 
 ## Checklist
-- I can fetch a web page with `requests`.
-- I can parse HTML with BeautifulSoup.
-- I know how to find elements and extract text.
-- I respect robots.txt and rate limits.
+- I can define plaintext, ciphertext, encryption, and decryption.
+- I can explain symmetric vs asymmetric cryptography.
+- I know when to use hashing and when to use encryption.
+- I know why MD5 and SHA-1 are no longer safe.
+- I know why a password needs a slow, salted hash rather than SHA-256.
 
 ## Try This
-1. Scrape the title from a public web page.
-2. Extract all links and print them.
-3. Add a custom User-Agent header.
+1. Hash a string with SHA-256 using `hashlib`.
+2. Explain, in one sentence, why hashing is one-way.
+3. Break a Caesar cipher by trying all 25 keys.
+4. Describe a real use case for asymmetric cryptography.
+5. Look up what `secrets.token_hex()` does and why it isn't `random`.
 
 ## Keep going
 
 <Cards>
-  <Card title="Week 10" href="/docs/week10" description="Next: the scraper project." />
-  <Card title="Regular Expressions" href="/docs/reference/regex" description="Reference: useful for messy text." />
+  <Card title="Week 10" href="/docs/week10" description="Next: building APIs, with login." />
+  <Card title="Hash Functions" href="/docs/week9/hash-functions" description="Revisit the hashing page." />
 </Cards>

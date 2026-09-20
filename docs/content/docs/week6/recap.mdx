@@ -1,24 +1,28 @@
 ---
 title: Week 6 Recap
-description: Quick checklist for data structures and algorithms.
+description: Quick checklist for exceptions and file handling.
 icon: CircleCheck
 ---
 
 ## Checklist
-- I can explain LIFO vs FIFO.
-- I can implement a basic stack and queue.
-- I understand what a linked list node is.
-- I can describe what a sorting algorithm does.
-- I can use `list.sort()` and `sorted()`.
+- I can catch a specific exception rather than a bare `except`.
+- I know what `else` and `finally` add to a `try` block.
+- I can raise an exception with a useful message.
+- I can open files with `with open(...)` and explain why that's better.
+- I know the difference between `r`, `w`, and `a` modes.
+- I can build a path with `pathlib` and check whether it exists.
+- I can read and write both CSV and JSON.
 
 ## Try This
-1. Implement a stack and queue from scratch.
-2. Trace one pass of bubble sort on paper.
-3. Explain why `deque` is better than `list` for queues.
+1. Handle a `ValueError` when converting user input to `int`.
+2. Read a file that doesn't exist and report it without crashing.
+3. Read a file and count its lines.
+4. Append a line with today's date, then read it back to confirm.
+5. Load a CSV, filter the rows, and write the result out as JSON.
 
 ## Keep going
 
 <Cards>
-  <Card title="Week 7" href="/docs/week7" description="Next: a consolidation week — rebuild this from memory." />
-  <Card title="Week 8" href="/docs/week8" description="Or skip ahead to cryptography." />
+  <Card title="Week 7" href="/docs/week7" description="Next: stacks, queues, and linked lists." />
+  <Card title="File Handling Quiz" href="/docs/assignments/quiz-week4" description="Test yourself." />
 </Cards>
