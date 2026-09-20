@@ -5,8 +5,8 @@ icon: Repeat
 ---
 
 A `for` loop walks through a collection one item at a time. Use it when you
-already know *what* you're looping over — a [list](/docs/week2/lists), a
-[string](/docs/week2/strings), a [dictionary](/docs/week2/dictionaries), or a
+already know *what* you're looping over: a [list](/docs/week3/lists), a
+[string](/docs/week3/strings), a [dictionary](/docs/week3/dictionaries), or a
 range of numbers.
 
 ## Syntax
@@ -125,7 +125,7 @@ Not found
 
 ## Rules
 
-1. **`for` works on any iterable** — list, tuple, string, set, dict, range, file object, generator. Iterating a non-iterable raises `TypeError`.
+1. **`for` works on any iterable**: list, tuple, string, set, dict, range, file object, generator. Iterating a non-iterable raises `TypeError`.
 2. **`range(stop)` excludes `stop`.** `range(5)` yields `0,1,2,3,4`.
 3. **`range()` takes integers only.** `range(2.5)` raises `TypeError`.
 4. **A `range` is not a list.** Printing one shows `range(0, 5)`; wrap it in `list()` to see the values.
@@ -148,7 +148,7 @@ Not found
   numbers = [n for n in numbers if n >= 0]
   ```
 - **Using `range(len(items))` when `enumerate()` is clearer.** If you only need
-  the value, don't index at all — just loop over the collection.
+  the value, don't index at all. Just loop over the collection.
 - **Expecting the loop variable to survive unchanged.** After the loop, `item`
   still exists and holds the last value.
 
@@ -171,7 +171,7 @@ More of these in [Loops Practice](/docs/assignments/loops).
 ## Keep going
 
 <Cards>
-  <Card title="while Loops" href="/docs/week2/while-loops" description="Next: loop without knowing the count." />
+  <Card title="break and continue" href="/docs/week2/break-and-continue" description="Next: steering a loop mid-flight." />
   <Card title="break and continue" href="/docs/week2/break-and-continue" description="Exit or skip mid-loop." />
-  <Card title="Lists" href="/docs/week2/lists" description="The collection you'll loop over most." />
+  <Card title="Lists" href="/docs/week3/lists" description="The collection you'll loop over most." />
 </Cards>

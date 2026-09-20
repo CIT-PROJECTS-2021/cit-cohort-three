@@ -1,0 +1,175 @@
+---
+title: File Handling
+description: Learn how to read and write files in Python.
+icon: FileText
+---
+
+Files let you store data permanently on disk. Typical file operations follow
+this order:
+
+<Callout type="info">
+Use `with open(...)` whenever possible. It closes files automatically, even on
+errors.
+</Callout>
+
+<Steps>
+<Step title="Open a file">
+Use `open()` to get a file handle.
+</Step>
+<Step title="Read or write">
+Operate on the file using `read()` or `write()`.
+</Step>
+<Step title="Close the file">
+Close it (or let `with` do it for you).
+</Step>
+</Steps>
+
+## Opening Files
+Use `open()` to get a file handle. Always prefer `with` to ensure the file
+closes automatically.
+
+```python
+with open("test.txt", mode="r", encoding="utf-8") as f:
+    content = f.read()
+```
+
+**Why `with` matters**
+- It closes the file automatically, even if an error happens.
+- It prevents file handle leaks that can crash long‑running programs.
+
+## File Modes
+| Mode | Description |
+| --- | --- |
+| `r` | read (default) |
+| `w` | write (truncates) |
+| `a` | append |
+| `x` | create (fails if exists) |
+| `b` | binary mode |
+| `t` | text mode (default) |
+| `+` | read and write |
+
+Common combinations: `r+`, `w+`, `a+`, `rb`, `wb`.
+
+<Callout type="tip">
+Always set `encoding="utf-8"` for text files to avoid platform differences.
+</Callout>
+
+**Text vs binary**
+- Use text mode (`"r"`, `"w"`) for `.txt`, `.csv`, `.json`.
+- Use binary mode (`"rb"`, `"wb"`) for images, PDFs, and other non‑text files.
+
+## Closing Files
+If you don't use `with`, call `close()` manually:
+
+```python
+f = open("test.txt", encoding="utf-8")
+try:
+    data = f.read()
+finally:
+    f.close()
+```
+
+## Writing Files
+```python
+content = "my first file\nThis file\n\ncontains three lines\n"
+
+with open("test.txt", "w", encoding="utf-8") as f:
+    f.write(content)
+```
+
+**Common write patterns**
+```python
+lines = ["one\n", "two\n", "three\n"]
+with open("test.txt", "w", encoding="utf-8") as f:
+    f.writelines(lines)
+```
+
+**Append instead of overwrite**
+```python
+with open("test.txt", "a", encoding="utf-8") as f:
+    f.write("another line\n")
+```
+
+## Reading Files
+```python
+with open("test.txt", "r", encoding="utf-8") as f:
+    print(f.read(4))   # first 4 chars
+    print(f.read(4))   # next 4 chars
+    print(f.read())    # rest of file
+```
+
+**Read line by line**
+```python
+with open("test.txt", "r", encoding="utf-8") as f:
+    for line in f:
+        print(line.strip())
+```
+
+**Read all lines into a list**
+```python
+with open("test.txt", "r", encoding="utf-8") as f:
+    lines = f.readlines()
+print(lines[:2])
+```
+
+## Cursor: `seek` and `tell`
+```python
+with open("test.txt", "r", encoding="utf-8") as f:
+    f.read()
+    print(f.tell())  # current position
+    f.seek(0)        # go back to start
+print(f.read())
+```
+
+## JSON Example
+```python
+import json
+
+data = {"name": "Ada", "score": 95}
+with open("data.json", "w", encoding="utf-8") as f:
+    json.dump(data, f)
+
+with open("data.json", "r", encoding="utf-8") as f:
+    loaded = json.load(f)
+print(loaded)
+```
+
+**Expected output**
+```
+{'name': 'Ada', 'score': 95}
+```
+
+## Rules
+
+1. **Always open files with `with`.** It closes the file even if an exception is raised.
+2. **`open()` defaults to mode `"r"` (read, text).** The file must already exist or you get `FileNotFoundError`.
+3. **`"w"` truncates an existing file to zero bytes immediately.** Use `"a"` to add to a file, `"x"` to fail if it already exists.
+4. **Always pass `encoding="utf-8"` in text mode.** The default varies by platform and silently corrupts non-ASCII text.
+5. **Binary mode (`"rb"`, `"wb"`) reads and writes `bytes`, not `str`**, and must not take an `encoding`.
+6. **`write()` does not add a newline.** Include `\n` yourself.
+7. **`write()` takes a string.** Passing a number raises `TypeError`, so convert with `str()`.
+8. **A file can only be read once through.** `read()` at end-of-file returns `""`; use `seek(0)` to go back.
+9. **Reading and writing the same file at once needs mode `"r+"` or `"w+"`.** Plain `"r"` rejects `write()` with `io.UnsupportedOperation`.
+
+## Common Mistakes
+- Using `"w"` when you meant to append (data loss).
+- Forgetting to close files when not using `with`.
+- Mixing text and binary modes.
+
+## Quick Quiz
+1. What does `"a"` mode do?
+2. Why use `encoding="utf-8"`?
+3. What does `f.tell()` return?
+
+## Mini Exercises
+1. Read a file and count how many lines it has.
+2. Read a file and count how many times a word appears.
+3. Append a timestamp to a log file.
+
+## Keep going
+
+<Cards>
+  <Card title="File Paths and Directories" href="/docs/week6/file-paths" description="Next: building the paths you open." />
+  <Card title="CSV and JSON" href="/docs/week6/csv-and-json" description="Then: structured formats." />
+  <Card title="Exceptions" href="/docs/week6/exceptions" description="Week 6: handling the failures." />
+</Cards>

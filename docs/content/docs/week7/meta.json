@@ -1,7 +1,12 @@
 {
-  "title": "Week 7 · Consolidation",
-  "icon": "CalendarOff",
+  "title": "Week 7 · Data Structures",
+  "icon": "Network",
   "pages": [
-    "index"
+    "index",
+    "data-structures-and-algorithms",
+    "stacks",
+    "queues",
+    "linked-lists",
+    "recap"
   ]
 }

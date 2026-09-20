@@ -1,6 +1,6 @@
 ---
 title: while Loops
-description: Repeat until a condition changes — and how to avoid infinite loops.
+description: Repeat until a condition changes, and how to avoid infinite loops.
 icon: RotateCw
 ---
 
@@ -33,7 +33,7 @@ print(total)  # 15
 
 <Callout type="warn" title="The one rule">
 Something inside the loop must eventually make the condition false. Here it's
-`counter += 1`. Forget that line and the loop runs forever — press
+`counter += 1`. Forget that line and the loop runs forever; press
 `Ctrl+C` to stop a runaway program.
 </Callout>
 
@@ -52,7 +52,7 @@ while True:
 print(f"You are {age}")
 ```
 
-`while True:` looks like an infinite loop, and it is — until
+`while True:` looks like an infinite loop, and it is, until
 [`break`](/docs/week2/break-and-continue) escapes it. This is a normal, idiomatic
 pattern.
 
@@ -95,7 +95,7 @@ If you find yourself manually incrementing a counter to walk a list, you wanted 
 
 ## Rules
 
-1. **The condition is checked before every pass**, including the first — so a loop whose condition starts false never runs at all.
+1. **The condition is checked before every pass**, including the first, so a loop whose condition starts false never runs at all.
 2. **Something in the body must be able to make the condition false**, or the loop never ends.
 3. **`while True:` is only safe with a reachable `break`** (or `return`) inside it.
 4. **`Ctrl+C` stops a runaway loop.** It raises `KeyboardInterrupt` in the running program.
@@ -104,7 +104,7 @@ If you find yourself manually incrementing a counter to walk a list, you wanted 
 
 ## Common Mistakes
 
-- **Forgetting to update the loop variable** — the most common infinite loop.
+- **Forgetting to update the loop variable.** The most common infinite loop.
 - **Updating the wrong variable**, which is the same bug wearing a disguise.
 - **Using `while` where `for` is clearer.**
 - **Checking the condition at the wrong time.** The condition is tested *before*
@@ -130,7 +130,7 @@ before `n` reaches 0.
 ## Keep going
 
 <Cards>
-  <Card title="break and continue" href="/docs/week2/break-and-continue" description="Next: steering a loop mid-flight." />
+  <Card title="for Loops" href="/docs/week2/for-loops" description="Next: looping a known number of times." />
   <Card title="for Loops" href="/docs/week2/for-loops" description="The other loop, for when you know the count." />
   <Card title="Loops Practice" href="/docs/assignments/loops" description="14 exercises to drill both loops." />
 </Cards>

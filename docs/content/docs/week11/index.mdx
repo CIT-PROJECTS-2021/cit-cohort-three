@@ -1,35 +1,45 @@
 ---
 title: Overview
-description: Week 11 — designing and building CRUD APIs with Flask.
-icon: Webhook
+description: Week 11. Extracting data from websites, then building a scraper that stores and serves it.
+icon: Globe
 ---
 
-You used Flask to serve data in Week 10. This week you learn to design the
-interface deliberately: resources, methods, status codes, and auth.
+Not every site has an API. Web scraping is how you get structured data out of
+pages built for humans, and it's deliberately placed after
+[Week 10](/docs/week10) so you can see it for what it is: the fallback, not the
+first choice.
+
+The week runs in two halves. First the technique, then a real project that puts
+it behind the Flask and SQLAlchemy you already know.
 
 <Callout title="Before you start">
-You need [Week 10](/docs/week10), or at least a working Flask + SQLAlchemy setup.
+You need [Lists](/docs/week3/lists), [Dictionaries](/docs/week3/dictionaries),
+[Functions](/docs/week4/functions),
+[File Handling](/docs/week6/file-handling) to save what you collect, and
+[Week 10](/docs/week10) for the Flask half of the project.
 </Callout>
 
 ## What you'll learn
 
-- Map CRUD operations onto HTTP methods and status codes
-- Define models and serialise them to JSON
-- Test endpoints with `curl` and an HTTP client
-- Add registration and login to an API
+- Fetch a page with `requests` and parse it with BeautifulSoup
+- Find the elements you want using tags, classes, and CSS selectors
+- Walk through paginated listings
+- Parse XML feeds with `lxml`
+- Store what you find without inserting the same article twice
+- Scrape without getting blocked, and without getting sued
 
 ## Pages in this week
 
 <Cards>
   <Card
-    title="TODO API"
-    href="/docs/week11/todo-api"
-    description="Build a full CRUD API with Flask and SQLite, step by step."
+    title="Web Scraping in Python"
+    href="/docs/week11/web-scraping"
+    description="The full walkthrough: fetch, parse, select, paginate, save."
   />
   <Card
-    title="API Quiz"
-    href="/docs/week11/api-quiz"
-    description="Design a Tasks API with authentication — on your own this time."
+    title="RSS Scraper Project"
+    href="/docs/week11/rss-scraper-project"
+    description="Step-by-step build: fetch, parse, store, serve, schedule."
   />
 </Cards>
 
@@ -39,4 +49,4 @@ You need [Week 10](/docs/week10), or at least a working Flask + SQLAlchemy setup
 
 ## What's next
 
-[Week 12](/docs/week12) — analysing data instead of moving it around.
+[Week 12](/docs/week12) analyses data instead of collecting it.

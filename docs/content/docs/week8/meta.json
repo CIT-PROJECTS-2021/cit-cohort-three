@@ -1,15 +1,14 @@
 {
-  "title": "Week 8 · Cryptography",
-  "icon": "Lock",
+  "title": "Week 8 · Algorithms",
+  "icon": "ArrowDownWideNarrow",
   "pages": [
     "index",
-    "cryptography",
-    "---Classical Ciphers---",
-    "reverse-cipher",
-    "caesar-cipher",
-    "---Hashing---",
-    "hash-functions",
-    "---Wrap Up---",
+    "sorting",
+    "bubble-sort",
+    "selection-sort",
+    "insertion-sort",
+    "merge-sort",
+    "quick-sort",
     "recap"
   ]
 }

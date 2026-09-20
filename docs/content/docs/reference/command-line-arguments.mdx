@@ -12,15 +12,15 @@ python calculator.py add 1 2
 ```
 
 That's how every command-line tool you use works, and it's what makes a script
-scriptable — you can call it from another program, or run it on a schedule,
+scriptable: you can call it from another program, or run it on a schedule,
 without a human there to answer prompts.
 
 There are two ways to read them. Start with `sys.argv` to understand the
 mechanism, then use `argparse` for anything real.
 
-## `sys.argv` — the raw list
+## `sys.argv`: the raw list
 
-`sys.argv` is a [list](/docs/week2/lists) of the words typed after `python`. The
+`sys.argv` is a [list](/docs/week3/lists) of the words typed after `python`. The
 first item is always the script name.
 
 ```python
@@ -88,7 +88,7 @@ You now have to write, by hand: optional flags, `--help`, type conversion, error
 messages, default values, and `-v`/`--verbose` both meaning the same thing. That's
 what `argparse` is for.
 
-## `argparse` — the real tool
+## `argparse`: the real tool
 
 `argparse` is in the standard library. You declare what your program accepts, and
 it handles parsing, validating, converting, and documenting.
@@ -144,13 +144,13 @@ wrote itself. None of that is code you maintain.
 ## Positional vs optional arguments
 
 ```python
-parser.add_argument("filename")            # positional — required, by order
-parser.add_argument("--output")            # optional — by name
+parser.add_argument("filename")            # positional, required, by order
+parser.add_argument("--output")            # optional, by name
 parser.add_argument("-o", "--output")      # with a short form
 ```
 
 The leading `--` is what makes an argument optional. Access it as
-`args.output` either way — `argparse` strips the dashes.
+`args.output` either way, because `argparse` strips the dashes.
 
 ## The argument types you'll need
 
@@ -163,7 +163,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--count", type=int, default=1,
                     help="how many times (default: 1)")
 
-# a flag — True when present, False when absent
+# a flag: True when present, False when absent
 parser.add_argument("-v", "--verbose", action="store_true",
                     help="print more detail")
 
@@ -188,7 +188,7 @@ $ python tool.py --input data.csv --format json -v --tags a b c
 
 <Callout type="tip">
 Always set `help=` on every argument and `description=` on the parser. It costs
-one string and turns `--help` into real documentation — including for you, in six
+one string and turns `--help` into real documentation, including for you, in six
 months.
 </Callout>
 
@@ -231,8 +231,8 @@ $ python scrape.py https://example.com -p 3 -v
 ```
 
 The `if __name__ == "__main__":` guard means the file can also be imported as a
-[module](/docs/week3/modules) without running anything. See
-[Modules](/docs/week3/modules) for why.
+[module](/docs/week4/modules) without running anything. See
+[Modules](/docs/week4/modules) for why.
 
 ## Which to use
 
@@ -253,16 +253,16 @@ The `if __name__ == "__main__":` guard means the file can also be imported as a
 4. **In `argparse`, a leading `--` makes an argument optional; no dashes makes it positional.**
 5. **`argparse` converts dashes to underscores.** `--my-flag` is read as `args.my_flag`.
 6. **`type=` converts and validates.** A bad value exits with a usage message instead of raising.
-7. **Flags use `action="store_true"`** and default to `False` — don't give them a `type`.
+7. **Flags use `action="store_true"`** and default to `False`, so don't give them a `type`.
 8. **`parse_args()` exits the program on error or on `--help`.** It does not return.
 9. **Exit non-zero on failure** with `sys.exit(1)`, so other programs can detect it.
 
 ## Common Mistakes
 
 - Forgetting arguments are strings and concatenating instead of adding.
-- Indexing `sys.argv` without checking its length — `IndexError` on a typo.
+- Indexing `sys.argv` without checking its length. You get `IndexError` on a typo.
 - Building your own `--help` and flag parsing instead of using `argparse`.
-- Confusing `args.output` with `args.--output` — the dashes are stripped.
+- Confusing `args.output` with `args.--output`. The dashes are stripped.
 - Using a dash in an argument name: `--my-flag` becomes `args.my_flag`.
 
 ## Practice
@@ -273,7 +273,7 @@ The `if __name__ == "__main__":` guard means the file can also be imported as a
    `"Hello"`.
 3. Write a word-count tool: takes a filename, plus `--lines`, `--words`, and
    `--chars` flags, printing only what was asked for.
-4. Add `--output` to one of your [Week 9](/docs/week9/web-scraping) scrapers so
+4. Add `--output` to one of your [Week 11](/docs/week11/web-scraping) scrapers so
    the destination file isn't hard-coded.
 
 ## References
@@ -284,7 +284,7 @@ The `if __name__ == "__main__":` guard means the file can also be imported as a
 ## Keep going
 
 <Cards>
-  <Card title="Modules" href="/docs/week3/modules" description="Week 3: the __main__ guard used above." />
+  <Card title="Modules" href="/docs/week4/modules" description="Week 4: the __main__ guard used above." />
   <Card title="Regular Expressions" href="/docs/reference/regex" description="Another useful extra." />
   <Card title="Glossary" href="/docs/reference/glossary" description="Every term in this course." />
 </Cards>

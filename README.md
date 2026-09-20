@@ -31,7 +31,7 @@ Then open <http://localhost:3000>.
 
 | Path | What it is |
 | :- | :- |
-| `docs/` | The documentation site — **the notes live here** |
+| `docs/` | The documentation site. **The notes live here** |
 | `docs/content/docs/` | The notes themselves, as MDX |
 | `week1/` … `week12/` | Original lesson code and legacy markdown (see below) |
 | `assignments/` | Exercise and project code, including group projects |
@@ -40,25 +40,45 @@ Then open <http://localhost:3000>.
 | `block_chain/` | A standalone blockchain example |
 | `banking_app.py`, `bank.py` | Final project source |
 
-The runnable `.py` files stay where they are — the notes link to them by path.
+The runnable `.py` files stay where they are, and the notes link to them by path.
 
 ## The course
 
+The twelve weeks are sequenced so each one only needs what came before it.
+
+**Python foundations**
+
 | Week | Topic |
 | :- | :- |
-| 1 | Getting started — what Python is, syntax, variables, numbers |
-| 2 | Control flow and data types — conditions, loops, operators, collections |
-| 3 | Functions and OOP — functions, classes, the four pillars, modules, exceptions |
-| 4 | File handling — files, paths, CSV, and JSON |
-| 5 | Consolidation |
-| 6 | Data structures and algorithms — stacks, queues, linked lists, five sorts |
-| 7 | Consolidation |
-| 8 | Cryptography — ciphers and hashing |
-| 9 | Web scraping — requests and BeautifulSoup |
-| 10 | Scraper project — RSS, SQLAlchemy, Flask |
-| 11 | APIs — CRUD, auth, status codes |
-| 12 | Data analysis — NumPy and Pandas |
-| — | Final project — a console banking application |
+| 1 | Getting started: what Python is, syntax, variables, numbers |
+| 2 | Operators and control flow: every operator, then `if`, `while`, `for` |
+| 3 | Collections: strings, lists, tuples, sets, dictionaries |
+| 4 | Functions and modules: arguments, lambdas, recursion, imports |
+
+**Structuring programs**
+
+| Week | Topic |
+| :- | :- |
+| 5 | Object-oriented programming: classes, the four pillars, composition |
+| 6 | Errors and files: exceptions, file handling, paths, CSV and JSON |
+
+**Computer science**
+
+| Week | Topic |
+| :- | :- |
+| 7 | Data structures: stacks, queues, linked lists |
+| 8 | Algorithms: five sorting algorithms and Big-O |
+
+**Building real things**
+
+| Week | Topic |
+| :- | :- |
+| 9 | Cryptography: ciphers and hashing |
+| 10 | APIs: CRUD with Flask, status codes, and auth built on Week 9's hashing |
+| 11 | Web scraping: requests, BeautifulSoup, and the RSS scraper project |
+| 12 | Data analysis: NumPy and Pandas |
+
+Then the final project, a console banking application.
 
 ## Contributing
 
@@ -73,7 +93,7 @@ To add a page:
 2. Add its slug to `docs/content/docs/weekN/meta.json` in the position you want.
 3. Link to it from the week's `index.mdx` and from related pages.
 
-Every topic page follows the same shape — explanation, examples, **Rules**,
+Every topic page follows the same shape: explanation, examples, **Rules**,
 **Common Mistakes**, practice, then a **Keep going** section of links. Please
 keep that up when adding pages, so nothing is a dead end.
 
@@ -104,8 +124,12 @@ server build for local use.
 
 The `week*/` folders also contain the original markdown notes from the GitBook
 version of this course, indexed by [SUMMARY.md](SUMMARY.md). They're kept for
-history. **They are not maintained** — everything in them has been carried into
+history. **They are not maintained.** Everything in them has been carried into
 the documentation site, which is more complete and correctly linked.
+
+The `week*/` folders are numbered by the original cohort calendar. The
+documentation site renumbers the weeks into a better teaching order, so
+`week3/` on disk is not the same week as `/docs/week3` on the site.
 
 ## License
 

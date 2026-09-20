@@ -1,11 +1,16 @@
 ---
 title: Overview
-description: Week 2 — decisions, loops, operators, and Python's core data types.
+description: Week 2. Operators, then the decisions and loops built on top of them.
 icon: GitBranch
 ---
 
-Week 1 gave you values. This week you make programs that *decide* and *repeat*,
-and you meet the containers Python uses to hold groups of values.
+Week 1 gave you values. This week you combine them and act on the result: first
+the operators that compare and calculate, then the statements that branch and
+repeat.
+
+Operators come first on purpose. An `if` statement is only as useful as the
+condition inside it, and that condition is built from comparison and logical
+operators.
 
 <Callout title="Before you start">
 You should be comfortable with [Variables](/docs/week1/variables) and
@@ -14,48 +19,19 @@ You should be comfortable with [Variables](/docs/week1/variables) and
 
 ## What you'll learn
 
-- Branch on a condition with `if` / `elif` / `else`
-- Repeat work with `for` and `while`, and steer loops with `break` / `continue`
-- Use every category of Python operator, and know which one you need
-- Choose between a list, tuple, set, and dictionary for a given job
-
-## Control flow
-
-<Cards>
-  <Card
-    title="Control Flow"
-    href="/docs/week2/control-flow"
-    description="Start here — how Python decides what runs next."
-  />
-  <Card
-    title="if Statements"
-    href="/docs/week2/if-statements"
-    description="Branching, truthiness, and the conditions Python considers false."
-  />
-  <Card
-    title="for Loops"
-    href="/docs/week2/for-loops"
-    description="Iterate over sequences with range(), enumerate(), and for/else."
-  />
-  <Card
-    title="while Loops"
-    href="/docs/week2/while-loops"
-    description="Repeat until a condition changes — and avoid infinite loops."
-  />
-  <Card
-    title="break and continue"
-    href="/docs/week2/break-and-continue"
-    description="Exit a loop early or skip the rest of one iteration."
-  />
-</Cards>
+- Every category of Python operator, and which one you need when
+- Branch on a condition with `if`, `elif`, and `else`
+- Repeat work with `while` and `for`
+- Steer a loop from inside it with `break` and `continue`
 
 ## Operators
 
-Start with the [Operators overview](/docs/week2/operators), then dip into whichever
-category you need. Most beginners only need arithmetic, comparison, and logical
-at first.
+Start with the [Operators overview](/docs/week2/operators), then read arithmetic,
+comparison, and logical in order. Those three carry the rest of the week. The
+last four are worth knowing about now and looking up later.
 
 <Cards>
+  <Card title="Operators" href="/docs/week2/operators" description="The seven categories and how they fit together." />
   <Card title="Arithmetic" href="/docs/week2/operators-arithmetic" description="+  -  *  /  //  %  **" />
   <Card title="Comparison" href="/docs/week2/operators-comparison" description="==  !=  >  <  >=  <=" />
   <Card title="Logical" href="/docs/week2/operators-logical" description="and  or  not" />
@@ -65,22 +41,46 @@ at first.
   <Card title="Bitwise" href="/docs/week2/operators-bitwise" description="&  |  ^  ~  <<  >>" />
 </Cards>
 
-## Data types
+## Control flow
+
+`while` comes before `for` here. A `while` loop is just an `if` that keeps going,
+so it follows straight on from the previous page. A `for` loop needs something to
+iterate over, which is where [Week 3](/docs/week3) picks up.
 
 <Cards>
-  <Card title="Strings" href="/docs/week2/strings" description="Text: slicing, formatting, and common methods." />
-  <Card title="Lists" href="/docs/week2/lists" description="Ordered and changeable — the workhorse collection." />
-  <Card title="Tuples" href="/docs/week2/tuples" description="Ordered but fixed — safe to pass around." />
-  <Card title="Sets" href="/docs/week2/sets" description="Unique values, fast membership tests." />
-  <Card title="Dictionaries" href="/docs/week2/dictionaries" description="Key/value pairs — lookups by name." />
+  <Card
+    title="Control Flow"
+    href="/docs/week2/control-flow"
+    description="How Python decides what runs next."
+  />
+  <Card
+    title="if Statements"
+    href="/docs/week2/if-statements"
+    description="Branching, truthiness, and the values Python considers false."
+  />
+  <Card
+    title="while Loops"
+    href="/docs/week2/while-loops"
+    description="Repeat until a condition changes, without writing an infinite loop."
+  />
+  <Card
+    title="for Loops"
+    href="/docs/week2/for-loops"
+    description="Iterate over sequences with range(), enumerate(), and for/else."
+  />
+  <Card
+    title="break and continue"
+    href="/docs/week2/break-and-continue"
+    description="Exit a loop early or skip the rest of one iteration."
+  />
 </Cards>
 
 ## Practice
 
-- [Loops Practice](/docs/assignments/loops) — 14 exercises covering everything in the loops pages
-- [Week 2 Recap](/docs/week2/recap) — check yourself before moving on
+- [Loops Practice](/docs/assignments/loops) has 14 exercises covering the loop pages
+- [Week 2 Recap](/docs/week2/recap) checks you before moving on
 
 ## What's next
 
-[Week 3](/docs/week3) packages this logic into functions and classes so you can
-reuse it.
+[Week 3](/docs/week3) gives your loops something worth iterating over: strings,
+lists, tuples, sets, and dictionaries.

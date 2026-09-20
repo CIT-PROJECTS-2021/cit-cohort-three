@@ -1,35 +1,52 @@
 ---
-title: Week 7
-description: A consolidation week — no new material was taught.
-icon: CalendarOff
+title: Overview
+description: Week 7. Stacks, queues, and linked lists, built from scratch as classes.
+icon: Network
 ---
 
-<Callout type="warn" title="Placeholder">
-Week 7 has no notes in this repository. The page exists so the course reads
-straight through instead of jumping from Week 6 to Week 8. **If you know what was
-actually covered, replace this page** — it lives at
-`docs/content/docs/week7/index.mdx`.
+A data structure decides how your data is arranged. Get the arrangement right and
+the algorithm is obvious; get it wrong and no amount of clever code saves you.
+
+You already use Python's built-in structures. This week you build three of the
+classic ones yourself, which is the only reliable way to understand what the
+built-ins are doing for you.
+
+<Callout title="Before you start">
+You need [Classes](/docs/week5/classes), because every structure here is written
+as one, and [Lists](/docs/week3/lists).
 </Callout>
 
-Use this week to make the Week 6 material stick. Data structures and algorithms
-reward re-implementation more than re-reading.
+## What you'll learn
 
-## Rebuild from memory
+- What "data structure" and "algorithm" actually mean, and how to choose between them
+- Implement a stack, a queue, and a linked list from scratch
+- Recognise the problems each one is the natural fit for
+- Know when to stop writing your own and reach for `list`, `deque`, or `dict`
 
-Close the notes and write each of these from scratch. Check your version against
-the page afterwards.
+## Start here
 
-1. A [stack](/docs/week6/stacks) class with `push`, `pop`, and `peek`
-2. A [queue](/docs/week6/queues) class with `enqueue` and `dequeue`
-3. A [linked list](/docs/week6/linked-lists) you can append to and print
-4. [Bubble sort](/docs/week6/bubble-sort), then [insertion sort](/docs/week6/insertion-sort)
-5. [Merge sort](/docs/week6/merge-sort) — the hardest of the five
+<Cards>
+  <Card
+    title="Data Structures and Algorithms"
+    href="/docs/week7/data-structures-and-algorithms"
+    description="The overview: what these words mean and how to choose."
+  />
+</Cards>
 
-## Or build something
+## The structures
 
-Pick a prompt from [Projects](/docs/assignments/projects) and use at least one
-structure from Week 6 in it.
+<Cards>
+  <Card title="Stacks (LIFO)" href="/docs/week7/stacks" description="Last in, first out: undo history, call stacks." />
+  <Card title="Queues (FIFO)" href="/docs/week7/queues" description="First in, first out: job scheduling, print queues." />
+  <Card title="Linked Lists" href="/docs/week7/linked-lists" description="Nodes that point at the next node." />
+</Cards>
 
-## Then continue
+## Practice
 
-[Week 8: Cryptography](/docs/week8)
+- [Classes Questions](/docs/assignments/classes-questions) includes stack and queue exercises
+- [Week 7 Recap](/docs/week7/recap)
+
+## What's next
+
+[Week 8](/docs/week8) takes the other half of the pair: five sorting algorithms,
+step by step, and what each one costs.

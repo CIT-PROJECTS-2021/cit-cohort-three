@@ -5,11 +5,11 @@ icon: House
 ---
 
 A twelve-week course in Python and software engineering fundamentals, with
-hands-on practice every week. Everything the cohort covered is here — notes,
+hands-on practice every week. Everything the cohort covered is here: notes,
 examples, exercises, quizzes, and projects.
 
 <Callout title="New here?">
-Read [Start Here](/docs/start-here) first — two minutes on how these notes are
+Read [Start Here](/docs/start-here) first. Two minutes on how these notes are
 organised. Then [set up your machine](/docs/setup) and begin
 [Week 1](/docs/week1).
 </Callout>
@@ -18,17 +18,23 @@ organised. Then [set up your machine](/docs/setup) and begin
 
 By the end of the course you will:
 
-- Write Python confidently — data types, control flow, functions, and error handling
+- Write Python confidently, from data types and control flow to functions and error handling
 - Model problems with classes and apply the four OOP principles
 - Implement the core data structures and sorting algorithms from scratch
 - Read and write files, CSV, and JSON
-- Scrape websites and build APIs backed by a database
+- Build APIs backed by a database, and scrape the sites that don't have one
 - Analyse data with NumPy and Pandas
 - Ship a complete project of your own
 
 ## The course
 
-### Foundations — Weeks 1–4
+The four blocks below build on each other. Each week assumes the one before it,
+and the **Next** link at the bottom of every page follows that order.
+
+### Python foundations: Weeks 1 to 4
+
+The language itself. Values, then the operators and statements that act on them,
+then the collections that hold many values, then functions to package it all up.
 
 <Cards>
   <Card
@@ -37,64 +43,77 @@ By the end of the course you will:
     description="What Python is, how its syntax works, variables, and numbers."
   />
   <Card
-    title="Week 2 · Control Flow & Data Types"
+    title="Week 2 · Operators & Control Flow"
     href="/docs/week2"
-    description="Decisions, loops, every operator, and the four core collections."
+    description="Every operator, then the branches and loops built on them."
   />
   <Card
-    title="Week 3 · Functions & OOP"
+    title="Week 3 · Collections"
     href="/docs/week3"
-    description="Functions, classes, the four OOP pillars, modules, and exceptions."
+    description="Strings, lists, tuples, sets, and dictionaries."
   />
   <Card
-    title="Week 4 · File Handling"
+    title="Week 4 · Functions & Modules"
     href="/docs/week4"
-    description="Read and write files, manage paths, and handle CSV and JSON."
+    description="Arguments, lambdas, recursion, and splitting code across files."
   />
 </Cards>
 
-### Computer science — Weeks 5–8
+### Structuring programs: Weeks 5 and 6
+
+How to keep a growing program under control, and how to make it survive contact
+with the outside world.
 
 <Cards>
   <Card
-    title="Week 5 · Consolidation"
+    title="Week 5 · Object-Oriented Programming"
     href="/docs/week5"
-    description="No new material — catch up and practise."
+    description="Classes, the four pillars, composition, and a project."
   />
   <Card
-    title="Week 6 · Data Structures & Algorithms"
+    title="Week 6 · Errors & Files"
     href="/docs/week6"
-    description="Stacks, queues, linked lists, and five sorting algorithms."
+    description="Exceptions, file handling, paths, and CSV and JSON."
   />
+</Cards>
+
+### Computer science: Weeks 7 and 8
+
+The fundamentals every other course, book, and interview assumes you know.
+
+<Cards>
   <Card
-    title="Week 7 · Consolidation"
+    title="Week 7 · Data Structures"
     href="/docs/week7"
-    description="Rebuild Week 6 from memory."
+    description="Stacks, queues, and linked lists, built from scratch."
   />
   <Card
-    title="Week 8 · Cryptography"
+    title="Week 8 · Algorithms"
     href="/docs/week8"
+    description="Five sorting algorithms and what each one costs."
+  />
+</Cards>
+
+### Building real things: Weeks 9 to 12
+
+Four weeks that chain together: hashing feeds the API, the API serves the
+scraper, and the scraper feeds the analysis.
+
+<Cards>
+  <Card
+    title="Week 9 · Cryptography"
+    href="/docs/week9"
     description="Ciphers, hashing, and the difference between them."
   />
-</Cards>
-
-### Building real things — Weeks 9–12
-
-<Cards>
   <Card
-    title="Week 9 · Web Scraping"
-    href="/docs/week9"
-    description="Extract data from websites with requests and BeautifulSoup."
-  />
-  <Card
-    title="Week 10 · Scraper Project"
+    title="Week 10 · APIs"
     href="/docs/week10"
-    description="An RSS scraper with a database and an HTTP interface."
+    description="Design and build CRUD APIs with Flask, including auth."
   />
   <Card
-    title="Week 11 · APIs"
+    title="Week 11 · Web Scraping"
     href="/docs/week11"
-    description="Design and build CRUD APIs with Flask, including auth."
+    description="Extract data from sites without an API, then store and serve it."
   />
   <Card
     title="Week 12 · Data Analysis"
@@ -129,7 +148,7 @@ By the end of the course you will:
   <Card
     title="Regular Expressions"
     href="/docs/reference/regex"
-    description="Pattern matching for text — a cheat sheet you'll come back to."
+    description="Pattern matching for text. A cheat sheet you'll come back to."
   />
   <Card
     title="Command-Line Arguments"
@@ -142,8 +161,8 @@ By the end of the course you will:
 
 <Steps>
 <Step title="Set up your machine">
-Install Python and an editor — [Set Up Your Machine](/docs/setup) walks through
-it. About twenty minutes.
+Install Python and an editor. [Set Up Your Machine](/docs/setup) walks through
+it in about twenty minutes.
 </Step>
 <Step title="Follow the weeks in order">
 Each week's Overview page lists what you need first. The **Next** link at the
@@ -163,10 +182,8 @@ Press ⌘K (or Ctrl+K) and type. Faster than scrolling the sidebar.
 
 ## External resources
 
-- [Python documentation](https://docs.python.org/3/) — the official reference
-- [AWS documentation](https://docs.aws.amazon.com/) — cloud engineering
-- [GitHub repository](https://github.com/CIT-PROJECTS-2021/cit-cohort-three) — all course code and materials
-
----
+- [Python documentation](https://docs.python.org/3/): the official reference
+- [AWS documentation](https://docs.aws.amazon.com/): cloud engineering
+- [GitHub repository](https://github.com/CIT-PROJECTS-2021/cit-cohort-three): all course code and materials
 
 Ready? [Start Here](/docs/start-here) →

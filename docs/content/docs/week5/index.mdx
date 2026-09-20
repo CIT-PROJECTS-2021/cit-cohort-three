@@ -1,36 +1,61 @@
 ---
-title: Week 5
-description: A consolidation week — no new material was taught.
-icon: CalendarOff
+title: Overview
+description: Week 5. Classes, objects, and the four principles of object-oriented design.
+icon: Component
 ---
 
-<Callout type="warn" title="Placeholder">
-Week 5 has no notes in this repository. The page exists so the course reads
-straight through instead of jumping from Week 4 to Week 6. **If you know what was
-actually covered, replace this page** — it lives at
-`docs/content/docs/week5/index.mdx`.
+Functions let you name a piece of behaviour. Classes let you keep that behaviour
+next to the data it works on, so the two travel together.
+
+This week is the longest in the course, and the order matters: the big idea, then
+the syntax, then the four principles, then a project that uses all of them.
+
+<Callout title="Before you start">
+You need [Week 4](/docs/week4). A method is a function that lives on a class, so
+everything about arguments and return values still applies.
 </Callout>
 
-Weeks 5 and 7 were consolidation weeks: no new topics, time spent finishing
-assignments and catching up. If that's you right now, here's a useful way to
-spend the week.
+## What you'll learn
 
-## Consolidate Weeks 1–4
+- Why bundling data with behaviour makes programs easier to change
+- Define a class, create objects from it, and write `__init__`
+- Apply encapsulation, abstraction, inheritance, and polymorphism
+- Recognise when "has-a" beats "is-a"
+- Build a small system from several classes that talk to each other
+
+## Start here
 
 <Cards>
-  <Card title="Week 1 Recap" href="/docs/week1/recap" description="Syntax, variables, numbers." />
-  <Card title="Week 2 Recap" href="/docs/week2/recap" description="Control flow, operators, data types." />
-  <Card title="Week 3 Recap" href="/docs/week3/recap" description="Functions, OOP, modules, exceptions." />
-  <Card title="Week 4 Recap" href="/docs/week4/recap" description="File handling." />
+  <Card title="OOP" href="/docs/week5/oop" description="The core idea: bundle data with the behaviour that uses it." />
+  <Card title="Classes" href="/docs/week5/classes" description="Define a class, create objects, write __init__." />
 </Cards>
 
-## Catch up on practice
+## The four pillars
 
-- [Loops Practice](/docs/assignments/loops)
-- [Classes Quiz One](/docs/assignments/classes-quiz-one)
-- [OOP Project Walkthrough](/docs/week3/oop-project)
-- [Projects](/docs/assignments/projects) — pick one and build it
+Read these in order. Encapsulation and abstraction are about a single class;
+inheritance and polymorphism are about how several classes relate.
 
-## Then continue
+<Cards>
+  <Card title="Encapsulation" href="/docs/week5/encapsulation" description="Keep internal state internal." />
+  <Card title="Abstraction" href="/docs/week5/abstraction" description="Expose what something does, hide how." />
+  <Card title="Inheritance" href="/docs/week5/inheritance" description="Build a new class on top of an existing one." />
+  <Card title="Polymorphism" href="/docs/week5/polymorphism" description="One interface, many implementations." />
+</Cards>
 
-[Week 6: Data Structures and Algorithms](/docs/week6)
+## Applying it
+
+<Cards>
+  <Card title="Composition vs Inheritance" href="/docs/week5/composition-vs-inheritance" description="'Has-a' usually beats 'is-a'. Here's when." />
+  <Card title="OOP Project Walkthrough" href="/docs/week5/oop-project" description="Put it together: a small library system." />
+</Cards>
+
+## Practice
+
+- [Classes Quiz One](/docs/assignments/classes-quiz-one) is a class-based project prompt
+- [Classes Questions](/docs/assignments/classes-questions) is short answer practice
+- [Week 5 Recap](/docs/week5/recap)
+
+## What's next
+
+[Week 6](/docs/week6) takes your programs off the screen and onto disk, and
+teaches you to handle the errors that come with it.

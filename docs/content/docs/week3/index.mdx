@@ -1,63 +1,55 @@
 ---
 title: Overview
-description: Week 3 — functions, object-oriented programming, modules, and exceptions.
+description: Week 3. The four collections Python uses to hold groups of values.
 icon: Boxes
 ---
 
-So far your programs have been one long script. This week you learn the four
-tools Python gives you for breaking a program into pieces that fit in your head.
+A variable holds one value. Real programs hold many, and the shape you store them
+in decides how easy the rest of your code is to write.
+
+This week covers the five types you'll reach for constantly, and the question
+that picks between them: does order matter, can it change, and do you look things
+up by position or by name?
 
 <Callout title="Before you start">
-You need [Week 2](/docs/week2) — especially [Control Flow](/docs/week2/control-flow),
-[Lists](/docs/week2/lists), and [Dictionaries](/docs/week2/dictionaries).
+You need [Week 2](/docs/week2), especially
+[for Loops](/docs/week2/for-loops) and
+[Membership operators](/docs/week2/operators-membership). Every collection here
+is something you will loop over.
 </Callout>
 
 ## What you'll learn
 
-- Write functions that take arguments and return values
-- Model things as classes, and use the four OOP pillars
-- Split code across modules and import it back
-- Handle errors deliberately instead of crashing
+- Slice, format, and search text with string methods
+- Choose between a list, tuple, set, and dictionary for a given job
+- Iterate over each one, including key/value pairs
+- Nest collections to model data with more than one dimension
 
-## Functions
-
-<Cards>
-  <Card title="Functions" href="/docs/week3/functions" description="Define, call, return — and why returning beats printing." />
-  <Card title="Function Arguments" href="/docs/week3/function-arguments" description="Positional, keyword, default, *args and **kwargs." />
-  <Card title="Lambda Functions" href="/docs/week3/lambda-functions" description="Small anonymous functions, and where they actually help." />
-  <Card title="Recursion" href="/docs/week3/recursion" description="Functions that call themselves — and the base case that stops them." />
-</Cards>
-
-## Object-oriented programming
-
-Read [OOP](/docs/week3/oop) first for the big picture, then
-[Classes](/docs/week3/classes) for the syntax. The four pillars after that can be
-read in any order.
+## Pages in this week
 
 <Cards>
-  <Card title="OOP" href="/docs/week3/oop" description="The core idea: bundle data with the behaviour that uses it." />
-  <Card title="Classes" href="/docs/week3/classes" description="Define a class, create objects, write __init__." />
-  <Card title="Inheritance" href="/docs/week3/inheritance" description="Build a new class on top of an existing one." />
-  <Card title="Composition vs Inheritance" href="/docs/week3/composition-vs-inheritance" description="'Has-a' usually beats 'is-a'. Here's when." />
-  <Card title="Polymorphism" href="/docs/week3/polymorphism" description="One interface, many implementations." />
-  <Card title="Encapsulation" href="/docs/week3/encapsulation" description="Keep internal state internal." />
-  <Card title="Abstraction" href="/docs/week3/abstraction" description="Expose what something does, hide how." />
-  <Card title="OOP Project Walkthrough" href="/docs/week3/oop-project" description="Put it together: a small library system." />
+  <Card title="Strings" href="/docs/week3/strings" description="Text: slicing, formatting, and the methods worth memorising." />
+  <Card title="Lists" href="/docs/week3/lists" description="Ordered and changeable, the workhorse collection." />
+  <Card title="Tuples" href="/docs/week3/tuples" description="Ordered but fixed, so they're safe to pass around." />
+  <Card title="Sets" href="/docs/week3/sets" description="Unique values and fast membership tests." />
+  <Card title="Dictionaries" href="/docs/week3/dictionaries" description="Key/value pairs, for looking things up by name." />
 </Cards>
 
-## Organising and protecting code
+## Choosing one
 
-<Cards>
-  <Card title="Modules" href="/docs/week3/modules" description="Split code into files and import across them." />
-  <Card title="Exceptions" href="/docs/week3/exceptions" description="try / except / else / finally, and raising your own." />
-</Cards>
+| You need | Use |
+| --- | --- |
+| An ordered list you'll add to and change | [List](/docs/week3/lists) |
+| An ordered group that must not change | [Tuple](/docs/week3/tuples) |
+| Uniqueness, or a fast "is this in here?" | [Set](/docs/week3/sets) |
+| Lookup by name rather than position | [Dictionary](/docs/week3/dictionaries) |
 
 ## Practice
 
-- [Classes Quiz One](/docs/assignments/classes-quiz-one) — a class-based project prompt
-- [Classes Questions](/docs/assignments/classes-questions) — short answer practice
+- [Loops Practice](/docs/assignments/loops) mostly loops over these collections
 - [Week 3 Recap](/docs/week3/recap)
 
 ## What's next
 
-[Week 4](/docs/week4) takes your programs off the screen and onto disk.
+[Week 4](/docs/week4) packages the logic you've been repeating into functions you
+can call by name.

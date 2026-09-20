@@ -1,9 +1,10 @@
 {
-  "title": "Week 10 · Scraper Project",
-  "icon": "Rss",
+  "title": "Week 10 · APIs",
+  "icon": "Webhook",
   "pages": [
     "index",
-    "rss-scraper-quiz",
+    "todo-api",
+    "api-quiz",
     "recap"
   ]
 }

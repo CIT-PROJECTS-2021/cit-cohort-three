@@ -1,21 +1,30 @@
 ---
 title: Week 11 Recap
-description: Quick checklist for APIs.
+description: Quick checklist for web scraping and the RSS scraper project.
 icon: CircleCheck
 ---
 
 ## Checklist
-- I can define CRUD endpoints.
-- I can validate input and handle errors.
-- I can model basic relationships between users and tasks.
+- I can fetch a web page with `requests` and check the status code.
+- I can parse HTML with BeautifulSoup and extract text from elements.
+- I can select elements by tag, class, and CSS selector.
+- I can follow pagination to the end of a listing.
+- I respect `robots.txt`, rate limits, and set a real User-Agent.
+- I can fetch and parse an RSS feed.
+- I can map parsed fields onto a database table with SQLAlchemy.
+- I can serve what I stored as JSON from a Flask route.
 
 ## Try This
-1. Create a `POST /tasks` endpoint.
-2. Add validation for required fields.
-3. Return a 404 when an item is missing.
+1. Scrape the title and every link from a public page, and print them.
+2. Add a custom User-Agent header and a delay between requests.
+3. Walk a paginated listing and save the results to CSV.
+4. Parse one RSS item into a Python dictionary.
+5. Insert it with SQLAlchemy, skipping anything you've already stored.
+6. Return the stored items as a JSON list from a Flask route.
 
 ## Keep going
 
 <Cards>
-  <Card title="Week 12" href="/docs/week12" description="Next: data analysis." />
+  <Card title="Week 12" href="/docs/week12" description="Next: analysing the data you collected." />
+  <Card title="Regular Expressions" href="/docs/reference/regex" description="Reference: useful for messy scraped text." />
 </Cards>
