@@ -40,6 +40,10 @@ print(letters[:3])   # ['P', 'y', 't']
 print(letters[3:])   # ['h', 'o', 'n']
 ```
 
+You can also assign to a slice, which replaces that section in place and may
+change the list's length. [Slicing](/docs/week3/slicing) covers that, negative
+steps, and why `[:]` is only a shallow copy.
+
 ## Updating Items
 ```python
 odd = [2, 4, 6, 8]
@@ -138,6 +142,7 @@ for index, fruit in enumerate(["Apple", "Banana"]):
 
 <Cards>
   <Card title="Tuples" href="/docs/week3/tuples" description="Next: lists that can't change." />
+  <Card title="Slicing" href="/docs/week3/slicing" description="Slice assignment, negative steps, and copying." />
   <Card title="for Loops" href="/docs/week2/for-loops" description="How you'll walk through a list." />
   <Card title="Stacks" href="/docs/week7/stacks" description="Week 7: a list with rules attached." />
 </Cards>

@@ -6,6 +6,7 @@
     "strings",
     "lists",
     "tuples",
+    "slicing",
     "sets",
     "dictionaries",
     "recap"

@@ -1,0 +1,384 @@
+---
+title: Slicing
+description: Cut a piece out of any sequence with [start:stop:step], including the negative-step rules exams love.
+icon: Slice
+---
+
+Indexing gives you one item. **Slicing** gives you a run of them, and it works
+identically on every sequence: [strings](/docs/week3/strings),
+[lists](/docs/week3/lists), [tuples](/docs/week3/tuples), and `range`.
+
+Learn the rules once here and they apply everywhere.
+
+<Callout type="warn" title="Read this page slowly">
+Slicing is the single most common source of off-by-one errors in beginner code,
+and certification exams lean on it heavily. Almost every trick question is built
+from two facts: **the stop is excluded**, and **a negative step flips the
+defaults**.
+</Callout>
+
+## The mental model
+
+Stop thinking about indexes as *characters* and start thinking about them as the
+**gaps between characters**. A slice takes everything between two gaps.
+
+```
+ +---+---+---+---+---+---+
+ | P | y | t | h | o | n |
+ +---+---+---+---+---+---+
+ 0   1   2   3   4   5   6
+-6  -5  -4  -3  -2  -1
+```
+
+`text[1:4]` takes everything between gap 1 and gap 4, which is `yth`. Read it as
+"from 1, up to but not including 4".
+
+```python
+text = "Python"
+
+print(text[1:4])    # yth
+print(text[0:2])    # Py
+print(text[4:6])    # on
+```
+
+This is also why `text[:3] + text[3:]` rebuilds the original string exactly: the
+two slices meet at gap 3 with no overlap and no gap.
+
+```python
+print(text[:3] + text[3:])   # Python
+```
+
+## Syntax
+
+```python
+sequence[start:stop:step]
+```
+
+| Part | Means | Default |
+| :- | :- | :- |
+| `start` | first index included | `0` |
+| `stop` | first index **excluded** | `len(sequence)` |
+| `step` | how far to jump each time | `1` |
+
+Every part is optional. Leave one out and Python uses the default.
+
+```python
+text = "Python"
+
+print(text[2:])     # thon      from 2 to the end
+print(text[:2])     # Py        from the start to 2
+print(text[:])      # Python    the whole thing
+print(text[::2])    # Pto       every second character
+```
+
+Lists behave exactly the same way.
+
+```python
+nums = [10, 20, 30, 40, 50]
+
+print(nums[1:4])    # [20, 30, 40]
+print(nums[:3])     # [10, 20, 30]
+print(nums[2:])     # [30, 40, 50]
+print(nums[::2])    # [10, 30, 50]
+```
+
+## Negative indexes
+
+Negative numbers count from the end, with `-1` as the last item. They work
+anywhere a positive index does.
+
+```python
+text = "Python"
+
+print(text[-1])     # n     last character
+print(text[-3:])    # hon   last three characters
+print(text[:-1])    # Pytho everything except the last
+print(text[-4:-1])  # tho
+```
+
+`text[:-1]` is the idiomatic way to drop a trailing character, such as a newline
+or a comma.
+
+<Callout type="info">
+Mixing signs is fine. `text[1:-1]` means "from index 1 up to the last item,
+excluding it", which gives `ytho`. Python resolves the negative index to a
+positive one first, so `-1` becomes `5` and the slice is `text[1:5]`.
+</Callout>
+
+## Negative steps
+
+A negative `step` walks backwards. This is where most people, and most exam
+questions, come unstuck.
+
+```python
+text = "Python"
+
+print(text[::-1])   # nohtyP    the whole string, reversed
+print(text[::-2])   # nhy       backwards, every second character
+```
+
+`[::-1]` is the standard Python idiom for reversing a sequence, and it works on
+lists and tuples too.
+
+```python
+nums = [10, 20, 30, 40, 50]
+print(nums[::-1])   # [50, 40, 30, 20, 10]
+```
+
+### The defaults flip
+
+This is the rule to memorise. When `step` is negative:
+
+- `start` defaults to the **last** item, not the first
+- `stop` defaults to **before the beginning**, not the end
+
+So the slice still means "from `start`, up to but not including `stop`", but it
+is now travelling right to left.
+
+```python
+text = "Python"
+
+print(text[5:1:-1])   # noht   from index 5 down to 2
+print(text[3::-1])    # htyP   from index 3 down to the start
+print(text[:2:-1])    # noh    from the end down to index 3
+```
+
+<Callout type="warn" title="The classic trap">
+`text[1:4:-1]` returns `''`, not `hty`.
+
+Going backwards from index 1, you can never reach index 4, so the slice is
+empty. Reversing a *range* needs the start and stop swapped as well as the step
+negated: `text[4:1:-1]` gives `oht`.
+</Callout>
+
+## Out-of-range is safe
+
+An out-of-range **index** raises `IndexError`. An out-of-range **slice** does
+not. Python silently clamps the bounds to the ends of the sequence.
+
+```python
+text = "Python"
+
+# print(text[99])   # IndexError
+
+print(text[2:99])   # thon
+print(text[-99:3])  # Pyt
+print(text[99:])    # '' (empty, no error)
+```
+
+This is why slicing is the safe way to take "up to n items" from something that
+might be shorter than you expect.
+
+```python
+def first_three(items):
+    return items[:3]        # never raises, however short items is
+
+print(first_three([1, 2]))          # [1, 2]
+print(first_three([1, 2, 3, 4]))    # [1, 2, 3]
+```
+
+## When you get an empty slice
+
+A slice is empty whenever you cannot walk from `start` to `stop` in the
+direction `step` is pointing.
+
+```python
+print("Python"[4:2])      # '' positive step, but stop is behind start
+print("Python"[2:4:-1])   # '' negative step, but stop is ahead of start
+print("Python"[3:3])      # '' start and stop are the same gap
+```
+
+No error, just an empty result. A slice that silently returns `''` or `[]` when
+you expected data almost always means the direction is wrong.
+
+## What you get back
+
+A slice always returns a **new object of the same type**.
+
+```python
+print(type("Python"[1:3]))      # <class 'str'>
+print(type([1, 2, 3][1:3]))     # <class 'list'>
+print(type((1, 2, 3)[1:3]))     # <class 'tuple'>
+```
+
+For lists, `[:]` is the usual way to take a copy, so the original is safe from
+changes made to the copy.
+
+```python
+original = [1, 2, 3]
+copy = original[:]
+copy.append(4)
+
+print(original)   # [1, 2, 3]
+print(copy)       # [1, 2, 3, 4]
+```
+
+<Callout type="warn" title="The copy is shallow">
+`[:]` copies the outer list only. Nested lists are still shared.
+
+```python
+grid = [[1, 2], [3, 4]]
+shallow = grid[:]
+shallow[0].append(99)
+
+print(grid)   # [[1, 2, 99], [3, 4]] the original changed too
+```
+
+Use `copy.deepcopy()` when the nesting matters. See [Lists](/docs/week3/lists).
+</Callout>
+
+For immutable types there is nothing to protect, so Python is free to hand back
+the original object rather than build a duplicate. Treat `[:]` as a genuine copy
+only for mutable sequences like lists.
+
+## Slice assignment
+
+On a **mutable** sequence you can assign *to* a slice, replacing that section in
+place. The replacement does not have to be the same length, so this can grow or
+shrink the list.
+
+```python
+nums = [1, 2, 3, 4, 5]
+
+nums[1:3] = [9, 9, 9]
+print(nums)          # [1, 9, 9, 9, 4, 5]  grew by one
+```
+
+Assigning an empty list deletes the section.
+
+```python
+nums = [1, 2, 3, 4, 5]
+nums[1:3] = []
+print(nums)          # [1, 4, 5]
+```
+
+An **extended** slice, one with a step, is stricter: the replacement must have
+exactly as many items as the slice selects.
+
+```python
+nums = [1, 2, 3, 4, 5, 6]
+
+nums[::2] = [0, 0, 0]
+print(nums)          # [0, 2, 0, 4, 0, 6]
+
+# nums[::2] = [0, 0]
+# ValueError: attempt to assign sequence of size 2 to extended slice of size 3
+```
+
+None of this works on a string or tuple, because they are immutable.
+
+```python
+text = "Python"
+# text[0:2] = "Ja"   # TypeError: 'str' object does not support item assignment
+```
+
+## Deleting with slices
+
+`del` takes a slice too, and it accepts a step.
+
+```python
+nums = [1, 2, 3, 4, 5]
+del nums[1:3]
+print(nums)          # [1, 4, 5]
+
+nums = [1, 2, 3, 4, 5, 6]
+del nums[::2]
+print(nums)          # [2, 4, 6]
+```
+
+## Counting what a slice returns
+
+Exam questions often ask for the *length* of a slice rather than its contents.
+Work it out without listing the items:
+
+1. Clamp `start` and `stop` to the ends of the sequence.
+2. Take the distance between them.
+3. Divide by `abs(step)` and round **up**.
+
+```python
+text = "Python"          # length 6
+
+len(text[1:10:2])        # clamps to [1:6:2] -> gaps 1,3,5 -> 3
+len(text[0:6:2])         # 0,2,4 -> 3
+len(text[::-2])          # 5,3,1 -> 3
+```
+
+## Rules
+
+1. **`stop` is always excluded.** `s[1:4]` gives items 1, 2, and 3, which is
+   `stop - start` items when the step is 1.
+2. **All three parts are optional**, and default to `0`, `len(s)`, and `1`.
+3. **A negative step flips the defaults** to the last item and to before the
+   beginning. This is the rule most exam questions are built on.
+4. **Slicing never raises `IndexError`.** Out-of-range bounds are clamped;
+   impossible ranges return an empty sequence.
+5. **`step` must not be zero.** `s[::0]` raises `ValueError`.
+6. **A slice returns a new object of the same type.** Slicing a list gives a
+   list, slicing a string gives a string.
+7. **`[:]` copies a list, but only one level deep.** Nested objects stay shared.
+8. **Slice assignment works on lists only**, and a plain `start:stop` slice may
+   change the list's length. An extended slice with a step may not.
+9. **`s[::-1]` reverses any sequence**, and unlike `list.reverse()` it returns a
+   new one rather than modifying in place.
+10. **`s[:n] + s[n:]` always reconstructs `s`**, for any `n`.
+
+## Common Mistakes
+
+- **Expecting `stop` to be included.** `"Python"[0:6]` is the whole string;
+  `"Python"[0:5]` drops the last character. If you want the last `n` items, use
+  `s[-n:]` rather than counting forwards.
+- **Negating the step but not swapping start and stop.**
+  ```python
+  text = "Python"
+
+  # wrong: cannot walk backwards from 1 to 4
+  print(text[1:4:-1])   # ''
+
+  # right: swap the bounds, and remember stop is still excluded
+  print(text[4:1:-1])   # oht
+  ```
+- **Writing `s[-1:0:-1]` to reverse.** It silently drops the first character,
+  because `0` is excluded. Use `s[::-1]`.
+- **Assuming `b = a` copies a list.** It does not; it makes a second name for
+  the same list. `b = a[:]` copies it. See
+  [Lists](/docs/week3/lists).
+- **Trusting a shallow copy with nested data.** `grid[:]` shares the inner
+  lists.
+- **Trying to slice-assign a string.** Strings are immutable. Build a new one by
+  slicing around the part you want to change:
+  ```python
+  text = "Python"
+  # text[:2] = "Ja"          # TypeError
+  text = "Ja" + text[2:]     # Jathon
+  ```
+- **Trying to slice a set or dictionary.** Neither is a sequence, so neither has
+  positions to slice. `{"a": 1}[0:1]` raises `TypeError`. See
+  [Sets](/docs/week3/sets) and [Dictionaries](/docs/week3/dictionaries).
+
+## Practice
+
+Predict each result before running it. `text = "Python"` and
+`nums = [10, 20, 30, 40, 50]`.
+
+1. What is `text[2:5]`?
+2. What is `text[-2:]`?
+3. What is `text[:-2]`?
+4. What is `text[::-1]`, and what is `text[::-2]`?
+5. What is `text[4:1:-1]`? What is `text[1:4:-1]`, and why do they differ?
+6. What is `text[10:]`? Why is there no error?
+7. What is `len(nums[1:10:2])`?
+8. What does `nums[::-1]` return, and does `nums` itself change?
+9. After `nums[1:3] = [1, 2, 3]`, what is `nums` and what is its length?
+10. Why does `nums[::2] = [0, 0]` raise `ValueError` while `nums[1:3] = [0, 0, 0]`
+    does not?
+11. Write a slice that returns the middle three characters of any six-character
+    string.
+12. Write a one-line check for whether a string is a palindrome.
+
+## Keep going
+
+<Cards>
+  <Card title="Sets" href="/docs/week3/sets" description="Next: unordered, so nothing to slice." />
+  <Card title="Strings" href="/docs/week3/strings" description="The sequence you'll slice most often." />
+  <Card title="Lists" href="/docs/week3/lists" description="Slice assignment and copying in context." />
+</Cards>
